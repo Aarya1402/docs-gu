@@ -23,6 +23,7 @@ aside: false
 
 ## Work in Progress Languages {#work-in-progress-languages}
 
+- [ગુજરાતી / Gujarati](https://github.com/Aarya1402/docs-gu) [[source](https://github.com/Aarya1402/docs-gu)]
 - [العربية / Arabic](https://ar.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-ar)]
 - [Español / Spanish](https://vue3-spanish-docs.netlify.app/) [[source](https://github.com/icarusgk/vuejs-spanish-docs)]
 - [Deutsch / German](https://de.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-de)]
