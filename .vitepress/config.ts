@@ -20,59 +20,59 @@ const nav: ThemeConfig['nav'] = [
     text: 'Docs',
     activeMatch: `^/(guide|tutorial|examples|api|glossary|error-reference)/`,
     items: [
-      { text: 'Quick Start', link: '/guide/quick-start' },
-      { text: 'Guide', link: '/guide/introduction' },
-      { text: 'Tutorial', link: '/tutorial/' },
-      { text: 'Examples', link: '/examples/' },
+      { text: 'ઝડપી શરૂઆત', link: '/guide/quick-start' },
+      { text: 'માર્ગદર્શિકા', link: '/guide/introduction' },
+      { text: 'ટ્યુટોરીયલ', link: '/tutorial/' },
+      { text: 'ઉદાહરણો', link: '/examples/' },
       { text: 'API', link: '/api/' },
       // { text: 'Style Guide', link: '/style-guide/' },
-      { text: 'Glossary', link: '/glossary/' },
-      { text: 'Error Reference', link: '/error-reference/' },
+      { text: 'શબ્દાવલી', link: '/glossary/' },
+      { text: 'ભૂલ સંદર્ભ', link: '/error-reference/' },
       {
-        text: 'Vue 2 Docs',
+        text: 'Vue 2 દસ્તાવેજો',
         link: 'https://v2.vuejs.org'
       },
       {
-        text: 'Migration from Vue 2',
+        text: 'Vue 2 માંથી સ્થળાંતર',
         link: 'https://v3-migration.vuejs.org/'
       }
     ]
   },
   {
-    text: 'Playground',
+    text: 'પ્લેગ્રાઉન્ડ',
     link: 'https://play.vuejs.org'
   },
   {
-    text: 'Ecosystem',
+    text: 'ઇકોસિસ્ટમ',
     activeMatch: `^/ecosystem/`,
     items: [
       {
-        text: 'Resources',
+        text: 'રિસોર્સિસ',
         items: [
-          { text: 'Themes', link: '/ecosystem/themes' },
-          { text: 'UI Components', link: 'https://ui-libs.vercel.app/' },
+          { text: 'થીમ્સ', link: '/ecosystem/themes' },
+          { text: 'UI ઘટકો', link: 'https://ui-libs.vercel.app/' },
           {
-            text: 'Plugins Collection',
+            text: 'પ્લગિન્સ કલેક્શન',
             link: 'https://www.vue-plugins.org/'
           },
           {
-            text: 'Certification',
+            text: 'પ્રમાણપત્ર',
             link: 'https://certificates.dev/vuejs/?ref=vuejs-nav'
           },
-          { text: 'Jobs', link: 'https://vuejobs.com/?ref=vuejs' },
-          { text: 'T-Shirt Shop', link: 'https://vue.threadless.com/' }
+          { text: 'નોકરીઓ', link: 'https://vuejobs.com/?ref=vuejs' },
+          { text: 'ટી-શર્ટ શોપ', link: 'https://vue.threadless.com/' }
         ]
       },
       {
-        text: 'Official Libraries',
+        text: 'સત્તાવાર લાયબ્રેરીઝ',
         items: [
           { text: 'Vue Router', link: 'https://router.vuejs.org/' },
           { text: 'Pinia', link: 'https://pinia.vuejs.org/' },
-          { text: 'Tooling Guide', link: '/guide/scaling-up/tooling.html' }
+          { text: 'ટૂલિંગ માર્ગદર્શિકા', link: '/guide/scaling-up/tooling.html' }
         ]
       },
       {
-        text: 'Video Courses',
+        text: 'વિડિયો અભ્યાસક્રમો',
         items: [
           {
             text: 'Vue Mastery',
@@ -85,55 +85,55 @@ const nav: ThemeConfig['nav'] = [
         ]
       },
       {
-        text: 'Help',
+        text: 'મદદ',
         items: [
           {
-            text: 'Discord Chat',
+            text: 'ડિસ્કોર્ડ ચેટ',
             link: 'https://discord.com/invite/HBherRA'
           },
           {
-            text: 'GitHub Discussions',
+            text: 'GitHub ચર્ચાઓ',
             link: 'https://github.com/vuejs/core/discussions'
           },
-          { text: 'DEV Community', link: 'https://dev.to/t/vue' }
+          { text: 'DEV કોમ્યુનિટી', link: 'https://dev.to/t/vue' }
         ]
       },
       {
-        text: 'News',
+        text: 'સમાચાર',
         items: [
-          { text: 'Blog', link: 'https://blog.vuejs.org/' },
+          { text: 'બ્લોગ', link: 'https://blog.vuejs.org/' },
           { text: 'Twitter', link: 'https://x.com/vuejs' },
-          { text: 'Events', link: 'https://events.vuejs.org/' },
-          { text: 'Newsletters', link: '/ecosystem/newsletters' }
+          { text: 'ઇવેન્ટ્સ', link: 'https://events.vuejs.org/' },
+          { text: 'ન્યૂઝલેટર્સ', link: '/ecosystem/newsletters' }
         ]
       }
     ]
   },
   {
-    text: 'About',
+    text: 'વિશે',
     activeMatch: `^/about/`,
     items: [
       { text: 'FAQ', link: '/about/faq' },
-      { text: 'Team', link: '/about/team' },
-      { text: 'Releases', link: '/about/releases' },
+      { text: 'ટીમ', link: '/about/team' },
+      { text: 'રીલીઝ', link: '/about/releases' },
       {
-        text: 'Community Guide',
+        text: 'કોમ્યુનિટી તરફથી માર્ગદર્શિકા',
         link: '/about/community-guide'
       },
-      { text: 'Code of Conduct', link: '/about/coc' },
-      { text: 'Privacy Policy', link: '/about/privacy' },
+      { text: 'આચાર સંહિતા', link: '/about/coc' },
+      { text: 'ગોપનીયતા નીતિ', link: '/about/privacy' },
       {
-        text: 'The Documentary',
+        text: 'ડોક્યુમેન્ટરી',
         link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'
       }
     ]
   },
   {
-    text: 'Support',
+    text: 'સપોર્ટ',
     activeMatch: `^/(sponsor|partners)/`,
     items: [
-      { text: 'Sponsor', link: '/sponsor/' },
-      { text: 'Partners', link: '/partners/' }
+      { text: 'સ્પોન્સર', link: '/sponsor/' },
+      { text: 'પાર્ટનર્સ', link: '/partners/' }
     ]
   }
 ]
@@ -586,9 +586,9 @@ export default defineConfigWithTheme<ThemeConfig>({
     hostname: 'https://vuejs.org'
   },
 
-  lang: 'en-US',
+  lang: 'gu-IN',
   title: 'Vue.js',
-  description: 'Vue.js - The Progressive JavaScript Framework',
+  description: 'Vue.js - એક પ્રોગ્રેસિવ જાવાસ્ક્રિપ્ટ ફ્રેમવર્ક',
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
 

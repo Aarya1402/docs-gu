@@ -13,18 +13,17 @@ onMounted(load)
   <section id="hero">
     <img id="uwu" alt="Vue.js Kawaii Logo by @icarusgkx" />
     <h1 class="tagline">
-      The
-      <span class="accent">Progressive</span>
-      <br />JavaScript Framework
+      એક
+      <span class="accent">પ્રોગ્રેસિવ</span>
+      <br />જાવાસ્ક્રિપ્ટ ફ્રેમવર્ક
     </h1>
     <p class="description">
-      An approachable, performant and versatile framework for building web
-      user interfaces.
+      વેબ યુઝર ઈન્ટરફેસ બનાવવા માટે એક સુલભ, કાર્યક્ષમ અને બહુમુખી ફ્રેમવર્ક.
     </p>
     <p class="actions">
       <VueMasteryModal />
       <a class="get-started" href="/guide/introduction.html">
-        Get Started
+        શરૂ કરો
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -37,9 +36,9 @@ onMounted(load)
           />
         </svg>
       </a>
-      <a class="setup" href="/guide/quick-start.html">Install</a>
+      <a class="setup" href="/guide/quick-start.html">ઇન્સ્ટોલ</a>
       <a class="security" href="https://v2.vuejs.org/eol/" target="_blank">
-        Get Security Updates for Vue 2
+        Vue 2 માટે સુરક્ષા અપડેટ્સ મેળવો
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +53,7 @@ onMounted(load)
   </section>
 
   <section v-if="data && data.special" id="special-spsr">
-    <span class="lead">Special Sponsor</span>
+    <span class="lead">ખાસ પ્રાયોજક</span>
     <template v-for="{ url, img, name, description } of data.special">
       <a :href="url" target="_blank" rel="sponsored noopener">
         <picture v-if="img.endsWith('png')">
@@ -78,39 +77,36 @@ onMounted(load)
   <section v-else id="special-spsr">
     <span>
       <a href="/sponsor/#tier-benefits">
-        Special Sponsor slot is now vacant - Inquire now
+        ખાસ પ્રાયોજક સ્લોટ અત્યારે ખાલી છે - અત્યારે પૂછપરછ કરો
       </a>
     </span>
   </section>
 
   <section id="highlights" class="vt-box-container">
     <div class="vt-box">
-      <h2>Approachable</h2>
+      <h2>સુલભ</h2>
       <p>
-        Builds on top of standard HTML, CSS and JavaScript with intuitive
-        API and world-class documentation.
+        સાહજિક API અને વિશ્વ-સ્તરીય દસ્તાવેજીકરણ સાથે પ્રમાણભૂત HTML, CSS અને JavaScript પર બનેલ છે.
       </p>
     </div>
     <div class="vt-box">
-      <h2>Performant</h2>
+      <h2>કાર્યક્ષમ</h2>
       <p>
-        Truly reactive, compiler-optimized rendering system that rarely
-        requires manual optimization.
+        સાચું રિએક્ટિવ, કમ્પાઈલર-ઓપ્ટિમાઇઝ્ડ રેન્ડરિંગ સિસ્ટમ કે જેમને ભાગ્યે જ મેન્યુઅલ ઓપ્ટિમાઇઝેશનની જરૂર પડે છે.
       </p>
     </div>
     <div class="vt-box">
-      <h2>Versatile</h2>
+      <h2>બહુમુખી</h2>
       <p>
-        A rich, incrementally adoptable ecosystem that scales between a
-        library and a full-featured framework.
+        એક સમૃદ્ધ, ક્રમશઃ સ્વીકાર્ય ઇકોસિસ્ટમ જે લાઇબ્રેરી અને સંપૂર્ણ સુવિધા ધરાવતા ફ્રેમવર્ક વચ્ચે સ્કેલ કરે છે.
       </p>
     </div>
   </section>
 
   <section id="spsrs">
-    <h2>Platinum Sponsors</h2>
+    <h2>પ્લેટિનમ પ્રાયોજકો</h2>
     <SponsorsGroup tier="platinum" placement="landing" />
-    <h2>Gold Sponsors</h2>
+    <h2>ગોલ્ડ પ્રાયોજકો</h2>
     <SponsorsGroup tier="gold" placement="landing" />
   </section>
 
