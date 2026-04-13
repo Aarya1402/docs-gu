@@ -2,13 +2,13 @@
 footer: false
 ---
 
-# Introduction {#introduction}
+# પરિચય {#introduction}
 
-:::info You are reading the documentation for Vue 3!
+:::info તમે Vue 3 માટે દસ્તાવેજીકરણ વાંચી રહ્યા છો!
 
-- Vue 2 support has ended on **Dec 31, 2023**. Learn more about [Vue 2 EOL](https://v2.vuejs.org/eol/).
-- Upgrading from Vue 2? Check out the [Migration Guide](https://v3-migration.vuejs.org/).
-  :::
+- Vue 2 માટે સપોર્ટ **Dec 31, 2023** ના રોજ સમાપ્ત થયો છે. [Vue 2 EOL](https://v2.vuejs.org/eol/) વિશે વધુ જાણો.
+- Vue 2 થી અપગ્રેડ કરી રહ્યા છો? [સ્થળાંતર માર્ગદર્શિકા](https://v3-migration.vuejs.org/) તપાસો.
+:::
 
 <style src="@theme/styles/vue-mastery.css"></style>
 <div class="vue-mastery-link">
@@ -16,18 +16,18 @@ footer: false
     <div class="banner-wrapper">
       <img class="banner" alt="Vue Mastery banner" width="96px" height="56px" src="https://storage.googleapis.com/vue-mastery.appspot.com/flamelink/media/vuemastery-graphical-link-96x56.png" />
     </div>
-    <p class="description">Learn Vue with video tutorials on <span>VueMastery.com</span></p>
+    <p class="description"><span>VueMastery.com</span> પર વિડિઓ ટ્યુટોરિયલ્સ સાથે Vue શીખો</p>
     <div class="logo-wrapper">
         <img alt="Vue Mastery Logo" width="25px" src="https://storage.googleapis.com/vue-mastery.appspot.com/flamelink/media/vue-mastery-logo.png" />
     </div>
   </a>
 </div>
 
-## What is Vue? {#what-is-vue}
+## Vue શું છે? {#what-is-vue}
 
-Vue (pronounced /vjuː/, like **view**) is a JavaScript framework for building user interfaces. It builds on top of standard HTML, CSS, and JavaScript and provides a declarative, component-based programming model that helps you efficiently develop user interfaces of any complexity.
+Vue (ઉચ્ચાર /vjuː/, **view** ની જેમ) યુઝર ઇન્ટરફેસ બનાવવા માટેનું જાવાસ્ક્રિપ્ટ ફ્રેમવર્ક છે. તે પ્રમાણભૂત HTML, CSS અને JavaScript પર બનેલ છે અને એક ડિક્લેરેટિવ (declarative), કમ્પોનન્ટ-આધારિત પ્રોગ્રામિંગ મોડેલ પ્રદાન કરે છે જે તમને કોઈપણ જટિલતાના યુઝર ઇન્ટરફેસને અસરકારક રીતે વિકસાવવામાં મદદ કરે છે.
 
-Here is a minimal example:
+અહીં એક નાનું ઉદાહરણ છે:
 
 <div class="options-api">
 
@@ -63,12 +63,12 @@ createApp({
 ```vue-html
 <div id="app">
   <button @click="count++">
-    Count is: {{ count }}
+    ગણતરી (Count) છે: {{ count }}
   </button>
 </div>
 ```
 
-**Result**
+**પરિણામ (Result)**
 
 <script setup>
 import { ref } from 'vue'
@@ -77,42 +77,42 @@ const count = ref(0)
 
 <div class="demo">
   <button @click="count++">
-    Count is: {{ count }}
+    ગણતરી (Count) છે: {{ count }}
   </button>
 </div>
 
-The above example demonstrates the two core features of Vue:
+ઉપરનું ઉદાહરણ Vue ની બે મુખ્ય લાક્ષણિકતાઓ દર્શાવે છે:
 
-- **Declarative Rendering**: Vue extends standard HTML with a template syntax that allows us to declaratively describe HTML output based on JavaScript state.
+- **ડિક્લેરેટિવ રેન્ડરિંગ (Declarative Rendering)**: Vue પ્રમાણભૂત HTML ને ટેમ્પલેટ સિન્ટેક્સ સાથે વિસ્તારે છે જે આપણને જાવાસ્ક્રિપ્ટ સ્ટેટના આધારે HTML આઉટપુટને ડિક્લેરેટિવ રીતે વર્ણવવાની મંજૂરી આપે છે.
 
-- **Reactivity**: Vue automatically tracks JavaScript state changes and efficiently updates the DOM when changes happen.
+- **રિએક્ટિવિટી (Reactivity)**: Vue જાવાસ્ક્રિપ્ટ સ્ટેટમાં થતા ફેરફારોને આપમેળે ટ્રૅક કરે છે અને જ્યારે ફેરફારો થાય ત્યારે DOM ને અસરકારક રીતે અપડેટ કરે છે.
 
-You may already have questions - don't worry. We will cover every little detail in the rest of the documentation. For now, please read along so you can have a high-level understanding of what Vue offers.
+તમને કદાચ અત્યારે કેટલાક પ્રશ્નો હોઈ શકે છે - ચિંતા ન કરશો. અમે બાકીના દસ્તાવેજોમાં દરેક નાની વિગતને આવરી લઈશું. અત્યારે, કૃપા કરીને આગળ વાંચો જેથી કરીને તમે Vue શું ઓફર કરે છે તેની ઉચ્ચ-સ્તરીય સમજ મેળવી શકો.
 
-:::tip Prerequisites
-The rest of the documentation assumes basic familiarity with HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics and then come back! You can check your knowledge level with these overviews for [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript), [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML) and [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps) if needed. Prior experience with other frameworks helps, but is not required.
+:::tip પૂર્વજરૂરિયાતો (Prerequisites)
+બાકીનું દસ્તાવેજીકરણ HTML, CSS અને JavaScript ની મૂળભૂત જાણકારી ધારી લે છે. જો તમે ફ્રન્ટએન્ડ ડેવલપમેન્ટમાં તદ્દન નવા છો, તો તમારા પ્રથમ પગલા તરીકે સીધા ફ્રેમવર્ક પર જવું એ શ્રેષ્ઠ વિચાર હોઈ શકે નહીં - મૂળભૂત બાબતોને સમજો અને પછી પાછા આવો! જો જરૂર હોય તો તમે [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript), [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML) અને [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps) માટેના આ અવલોકનો સાથે તમારા જ્ઞાનના સ્તરને ચકાસી શકો છો. અન્ય ફ્રેમવર્ક સાથેનો અગાઉનો અનુભવ મદદ કરે છે, પરંતુ જરૂરી નથી.
 :::
 
-## The Progressive Framework {#the-progressive-framework}
+## પ્રોગ્રેસિવ ફ્રેમવર્ક {#the-progressive-framework}
 
-Vue is a framework and ecosystem that covers most of the common features needed in frontend development. But the web is extremely diverse - the things we build on the web may vary drastically in form and scale. With that in mind, Vue is designed to be flexible and incrementally adoptable. Depending on your use case, Vue can be used in different ways:
+Vue એક ફ્રેમવર્ક અને ઇકોસિસ્ટમ છે જે ફ્રન્ટએન્ડ ડેવલપમેન્ટમાં જરૂરી મોટાભાગની સામાન્ય સુવિધાઓને આવરી લે છે. પરંતુ વેબ અત્યંત વૈવિધ્યપુર્ણ છે - આપણે વેબ પર જે વસ્તુઓ બનાવીએ છીએ તે આકાર અને સ્કેલમાં ઘણી અલગ હોઈ શકે છે. તે ધ્યાનમાં રાખીને, Vue ને લવચીક અને ક્રમશઃ સ્વીકારી શકાય તેવું ડિઝાઇન કરવામાં આવ્યું છે. તમારા ઉપયોગના કેસ (use case) ના આધારે, Vue નો ઉપયોગ વિવિધ રીતે કરી શકાય છે:
 
-- Enhancing static HTML without a build step
-- Embedding as Web Components on any page
-- Single-Page Application (SPA)
-- Fullstack / Server-Side Rendering (SSR)
-- Jamstack / Static Site Generation (SSG)
-- Targeting desktop, mobile, WebGL, and even the terminal
+- બિલ્ડ સ્ટેપ વિના સ્ટેટિક HTML ને બહેતર બનાવવું
+- કોઈપણ પૃષ્ઠ પર વેબ કમ્પોનન્ટ્સ તરીકે એમ્બેડ કરવું
+- સિંગલ-પેજ એપ્લિકેશન (SPA)
+- ફુલસ્ટેક / સર્વર-સાઇડ રેન્ડરિંગ (SSR)
+- Jamstack / સ્ટેટિક સાઇટ જનરેશન (SSG)
+- ડેસ્કટોપ, મોબાઇલ, WebGL, અને ટર્મિનલને પણ લક્ષ્ય બનાવવું
 
-If you find these concepts intimidating, don't worry! The tutorial and guide only require basic HTML and JavaScript knowledge, and you should be able to follow along without being an expert in any of these.
+જો તમને આ ખ્યાલો ડરામણા લાગતા હોય, તો ચિંતા કરશો નહીં! ટ્યુટોરીયલ અને માર્ગદર્શિકા માટે માત્ર મૂળભૂત HTML અને JavaScript જ્ઞાનની જરૂર છે, અને તમે આમાંના કોઈપણમાં નિષ્ણાત થયા વિના તેને અનુસરી શકશો.
 
-If you are an experienced developer interested in how to best integrate Vue into your stack, or you are curious about what these terms mean, we discuss them in more detail in [Ways of Using Vue](/guide/extras/ways-of-using-vue).
+જો તમે અનુભવી ડેવલપર છો અને Vue ને તમારા સ્ટેકમાં કેવી રીતે શ્રેષ્ઠ રીતે એકીકૃત કરવું તેમાં રસ ધરાવો છો, અથવા આ શબ્દોનો અર્થ શું છે તે વિશે ઉત્સુક છો, તો અમે તેમના વિશે [Vue નો ઉપયોગ કરવાની રીતો](/guide/extras/ways-of-using-vue) માં વધુ વિગતવાર ચર્ચા કરીએ છીએ.
 
-Despite the flexibility, the core knowledge about how Vue works is shared across all these use cases. Even if you are just a beginner now, the knowledge gained along the way will stay useful as you grow to tackle more ambitious goals in the future. If you are a veteran, you can pick the optimal way to leverage Vue based on the problems you are trying to solve, while retaining the same productivity. This is why we call Vue "The Progressive Framework": it's a framework that can grow with you and adapt to your needs.
+લવચીકતા હોવા છતાં, Vue કેવી રીતે કાર્ય કરે છે તે વિશેનું મુખ્ય જ્ઞાન આ તમામ ઉપયોગના કેસોમાં સમાન છે. ભલે તમે અત્યારે માત્ર શિખાઉ હોવ, પણ જે જ્ઞાન મેળવશો તે ભવિષ્યમાં વધુ મહત્વાકાંક્ષી લક્ષ્યોને પાર પાડવા માટે ઉપયોગી રહેશે. જો તમે અનુભવી છો, તો તમે જે સમસ્યાઓ હલ કરવાનો પ્રયાસ કરી રહ્યા છો તેના આધારે તમે Vue નો લાભ લેવા માટે શ્રેષ્ઠ માર્ગ પસંદ કરી શકો છો, જ્યારે તમારી ઉત્પાદકતા સમાન જ રહેશે. તેથી જ આપણે Vue ને "The Progressive Framework" કહીએ છીએ: તે એક એવું ફ્રેમવર્ક છે જે તમારી સાથે વધી શકે છે અને તમારી જરૂરિયાતોને અનુરૂપ બની શકે છે.
 
-## Single-File Components {#single-file-components}
+## સિંગલ-ફાઇલ કમ્પોનન્ટ્સ {#single-file-components}
 
-In most build-tool-enabled Vue projects, we author Vue components using an HTML-like file format called **Single-File Component** (also known as `*.vue` files, abbreviated as **SFC**). A Vue SFC, as the name suggests, encapsulates the component's logic (JavaScript), template (HTML), and styles (CSS) in a single file. Here's the previous example, written in SFC format:
+મોટા ભાગના બિલ્ડ-ટૂલ-સક્ષમ Vue પ્રોજેક્ટ્સમાં, અમે **સિંગલ-ફાઇલ કમ્પોનન્ટ** (જેને `*.vue` ફાઇલો તરીકે પણ ઓળખવામાં આવે છે, ટૂંકમાં **SFC**) નામના HTML જેવા ફાઇલ ફોર્મેટનો ઉપયોગ કરીને Vue ઘટકો લખીએ છીએ. એક Vue SFC, જેમ કે નામ સૂચવે છે, ઘટકના લોજિક (JavaScript), ટેમ્પલેટ (HTML) અને શૈલીઓ (CSS) ને એક જ ફાઇલમાં સમાવે છે. SFC ફોર્મેટમાં લખાયેલ અગાઉનું ઉદાહરણ અહીં છે:
 
 <div class="options-api">
 
@@ -128,7 +128,7 @@ export default {
 </script>
 
 <template>
-  <button @click="count++">Count is: {{ count }}</button>
+  <button @click="count++">ગણતરી છે: {{ count }}</button>
 </template>
 
 <style scoped>
@@ -148,7 +148,7 @@ const count = ref(0)
 </script>
 
 <template>
-  <button @click="count++">Count is: {{ count }}</button>
+  <button @click="count++">ગણતરી છે: {{ count }}</button>
 </template>
 
 <style scoped>
@@ -160,56 +160,56 @@ button {
 
 </div>
 
-SFC is a defining feature of Vue and is the recommended way to author Vue components **if** your use case warrants a build setup. You can learn more about the [how and why of SFC](/guide/scaling-up/sfc) in its dedicated section - but for now, just know that Vue will handle all the build tools setup for you.
+SFC એ Vue ની એક વિશિષ્ટ લાક્ષણિકતા છે અને જો તમારો ઉપયોગ કરવાનો કેસ બિલ્ડ સેટઅપની માંગ કરતો હોય તો Vue ઘટકો લખવા માટેની ભલામણ કરેલ રીત છે. તમે તેના સમર્પિત વિભાગમાં [SFC ના કેવી રીતે અને શા માટે](/guide/scaling-up/sfc) વિશે વધુ જાણી શકો છો - પરંતુ અત્યારે, ફક્ત એટલું જાણી લો કે Vue તમારા માટે તમામ બિલ્ડ ટૂલ્સ સેટઅપ સંભાળશે.
 
-## API Styles {#api-styles}
+## API સ્ટાઇલ {#api-styles}
 
-Vue components can be authored in two different API styles: **Options API** and **Composition API**.
+Vue ઘટકો બે અલગ અલગ API સ્ટાઇલમાં લખી શકાય છે: **Options API** અને **Composition API**.
 
 ### Options API {#options-api}
 
-With Options API, we define a component's logic using an object of options such as `data`, `methods`, and `mounted`. Properties defined by options are exposed on `this` inside functions, which points to the component instance:
+Options API સાથે, અમે `data`, `methods` અને `mounted` જેવા ઓપ્શનના ઓબ્જેક્ટનો ઉપયોગ કરીને ઘટકના લોજિકને વ્યાખ્યાયિત કરીએ છીએ. ઓપ્શન દ્વારા વ્યાખ્યાયિત કરેલી પ્રોપર્ટીઝ ફંક્શન્સની અંદર `this` પર એક્સપોઝ થાય છે, જે ઘટકના ઇન્સ્ટન્સ તરફ નિર્દેશ કરે છે:
 
 ```vue
 <script>
 export default {
-  // Properties returned from data() become reactive state
-  // and will be exposed on `this`.
+  // data() માંથી મળેલી પ્રોપર્ટીઝ રિએક્ટિવ સ્ટેટ બની જાય છે
+  // અને તે `this` પર એક્સપોઝ થશે.
   data() {
     return {
       count: 0
     }
   },
 
-  // Methods are functions that mutate state and trigger updates.
-  // They can be bound as event handlers in templates.
+  // મેથડ્સ એ ફંક્શન્સ છે જે સ્ટેટમાં ફેરફાર કરે છે અને અપડેટ્સ ટ્રિગર કરે છે.
+  // તેમને ટેમ્પલેટ્સમાં ઇવેન્ટ હેન્ડલર્સ તરીકે બાંધી શકાય છે.
   methods: {
     increment() {
       this.count++
     }
   },
 
-  // Lifecycle hooks are called at different stages
-  // of a component's lifecycle.
-  // This function will be called when the component is mounted.
+  // લાઇફસાઇકલ હૂક્સને ઘટકના જીવનચક્રના વિવિધ તબક્કાઓ પર
+  // કૉલ કરવામાં આવે છે.
+  // જ્યારે ઘટક માઉન્ટ (Mounted) થશે ત્યારે આ ફંક્શન કૉલ કરવામાં આવશે.
   mounted() {
-    console.log(`The initial count is ${this.count}.`)
+    console.log(`પ્રારંભિક ગણતરી ${this.count} છે.`)
   }
 }
 </script>
 
 <template>
-  <button @click="increment">Count is: {{ count }}</button>
+  <button @click="increment">ગણતરી છે: {{ count }}</button>
 </template>
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNptkMFqxCAQhl9lkB522ZL0HNKlpa/Qo4e1ZpLIGhUdl5bgu9es2eSyIMio833zO7NP56pbRNawNkivHJ25wV9nPUGHvYiaYOYGoK7Bo5CkbgiBBOFy2AkSh2N5APmeojePCkDaaKiBt1KnZUuv3Ky0PppMsyYAjYJgigu0oEGYDsirYUAP0WULhqVrQhptF5qHQhnpcUJD+wyQaSpUd/Xp9NysVY/yT2qE0dprIS/vsds5Mg9mNVbaDofL94jZpUgJXUKBCvAy76ZUXY53CTd5tfX2k7kgnJzOCXIF0P5EImvgQ2olr++cbRE4O3+t6JxvXj0ptXVpye1tvbFY+ge/NJZt)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNptkMFqxCAQhl9lkB522ZL0HNKlpa/Qo4e1ZpLIGhUdl5bgu9es2eSyIMio833zO7NP56pbRNawNkivHJ25wV9nPUGHvYiaYOYGoK7Bo5CkbgiBBOFy2AkSh2N5APmeojePCkDaaKiBt1KnZUuv3Ky0PppMsyYAjYJgigu0oEGYDsirYUAP0WULhqVrQhptF5qHQhnpcUJD+wyQaSpUd/Xp9NysVY/yT2qE0dprIS/vsds5Mg9mNVbaDofL94jZpUgJXUKBCvAy76ZUXY53CTd5tfX2k7kgnJzOCXIF0P5EImvgQ2olr++cbRE4O3+t6JxvXj0ptXVpye1tvbFY+ge/NJZt)
 
 ### Composition API {#composition-api}
 
-With Composition API, we define a component's logic using imported API functions. In SFCs, Composition API is typically used with [`<script setup>`](/api/sfc-script-setup). The `setup` attribute is a hint that makes Vue perform compile-time transforms that allow us to use Composition API with less boilerplate. For example, imports and top-level variables / functions declared in `<script setup>` are directly usable in the template.
+Composition API સાથે, અમે ઇમ્પોર્ટ કરેલા API ફંક્શન્સનો ઉપયોગ કરીને ઘટકના લોજિકને વ્યાખ્યાયિત કરીએ છીએ. SFCs માં, Composition API નો ઉપયોગ સામાન્ય રીતે [`<script setup>`](/api/sfc-script-setup) સાથે કરવામાં આવે છે. `setup` એટ્રિબ્યુટ એ એક સંકેત છે જે Vue ને કમ્પાઇલ-ટાઇમ ટ્રાન્સફોર્મ્સ કરવા દે છે જે આપણને ઓછા બોઈલરપ્લેટ (boilerplate) સાથે Composition API નો ઉપયોગ કરવાની મંજૂરી આપે છે. ઉદાહરણ તરીકે, `<script setup>` માં જાહેર કરાયેલ ઇમ્પોર્ટ્સ અને ટોપ-લેવલ વેરિએબલ્સ / ફંક્શન્સ ટેમ્પલેટમાં સીધા વાપરી શકાય છે.
 
-Here is the same component, with the exact same template, but using Composition API and `<script setup>` instead:
+અહીં સમાન ઘટક છે, બરાબર સમાન ટેમ્પલેટ સાથે, પરંતુ તેના બદલે Composition API અને `<script setup>` નો ઉપયોગ કરીને:
 
 ```vue
 <script setup>
@@ -218,65 +218,65 @@ import { ref, onMounted } from 'vue'
 // reactive state
 const count = ref(0)
 
-// functions that mutate state and trigger updates
+// ફંક્શન્સ જે સ્ટેટમાં ફેરફાર કરે છે અને અપડેટ્સ ટ્રિગર કરે છે
 function increment() {
   count.value++
 }
 
 // lifecycle hooks
 onMounted(() => {
-  console.log(`The initial count is ${count.value}.`)
+  console.log(`પ્રારંભિક ગણતરી ${count.value} છે.`)
 })
 </script>
 
 <template>
-  <button @click="increment">Count is: {{ count }}</button>
+  <button @click="increment">ગણતરી છે: {{ count }}</button>
 </template>
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNpNkMFqwzAQRH9lMYU4pNg9Bye09NxbjzrEVda2iLwS0spQjP69a+yYHnRYad7MaOfiw/tqSliciybqYDxDRE7+qsiM3gWGGQJ2r+DoyyVivEOGLrgRDkIdFCmqa1G0ms2EELllVKQdRQa9AHBZ+PLtuEm7RCKVd+ChZRjTQqwctHQHDqbvMUDyd7mKip4AGNIBRyQujzArgtW/mlqb8HRSlLcEazrUv9oiDM49xGGvXgp5uT5his5iZV1f3r4HFHvDprVbaxPhZf4XkKub/CDLaep1T7IhGRhHb6WoTADNT2KWpu/aGv24qGKvrIrr5+Z7hnneQnJu6hURvKl3ryL/ARrVkuI=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNpNkMFqwzAQRH9lMYU4pNg9Bye09NxbjzrEVda2iLwS0spQjP69a+yYHnRYad7MaOfiw/tqSliciybqYDxDRE7+qsiM3gWGGQJ2r+DoyyVivEOGLrgRDkIdFCmqa1G0ms2EELllVKQdRQa9AHBZ+PLtuEm7RCKVd+ChZRjTQqwctHQHDqbvMUDyd7mKip4AGNIBRyQujzArgtW/mlqb8HRSlLcEazrUv9oiDM49xGGvXgp5uT5his5iZV1f3r4HFHvDprVbaxPhZf4XkKub/CDLaep1T7IhGRhHb6WoTADNT2KWpu/aGv24qGKvrIrr5+Z7hnneQnJu6hURvKl3ryL/ARrVkuI=)
 
-### Which to Choose? {#which-to-choose}
+### કયું પસંદ કરવું? {#which-to-choose}
 
-Both API styles are fully capable of covering common use cases. They are different interfaces powered by the exact same underlying system. In fact, the Options API is implemented on top of the Composition API! The fundamental concepts and knowledge about Vue are shared across the two styles.
+સમાન અંતર્ગત સિસ્ટમ દ્વારા સંચાલિત બંને API સ્ટાઇલ સામાન્ય ઉપયોગના કેસોને આવરી લેવા માટે સંપૂર્ણપણે સક્ષમ છે. વાસ્તવમાં, Options API એ Composition API ની ઉપર જ લાગુ કરવામાં આવ્યું છે! Vue વિશેની મૂળભૂત વિભાવનાઓ અને જ્ઞાન બંને શૈલીઓમાં સમાન છે.
 
-The Options API is centered around the concept of a "component instance" (`this` as seen in the example), which typically aligns better with a class-based mental model for users coming from OOP language backgrounds. It is also more beginner-friendly by abstracting away the reactivity details and enforcing code organization via option groups.
+Options API એ "ઘટક ઇન્સ્ટન્સ" (જેમ કે ઉદાહરણમાં `this` જોવા મળે છે) ના ખ્યાલની આસપાસ કેન્દ્રિત છે, જે સામાન્ય રીતે OOP લેન્ગવેજ બેકગ્રાઉન્ડ ધરાવતા વપરાશકર્તાઓ માટે ક્લાસ-આધારિત માનસિક મોડેલ સાથે વધુ સારી રીતે મેળ ખાય છે. તે રિએક્ટિવિટીની વિગતોને દૂર કરીને અને ઓપ્શન ગ્રુપ દ્વારા કોડ ઓર્ગેનાઇઝેશન લાગુ કરીને શિખાઉ માણસો માટે વધુ અનુકુળ છે.
 
-The Composition API is centered around declaring reactive state variables directly in a function scope and composing state from multiple functions together to handle complexity. It is more free-form and requires an understanding of how reactivity works in Vue to be used effectively. In return, its flexibility enables more powerful patterns for organizing and reusing logic.
+Composition API એ ફંક્શન સ્કોપમાં સીધા રિએક્ટિવ સ્ટેટ વેરિએબલ્સ જાહેર કરવા અને જટિલતાને હેન્ડલ કરવા માટે બહુવિધ ફંક્શન્સમાંથી સ્ટેટને એકસાથે કમ્પોઝ કરવા પર ધ્યાન કેન્દ્રિત કરે છે. તે વધુ મુક્ત-સ્વરૂપ છે અને તેને અસરકારક રીતે ઉપયોગમાં લેવા માટે Vue માં રિએક્ટિવિટી કેવી રીતે કાર્ય કરે છે તેની સમજ હોવી જરૂરી છે. બદલામાં, તેની લવચીકતા લોજિકને ગોઠવવા અને પુનઃઉપયોગ માટે વધુ શક્તિશાળી પેટર્નને સક્ષમ કરે છે.
 
-You can learn more about the comparison between the two styles and the potential benefits of Composition API in the [Composition API FAQ](/guide/extras/composition-api-faq).
+તમે [Composition API FAQ](/guide/extras/composition-api-faq) માં બે શૈલીઓ વચ્ચેની સરખામણી અને Composition API ના સંભવિત ફાયદાઓ વિશે વધુ જાણી શકો છો.
 
-If you are new to Vue, here's our general recommendation:
+જો તમે Vue માં નવા છો, તો અહીં અમારી સામાન્ય ભલામણ છે:
 
-- For learning purposes, go with the style that looks easier to understand to you. Again, most of the core concepts are shared between the two styles. You can always pick up the other style later.
+- શીખવાના હેતુઓ માટે, એવી શૈલી સાથે જાઓ જે તમને સમજવામાં સરળ લાગે. ફરીથી, મોટા ભાગના મુખ્ય ખ્યાલો બંને શૈલીઓ વચ્ચે સમાન છે. તમે પછીથી હંમેશા બીજી શૈલી શીખી શકો છો.
 
-- For production use:
+- પ્રોડક્શન ઉપયોગ માટે:
 
-  - Go with Options API if you are not using build tools, or plan to use Vue primarily in low-complexity scenarios, e.g. progressive enhancement.
+  - જો તમે બિલ્ડ ટૂલ્સનો ઉપયોગ કરી રહ્યાં નથી અથવા ઓછી જટિલતાવાળા દ્રશ્યોમાં મુખ્યત્વે Vue નો ઉપયોગ કરવાની યોજના ઘડી રહ્યા છો, તો Options API સાથે જાઓ.
 
-  - Go with Composition API + Single-File Components if you plan to build full applications with Vue.
+  - જો તમે Vue સાથે સંપૂર્ણ એપ્લિકેશન બનાવવાની યોજના ઘડી રહ્યા હોવ તો Composition API + સિંગલ-ફાઇલ કમ્પોનન્ટ્સ સાથે જાઓ.
 
-You don't have to commit to only one style during the learning phase. The rest of the documentation will provide code samples in both styles where applicable, and you can toggle between them at any time using the **API Preference switches** at the top of the left sidebar.
+તમારે શીખવાના તબક્કા દરમિયાન માત્ર એક જ શૈલીને વળગી રહેવાની જરૂર નથી. બાકીનું દસ્તાવેજીકરણ જ્યાં લાગુ પડતું હોય ત્યાં બંને શૈલીમાં કોડ નમૂનાઓ પ્રદાન કરશે, અને તમે ડાબી સાઇડબારની ટોચ પર **API Preference સ્વિચ** નો ઉપયોગ કરીને કોઈપણ સમયે તેમની વચ્ચે બદલી શકો છો.
 
-## Still Got Questions? {#still-got-questions}
+## હજુ પણ પ્રશ્નો છે? {#still-got-questions}
 
-Check out our [FAQ](/about/faq).
+અમારા [FAQ](/about/faq) તપાસો.
 
-## Pick Your Learning Path {#pick-your-learning-path}
+## તમારો લર્નિંગ પાથ પસંદ કરો {#pick-your-learning-path}
 
-Different developers have different learning styles. Feel free to pick a learning path that suits your preference - although we do recommend going over all of the content, if possible!
+વિવિધ ડેવલપર્સની શીખવાની શૈલીઓ અલગ-અલગ હોય છે. તમારી પસંદગીને અનુરૂપ લર્નિંગ પાથ પસંદ કરવા માટે નિઃસંકોચ રહો - જો કે અમે શક્ય હોય તો બધી જ સામગ્રી જોવાની ભલામણ કરીએ છીએ!
 
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/tutorial/">
-    <p class="next-steps-link">Try the Tutorial</p>
-    <p class="next-steps-caption">For those who prefer learning things hands-on.</p>
+    <p class="next-steps-link">ટ્યુટોરીયલ અજમાવી જુઓ</p>
+    <p class="next-steps-caption">જેઓ વસ્તુઓ પ્રેક્ટિકલી શીખવાનું પસંદ કરે છે તેમના માટે.</p>
   </a>
   <a class="vt-box" href="/guide/quick-start.html">
-    <p class="next-steps-link">Read the Guide</p>
-    <p class="next-steps-caption">The guide walks you through every aspect of the framework in full detail.</p>
+    <p class="next-steps-link">માર્ગદર્શિકા વાંચો</p>
+    <p class="next-steps-caption">માર્ગદર્શિકા તમને ફ્રેમવર્કના દરેક પાસાઓને સંપૂર્ણ વિગતવાર સમજાવે છે.</p>
   </a>
   <a class="vt-box" href="/examples/">
-    <p class="next-steps-link">Check out the Examples</p>
-    <p class="next-steps-caption">Explore examples of core features and common UI tasks.</p>
+    <p class="next-steps-link">ઉદાહરણો તપાસો</p>
+    <p class="next-steps-caption">મુખ્ય લાક્ષણિકતાઓ અને સામાન્ય UI કાર્યોના ઉદાહરણો એક્સપ્લોર કરો.</p>
   </a>
 </div>
