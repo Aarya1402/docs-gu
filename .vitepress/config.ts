@@ -141,105 +141,105 @@ const nav: ThemeConfig['nav'] = [
 export const sidebar: ThemeConfig['sidebar'] = {
   '/guide/': [
     {
-      text: 'Getting Started',
+      text: 'શરૂઆત કરી રહ્યા છીએ',
       items: [
-        { text: 'Introduction', link: '/guide/introduction' },
+        { text: 'પરિચય', link: '/guide/introduction' },
         {
-          text: 'Quick Start',
+          text: 'ઝડપી શરૂઆત',
           link: '/guide/quick-start'
         }
       ]
     },
     {
-      text: 'Essentials',
+      text: 'આવશ્યક બાબતો',
       items: [
         {
-          text: 'Creating an Application',
+          text: 'એપ્લિકેશન બનાવવી',
           link: '/guide/essentials/application'
         },
         {
-          text: 'Template Syntax',
+          text: 'ટેમ્પલેટ સિન્ટેક્સ',
           link: '/guide/essentials/template-syntax'
         },
         {
-          text: 'Reactivity Fundamentals',
+          text: 'રિએક્ટિવિટી ફંડામેન્ટલ્સ',
           link: '/guide/essentials/reactivity-fundamentals'
         },
         {
-          text: 'Computed Properties',
+          text: 'કમ્પ્યુટેડ પ્રોપર્ટીઝ',
           link: '/guide/essentials/computed'
         },
         {
-          text: 'Class and Style Bindings',
+          text: 'ક્લાસ અને સ્ટાઇલ બાઈન્ડિંગ્સ',
           link: '/guide/essentials/class-and-style'
         },
         {
-          text: 'Conditional Rendering',
+          text: 'કંડિશનલ રેન્ડરિંગ',
           link: '/guide/essentials/conditional'
         },
-        { text: 'List Rendering', link: '/guide/essentials/list' },
+        { text: 'લિસ્ટ રેન્ડરિંગ', link: '/guide/essentials/list' },
         {
-          text: 'Event Handling',
+          text: 'ઇવેન્ટ હેન્ડલિંગ',
           link: '/guide/essentials/event-handling'
         },
-        { text: 'Form Input Bindings', link: '/guide/essentials/forms' },
-        { text: 'Watchers', link: '/guide/essentials/watchers' },
-        { text: 'Template Refs', link: '/guide/essentials/template-refs' },
+        { text: 'ફોર્મ ઇનપુટ બાઈન્ડિંગ્સ', link: '/guide/essentials/forms' },
+        { text: 'વોચર્સ', link: '/guide/essentials/watchers' },
+        { text: 'ટેમ્પલેટ રેફ્સ', link: '/guide/essentials/template-refs' },
         {
-          text: 'Components Basics',
+          text: 'ઘટકોની મૂળભૂત બાબતો',
           link: '/guide/essentials/component-basics'
         },
         {
-          text: 'Lifecycle Hooks',
+          text: 'લાઇફસાઇકલ હૂક્સ',
           link: '/guide/essentials/lifecycle'
         }
       ]
     },
     {
-      text: 'Components In-Depth',
+      text: 'ઘટકોની ઉંડાણપૂર્વક સમજ',
       items: [
         {
-          text: 'Registration',
+          text: 'રજીસ્ટ્રેશન',
           link: '/guide/components/registration'
         },
-        { text: 'Props', link: '/guide/components/props' },
-        { text: 'Events', link: '/guide/components/events' },
-        { text: 'Component v-model', link: '/guide/components/v-model' },
+        { text: 'પ્રોપ્સ', link: '/guide/components/props' },
+        { text: 'ઇવેન્ટ્સ', link: '/guide/components/events' },
+        { text: 'ઘટક v-model', link: '/guide/components/v-model' },
         {
-          text: 'Fallthrough Attributes',
+          text: 'ફોલથ્રુ એટ્રીબ્યુટ્સ',
           link: '/guide/components/attrs'
         },
-        { text: 'Slots', link: '/guide/components/slots' },
+        { text: 'સ્લોટ્સ', link: '/guide/components/slots' },
         {
           text: 'Provide / inject',
           link: '/guide/components/provide-inject'
         },
         {
-          text: 'Async Components',
+          text: 'એસિંક ઘટકો',
           link: '/guide/components/async'
         }
       ]
     },
     {
-      text: 'Reusability',
+      text: 'પુનઃઉપયોગીતા',
       items: [
         {
-          text: 'Composables',
+          text: 'કમ્પોઝેબલ્સ',
           link: '/guide/reusability/composables'
         },
         {
-          text: 'Custom Directives',
+          text: 'કસ્ટમ ડિરેક્ટિવ્સ',
           link: '/guide/reusability/custom-directives'
         },
-        { text: 'Plugins', link: '/guide/reusability/plugins' }
+        { text: 'પ્લગિન્સ', link: '/guide/reusability/plugins' }
       ]
     },
     {
-      text: 'Built-in Components',
+      text: 'બિલ્ટ-ઇન ઘટકો',
       items: [
-        { text: 'Transition', link: '/guide/built-ins/transition' },
+        { text: 'ટ્રાન્ઝિશન', link: '/guide/built-ins/transition' },
         {
-          text: 'TransitionGroup',
+          text: 'ટ્રાન્ઝિશન ગ્રુપ',
           link: '/guide/built-ins/transition-group'
         },
         { text: 'KeepAlive', link: '/guide/built-ins/keep-alive' },
@@ -248,39 +248,39 @@ export const sidebar: ThemeConfig['sidebar'] = {
       ]
     },
     {
-      text: 'Scaling Up',
+      text: 'સ્કેલિંગ અપ',
       items: [
-        { text: 'Single-File Components', link: '/guide/scaling-up/sfc' },
-        { text: 'Tooling', link: '/guide/scaling-up/tooling' },
-        { text: 'Routing', link: '/guide/scaling-up/routing' },
+        { text: 'સિંગલ-ફાઇલ કમ્પોનન્ટ્સ', link: '/guide/scaling-up/sfc' },
+        { text: 'ટૂલિંગ', link: '/guide/scaling-up/tooling' },
+        { text: 'રાઉટિંગ', link: '/guide/scaling-up/routing' },
         {
-          text: 'State Management',
+          text: 'સ્ટેટ મેનેજમેન્ટ',
           link: '/guide/scaling-up/state-management'
         },
-        { text: 'Testing', link: '/guide/scaling-up/testing' },
+        { text: 'ટેસ્ટિંગ', link: '/guide/scaling-up/testing' },
         {
-          text: 'Server-Side Rendering (SSR)',
+          text: 'સર્વર-સાઇડ રેન્ડરિંગ (SSR)',
           link: '/guide/scaling-up/ssr'
         }
       ]
     },
     {
-      text: 'Best Practices',
+      text: 'શ્રેષ્ઠ પદ્ધતિઓ',
       items: [
         {
-          text: 'Production Deployment',
+          text: 'પ્રોડક્શન ડિપ્લોયમેન્ટ',
           link: '/guide/best-practices/production-deployment'
         },
         {
-          text: 'Performance',
+          text: 'પરફોર્મન્સ',
           link: '/guide/best-practices/performance'
         },
         {
-          text: 'Accessibility',
+          text: 'એક્સેસિબિલિટી',
           link: '/guide/best-practices/accessibility'
         },
         {
-          text: 'Security',
+          text: 'સુરક્ષા',
           link: '/guide/best-practices/security'
         }
       ]
@@ -288,22 +288,22 @@ export const sidebar: ThemeConfig['sidebar'] = {
     {
       text: 'TypeScript',
       items: [
-        { text: 'Overview', link: '/guide/typescript/overview' },
+        { text: 'ઝાંખી', link: '/guide/typescript/overview' },
         {
-          text: 'TS with Composition API',
+          text: 'Composition API સાથે TS',
           link: '/guide/typescript/composition-api'
         },
         {
-          text: 'TS with Options API',
+          text: 'Options API સાથે TS',
           link: '/guide/typescript/options-api'
         }
       ]
     },
     {
-      text: 'Extra Topics',
+      text: 'વધારાના વિષયો',
       items: [
         {
-          text: 'Ways of Using Vue',
+          text: 'Vue નો ઉપયોગ કરવાની રીતો',
           link: '/guide/extras/ways-of-using-vue'
         },
         {
@@ -343,11 +343,11 @@ export const sidebar: ThemeConfig['sidebar'] = {
   ],
   '/api/': [
     {
-      text: 'Global API',
+      text: 'ગ્લોબલ API',
       items: [
-        { text: 'Application', link: '/api/application' },
+        { text: 'એપ્લિકેશન', link: '/api/application' },
         {
-          text: 'General',
+          text: 'સામાન્ય',
           link: '/api/general'
         }
       ]
@@ -357,27 +357,27 @@ export const sidebar: ThemeConfig['sidebar'] = {
       items: [
         { text: 'setup()', link: '/api/composition-api-setup' },
         {
-          text: 'Reactivity: Core',
+          text: 'રિએક્ટિવિટી: કોર',
           link: '/api/reactivity-core'
         },
         {
-          text: 'Reactivity: Utilities',
+          text: 'રિએક્ટિવિટી: યુટિલિટીઝ',
           link: '/api/reactivity-utilities'
         },
         {
-          text: 'Reactivity: Advanced',
+          text: 'રિએક્ટિવિટી: એડવાન્સ્ડ',
           link: '/api/reactivity-advanced'
         },
         {
-          text: 'Lifecycle Hooks',
+          text: 'લાઇફસાઇકલ હૂક્સ',
           link: '/api/composition-api-lifecycle'
         },
         {
-          text: 'Dependency Injection',
+          text: 'ડિપેન્ડન્સી ઇન્જેક્શન',
           link: '/api/composition-api-dependency-injection'
         },
         {
-          text: 'Helpers',
+          text: 'હેલ્પર્સ',
           link: '/api/composition-api-helpers'
         }
       ]
@@ -385,117 +385,117 @@ export const sidebar: ThemeConfig['sidebar'] = {
     {
       text: 'Options API',
       items: [
-        { text: 'Options: State', link: '/api/options-state' },
-        { text: 'Options: Rendering', link: '/api/options-rendering' },
+        { text: 'Options: સ્ટેટ', link: '/api/options-state' },
+        { text: 'Options: રેન્ડરિંગ', link: '/api/options-rendering' },
         {
-          text: 'Options: Lifecycle',
+          text: 'Options: લાઇફસાઇકલ',
           link: '/api/options-lifecycle'
         },
         {
-          text: 'Options: Composition',
+          text: 'Options: કમ્પોઝિશન',
           link: '/api/options-composition'
         },
-        { text: 'Options: Misc', link: '/api/options-misc' },
+        { text: 'Options: મિશ્રિત', link: '/api/options-misc' },
         {
-          text: 'Component Instance',
+          text: 'કમ્પોનન્ટ ઇન્સ્ટન્સ',
           link: '/api/component-instance'
         }
       ]
     },
     {
-      text: 'Built-ins',
+      text: 'બિલ્ટ-ઇન્સ',
       items: [
-        { text: 'Directives', link: '/api/built-in-directives' },
-        { text: 'Components', link: '/api/built-in-components' },
+        { text: 'ડિરેક્ટિવ્સ', link: '/api/built-in-directives' },
+        { text: 'ઘટકો', link: '/api/built-in-components' },
         {
-          text: 'Special Elements',
+          text: 'ખાસ એલિમેન્ટ્સ',
           link: '/api/built-in-special-elements'
         },
         {
-          text: 'Special Attributes',
+          text: 'ખાસ એટ્રીબ્યુટ્સ',
           link: '/api/built-in-special-attributes'
         }
       ]
     },
     {
-      text: 'Single-File Component',
+      text: 'સિંગલ-ફાઇલ કમ્પોનન્ટ',
       items: [
-        { text: 'Syntax Specification', link: '/api/sfc-spec' },
+        { text: 'સિન્ટેક્સ સ્પષ્ટીકરણ', link: '/api/sfc-spec' },
         { text: '<script setup>', link: '/api/sfc-script-setup' },
-        { text: 'CSS Features', link: '/api/sfc-css-features' }
+        { text: 'CSS સુવિધાઓ', link: '/api/sfc-css-features' }
       ]
     },
     {
-      text: 'Advanced APIs',
+      text: 'એડવાન્સ્ડ API',
       items: [
-        { text: 'Custom Elements', link: '/api/custom-elements' },
-        { text: 'Render Function', link: '/api/render-function' },
-        { text: 'Server-Side Rendering', link: '/api/ssr' },
-        { text: 'TypeScript Utility Types', link: '/api/utility-types' },
-        { text: 'Custom Renderer', link: '/api/custom-renderer' },
-        { text: 'Compile-Time Flags', link: '/api/compile-time-flags' }
+        { text: 'કસ્ટમ એલિમેન્ટ્સ', link: '/api/custom-elements' },
+        { text: 'રેન્ડર ફંક્શન', link: '/api/render-function' },
+        { text: 'સર્વર-સાઇડ રેન્ડરિંગ', link: '/api/ssr' },
+        { text: 'TypeScript યુટિલિટી ટાઇપ્સ', link: '/api/utility-types' },
+        { text: 'કસ્ટમ રેન્ડરર', link: '/api/custom-renderer' },
+        { text: 'કમ્પાઇલ-ટાઇમ ફ્લેગ્સ', link: '/api/compile-time-flags' }
       ]
     }
   ],
   '/examples/': [
     {
-      text: 'Basic',
+      text: 'બેઝિક',
       items: [
         {
-          text: 'Hello World',
+          text: 'હેલો વર્લ્ડ',
           link: '/examples/#hello-world'
         },
         {
-          text: 'Handling User Input',
+          text: 'યુઝર ઇનપુટ હેન્ડલિંગ',
           link: '/examples/#handling-input'
         },
         {
-          text: 'Attribute Bindings',
+          text: 'એટ્રીબ્યુટ બાઈન્ડિંગ્સ',
           link: '/examples/#attribute-bindings'
         },
         {
-          text: 'Conditionals and Loops',
+          text: 'કન્ડિશનલ્સ અને લૂપ્સ',
           link: '/examples/#conditionals-and-loops'
         },
         {
-          text: 'Form Bindings',
+          text: 'ફોર્મ બાઈન્ડિંગ્સ',
           link: '/examples/#form-bindings'
         },
         {
-          text: 'Simple Component',
+          text: 'સિમ્પલ કમ્પોનન્ટ',
           link: '/examples/#simple-component'
         }
       ]
     },
     {
-      text: 'Practical',
+      text: 'વ્યવહારુ ઉદાહરણો',
       items: [
         {
-          text: 'Markdown Editor',
+          text: 'મેાર્કડાઉન એડિટર',
           link: '/examples/#markdown'
         },
         {
-          text: 'Fetching Data',
+          text: 'ડેટા ફેચિંગ',
           link: '/examples/#fetching-data'
         },
         {
-          text: 'Grid with Sort and Filter',
+          text: 'સોર્ટ અને ફિલ્ટર સાથે ગ્રીડ',
           link: '/examples/#grid'
         },
         {
-          text: 'Tree View',
+          text: 'ટ્રી વ્યુ',
           link: '/examples/#tree'
         },
         {
-          text: 'SVG Graph',
+          text: 'SVG ગ્રાફ',
           link: '/examples/#svg'
         },
         {
-          text: 'Modal with Transitions',
+          text: 'ટ્રાન્ઝિશન સાથે મોડલ',
           link: '/examples/#modal'
         },
         {
-          text: 'List with Transitions',
+          text: 'ટ્રાન્ઝિશન સાથે લિસ્ટ',
           link: '/examples/#list-transition'
         }
       ]
@@ -505,19 +505,19 @@ export const sidebar: ThemeConfig['sidebar'] = {
       text: '7 GUIs',
       items: [
         {
-          text: 'Counter',
+          text: 'કાઉન્ટર',
           link: '/examples/#counter'
         },
         {
-          text: 'Temperature Converter',
+          text: 'ટેમ્પરેચર કન્વર્ટર',
           link: '/examples/#temperature-converter'
         },
         {
-          text: 'Flight Booker',
+          text: 'ફ્લાઇટ બુકર',
           link: '/examples/#flight-booker'
         },
         {
-          text: 'Timer',
+          text: 'ટાઈમર',
           link: '/examples/#timer'
         },
         {
@@ -525,11 +525,11 @@ export const sidebar: ThemeConfig['sidebar'] = {
           link: '/examples/#crud'
         },
         {
-          text: 'Circle Drawer',
+          text: 'સર્કલ ડ્રોઅર',
           link: '/examples/#circle-drawer'
         },
         {
-          text: 'Cells',
+          text: 'સેલ્સ',
           link: '/examples/#cells'
         }
       ]
@@ -537,26 +537,26 @@ export const sidebar: ThemeConfig['sidebar'] = {
   ],
   '/style-guide/': [
     {
-      text: 'Style Guide',
+      text: 'સ્ટાઇલ ગાઇડ',
       items: [
         {
-          text: 'Overview',
+          text: 'ઝાંખી',
           link: '/style-guide/'
         },
         {
-          text: 'A - Essential',
+          text: 'A - આવશ્યક',
           link: '/style-guide/rules-essential'
         },
         {
-          text: 'B - Strongly Recommended',
+          text: 'B - ભારપૂર્વક ભલામણ કરેલ',
           link: '/style-guide/rules-strongly-recommended'
         },
         {
-          text: 'C - Recommended',
+          text: 'C - ભલામણ કરેલ',
           link: '/style-guide/rules-recommended'
         },
         {
-          text: 'D - Use with Caution',
+          text: 'D - સાવધાની સાથે ઉપયોગ કરો',
           link: '/style-guide/rules-use-with-caution'
         }
       ]
