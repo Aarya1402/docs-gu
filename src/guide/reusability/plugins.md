@@ -1,8 +1,8 @@
-﻿# Plugins {#plugins}
+# પ્લગિન્સ (Plugins) {#plugins}
 
-## Introduction {#introduction}
+## પ્રસ્તાવના (Introduction) {#introduction}
 
-Plugins are self-contained code that usually add app-level functionality to Vue. This is how we install a plugin:
+પ્લગિન્સ એ સ્વ-નિહિત (self-contained) કોડ છે જે સામાન્ય રીતે Vue માં એપ-લેવલ કાર્યક્ષમતા ઉમેરે છે. અમે પ્લગિન આ રીતે ઇન્સ્ટોલ કરીએ છીએ:
 
 ```js
 import { createApp } from 'vue'
@@ -10,59 +10,59 @@ import { createApp } from 'vue'
 const app = createApp({})
 
 app.use(myPlugin, {
-  /* optional options */
+  /* વૈકલ્પિક ઓપ્શન્સ */
 })
 ```
 
-A plugin is defined as either an object that exposes an `install()` method, or simply a function that acts as the install function itself. The install function receives the [app instance](/api/application) along with additional options passed to `app.use()`, if any:
+પ્લગિન કાં તો એવા ઓબ્જેક્ટ તરીકે વ્યાખ્યાયિત કરવામાં આવે છે જે `install()` મેથડને એક્સપોઝ કરે છે અથવા તો એક ફંક્શન તરીકે જે પોતે જ ઇન્સ્ટોલ ફંક્શન તરીકે કાર્ય કરે છે. ઇન્સ્ટોલ ફંક્શન [એપ ઇન્સ્ટન્સ](/api/application) મેળવે છે અને તેની સાથે `app.use()` ને પસાર કરેલા વધારાના ઓપ્શન્સ (જો હોય તો) મેળવે છે:
 
 ```js
 const myPlugin = {
   install(app, options) {
-    // configure the app
+    // એપને કોન્ફિગર કરો
   }
 }
 ```
 
-There is no strictly defined scope for a plugin, but common scenarios where plugins are useful include:
+પ્લગિન માટે કોઈ કડક રીતે વ્યાખ્યાયિત સ્કોપ નથી, પરંતુ સામાન્ય પરિસ્થિતિઓ જ્યાં પ્લગિન્સ ઉપયોગી છે તેમાં નીચેનાનો સમાવેશ થાય છે:
 
-1. Register one or more global components or custom directives with [`app.component()`](/api/application#app-component) and [`app.directive()`](/api/application#app-directive).
+૧. [`app.component()`](/api/application#app-component) અને [`app.directive()`](/api/application#app-directive) સાથે એક અથવા વધુ ગ્લોબલ કમ્પોનન્ટ્સ અથવા કસ્ટમ ડાયરેક્ટિવ્સ રજીસ્ટર કરો.
 
-2. Make a resource [injectable](/guide/components/provide-inject) throughout the app by calling [`app.provide()`](/api/application#app-provide).
+૨. [`app.provide()`](/api/application#app-provide) કોલ કરીને સમગ્ર એપમાં રિસોર્સને [ઇન્જેક્ટેબલ (injectable)](/guide/components/provide-inject) બનાવો.
 
-3. Add some global instance properties or methods by attaching them to [`app.config.globalProperties`](/api/application#app-config-globalproperties).
+૩. [`app.config.globalProperties`](/api/application#app-config-globalproperties) માં જોડીને કેટલીક ગ્લોબલ ઇન્સ્ટન્સ પ્રોપર્ટીઝ અથવા મેથડ્સ ઉમેરો.
 
-4. A library that needs to perform some combination of the above (e.g. [vue-router](https://github.com/vuejs/vue-router-next)).
+૪. એક લાઇબ્રેરી કે જેણે ઉપરોક્ત કેટલાક સંયોજન કરવાની જરૂર છે (દા.ત. [vue-router](https://github.com/vuejs/vue-router-next)).
 
-## Writing a Plugin {#writing-a-plugin}
+## પ્લગિન લખવું (Writing a Plugin) {#writing-a-plugin}
 
-In order to better understand how to create your own Vue.js plugins, we will create a very simplified version of a plugin that displays `i18n` (short for [Internationalization](https://en.wikipedia.org/wiki/Internationalization_and_localization)) strings.
+તમારા પોતાના Vue.js પ્લગિન્સ કેવી રીતે બનાવવા તે વધુ સારી રીતે સમજવા માટે, અમે પ્લગિનનું ખૂબ જ સરળ સંસ્કરણ બનાવીશું જે `i18n` ([Internationalization](https://en.wikipedia.org/wiki/Internationalization_and_localization) નું ટૂંકું નામ) સ્ટ્રિંગ્સ પ્રદર્શિત કરે છે.
 
-Let's begin by setting up the plugin object. It is recommended to create it in a separate file and export it, as shown below to keep the logic contained and separate.
+ચાલો પ્લગિન ઓબ્જેક્ટ સેટ કરીને શરૂઆત કરીએ. લોજિકને સીમિત અને અલગ રાખવા માટે તેને એક અલગ ફાઇલમાં બનાવવાની અને તેને એક્સપોર્ટ કરવાની ભલામણ કરવામાં આવે છે, જે નીચે બતાવ્યા પ્રમાણે છે.
 
 ```js [plugins/i18n.js]
 export default {
   install: (app, options) => {
-    // Plugin code goes here
+    // પ્લગિન કોડ અહીં જાય છે
   }
 }
 ```
 
-We want to create a translation function. This function will receive a dot-delimited `key` string, which we will use to look up the translated string in the user-provided options. This is the intended usage in templates:
+અમે ટ્રાન્સલેશન ફંક્શન બનાવવા માંગીએ છીએ. આ ફંક્શન ડોટ-ડિલિમિટેડ (dot-delimited) `key` સ્ટ્રિંગ મેળવશે, જેનો ઉપયોગ અમે યુઝર દ્વારા પૂરા પાડવામાં આવેલ ઓપ્શન્સમાં ટ્રાન્સલેટેડ સ્ટ્રિંગ શોધવા માટે કરીશું. આ ટેમ્પલેટ્સમાં ઇચ્છિત વપરાશ છે:
 
 ```vue-html
 <h1>{{ $translate('greetings.hello') }}</h1>
 ```
 
-Since this function should be globally available in all templates, we will make it so by attaching it to `app.config.globalProperties` in our plugin:
+આ ફંક્શન તમામ ટેમ્પલેટ્સમાં ગ્લોબલ સ્તરે ઉપલબ્ધ હોવું જોઈએ, તેથી અમે તેને અમારા પ્લગિનમાં `app.config.globalProperties` સાથે જોડીશું:
 
 ```js{3-10} [plugins/i18n.js]
 export default {
   install: (app, options) => {
-    // inject a globally available $translate() method
+    // ગ્લોબલ સ્તરે ઉપલબ્ધ $translate() મેથડ ઇન્જેક્ટ કરો
     app.config.globalProperties.$translate = (key) => {
-      // retrieve a nested property in `options`
-      // using `key` as the path
+      // રસ્તો (path) તરીકે `key` નો ઉપયોગ કરીને 
+      // `options` માં નેસ્ટેડ પ્રોપર્ટી મેળવો
       return key.split('.').reduce((o, i) => {
         if (o) return o[i]
       }, options)
@@ -71,9 +71,9 @@ export default {
 }
 ```
 
-Our `$translate` function will take a string such as `greetings.hello`, look inside the user provided configuration and return the translated value.
+અમારું `$translate` ફંક્શન `greetings.hello` જેવી સ્ટ્રિંગ લેશે, યુઝર દ્વારા પૂરા પાડવામાં આવેલ કોન્ફિગરેશનની અંદર જોશે અને ટ્રાન્સલેટેડ વેલ્યુ પરત કરશે.
 
-The object containing the translated keys should be passed to the plugin during installation via additional parameters to `app.use()`:
+ટ્રાન્સલેટેડ કીઝ ધરાવતો ઓબ્જેક્ટ ઇન્સ્ટોલેશન દરમિયાન `app.use()` ના વધારાના પેરામીટર દ્વારા પ્લગિનમાં પાસ કરવો જોઈએ:
 
 ```js
 import i18nPlugin from './plugins/i18n'
@@ -85,17 +85,17 @@ app.use(i18nPlugin, {
 })
 ```
 
-Now, our initial expression `$translate('greetings.hello')` will be replaced by `Bonjour!` at runtime.
+હવે, આપણી પ્રારંભિક અભિવ્યક્તિ `$translate('greetings.hello')` રનટાઇમ પર `Bonjour!` દ્વારા બદલવામાં આવશે.
 
-See also: [Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
 
 :::tip
-Use global properties scarcely, since it can quickly become confusing if too many global properties injected by different plugins are used throughout an app.
+ગ્લોબલ પ્રોપર્ટીઝનો ઉપયોગ ઓછો કરો, કારણ કે જો વિવિધ પ્લગિન્સ દ્વારા ઇન્જેક્ટ કરવામાં આવેલી ઘણી બધી ગ્લોબલ પ્રોપર્ટીઝનો ઉપયોગ સમગ્ર એપમાં કરવામાં આવે તો તે ઝડપથી મૂંઝવણ પેદા કરી શકે છે.
 :::
 
-### Provide / Inject with Plugins {#provide-inject-with-plugins}
+### પ્લગિન્સ સાથે પ્રોવાઇડ / ઇન્જેક્ટ {#provide-inject-with-plugins}
 
-Plugins also allow us to use `provide` to give plugin users access to a function or attribute. For example, we can allow the application to have access to the `options` parameter to be able to use the translations object.
+પ્લગિન્સ આપણને પ્લગિન યુઝર્સને ફંક્શન અથવા એટ્રિબ્યુટની એક્સેસ આપવા લાયક બનાવવા માટે `provide` નો ઉપયોગ કરવાની પણ મંજૂરી આપે છે. ઉદાહરણ તરીકે, અમે એપ્લિકેશનને `options` પેરામીટરની એક્સેસ આપી શકીએ છીએ જેથી ટ્રાન્સલેશન ઓબ્જેક્ટનો ઉપયોગ કરી શકાય.
 
 ```js{3} [plugins/i18n.js]
 export default {
@@ -105,7 +105,7 @@ export default {
 }
 ```
 
-Plugin users will now be able to inject the plugin options into their components using the `i18n` key:
+પ્લગિન યુઝર્સ હવે `i18n` કીનો ઉપયોગ કરીને તેમના કમ્પોનન્ટ્સમાં પ્લગિન ઓપ્શન્સ ઇન્જેક્ટ કરી શકશે:
 
 <div class="composition-api">
 
@@ -133,6 +133,6 @@ export default {
 
 </div>
 
-### Bundle for NPM {#bundle-for-npm}
+### NPM માટે બંડલ {#bundle-for-npm}
 
-If you further want to build and publish your plugin for others to use, see [Vite's section on Library Mode](https://vite.dev/guide/build.html#library-mode).
+જો તમે અન્ય લોકોના ઉપયોગ માટે તમારા પ્લગિનને આગળ બનાવવા અને પ્રકાશિત (publish) કરવા માંગતા હો, તો [Library Mode પર Vite નો વિભાગ](https://vite.dev/guide/build.html#library-mode) જુઓ.

@@ -1,4 +1,4 @@
-# Custom Directives {#custom-directives}
+# કસ્ટમ ડાયરેક્ટિવ્સ (Custom Directives) {#custom-directives}
 
 <script setup>
 const vHighlight = {
@@ -19,19 +19,19 @@ const vHighlight = {
 }
 </style>
 
-## Introduction {#introduction}
+## પ્રસ્તાવના (Introduction) {#introduction}
 
-In addition to the default set of directives shipped in core (like `v-model` or `v-show`), Vue also allows you to register your own custom directives.
+કોર (core) માં ઉપલબ્ધ ડિફોલ્ટ ડાયરેક્ટિવ્સ (જેમ કે `v-model` અથવા `v-show`) ઉપરાંત, Vue તમને તમારા પોતાના કસ્ટમ ડાયરેક્ટિવ્સ રજીસ્ટર કરવાની પણ મંજૂરી આપે છે.
 
-We have introduced two forms of code reuse in Vue: [components](/guide/essentials/component-basics) and [composables](./composables). Components are the main building blocks, while composables are focused on reusing stateful logic. Custom directives, on the other hand, are mainly intended for reusing logic that involves low-level DOM access on plain elements.
+અમે Vue માં કોડ પુનઃઉપયોગના બે સ્વરૂપો રજૂ કર્યા છે: [કમ્પોનન્ટ્સ](/guide/essentials/component-basics) અને [કમ્પોઝેબલ્સ](./composables). કમ્પોનન્ટ્સ મુખ્ય બિલ્ડિંગ બ્લોક્સ છે, જ્યારે કમ્પોઝેબલ્સ સ્ટેટફુલ લોજિકના પુનઃઉપયોગ પર ધ્યાન કેન્દ્રિત કરે છે. બીજી બાજુ, કસ્ટમ ડાયરેક્ટિવ્સ મુખ્યત્વે સાદા એલિમેન્ટ્સ પર લો-લેવલ DOM એક્સેસ સાથે સંકળાયેલા લોજિકના પુનઃઉપયોગ માટે છે.
 
-A custom directive is defined as an object containing lifecycle hooks similar to those of a component. The hooks receive the element the directive is bound to. Here is an example of a directive that adds a class to an element when it is inserted into the DOM by Vue:
+કસ્ટમ ડાયરેક્ટિવને કમ્પોનન્ટ જેવી જ લાઇફસાયકલ હૂક્સ ધરાવતી ઓબ્જેક્ટ તરીકે વ્યાખ્યાયિત કરવામાં આવે છે. હૂક્સ તે એલિમેન્ટ મેળવે છે જેની સાથે ડાયરેક્ટિવ જોડાયેલ હોય છે. અહીં ડાયરેક્ટિવનું ઉદાહરણ છે જે જ્યારે એલિમેન્ટને Vue દ્વારા DOM માં દાખલ કરવામાં આવે ત્યારે તેમાં ક્લાસ ઉમેરે છે:
 
 <div class="composition-api">
 
 ```vue
 <script setup>
-// enables v-highlight in templates
+// ટેમ્પલેટ્સમાં v-highlight સક્ષમ કરે છે
 const vHighlight = {
   mounted: (el) => {
     el.classList.add('is-highlight')
@@ -40,7 +40,7 @@ const vHighlight = {
 </script>
 
 <template>
-  <p v-highlight>This sentence is important!</p>
+  <p v-highlight>આ વાક્ય મહત્વનું છે!</p>
 </template>
 ```
 
@@ -55,27 +55,27 @@ const highlight = {
 
 export default {
   directives: {
-    // enables v-highlight in template
+    // ટેમ્પલેટમાં v-highlight સક્ષમ કરે છે
     highlight
   }
 }
 ```
 
 ```vue-html
-<p v-highlight>This sentence is important!</p>
+<p v-highlight>આ વાક્ય મહત્વનું છે!</p>
 ```
 
 </div>
 
 <div class="demo">
-  <p v-highlight>This sentence is important!</p>
+  <p v-highlight>આ વાક્ય મહત્વનું છે!</p>
 </div>
 
 <div class="composition-api">
 
-In `<script setup>`, any camelCase variable that starts with the `v` prefix can be used as a custom directive. In the example above, `vHighlight` can be used in the template as `v-highlight`.
+`<script setup>` માં, કોઈપણ camelCase વેરીએબલ કે જે `v` ઉપસર્ગ (prefix) થી શરૂ થાય છે તેનો ઉપયોગ કસ્ટમ ડાયરેક્ટિવ તરીકે થઈ શકે છે. ઉપરના ઉદાહરણમાં, `vHighlight` નો ટેમ્પલેટમાં `v-highlight` તરીકે ઉપયોગ કરી શકાય છે.
 
-If you are not using `<script setup>`, custom directives can be registered using the `directives` option:
+જો તમે `<script setup>` નો ઉપયોગ કરી રહ્યાં નથી, તો `directives` ઓપ્શન નો ઉપયોગ કરીને કસ્ટમ ડાયરેક્ટિવ્સ રજીસ્ટર કરી શકાય છે:
 
 ```js
 export default {
@@ -83,7 +83,7 @@ export default {
     /*...*/
   },
   directives: {
-    // enables v-highlight in template
+    // ટેમ્પલેટમાં v-highlight સક્ષમ કરે છે
     highlight: {
       /* ... */
     }
@@ -95,36 +95,36 @@ export default {
 
 <div class="options-api">
 
-Similar to components, custom directives must be registered so that they can be used in templates. In the example above, we are using local registration via the `directives` option.
+કમ્પોનન્ટ્સની જેમ, કસ્ટમ ડાયરેક્ટિવ્સ પણ રજીસ્ટર થયેલા હોવા જોઈએ જેથી તેનો ટેમ્પલેટમાં ઉપયોગ કરી શકાય. ઉપરના ઉદાહરણમાં, આપણે `directives` ઓપ્શન દ્વારા લોકલ રજીસ્ટ્રેશનનો ઉપયોગ કરી રહ્યા છીએ.
 
 </div>
 
-It is also common to globally register custom directives at the app level:
+એપ લેવલ પર ગ્લોબલ રીતે કસ્ટમ ડાયરેક્ટિવ્સ રજીસ્ટર કરવા પણ સામાન્ય છે:
 
 ```js
 const app = createApp({})
 
-// make v-highlight usable in all components
+// v-highlight ને તમામ ઘટકોમાં વાપરી શકાય તેવું બનાવો
 app.directive('highlight', {
   /* ... */
 })
 ```
 
-It is possible to type global custom directives by extending the `GlobalDirectives` interface from `vue`
+`vue` માંથી `GlobalDirectives` ઇન્ટરફેસને વિસ્તૃત કરીને ગ્લોબલ કસ્ટમ ડાયરેક્ટિવને ટાઈપ (type) કરવી શક્ય છે.
 
-More Details: [Typing Custom Global Directives](/guide/typescript/composition-api#typing-global-custom-directives) <sup class="vt-badge ts" />
+વધુ વિગતો: [Typing Custom Global Directives](/guide/typescript/composition-api#typing-global-custom-directives) <sup class="vt-badge ts" />
 
-## When to use custom directives {#when-to-use}
+## કસ્ટમ ડાયરેક્ટિવ્સનો ઉપયોગ ક્યારે કરવો {#when-to-use}
 
-Custom directives should only be used when the desired functionality can only be achieved via direct DOM manipulation.
+કસ્ટમ ડાયરેક્ટિવ્સનો ઉપયોગ ફક્ત ત્યારે જ થવો જોઈએ જ્યારે ઇચ્છિત કાર્યક્ષમતા ફક્ત સીધા DOM મેનીપ્યુલેશન દ્વારા જ પ્રાપ્ત કરી શકાય.
 
-A common example of this is a `v-focus` custom directive that brings an element into focus.
+આનું સામાન્ય ઉદાહરણ `v-focus` કસ્ટમ ડાયરેક્ટિવ છે જે એલિમેન્ટને ફોકસમાં લાવે છે.
 
 <div class="composition-api">
 
 ```vue
 <script setup>
-// enables v-focus in templates
+// ટેમ્પલેટ્સમાં v-focus સક્ષમ કરે છે
 const vFocus = {
   mounted: (el) => el.focus()
 }
@@ -146,7 +146,7 @@ const focus = {
 
 export default {
   directives: {
-    // enables v-focus in template
+    // ટેમ્પલેટમાં v-focus સક્ષમ કરે છે
     focus
   }
 }
@@ -158,88 +158,88 @@ export default {
 
 </div>
 
-This directive is more useful than the `autofocus` attribute because it works not just on page load - it also works when the element is dynamically inserted by Vue!
+આ ડાયરેક્ટિવ `autofocus` એટ્રિબ્યુટ કરતાં વધુ ઉપયોગી છે કારણ કે તે માત્ર પેજ લોડ પર જ કામ કરતું નથી - તે ત્યારે પણ કામ કરે છે જ્યારે એલિમેન્ટ ગતિશીલ રીતે Vue દ્વારા દાખલ કરવામાં આવે!
 
-Declarative templating with built-in directives such as `v-bind` is recommended when possible because they are more efficient and server-rendering friendly.
+જ્યારે શક્ય હોય ત્યારે `v-bind` જેવી બિલ્ટ-ઇન ડાયરેક્ટિવ્સ સાથે ડેક્લેરેટિવ ટેમ્પલેટિંગ (Declarative templating) કરવાની ભલામણ કરવામાં આવે છે કારણ કે તે વધુ કાર્યક્ષમ છે અને સર્વર-રેન્ડરિંગ હિતેચ્છુ છે.
 
-## Directive Hooks {#directive-hooks}
+## ડાયરેક્ટિવ હૂક્સ (Directive Hooks) {#directive-hooks}
 
-A directive definition object can provide several hook functions (all optional):
+ડાયરેક્ટિવ ડેફીનેશન ઓબ્જેક્ટ ઘણા હૂક ફંક્શન્સ (બધા વૈકલ્પિક) પ્રદાન કરી શકે છે:
 
 ```js
 const myDirective = {
-  // called before bound element's attributes
-  // or event listeners are applied
+  // બાઉન્ડ એલિમેન્ટના એટ્રિબ્યુટ્સ અથવા
+  // ઇવેન્ટ લિસનર્સ લાગુ થાય તે પહેલાં કૉલ કરવામાં આવે છે
   created(el, binding, vnode) {
-    // see below for details on arguments
+    // આર્ગ્યુમેન્ટ્સ પર વિગતો માટે નીચે જુઓ
   },
-  // called right before the element is inserted into the DOM.
+  // એલિમેન્ટને DOM માં દાખલ કરવામાં આવે તે પહેલાં જ કૉલ કરવામાં આવે છે.
   beforeMount(el, binding, vnode) {},
-  // called when the bound element's parent component
-  // and all its children are mounted.
+  // જ્યારે બાઉન્ડ એલિમેન્ટનું પેરેન્ટ કમ્પોનન્ટ
+  // અને તેના તમામ બાળકો માઉન્ટ થાય ત્યારે કૉલ કરવામાં આવે છે.
   mounted(el, binding, vnode) {},
-  // called before the parent component is updated
+  // પેરેન્ટ કમ્પોનન્ટ અપડેટ થાય તે પહેલાં કૉલ કરવામાં આવે છે
   beforeUpdate(el, binding, vnode, prevVnode) {},
-  // called after the parent component and
-  // all of its children have updated
+  // પેરેન્ટ કમ્પોનન્ટ અને તેના તમામ બાળકો
+  // અપડેટ થયા પછી કૉલ કરવામાં આવે છે
   updated(el, binding, vnode, prevVnode) {},
-  // called before the parent component is unmounted
+  // પેરેન્ટ કમ્પોનન્ટ અનમાઉન્ટ થાય તે પહેલાં કૉલ કરવામાં આવે છે
   beforeUnmount(el, binding, vnode) {},
-  // called when the parent component is unmounted
+  // જ્યારે પેરેન્ટ કમ્પોનન્ટ અનમાઉન્ટ થાય ત્યારે કૉલ કરવામાં આવે છે
   unmounted(el, binding, vnode) {}
 }
 ```
 
-### Hook Arguments {#hook-arguments}
+### હૂક આર્ગ્યુમેન્ટ્સ (Hook Arguments) {#hook-arguments}
 
-Directive hooks are passed these arguments:
+ડાયરેક્ટિવ હૂક્સમાં આ આર્ગ્યુમેન્ટ્સ પાસ કરવામાં આવે છે:
 
-- `el`: the element the directive is bound to. This can be used to directly manipulate the DOM.
+- `el`: તે એલિમેન્ટ કે જેની સાથે ડાયરેક્ટિવ જોડાયેલ છે. આનો ઉપયોગ સીધા DOM ને મેનીપ્યુલેટ કરવા માટે થઈ શકે છે.
 
-- `binding`: an object containing the following properties.
+- `binding`: નીચેની પ્રોપર્ટીઝ ધરાવતી ઓબ્જેક્ટ.
 
-  - `value`: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be `2`.
-  - `oldValue`: The previous value, only available in `beforeUpdate` and `updated`. It is available whether or not the value has changed.
-  - `arg`: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
-  - `modifiers`: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
-  - `instance`: The instance of the component where the directive is used.
-  - `dir`: the directive definition object.
+  - `value`: ડાયરેક્ટિવને પાસ કરેલી વેલ્યુ. ઉદાહરણ તરીકે `v-my-directive="1 + 1"` માં, વેલ્યુ `2` હશે.
+  - `oldValue`: અગાઉની વેલ્યુ, ફક્ત `beforeUpdate` અને `updated` માં ઉપલબ્ધ છે. તે વેલ્યુ બદલાઈ હોય કે ન હોય તે છતાં ઉપલબ્ધ છે.
+  - `arg`: ડાયરેક્ટિવને પાસ કરેલી આર્ગ્યુમેન્ટ, જો કોઈ હોય તો. ઉદાહરણ તરીકે `v-my-directive:foo` માં, arg `"foo"` હશે.
+  - `modifiers`: મોડિફાયર્સ ધરાવતી ઓબ્જેક્ટ, જો કોઈ હોય તો. ઉદાહરણ તરીકે `v-my-directive.foo.bar` માં, મોડિફાયર ઓબ્જેક્ટ `{ foo: true, bar: true }` હશે.
+  - `instance`: કમ્પોનન્ટનો ઇન્સ્ટન્સ જ્યાં ડાયરેક્ટિવનો ઉપયોગ થાય છે.
+  - `dir`: ડાયરેક્ટિવ ડેફીનેશન ઓબ્જેક્ટ.
 
-- `vnode`: the underlying VNode representing the bound element.
-- `prevVnode`: the VNode representing the bound element from the previous render. Only available in the `beforeUpdate` and `updated` hooks.
+- `vnode`: બાઉન્ડ એલિમેન્ટનું પ્રતિનિધિત્વ કરતું અન્ડરલાઇંગ VNode.
+- `prevVnode`: પાછલા રેન્ડરમાંથી બાઉન્ડ એલિમેન્ટનું પ્રતિનિધિત્વ કરતું VNode. ફક્ત `beforeUpdate` અને `updated` હૂક્સમાં જ ઉપલબ્ધ છે.
 
-As an example, consider the following directive usage:
+ઉદાહરણ તરીકે, નીચેના ડાયરેક્ટિવ વપરાશને ધ્યાનમાં લો:
 
 ```vue-html
 <div v-example:foo.bar="baz">
 ```
 
-The `binding` argument would be an object in the shape of:
+`binding` આર્ગ્યુમેન્ટ આ આકારની ઓબ્જેક્ટ હશે:
 
 ```js
 {
   arg: 'foo',
   modifiers: { bar: true },
-  value: /* value of `baz` */,
-  oldValue: /* value of `baz` from previous update */
+  value: /* `baz` ની વેલ્યુ */,
+  oldValue: /* અગાઉના અપડેટમાંથી `baz` ની વેલ્યુ */
 }
 ```
 
-Similar to built-in directives, custom directive arguments can be dynamic. For example:
+બિલ્ટ-ઇન ડાયરેક્ટિવ્સની જેમ જ, કસ્ટમ ડાયરેક્ટિવ આર્ગ્યુમેન્ટ્સ પણ ડાયનેમિક હોઈ શકે છે. ઉદાહરણ તરીકે:
 
 ```vue-html
 <div v-example:[arg]="value"></div>
 ```
 
-Here the directive argument will be reactively updated based on `arg` property in our component state.
+અહીં ડાયરેક્ટિવ આર્ગ્યુમેન્ટ આપણા કમ્પોનન્ટ સ્ટેટમાંની `arg` પ્રોપર્ટીના આધારે રિએક્ટિવ રીતે અપડેટ થશે.
 
-:::tip Note
-Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).
+:::tip નોંધ
+`el` સિવાય, તમારે આ આર્ગ્યુમેન્ટ્સને ફક્ત-વાંચવા (read-only) માટે જ ગણવા જોઈએ અને તેમાં ક્યારેય ફેરફાર કરવો જોઈએ નહીં. જો તમારે હૂક્સમાં માહિતી શેર કરવાની જરૂર હોય, તો એલિમેન્ટના [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) દ્વારા તેમ કરવાની ભલામણ કરવામાં આવે છે.
 :::
 
-## Function Shorthand {#function-shorthand}
+## ફંક્શન શોર્ટહેન્ડ (Function Shorthand) {#function-shorthand}
 
-It's common for a custom directive to have the same behavior for `mounted` and `updated`, with no need for the other hooks. In such cases we can define the directive as a function:
+કસ્ટમ ડાયરેક્ટિવ માટે `mounted` અને `updated` માટે સમાન વર્તન હોવું સામાન્ય છે, જેમાં અન્ય હૂક્સની જરૂર નથી. આવા કિસ્સાઓમાં આપણે ડાયરેક્ટિવને ફંક્શન તરીકે વ્યાખ્યાયિત કરી શકીએ છીએ:
 
 ```vue-html
 <div v-color="color"></div>
@@ -247,44 +247,44 @@ It's common for a custom directive to have the same behavior for `mounted` and `
 
 ```js
 app.directive('color', (el, binding) => {
-  // this will be called for both `mounted` and `updated`
+  // આ `mounted` અને `updated` બંને માટે કૉલ કરવામાં આવશે
   el.style.color = binding.value
 })
 ```
 
-## Object Literals {#object-literals}
+## ઓબ્જેક્ટ લિટરલ્સ (Object Literals) {#object-literals}
 
-If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression.
+જો તમારા ડાયરેક્ટિવને બહુવિધ મૂલ્યોની જરૂર હોય, તો તમે JavaScript ઓબ્જેક્ટ લિટરલ પણ પાસ કરી શકો છો. યાદ રાખો, ડાયરેક્ટિવ્સ કોઈપણ માન્ય JavaScript એક્સપ્રેશન લઈ શકે છે.
 
 ```vue-html
-<div v-demo="{ color: 'white', text: 'hello!' }"></div>
+<div v-demo="{ color: 'white', text: 'હેલો!' }"></div>
 ```
 
 ```js
 app.directive('demo', (el, binding) => {
   console.log(binding.value.color) // => "white"
-  console.log(binding.value.text) // => "hello!"
+  console.log(binding.value.text) // => "હેલો!"
 })
 ```
 
-## Usage on Components {#usage-on-components}
+## કમ્પોનન્ટ્સ પર વપરાશ {#usage-on-components}
 
-:::warning Not recommended
-Using custom directives on components is not recommended. Unexpected behaviour may occur when a component has multiple root nodes.
+:::warning ભલામણ કરેલ નથી
+કમ્પોનન્ટ્સ પર કસ્ટમ ડાયરેક્ટિવ્સનો ઉપયોગ કરવાની ભલામણ કરવામાં આવતી નથી. જ્યારે ઘટકમાં બહુવિધ રૂટ નોડ્સ હોય ત્યારે અણધાર્યું વર્તન આવી શકે છે.
 :::
 
-When used on components, custom directives will always apply to a component's root node, similar to [Fallthrough Attributes](/guide/components/attrs).
+જ્યારે કમ્પોનન્ટ્સ પર ઉપયોગ કરવામાં આવે છે, ત્યારે [ફોલથ્રુ એટ્રિબ્યુટ્સ](/guide/components/attrs) ની જેમ જ કસ્ટમ ડાયરેક્ટિવ્સ હંમેશા ઘટકના રૂટ નોડ પર લાગુ થશે.
 
 ```vue-html
 <MyComponent v-demo="test" />
 ```
 
 ```vue-html
-<!-- template of MyComponent -->
+<!-- MyComponent નું ટેમ્પલેટ -->
 
-<div> <!-- v-demo directive will be applied here -->
-  <span>My component content</span>
+<div> <!-- v-demo ડાયરેક્ટિવ અહીં લાગુ કરવામાં આવશે -->
+  <span>મારું કમ્પોનન્ટ કન્ટેન્ટ</span>
 </div>
 ```
 
-Note that components can potentially have more than one root node. When applied to a multi-root component, a directive will be ignored and a warning will be thrown. Unlike attributes, directives can't be passed to a different element with `v-bind="$attrs"`.
+નોંધ કરો કે ઘટકો સંભવિતપણે એક કરતા વધુ રૂટ નોડ ધરાવી શકે છે. જ્યારે મલ્ટી-રૂટ કમ્પોનન્ટ પર લાગુ કરવામાં આવે છે, ત્યારે ડાયરેક્ટિવને અવગણવામાં આવશે અને ચેતવણી આપવામાં આવશે. એટ્રિબ્યુટ્સથી વિપરીત, ડાયરેક્ટિવ્સને `v-bind="$attrs"` સાથે અલગ એલિમેન્ટ પર પાસ કરી શકાતા નથી.

@@ -1,16 +1,16 @@
-# Computed Properties {#computed-properties}
+# કમ્પ્યુટેડ પ્રોપર્ટીઝ {#computed-properties}
 
 <div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/computed-properties-in-vue-3" title="Free Vue.js Computed Properties Lesson"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/computed-properties-in-vue-3" title="ફ્રી Vue.js કમ્પ્યુટેડ પ્રોપર્ટીઝ લેસન"/>
 </div>
 
 <div class="composition-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-computed-properties-in-vue-with-the-composition-api" title="Free Vue.js Computed Properties Lesson"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-computed-properties-in-vue-with-the-composition-api" title="ફ્રી Vue.js કમ્પ્યુટેડ પ્રોપર્ટીઝ લેસન"/>
 </div>
 
-## Basic Example {#basic-example}
+## મૂળભૂત ઉદાહરણ {#basic-example}
 
-In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example, if we have an object with a nested array:
+ટેમ્પલેટમાં રહેલા એક્સપ્રેશન્સ (In-template expressions) ખૂબ અનુકૂળ છે, પરંતુ તે સાદા ઓપરેશન્સ માટે હોય છે. તમારા ટેમ્પલેટ્સમાં ખૂબ જ લોજિક મૂકવાથી તેઓ જટિલ અને જાળવણી કરવા મુશ્કેલ બની શકે છે. ઉદાહરણ તરીકે, જો આપણી પાસે નેસ્ટેડ એરે વાળું ઓબ્જેક્ટ હોય:
 
 <div class="options-api">
 
@@ -47,16 +47,16 @@ const author = reactive({
 
 </div>
 
-And we want to display different messages depending on if `author` already has some books or not:
+અને આપણે `author` પાસે પહેલેથી જ પુસ્તકો છે કે નહીં તેના આધારે અલગ અલગ સંદેશાઓ પ્રદર્શિત કરવા માંગીએ છીએ:
 
 ```vue-html
-<p>Has published books:</p>
-<span>{{ author.books.length > 0 ? 'Yes' : 'No' }}</span>
+<p>પુસ્તકો પ્રકાશિત થયા છે:</p>
+<span>{{ author.books.length > 0 ? 'હા' : 'ના' }}</span>
 ```
 
-At this point, the template is getting a bit cluttered. We have to look at it for a second before realizing that it performs a calculation depending on `author.books`. More importantly, we probably don't want to repeat ourselves if we need to include this calculation in the template more than once.
+આ સ્થાને, ટેમ્પલેટ થોડું અસ્પષ્ટ (cluttered) બની રહ્યું છે. આપણે તેને એક સેકન્ડ માટે જોવું પડશે તે સમજવા માટે કે તે `author.books` પર આધારિત ગણતરી કરે છે. વધુ મહત્ત્વનું એ છે કે, જો આપણે ટેમ્પલેટમાં આ ગણતરીનો એકથી વધુ વાર સમાવેશ કરવાની જરૂર હોય તો આપણે તેને વારંવાર દોહરાવવા માંગતા નથી.
 
-That's why for complex logic that includes reactive data, it is recommended to use a **computed property**. Here's the same example, refactored:
+તેથી જ રિએક્ટિવ ડેટા ધરાવતા જટિલ લોજિક માટે, **કમ્પ્યુટેડ પ્રોપર્ટી (computed property)** નો ઉપયોગ કરવાની ભલામણ કરવામાં આવે છે. સમાન ઉદાહરણ અહીં રિફેક્ટર કરીને આપેલું છે:
 
 <div class="options-api">
 
@@ -75,29 +75,29 @@ export default {
     }
   },
   computed: {
-    // a computed getter
+    // કમ્પ્યુટેડ ગેટર (getter)
     publishedBooksMessage() {
-      // `this` points to the component instance
-      return this.author.books.length > 0 ? 'Yes' : 'No'
+      // `this` કમ્પોનન્ટ ઇન્સ્ટન્સ તરફ નિર્દેશ કરે છે
+      return this.author.books.length > 0 ? 'હા' : 'ના'
     }
   }
 }
 ```
 
 ```vue-html
-<p>Has published books:</p>
+<p>પુસ્તકો પ્રકાશિત થયા છે:</p>
 <span>{{ publishedBooksMessage }}</span>
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNqFkN1KxDAQhV/l0JsqaFfUq1IquwiKsF6JINaLbDNui20S8rO4lL676c82eCFCIDOZMzkzXxetlUoOjqI0ykypa2XzQtC3ktqC0ydzjUVXCIAzy87OpxjQZJ0WpwxgzlZSp+EBEKylFPGTrATuJcUXobST8sukeA8vQPzqCNe4xJofmCiJ48HV/FfbLLrxog0zdfmn4tYrXirC9mgs6WMcBB+nsJ+C8erHH0rZKmeJL0sot2tqUxHfDONuyRi2p4BggWCr2iQTgGTcLGlI7G2FHFe4Q/xGJoYn8SznQSbTQviTrRboPrHUqoZZ8hmQqfyRmTDFTC1bqalsFBN5183o/3NG33uvoWUwXYyi/gdTEpwK)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNqFkN1KxDAQhV/l0JsqaFfUq1IquwiKsF6JINaLbDNui20S8rO4lL676c82eCFCIDOZMzkzXxetlUoOjqI0ykypa2XzQtC3ktqC0ydzjUVXCIAzy87OpxjQZJ0WpwxgzlZSp+EBEKylFPGTrATuJcUXobST8sukeA8vQPzqCNe4xJofmCiJ48HV/FfbLLrxog0zdfmn4tYrXirC9mgs6WMcBB+nsJ+C8erHH0rZKmeJL0sot2tqUxHfDONuyRi2p4BggWCr2iQTgGTcLGlI7G2FHFe4Q/xGJoYn8SznQSbTQviTrRboPrHUqoZZ8hmQqfyRmTDFTC1bqalsFBN5183o/3NG33uvuWUwXYyi/gdTEpwK)
 
-Here we have declared a computed property `publishedBooksMessage`.
+અહીં આપણે કમ્પ્યુટેડ પ્રોપર્ટી `publishedBooksMessage` જાહેર કરી છે.
 
-Try to change the value of the `books` array in the application `data` and you will see how `publishedBooksMessage` is changing accordingly.
+એપ્લિકેશનના `data` માં `books` એરેની વેલ્યુ બદલવાનો પ્રયાસ કરો અને તમે જોશો કે `publishedBooksMessage` તે મુજબ કેવી રીતે બદલાય છે.
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `this.publishedBooksMessage` depends on `this.author.books`, so it will update any bindings that depend on `this.publishedBooksMessage` when `this.author.books` changes.
+તમે ટેમ્પલેટ્સમાં સામાન્ય પ્રોપર્ટીની જેમ જ કમ્પ્યુટેડ પ્રોપર્ટીઝમાં ડેટા-બાઈન્ડ (data-bind) કરી શકો છો. Vue જાણે છે કે `this.publishedBooksMessage` એ `this.author.books` પર આધાર રાખે છે, તેથી જ્યારે `this.author.books` બદલાશે ત્યારે તે `this.publishedBooksMessage` પર આધારિત કોઈપણ બાઈન્ડિંગ્સને અપડેટ કરશે.
 
-See also: [Typing Computed Properties](/guide/typescript/options-api#typing-computed-properties) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Computed Properties](/guide/typescript/options-api#typing-computed-properties) <sup class="vt-badge ts" />
 
 </div>
 
@@ -116,31 +116,31 @@ const author = reactive({
   ]
 })
 
-// a computed ref
+// એ કમ્પ્યુટેડ ref
 const publishedBooksMessage = computed(() => {
-  return author.books.length > 0 ? 'Yes' : 'No'
+  return author.books.length > 0 ? 'હા' : 'ના'
 })
 </script>
 
 <template>
-  <p>Has published books:</p>
+  <p>પુસ્તકો પ્રકાશિત થયા છે:</p>
   <span>{{ publishedBooksMessage }}</span>
 </template>
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNp1kE9Lw0AQxb/KI5dtoTainkoaaREUoZ5EEONhm0ybYLO77J9CCfnuzta0vdjbzr6Zeb95XbIwZroPlMySzJW2MR6OfDB5oZrWaOvRwZIsfbOnCUrdmuCpQo+N1S0ET4pCFarUynnI4GttMT9PjLpCAUq2NIN41bXCkyYxiZ9rrX/cDF/xDYiPQLjDDRbVXqqSHZ5DUw2tg3zP8lK6pvxHe2DtvSasDs6TPTAT8F2ofhzh0hTygm5pc+I1Yb1rXE3VMsKsyDm5JcY/9Y5GY8xzHI+wnIpVw4nTI/10R2rra+S4xSPEJzkBvvNNs310ztK/RDlLLjy1Zic9cQVkJn+R7gIwxJGlMXiWnZEq77orhH3Pq2NH9DjvTfpfSBSbmA==)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNp1kE9Lw0AQxb/KI5dtoTainkoaaREUoZ5EEONhm0ybYLO77J9CCfnuzta0vdjbzr6Zeb95XbIwZroPlMySzJW2MR6OfDB5oZrWaOvRwZIsfbOnCUrdmuCpQo+N1S0ET4pCFarUynnI4GttMT9PjLpCAUq2NIN41bXCkyYxiZ9rrX/cDF/xDYiPQLjDDRbVXqqSHZ5DUw2tg3zP8lK6pvxHe2DtvSasDs6TPTAT8F2ofhzh0hTygm5pc+I1Yb1rXE3VMsKsyDm5JcY/9Y5GY8xzHI+wnIpVw4nTI/10R2rra+S4xSPEJzkBvvNNs310ztK/RDlLLjy1Zic9cQVkJn+R7gIwxJGlMXiWnZEq77orhH3Pq2NH9DjvTfpfSBSbmA==)
 
-Here we have declared a computed property `publishedBooksMessage`. The `computed()` function expects to be passed a [getter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description), and the returned value is a **computed ref**. Similar to normal refs, you can access the computed result as `publishedBooksMessage.value`. Computed refs are also auto-unwrapped in templates so you can reference them without `.value` in template expressions.
+અહીં આપણે કમ્પ્યુટેડ પ્રોપર્ટી `publishedBooksMessage` જાહેર કરી છે. `computed()` ફંક્શન અપેક્ષા રાખે છે કે તેને [ગેટર ફંક્શન (getter function)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description) પાસ કરવામાં આવે, અને પરત કરેલ મૂલ્ય એક **કમ્પ્યુટેડ ref (computed ref)** છે. સામાન્ય રિફ્સની જેમ, તમે કમ્પ્યુટેડ પરિણામને `publishedBooksMessage.value` તરીકે એક્સેસ કરી શકો છો. ટેમ્પલેટ્સમાં કમ્પ્યુટેડ રિફ્સ પણ ઓટો-અનવ્રેપ (auto-unwrapped) થાય છે જેથી તમે ટેમ્પલેટ એક્સપ્રેશન્સમાં `.value` વગર તેમનો સંદર્ભ લઈ શકો.
 
-A computed property automatically tracks its reactive dependencies. Vue is aware that the computation of `publishedBooksMessage` depends on `author.books`, so it will update any bindings that depend on `publishedBooksMessage` when `author.books` changes.
+કમ્પ્યુટેડ પ્રોપર્ટી આપમેળે તેની રિએક્ટિવ ડિપેન્ડન્સી (reactive dependencies) ને ટ્રૅક કરે છે. Vue જાણે છે કે `publishedBooksMessage` ની ગણતરી `author.books` પર આધારિત છે, તેથી જ્યારે `author.books` બદલાશે ત્યારે તે `publishedBooksMessage` પર આધારિત કોઈપણ બાઈન્ડિંગ્સને અપડેટ કરશે.
 
-See also: [Typing Computed](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Computed](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
 
 </div>
 
-## Computed Caching vs. Methods {#computed-caching-vs-methods}
+## કમ્પ્યુટેડ કેશીંગ (Caching) વિરુદ્ધ મેથડ્સ {#computed-caching-vs-methods}
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+તમે નોંધ્યું હશે કે આપણે એક્સપ્રેશનમાં મેથડ ઇનવોક (invoking) કરીને સમાન પરિણામ પ્રાપ્ત કરી શકીએ છીએ:
 
 ```vue-html
 <p>{{ calculateBooksMessage() }}</p>
@@ -149,10 +149,10 @@ You may have noticed we can achieve the same result by invoking a method in the 
 <div class="options-api">
 
 ```js
-// in component
+// કમ્પોનન્ટમાં
 methods: {
   calculateBooksMessage() {
-    return this.author.books.length > 0 ? 'Yes' : 'No'
+    return this.author.books.length > 0 ? 'હા' : 'ના'
   }
 }
 ```
@@ -162,17 +162,17 @@ methods: {
 <div class="composition-api">
 
 ```js
-// in component
+// કમ્પોનન્ટમાં
 function calculateBooksMessage() {
-  return author.books.length > 0 ? 'Yes' : 'No'
+  return author.books.length > 0 ? 'હા' : 'ના'
 }
 ```
 
 </div>
 
-Instead of a computed property, we can define the same function as a method. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their reactive dependencies.** A computed property will only re-evaluate when some of its reactive dependencies have changed. This means as long as `author.books` has not changed, multiple access to `publishedBooksMessage` will immediately return the previously computed result without having to run the getter function again.
+કમ્પ્યુટેડ પ્રોપર્ટીને બદલે, આપણે સમાન ફંક્શનને મેથડ તરીકે વ્યાખ્યાયિત કરી શકીએ છીએ. અંતિમ પરિણામ માટે, બંને અભિગમો ખરેખર બરાબર સમાન છે. જો કે, તફાવત એ છે કે **કમ્પ્યુટેડ પ્રોપર્ટીઝ તેમની રિએક્ટિવ ડિપેન્ડન્સીના આધારે કેશ (cached) થાય છે.** કમ્પ્યુટેડ પ્રોપર્ટી ત્યારે જ ફરીથી મૂલ્યાંકન (re-evaluate) થશે જ્યારે તેની કેટલીક રિએક્ટિવ ડિપેન્ડન્સી બદલાઈ હશે. આનો અર્થ એ છે કે જે સુધી `author.books` બદલાયું નથી, ત્યાં સુધી `publishedBooksMessage` ની બહુવિધ એક્સેસ ગેટર ફંક્શનને ફરીથી ચલાવ્યા વગર અગાઉથી ગણતરી કરેલ પરિણામ તરત જ પરત કરશે.
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+આનો અર્થ એ પણ છે કે નીચેની કમ્પ્યુટેડ પ્રોપર્ટી ક્યારેય અપડેટ થશે નહીં, કારણ કે `Date.now()` રિએક્ટિવ ડિપેન્ડન્સી નથી:
 
 <div class="options-api">
 
@@ -194,13 +194,13 @@ const now = computed(() => Date.now())
 
 </div>
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+સરખામણીમાં, જ્યારે પણ રિન-રેન્ડર થાય ત્યારે મેથડ ઇન્વોકેશન (method invocation) **હંમેશા** ફંક્શન ચલાવશે.
 
-Why do we need caching? Imagine we have an expensive computed property `list`, which requires looping through a huge array and doing a lot of computations. Then we may have other computed properties that in turn depend on `list`. Without caching, we would be executing `list`’s getter many more times than necessary! In cases where you do not want caching, use a method call instead.
+આપણને કેશીંગ (caching) ની કેમ જરૂર છે? કલ્પના કરો કે આપણી પાસે એક ખર્ચાળ (expensive) કમ્પ્યુટેડ પ્રોપર્ટી `list` છે, જેને વિશાળ એરે દ્વારા લૂપિંગ કરવાની અને ઘણી બધી ગણતરીઓ કરવાની જરૂર છે. પછી આપણી પાસે અન્ય કમ્પ્યુટેડ પ્રોપર્ટીઝ હોઈ શકે છે જે બદલામાં `list` પર આધારિત હોય. કેશીંગ વિના, આપણે `list` ના ગેટરને જરૂર કરતાં ઘણી વધુ વાર ચલાવીશું! એવા કિસ્સામાં કે જ્યાં તમે કેશીંગ નથી ઈચ્છતા, તેના બદલે મેથડ કોલનો ઉપયોગ કરો.
 
-## Writable Computed {#writable-computed}
+## રાઈટેબલ (Writable) કમ્પ્યુટેડ {#writable-computed}
 
-Computed properties are by default getter-only. If you attempt to assign a new value to a computed property, you will receive a runtime warning. In the rare cases where you need a "writable" computed property, you can create one by providing both a getter and a setter:
+કમ્પ્યુટેડ પ્રોપર્ટીઝ મૂળભૂત રીતે ફક્ત ગેટર-ઓન્લી (getter-only) હોય છે. જો તમે કમ્પ્યુટેડ પ્રોપર્ટીમાં નવી વેલ્યુ અસાઇન કરવાનો પ્રયાસ કરો છો, તો તમને રનટાઇમ વોર્નિંગ મળશે. દુર્લભ કિસ્સાઓમાં જ્યાં તમારે "રાઈટેબલ" કમ્પ્યુટેડ પ્રોપર્ટીની જરૂર હોય, તમે ગેટર અને સેટર બંને પ્રદાન કરીને એક બનાવી શકો છો:
 
 <div class="options-api">
 
@@ -220,7 +220,7 @@ export default {
       },
       // setter
       set(newValue) {
-        // Note: we are using destructuring assignment syntax here.
+        // નોંધ: આપણે અહીં ડિસ્ટ્રક્ચરિંગ અસાઇનમેન્ટ સિન્ટેક્સનો ઉપયોગ કરી રહ્યા છીએ.
         [this.firstName, this.lastName] = newValue.split(' ')
       }
     }
@@ -228,7 +228,7 @@ export default {
 }
 ```
 
-Now when you run `this.fullName = 'John Doe'`, the setter will be invoked and `this.firstName` and `this.lastName` will be updated accordingly.
+હવે જ્યારે તમે `this.fullName = 'John Doe'` ચલાવો છો, ત્યારે સેટર ઇનવોક થશે અને `this.firstName` અને `this.lastName` તે મુજબ અપડેટ કરવામાં આવશે.
 
 </div>
 
@@ -248,29 +248,27 @@ const fullName = computed({
   },
   // setter
   set(newValue) {
-    // Note: we are using destructuring assignment syntax here.
+    // નોંધ: આપણે અહીં ડિસ્ટ્રક્ચરિંગ અસાઇનમેન્ટ સિન્ટેક્સનો ઉપયોગ કરી રહ્યા છીએ.
     [firstName.value, lastName.value] = newValue.split(' ')
   }
 })
 </script>
 ```
 
-Now when you run `fullName.value = 'John Doe'`, the setter will be invoked and `firstName` and `lastName` will be updated accordingly.
+હવે જ્યારે તમે `fullName.value = 'John Doe'` ચલાવો છો, ત્યારે સેટર ઇનવોક થશે અને `firstName` અને `lastName` તે મુજબ અપડેટ કરવામાં આવશે.
 
 </div>
 
-## Getting the Previous Value {#previous}
+## અગાઉની વેલ્યુ મેળવવી {#previous}
 
-- Only supported in 3.4+
+- ફક્ત 3.4+ માં સપોર્ટેડ છે
 
 <p class="options-api">
-In case you need it, you can get the previous value returned by the computed property accessing
-the second argument of the getter:
+જો તમને તેની જરૂર હોય, તો તમે ગેટરની બીજી આર્ગ્યુમેન્ટ એક્સેસ કરીને કમ્પ્યુટેડ પ્રોપર્ટી દ્વારા પરત કરેલ અગાઉની વેલ્યુ મેળવી શકો છો:
 </p>
 
 <p class="composition-api">
-In case you need it, you can get the previous value returned by the computed property accessing
-the first argument of the getter:
+જો તમને તેની જરૂર હોય, તો તમે ગેટરની પ્રથમ આર્ગ્યુમેન્ટ એક્સેસ કરીને કમ્પ્યુટેડ પ્રોપર્ટી દ્વારા પરત કરેલ અગાઉની વેલ્યુ મેળવી શકો છો:
 </p>
 
 <div class="options-api">
@@ -283,9 +281,9 @@ export default {
     }
   },
   computed: {
-    // This computed will return the value of count when it's less or equal to 3.
-    // When count is >=4, the last value that fulfilled our condition will be returned
-    // instead until count is less or equal to 3
+    // આ કમ્પ્યુટેડ કાઉન્ટની વેલ્યુ પરત કરશે જ્યારે તે 3 કરતા ઓછું અથવા સમાન હોય.
+    // જ્યારે કાઉન્ટ >=4 હોય, ત્યારે છેલ્લું મૂલ્ય જેણે અમારી શરત પૂરી કરી હતી તે પરત કરવામાં આવશે
+    // જ્યાં સુધી કાઉન્ટ 3 કે તેનાથી ઓછું ન થાય ત્યાં સુધી.
     alwaysSmall(_, previous) {
       if (this.count <= 3) {
         return this.count
@@ -306,9 +304,9 @@ import { ref, computed } from 'vue'
 
 const count = ref(2)
 
-// This computed will return the value of count when it's less or equal to 3.
-// When count is >=4, the last value that fulfilled our condition will be returned
-// instead until count is less or equal to 3
+// આ કમ્પ્યુટેડ કાઉન્ટની વેલ્યુ પરત કરશે જ્યારે તે 3 કરતા ઓછું અથવા સમાન હોય.
+// જ્યારે કાઉન્ટ >=4 હોય, ત્યારે છેલ્લું મૂલ્ય જેણે અમારી શરત પૂરી કરી હતી તે પરત કરવામાં આવશે
+// જ્યાં સુધી કાઉન્ટ 3 કે તેનાથી ઓછું ન થાય ત્યાં સુધી.
 const alwaysSmall = computed((previous) => {
   if (count.value <= 3) {
     return count.value
@@ -320,7 +318,7 @@ const alwaysSmall = computed((previous) => {
 ```
 </div>
 
-In case you're using a writable computed:
+જો તમે રાઈટેબલ (writable) કમ્પ્યુટેડનો ઉપયોગ કરી રહ્યાં છો:
 
 <div class="options-api">
 
@@ -375,12 +373,12 @@ const alwaysSmall = computed({
 </div>
 
 
-## Best Practices {#best-practices}
+## શ્રેષ્ઠ અભ્યાસો (Best Practices) {#best-practices}
 
-### Getters should be side-effect free {#getters-should-be-side-effect-free}
+### ગેટર્સ (Getters) સાઇડ-ઇફેક્ટ ફ્રી હોવા જોઈએ {#getters-should-be-side-effect-free}
 
-It is important to remember that computed getter functions should only perform pure computation and be free of side effects. For example, **don't mutate other state, make async requests, or mutate the DOM inside a computed getter!** Think of a computed property as declaratively describing how to derive a value based on other values - its only responsibility should be computing and returning that value. Later in the guide we will discuss how we can perform side effects in reaction to state changes with [watchers](./watchers).
+એ યાદ રાખવું અગત્યનું છે કે કમ્પ્યુટેડ ગેટર ફંક્શન્સ માત્ર ગણતરી (computation) કરવા જોઈએ અને સાઇડ ઇફેક્ટ્સથી મુક્ત હોવા જોઈએ. ઉદાહરણ તરીકે, **બીજા સ્ટેટ ને મ્યુટેટ (mutate) કરશો નહીં, એસિંક કોલ્સ કરશો નહીં, અથવા કમ્પ્યુટેડ ગેટરની અંદર DOM ને મ્યુટેટ કરશો નહીં!** કમ્પ્યુટેડ પ્રોપર્ટીને અન્ય વેલ્યુ પર આધારિત વેલ્યુ કેવી રીતે મેળવવી તે ડિક્લેરેટિવ રીતે વર્ણવતા તરીકે વિચારો - તેની એકમાત્ર જવાબદારી તે વેલ્યુની ગણતરી અને પરત કરવાની હોવી જોઈએ. પછીથી માર્ગદર્શિકામાં આપણે ચર્ચા કરીશું કે કેવી રીતે આપણે [watchers](./watchers) સાથે સ્ટેટ ફેરફારોની પ્રતિક્રિયામાં સાઇડ ઇફેક્ટ્સ કરી શકીએ છીએ.
 
-### Avoid mutating computed value {#avoid-mutating-computed-value}
+### કમ્પ્યુટેડ વેલ્યુ બદલવાનું ટાળો {#avoid-mutating-computed-value}
 
-The returned value from a computed property is derived state. Think of it as a temporary snapshot - every time the source state changes, a new snapshot is created. It does not make sense to mutate a snapshot, so a computed return value should be treated as read-only and never be mutated - instead, update the source state it depends on to trigger new computations.
+કમ્પ્યુટેડ પ્રોપર્ટીમાંથી પરત મળેલ વેલ્યુ ડિરાઇવ્ડ (derived) સ્ટેટ છે. તેને કામચલાઉ સ્નેપશોટ તરીકે વિચારો - જ્યારે પણ સોર્સ સ્ટેટ બદલાય છે, ત્યારે નવો સ્નેપશોટ બનાવવામાં આવે છે. સ્નેપશોટને મ્યુટેટ કરવાનો કોઈ અર્થ નથી, તેથી કમ્પ્યુટેડ રિટર્ન મૂલ્યને ફક્ત વાંચવા માટે (read-only) ગણવું જોઈએ અને તેને ક્યારેય મ્યુટેટ કરવું જોઈએ નહીં - તેના બદલે, નવી ગણતરીઓને ટ્રિગર કરવા માટે તે જેના પર આધાર રાખે છે તે સોર્સ સ્ટેટને અપડેટ કરો.

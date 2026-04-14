@@ -1,16 +1,16 @@
-# List Rendering {#list-rendering}
+# લિસ્ટ રેન્ડરિંગ (List Rendering) {#list-rendering}
 
 <div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/list-rendering-in-vue-3" title="Free Vue.js List Rendering Lesson"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/list-rendering-in-vue-3" title="ફ્રી Vue.js લિસ્ટ રેન્ડરિંગ લેસન"/>
 </div>
 
 <div class="composition-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-list-rendering-in-vue" title="Free Vue.js List Rendering Lesson"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-list-rendering-in-vue" title="ફ્રી Vue.js લિસ્ટ રેન્ડરિંગ લેસન"/>
 </div>
 
 ## `v-for` {#v-for}
 
-We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
+એરે (array) ના આધારે આઇટમ્સની લિસ્ટ રેન્ડર કરવા માટે આપણે `v-for` ડિરેક્ટિવનો ઉપયોગ કરી શકીએ છીએ. `v-for` ડિરેક્ટિવને `item in items` ના સ્વરૂપમાં વિશેષ સિન્ટેક્સની જરૂર હોય છે, જ્યાં `items` સોર્સ ડેટા એરે છે અને `item` એરે એલિમેન્ટ માટેનું એક **alias** છે:
 
 <div class="composition-api">
 
@@ -38,12 +38,12 @@ data() {
 </li>
 ```
 
-Inside the `v-for` scope, template expressions have access to all parent scope properties. In addition, `v-for` also supports an optional second alias for the index of the current item:
+`v-for` સ્કોપની અંદર, ટેમ્પલેટ એક્સપ્રેશન્સ પાસે તમામ પેરેન્ટ સ્કોપ પ્રોપર્ટીઝની એક્સેસ હોય છે. વધુમાં, `v-for` વર્તમાન આઇટમના ઇન્ડેક્સ (index) માટે વૈકલ્પિક બીજા એલિયાસ (alias) ને પણ સપોર્ટ કરે છે:
 
 <div class="composition-api">
 
 ```js
-const parentMessage = ref('Parent')
+const parentMessage = ref('પેરેન્ટ')
 const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 ```
 
@@ -53,7 +53,7 @@ const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 ```js
 data() {
   return {
-    parentMessage: 'Parent',
+    parentMessage: 'પેરેન્ટ',
     items: [{ message: 'Foo' }, { message: 'Bar' }]
   }
 }
@@ -68,7 +68,7 @@ data() {
 ```
 
 <script setup>
-const parentMessage = 'Parent'
+const parentMessage = 'પેરેન્ટ'
 const items = [{ message: 'Foo' }, { message: 'Bar' }]
 </script>
 <div class="demo">
@@ -79,44 +79,44 @@ const items = [{ message: 'Foo' }, { message: 'Bar' }]
 
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNpdTsuqwjAQ/ZVDNlFQu5d64bpwJ7g3LopOJdAmIRlFCPl3p60PcDWcM+eV1X8Iq/uN1FrV6RxtYCTiW/gzzvbBR0ZGpBYFbfQ9tEi1ccadvUuM0ERyvKeUmithMyhn+jCSev4WWaY+vZ7HjH5Sr6F33muUhTR8uW0ThTuJua6mPbJEgGSErmEaENedxX3Z+rgxajbEL2DdhR5zOVOdUSIEDOf8M7IULCHsaPgiMa1eK4QcS6rOSkhdfapVeQLQEWnH)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNpdTsuqwjAQ/ZVDNlFQu5d64bpwJ7g3LopOJdAmIRlFCPl3p60PcDWcM+eV1X8Iq/uN1FrV6RxtYCTiW/gzzvbBR0ZGpBYFbfQ9tEi1ccadvUuM0ERyvKeUmithMyhn+jCSev4WWaY+vZ7HjH5Sr6F33muUhTR8uW0ThTuJua6mPbJEgGSErmEaENedxX3Z+rgxajbEL2DdhR5zOVOdUSIEDOf8M7IULCHsaPgiMa1eK4QcS6rOSkhdfapVeQLQEWnH)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNpVTssKwjAQ/JUllyr0cS9V0IM3wbvxEOxWAm0a0m0phPy7m1aqhpDsDLMz48XJ2nwaUZSiGp5OWzpKg7PtHUGNjRpbAi8NQK1I7fbrLMkhjc5EJAn4WOXQ0BWHQb2whOS24CSN6qjXhN1Qwt1Dt2kufZ9ASOGXOyvH3GMNCdGdH75VsZVjwGa2VYQRUdVqmLKmdwcpdjEnBW1qnPf8wZIrBQujoff/RSEEyIDZZeGLeCn/dGJyCSlazSZVsUWL8AYme21i)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNpVTssKwjAQ/JUllyr0cS9V0IM3wbvxEOxWAm0a0m0phPy7m1aqhpDsDLMz48XJ2nwaUZSiGp5OWzpKg7PtHUGNjRpbAi8NQK1I7fbrLMkhjc5EJAn4WOXQ0BWHQb2whOS24CSN6qjXhN1Qwt1Dt2kufZ9ASOGXOyvH3GMNCdGdH75VsZVjwGa2VYQRUdVqmLKmdwcpdjEnBW1qnPf8wZIrBQujoff/RSEEyIDZZeGLeCn/dGJyCSlazSZVsUWL8AYme21i)
 
 </div>
 
-The variable scoping of `v-for` is similar to the following JavaScript:
+`v-for` નું વેરિએબલ સ્કોપિંગ નીચેના જાવાસ્ક્રિપ્ટ જેવું જ છે:
 
 ```js
-const parentMessage = 'Parent'
+const parentMessage = 'પેરેન્ટ'
 const items = [
   /* ... */
 ]
 
 items.forEach((item, index) => {
-  // has access to outer scope `parentMessage`
-  // but `item` and `index` are only available in here
+  // આઉટર (outer) સ્કોપ `parentMessage` ની એક્સેસ છે
+  // પરંતુ `item` અને `index` ફક્ત અહીં જ ઉપલબ્ધ છે
   console.log(parentMessage, item.message, index)
 })
 ```
 
-Notice how the `v-for` value matches the function signature of the `forEach` callback. In fact, you can use destructuring on the `v-for` item alias similar to destructuring function arguments:
+નોંધ કરો કે કેવી રીતે `v-for` વેલ્યુ `forEach` કોલબેકના ફંક્શન સિગ્નેચર સાથે મેળ ખાય છે. વાસ્તવમાં, તમે ફંક્શન આર્ગ્યુમેન્ટ્સને ડિસ્ટ્રક્ચર કરવા જેવું જ `v-for` આઇટમ એલિયાસ પર ડિસ્ટ્રક્ચરિંગ (destructuring) નો ઉપયોગ કરી શકો છો:
 
 ```vue-html
 <li v-for="{ message } in items">
   {{ message }}
 </li>
 
-<!-- with index alias -->
+<!-- ઇન્ડેક્સ સાથે -->
 <li v-for="({ message }, index) in items">
   {{ message }} {{ index }}
 </li>
 ```
 
-For nested `v-for`, scoping also works similar to nested functions. Each `v-for` scope has access to parent scopes:
+નેસ્ટેડ (nested) `v-for` માટે, સ્કોપિંગ નેસ્ટેડ ફંક્શન્સની જેમ જ કામ કરે છે. દરેક `v-for` સ્કોપ પાસે પેરેન્ટ સ્કોપ્સની એક્સેસ હોય છે:
 
 ```vue-html
 <li v-for="item in items">
@@ -126,21 +126,21 @@ For nested `v-for`, scoping also works similar to nested functions. Each `v-for`
 </li>
 ```
 
-You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
+તમે `in` ને બદલે `of` નો ડિલિમિટર તરીકે ઉપયોગ કરી શકો છો, જેથી તે ઇટરટર્સ (iterators) માટે જાવાસ્ક્રિપ્ટના સિન્ટેક્સની નજીક હોય:
 
 ```vue-html
 <div v-for="item of items"></div>
 ```
 
-## `v-for` with an Object {#v-for-with-an-object}
+## ઓબ્જેક્ટ સાથે `v-for` {#v-for-with-an-object}
 
-You can also use `v-for` to iterate through the properties of an object. The iteration order will be based on the result of calling `Object.values()` on the object:
+તમે ઓબ્જેક્ટની પ્રોપર્ટીઝ દ્વારા પુનરાવર્તન (iterate) કરવા માટે `v-for` નો ઉપયોગ પણ કરી શકો છો. પુનરાવર્તન ક્રમ ઓબ્જેક્ટ પર `Object.values()` ને કોલ કરવાના પરિણામ પર આધારિત હશે:
 
 <div class="composition-api">
 
 ```js
 const myObject = reactive({
-  title: 'How to do lists in Vue',
+  title: 'Vue માં લિસ્ટ કેવી રીતે બનાવવી',
   author: 'Jane Doe',
   publishedAt: '2016-04-10'
 })
@@ -153,7 +153,7 @@ const myObject = reactive({
 data() {
   return {
     myObject: {
-      title: 'How to do lists in Vue',
+      title: 'Vue માં લિસ્ટ કેવી રીતે બનાવવી',
       author: 'Jane Doe',
       publishedAt: '2016-04-10'
     }
@@ -171,7 +171,7 @@ data() {
 </ul>
 ```
 
-You can also provide a second alias for the property's name (a.k.a. key):
+તમે પ્રોપર્ટીના નામ (જેને કી તરીકે પણ ઓળખવામાં આવ છે) માટે બીજું એલિયાસ પ્રદાન કરી શકો છો:
 
 ```vue-html
 <li v-for="(value, key) in myObject">
@@ -179,7 +179,7 @@ You can also provide a second alias for the property's name (a.k.a. key):
 </li>
 ```
 
-And another for the index:
+અને બીજું ઈન્ડેક્સ માટે:
 
 ```vue-html
 <li v-for="(value, key, index) in myObject">
@@ -189,28 +189,28 @@ And another for the index:
 
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNo9jjFvgzAQhf/KE0sSCQKpqg7IqRSpQ9WlWycvBC6KW2NbcKaNEP+9B7Tx4nt33917Y3IKYT9ESspE9XVnAqMnjuFZO9MG3zFGdFTVbAbChEvnW2yE32inXe1dz2hv7+dPqhnHO7kdtQPYsKUSm1f/DfZoPKzpuYdx+JAL6cxUka++E+itcoQX/9cO8SzslZoTy+yhODxlxWN2KMR22mmn8jWrpBTB1AZbMc2KVbTyQ56yBkN28d1RJ9uhspFSfNEtFf+GfnZzjP/oOll2NQPjuM4xTftZyIaU5VwuN0SsqMqtWZxUvliq/J4jmX4BTCp08A==)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNo9jjFvgzAQhf/KE0sSCQKpqg7IqRSpQ9WlWycvBC6KW2NbcKaNEP+9B7Tx4nt33917Y3IKYT9ESspE9XVnAqMnjuFZO9MG3zFGdFTVbAbChEvnW2yE32inXe1dz2hv7+dPqhnHO7kdtQPYsKUSm1f/DfZoPKzpuYdx+JAL6cxUka++E+itcoQX/9cO8SzslZoTy+yhODxlxWN2KMR22mmn8jWrpBTB1AZbMc2KVbTyQ56yBkN28d1RJ9uhspFSfNEtFf+GfnZzjP/oOll2NQPjuM4xTftZyIaU5VwuN0SsqMqtWZxUvliq/J4jmX4BTCp08A==)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNo9T8FqwzAM/RWRS1pImnSMHYI3KOwwdtltJ1/cRqXe3Ng4ctYS8u+TbVJjLD3rPelpLg7O7aaARVeI8eS1ozc54M1ZT9DjWQVDMMsBoFekNtucS/JIwQ8RSQI+1/vX8QdP1K2E+EmaDHZQftg/IAu9BaNHGkEP8B2wrFYxgAp0sZ6pn2pAeLepmEuSXDiy7oL9gduXT+3+pW6f631bZoqkJY/kkB6+onnswoDw6owijIhEMByjUBgNU322/lUWm0mZgBX84r1ifz3ettHmupYskjbanedch2XZRcAKTnnvGVIPBpkqGqPTJNGkkaJ5+CiWf4KkfBs=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNo9T8FqwzAM/RWRS1pImnSMHYI3KOwwdtltJ1/cRqXe3Ng4ctYS8u+TbVJjLD3rPelpLg7O7aaARVeI8eS1ozc54M1ZT9DjWQVDMMsBoFekNtucS/JIwQ8RSQI+1/vX8QdP1K2E+EmaDHZQftg/IAu9BaNHGkEP8B2wrFYxgAp0sZ6pn2pAeLepmEuSXDiy7oL9gduXT+3+pW6f631bZoqkJY/kkB6+onnswoDw6owijIhEMByjUBgNU322/lUWm0mZgBX84r1ifz3ettHmupYskjbanedch2XZRcAKTnnvGVIPBpkqGqPTJNGkkaJ5+CiWf4KkfBs=)
 
 </div>
 
-## `v-for` with a Range {#v-for-with-a-range}
+## રેન્જ સાથે `v-for` {#v-for-with-a-range}
 
-`v-for` can also take an integer. In this case it will repeat the template that many times, based on a range of `1...n`.
+`v-for` ઇન્ટિજર (integer) પણ લઈ શકે છે. આ કિસ્સામાં તે `1...n` ની રેન્જના આધારે તેટલી વખત ટેમ્પલેટને પુનરાવર્તિત કરશે.
 
 ```vue-html
 <span v-for="n in 10">{{ n }}</span>
 ```
 
-Note here `n` starts with an initial value of `1` instead of `0`.
+નોંધ કરો કે અહીં `n` 0 ને બદલે `1` ની પ્રારંભિક વેલ્યુ સાથે શરૂ થાય છે.
 
-## `v-for` on `<template>` {#v-for-on-template}
+## `<template>` પર `v-for` {#v-for-on-template}
 
-Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+ટેમ્પલેટ `v-if` ની જેમ, તમે બહુવિધ એલિમેન્ટ્સના બ્લોકને રેન્ડર કરવા માટે `v-for` સાથે `<template>` ટેગનો ઉપયોગ પણ કરી શકો છો. ઉદાહરણ તરીકે:
 
 ```vue-html
 <ul>
@@ -221,21 +221,21 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-## `v-for` with `v-if` {#v-for-with-v-if}
+## `v-if` સાથે `v-for` {#v-for-with-v-if}
 
-When they exist on the same node, `v-if` has a higher priority than `v-for`. That means the `v-if` condition will not have access to variables from the scope of the `v-for`:
+જ્યારે તે સમાન નોડ પર અસ્તિત્વ ધરાવે છે, ત્યારે `v-if` પાસે `v-for` કરતા વધારે પ્રાધાન્ય (priority) હોય છે. તેનો અર્થ એ છે કે `v-if` શરત પાસે `v-for` ના સ્કોપમાંથી વેરિએબલ્સની એક્સેસ હશે નહીં:
 
 ```vue-html
 <!--
-This will throw an error because property "todo"
-is not defined on instance.
+આ એરર આપશે કારણ કે પ્રોપર્ટી "todo"
+ઇન્સ્ટન્સ પર વ્યાખ્યાયિત નથી.
 -->
 <li v-for="todo in todos" v-if="!todo.isComplete">
   {{ todo.name }}
 </li>
 ```
 
-This can be fixed by moving `v-for` to a wrapping `<template>` tag (which is also more explicit):
+આને `v-for` ને રેપિંગ (wrapping) `<template>` ટેગ પર ખસેડીને ઠીક કરી શકાય છે (જે વધુ સ્પષ્ટ પણ છે):
 
 ```vue-html
 <template v-for="todo in todos">
@@ -245,31 +245,31 @@ This can be fixed by moving `v-for` to a wrapping `<template>` tag (which is als
 </template>
 ```
 
-:::warning Note
-It's **not** recommended to use `v-if` and `v-for` on the same element due to implicit precedence.
+:::warning નોંધ
+ઇમ્પલિસિટ પ્રેસિડેન્સ (implicit precedence) ને કારણે એક જ એલિમેન્ટ પર `v-if` અને `v-for` નો ઉપયોગ કરવાની ભલામણ કરવામાં આવતી **નથી**.
 
-There are two common cases where this can be tempting:
+ત્યાં બે સામાન્ય કિસ્સાઓ છે જ્યાં આ લલચાવનારું હોઈ શકે છે:
 
-- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+- લિસ્ટમાં આઇટમ્સ ફિલ્ટર કરવા માટે (દા.ત. `v-for="user in users" v-if="user.isActive"`). આ કિસ્સાઓમાં, `users` ને નવી કમ્પ્યુટેડ પ્રોપર્ટી સાથે બદલો જે તમારી ફિલ્ટર કરેલી લિસ્ટ પરત કરે (દા.ત. `activeUsers`).
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- જો લિસ્ટ છુપાવવી હોય તો તેને રેન્ડર કરવાનું ટાળવા માટે (દા.ત. `v-for="user in users" v-if="shouldShowUsers"`). આ કિસ્સાઓમાં, `v-if` ને કન્ટેનર એલિમેન્ટ (દા.ત. `ul`, `ol`) પર ખસેડો.
 :::
 
-## Maintaining State with `key` {#maintaining-state-with-key}
+## `key` સાથે સ્ટેટ જાળવવું {#maintaining-state-with-key}
 
-When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index.
+જ્યારે Vue `v-for` સાથે રેન્ડર કરાયેલા એલિમેન્ટ્સની સૂચિને અપડેટ કરી રહ્યું હોય, ત્યારે ડિફોલ્ટ રૂપે તે "in-place patch" વ્યૂહરચનાનો ઉપયોગ કરે છે. જો ડેટા આઇટમ્સનો ક્રમ બદલાયો હોય, તો આઇટમ્સના ક્રમ સાથે મેળ ખાવા માટે DOM એલિમેન્ટ્સને ખસેડવાને બદલે, Vue દરેક એલિમેન્ટને ઇન-પ્લેસ પેચ કરશે અને ખાતરી કરશે કે તે તે ચોક્કસ ઇન્ડેક્સ પર શું રેન્ડર થવું જોઈએ તે પ્રતિબિંબિત કરે છે.
 
-This default mode is efficient, but **only suitable when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
+આ ડિફોલ્ટ મોડ કાર્યક્ષમ છે, પરંતુ **ત્યારે જ યોગ્ય છે જ્યારે તમારું લિસ્ટ રેન્ડર આઉટપુટ ચાઇલ્ડ કમ્પોનન્ટ સ્ટેટ અથવા કામચલાઉ DOM સ્ટેટ (દા.ત. ફોર્મ ઇનપુટ વેલ્યુસ) પર આધારિત ન હોય**.
 
-To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item:
+Vue ને એક સંકેત આપવા માટે કે જેથી તે દરેક નોડની ઓળખને ટ્રૅક કરી શકે અને આ રીતે અસ્તિત્વમાં હોય તેવા એલિમેન્ટ્સનો પુનઃઉપયોગ અને પુનઃક્રમાંકિત કરી શકે, તમારે દરેક આઇટમ માટે એક યુનિક (unique) `key` એટ્રિબ્યુટ પ્રદાન કરવાની જરૂર છે:
 
 ```vue-html
 <div v-for="item in items" :key="item.id">
-  <!-- content -->
+  <!-- સામગ્રી -->
 </div>
 ```
 
-When using `<template v-for>`, the `key` should be placed on the `<template>` container:
+જ્યારે `<template v-for>` નો ઉપયોગ કરો છો, ત્યારે `key` `<template>` કન્ટેનર પર હોવી જોઈએ:
 
 ```vue-html
 <template v-for="todo in todos" :key="todo.name">
@@ -277,25 +277,25 @@ When using `<template v-for>`, the `key` should be placed on the `<template>` co
 </template>
 ```
 
-:::tip Note
-`key` here is a special attribute being bound with `v-bind`. It should not be confused with the property key variable when [using `v-for` with an object](#v-for-with-an-object).
+:::tip નોંધ
+અહીં `key` એ `v-bind` સાથે બાંધવામાં આવેલ એક વિશેષ એટ્રિબ્યુટ છે. [ઓબ્જેક્ટ સાથે `v-for` નો ઉપયોગ કરતી વખતે](#v-for-with-an-object) પ્રોપર્ટી કી વેરિએબલ સાથે તેને મિક્સ ન કરવી જોઈએ.
 :::
 
-It is recommended to provide a `key` attribute with `v-for` whenever possible, unless the iterated DOM content is simple (i.e. contains no components or stateful DOM elements), or you are intentionally relying on the default behavior for performance gains.
+જ્યારે પણ શક્ય હોય ત્યારે `v-for` સાથે `key` એટ્રિબ્યુટ પ્રદાન કરવાની ભલામણ કરવામાં આવે છે, સિવાય કે ઇટરેટેડ DOM સામગ્રી સરળ હોય (એટલે ​​કે તેમાં કોઈ ઘટકો અથવા સ્ટેટફુલ DOM એલિમેન્ટ્સ ન હોય), અથવા તમે પર્ફોર્મન્સ લાભો માટે જાણી જોઈને ડિફોલ્ટ વર્તન પર આધાર રાખી રહ્યા હોવ.
 
-The `key` binding expects primitive values - i.e. strings and numbers. Do not use objects as `v-for` keys. For detailed usage of the `key` attribute, please see the [`key` API documentation](/api/built-in-special-attributes#key).
+`key` બાઈન્ડિંગ પ્રિમિટિવ વેલ્યુની અપેક્ષા રાખે છે - એટલે કે સ્ટ્રિંગ્સ અને નંબર્સ. `v-for` કી તરીકે ઓબ્જેક્ટ્સનો ઉપયોગ કરશો નહીં. `key` એટ્રિબ્યુટના વિગતવાર વપરાશ માટે, કૃપા કરીને [`key` API દસ્તાવેજીકરણ](/api/built-in-special-attributes#key) જુઓ.
 
-## `v-for` with a Component {#v-for-with-a-component}
+## કમ્પોનન્ટ સાથે `v-for` {#v-for-with-a-component}
 
-> This section assumes knowledge of [Components](/guide/essentials/component-basics). Feel free to skip it and come back later.
+> આ વિભાગ [કમ્પોનન્ટ્સના મૂળભૂત પાસાઓ](/guide/essentials/component-basics) ના જ્ઞાનને ધારે છે. તેને છોડી દેવા અને પછીથી પાછા આવવા માટે નિઃસંકોચ રહો.
 
-You can directly use `v-for` on a component, like any normal element (don't forget to provide a `key`):
+તમે કોઈપણ સામાન્ય એલિમેન્ટની જેમ કમ્પોનન્ટ પર સીધો `v-for` ઉપયોગ કરી શકો છો (એક `key` આપવાનું ભૂલશો નહીં):
 
 ```vue-html
 <MyComponent v-for="item in items" :key="item.id" />
 ```
 
-However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+જો કે, આ કમ્પોનન્ટમાં આપમેળે કોઈ ડેટા પાસ કરશે નહીં, કારણ કે ઘટકોના પોતાના સ્વયં-અલગ (isolated) સ્કોપ્સ હોય છે. કમ્પોનન્ટમાં ઇટરેટેડ ડેટા પાસ કરવા માટે, આપણે પ્રોપ્સ (props) નો પણ ઉપયોગ કરવો જોઈએ:
 
 ```vue-html
 <MyComponent
@@ -306,24 +306,24 @@ However, this won't automatically pass any data to the component, because compon
 />
 ```
 
-The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+ઘટકમાં `item` ને આપમેળે ઇન્જેક્ટ ન કરવાનું કારણ એ છે કે તે કમ્પોનન્ટને `v-for` કેવી રીતે કામ કરે છે તેની સાથે ચુસ્તપણે જોડે (tightly coupled) છે. તેનો ડેટા ક્યાંથી આવે છે તે વિશે સ્પષ્ટ બનવું ઘટકને અન્ય પરિસ્થિતિઓમાં પુનઃઉપયોગી બનાવે છે.
 
 <div class="composition-api">
 
-Check out [this example of a simple todo list](https://play.vuejs.org/#eNp1U8Fu2zAM/RXCGGAHTWx02ylwgxZYB+ywYRhyq3dwLGYRYkuCJTsZjPz7KMmK3ay9JBQfH/meKA/Rk1Jp32G0jnJdtVwZ0Gg6tSkEb5RsDQzQ4h4usG9lAzGVxldoK5n8ZrAZsTQLCduRygAKUUmhDQg8WWyLZwMPtmESx4sAGkL0mH6xrMH+AHC2hvuljw03Na4h/iLBHBAY1wfUbsTFVcwoH28o2/KIIDuaQ0TTlvrwNu/TDe+7PDlKXZ6EZxTiN4kuRI3W0dk4u4yUf7bZfScqw6WAkrEf3m+y8AOcw7Qv6w5T1elDMhs7Nbq7e61gdmme60SQAvgfIhExiSSJeeb3SBukAy1D1aVBezL5XrYN9Csp1rrbNdykqsUehXkookl0EVGxlZHX5Q5rIBLhNHFlbRD6xBiUzlOeuZJQz4XqjI+BxjSSYe2pQWwRBZizV01DmsRWeJA1Qzv0Of2TwldE5hZRlVd+FkbuOmOksJLybIwtkmfWqg+7qz47asXpSiaN3lxikSVwwfC8oD+/sEnV+oh/qcxmU85mebepgLjDBD622Mg+oDrVquYVJm7IEu4XoXKTZ1dho3gnmdJhedEymn9ab3ysDPdc4M9WKp28xE5JbB+rzz/Trm3eK3LAu8/E7p2PNzYM/i3ChR7W7L7hsSIvR7L2Aal1EhqTp80vF95sw3WcG7r8A0XaeME=) to see how to render a list of components using `v-for`, passing different data to each instance.
+દરેક ઇન્સ્ટન્સમાં અલગ-અલગ ડેટા પાસ કરીને `v-for` નો ઉપયોગ કરીને ઘટકોની સૂચિ કેવી રીતે રેન્ડર કરવી તે જોવા માટે [સિમ્પલ ટોડો લિસ્ટનું આ ઉદાહરણ](https://play.vuejs.org/#eNp1U8Fu2zAM/RXCGGAHTWx02ylwgxZYB+ywYRhyq3dwLGYRYkuCJTsZjPz7KMmK3ay9JBQfH/meKA/Rk1Jp32G0jnJdtVwZ0Gg6tSkEb5RsDQzQ4h4usG9lAzGVxldoK5n8YzAYsTQLCduRygAKUUmhDQg8WWyLZwMPtmESx4sAGkL0mH6xrMH+AHC2hvuljw03Na4h/iLBHBAY1wfUbsTFVcwoH28o2/KIIDuaQ0TTlvrwNu/TDe+7PDlKXZ6EZxTiN4kuRI3W0dk4u4yUf7bZfScqw6WAkrEf3m+y8AOcw7Qv6w5T1elDMhs7Nbq7e61gdmme60SQAvgfIhExiSSJeeb3SBukAy1D1aVBezL5XrYN9Csp1rrbNdykqsUehXkookl0EVGxlZHX5Q5rIBLhNHFlbRD6xBiUzlOeuZJQz4XqjI+BxjSSYe2pQWwRBZizV01DmsRWeJA1Qzv0Of2TwldE5hZRlVd+FkbuOmOksJLybIwtkmfWqg+7qz47asXpSiaN3lxikSVwwfC8oD+/sEnV+oh/qcxmU85mebepgLjDBD622Mg+oDrVquYVJm7IEu4XoXKTZ1dho3gnmdJhedEymn9ab3ysDPdc4M9WKp28xE5JbB+rzz/Trm3eK3LAu8/E7p2PNzYM/i3ChR7W7L7hsSIvR7L2Aal1EhqTp80vF95sw3WcG7r8A0XaeME=) તપાસો.
 
 </div>
 <div class="options-api">
 
-Check out [this example of a simple todo list](https://play.vuejs.org/#eNqNVE2PmzAQ/SsjVIlEm4C27Qmx0a7UVuqhPVS5lT04eFKsgG2BSVJF+e8d2xhIu10tihR75s2bNx9wiZ60To49RlmUd2UrtNkUUjRatQa2iquvBhvYt6qBOEmDwQbEhQQoJJ4dlOOe9bWBi7WWiuIlStNlcJlYrivr5MywxdIDAVo0fSvDDUDiyeK3eDYZxLGLsI8hI7H9DHeYQuwjeAb3I9gFCFMjUXxSYCoELroKO6fZP17Mf6jev0i1ZQcE1RtHaFrWVW/l+/Ai3zd1clQ1O8k5Uzg+j1HUZePaSFwfvdGhfNIGTaW47bV3Mc6/+zZOfaaslegS18ZE9121mIm0Ep17ynN3N5M8CB4g44AC4Lq8yTFDwAPNcK63kPTL03HR6EKboWtm0N5MvldtA8e1klnX7xphEt3ikTbpoYimsoqIwJY0r9kOa6Ag8lPeta2PvE+cA3M7k6cOEvBC6n7UfVw3imPtQ8eiouAW/IY0mElsiZWqOdqkn5NfCXxB5G6SJRvj05By1xujpJWUp8PZevLUluqP/ajPploLasmk0Re3sJ4VCMnxvKQ//0JMqrID/iaYtSaCz+xudsHjLpPzscVGHYO3SzpdixIXLskK7pcBucnTUdgg3kkmcxhetIrmH4ebr8m/n4jC6FZp+z7HTlLsVx1p4M7odcXPr6+Lnb8YOne5+C2F6/D6DH2Hx5JqOlCJ7yz7IlBTbZsf7vjXVBzjvLDrH5T0lgo=) to see how to render a list of components using `v-for`, passing different data to each instance.
+દરેક ઇન્સ્ટન્સમાં અલગ-અલગ ડેટા પાસ કરીને `v-for` નો ઉપયોગ કરીને ઘટકોની સૂચિ કેવી રીતે રેન્ડર કરવી તે જોવા માટે [સિમ્પલ ટોડો લિસ્ટનું આ ઉદાહરણ](https://play.vuejs.org/#eNo9T8FqwzAM/RWRS1pImnSMHYI3KOwwdtltJ1/cRqXe3Ng4ctYS8u+TbVJjLD3rPelpLg7O7aaARVeI8eS1ozc54M1ZT9DjWQVDMMsBoFekNtucS/JIwQ8RSQI+1/vX8QdP1K2E+EmaDHZQftg/IAu9BaNHGkEP8B2wrFYxgAp0sZ6pn2pAeLepmEuSXDiy7oL9gduXT+3+pW6f631bZoqkJY/kkB6+onnswoDw6owijIhEMByjUBgNU322/lUWm0mZgBX84r1ifz3ettHmupYskjbanedch2XZRcAKTnnvGVIPBpkqGqPTJNGkkaJ5+CiWf4KkfBs=) તપાસો.
 
 </div>
 
-## Array Change Detection {#array-change-detection}
+## એરે (Array) ફેરફાર ડિટેક્શન {#array-change-detection}
 
-### Mutation Methods {#mutation-methods}
+### મેટેશન મેથડ્સ (Mutation Methods) {#mutation-methods}
 
-Vue is able to detect when a reactive array's mutation methods are called and trigger necessary updates. These mutation methods are:
+Vue એ શોધવા માટે સક્ષમ છે કે જ્યારે રિએક્ટિવ એરેની મેટેશન મેથડ્સ કોલ કરવામાં આવે અને જરૂરી અપડેટ્સ ટ્રિગર થાય. આ મ્યુટેશન મેથડ્સ છે:
 
 - `push()`
 - `pop()`
@@ -333,14 +333,14 @@ Vue is able to detect when a reactive array's mutation methods are called and tr
 - `sort()`
 - `reverse()`
 
-### Replacing an Array {#replacing-an-array}
+### એરેને બદલવું {#replacing-an-array}
 
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, we should replace the old array with the new one:
+મ્યુટેશન મેથડ્સ, જેમ કે નામ સૂચવે છે, તે અસલ એરેને મ્યુટેટ (mutate) કરે છે જેના પર તેઓ કોલ કરવામાં આવે છે. સરખામણીમાં, નોન-મ્યુટેટીંગ મેથડ્સ પણ છે, દા.ત. `filter()`, `concat()` અને `slice()`, જે અસલ એરેને મ્યુટેટ કરતી નથી પરંતુ **હંમેશા નવો એરે પરત કરે છે**. નોન-મ્યુટેટીંગ મેથડ્સ સાથે કામ કરતી વખતે, આપણે જૂના એરેને નવા એરે સાથે બદલવો જોઈએ:
 
 <div class="composition-api">
 
 ```js
-// `items` is a ref with array value
+// `items` એ એરે વેલ્યુ સાથેનું ref છે
 items.value = items.value.filter((item) => item.message.match(/Foo/))
 ```
 
@@ -353,13 +353,13 @@ this.items = this.items.filter((item) => item.message.match(/Foo/))
 
 </div>
 
-You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
+તમને લાગશે કે આનાથી Vue અસ્તિત્વમાં રહેલા DOM ને ફેંકી દેશે અને આખી લિસ્ટ ફરીથી રેન્ડર કરશે - સદભાગ્યે, એવું નથી. Vue DOM એલિમેન્ટના પુનઃઉપયોગને મહત્તમ કરવા માટે કેટલાક સ્માર્ટ હ્યુરિસ્ટિક્સ (heuristics) લાગુ કરે છે, તેથી ઓવરલેપિંગ ઓબ્જેક્ટ્સ ધરાવતા અન્ય એરે સાથે એરે બદલવું એ ખૂબ જ કાર્યક્ષમ કામગીરી છે.
 
-## Displaying Filtered/Sorted Results {#displaying-filtered-sorted-results}
+## ફિલ્ટર/સોર્ટ કરેલા પરિણામો પ્રદર્શિત કરવા {#displaying-filtered-sorted-results}
 
-Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
+ક્યારેક આપણે અસલ ડેટાને મ્યુટેટ કર્યા અથવા રીસેટ કર્યા વગર એરેનું ફિલ્ટર કરેલ અથવા સોર્ટ કરેલ વર્ઝન પ્રદર્શિત કરવા માંગીએ છીએ. આ કિસ્સામાં, તમે કમ્પ્યુટેડ પ્રોપર્ટી બનાવી શકો છો જે ફિલ્ટર કરેલી અથવા સોર્ટ કરેલી એરે પરત કરે છે.
 
-For example:
+ઉદાહરણ તરીકે:
 
 <div class="composition-api">
 
@@ -393,7 +393,7 @@ computed: {
 <li v-for="n in evenNumbers">{{ n }}</li>
 ```
 
-In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
+પરિસ્થિતિઓમાં જ્યાં કમ્પ્યુટેડ પ્રોપર્ટીઝ શક્ય નથી (દા.ત. નેસ્ટેડ `v-for` લૂપ્સની અંદર), તમે મેથડનો ઉપયોગ કરી શકો છો:
 
 <div class="composition-api">
 
@@ -432,7 +432,7 @@ methods: {
 </ul>
 ```
 
-Be careful with `reverse()` and `sort()` in a computed property! These two methods will mutate the original array, which should be avoided in computed getters. Create a copy of the original array before calling these methods:
+કમ્પ્યુટેડ પ્રોપર્ટીમાં `reverse()` અને `sort()` સાથે સાવચેત રહો! આ બે મેથડ અસલ એરેને મ્યુટેટ કરશે, જે કમ્પ્યુટેડ ગેટર્સમાં ટાળવી જોઈએ. આ મેથડ્સ કોલ કરતા પહેલા અસલ એરેની નકલ બનાવો:
 
 ```diff
 - return numbers.reverse()

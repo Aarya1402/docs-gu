@@ -1,27 +1,27 @@
-# Teleport {#teleport}
+# ટેલિપોર્ટ (Teleport) {#teleport}
 
- <VueSchoolLink href="https://vueschool.io/lessons/vue-3-teleport" title="Free Vue.js Teleport Lesson"/>
+ <VueSchoolLink href="https://vueschool.io/lessons/vue-3-teleport" title="ફ્રી Vue.js ટેલિપોર્ટ લેસન"/>
 
-`<Teleport>` is a built-in component that allows us to "teleport" a part of a component's template into a DOM node that exists outside the DOM hierarchy of that component.
+`<Teleport>` એ એક બિલ્ટ-ઇન કમ્પોનન્ટ છે જે આપણને કમ્પોનન્ટના ટેમ્પલેટના ભાગને તે ઘટકના DOM વંશવેલો (hierarchy) ની બહાર અસ્તિત્વમાં હોય તેવા DOM નોડમાં "ટેલિપોર્ટ" કરવાની મંજૂરી આપે છે.
 
-## Basic Usage {#basic-usage}
+## મૂળભૂત વપરાશ (Basic Usage) {#basic-usage}
 
-Sometimes a part of a component's template belongs to it logically, but from a visual standpoint, it should be displayed somewhere else in the DOM, perhaps even outside of the Vue application.
+ક્યારેક કમ્પોનન્ટના ટેમ્પલેટનો એક ભાગ લોજિકલ રીતે તેનો જ હોય છે, પરંતુ વિઝ્યુઅલ દૃષ્ટિકોણથી, તે DOM માં બીજે ક્યાંક પ્રદર્શિત થવો જોઈએ, કદાચ Vue એપ્લિકેશનની બહાર પણ.
 
-The most common example of this is when building a full-screen modal. Ideally, we want the code for the modal's button and the modal itself to be written within the same single-file component, since they are both related to the open / close state of the modal. But that means the modal will be rendered alongside the button, deeply nested in the application's DOM hierarchy. This can create some tricky issues when positioning the modal via CSS.
+આનું સૌથી સામાન્ય ઉદાહરણ ફુલ-સ્ક્રીન મોડલ (modal) બનાવતી વખતે છે. આદર્શ રીતે, અમે ઇચ્છીએ છીએ કે મોડલના બટન અને મોડલનો જ કોડ સમાન સિંગલ-ફાઇલ કમ્પોનન્ટમાં લખાય, કારણ કે તે બંને મોડલની ઓપન / ક્લોઝ સ્ટેટ સાથે સંબંધિત છે. પરંતુ તેનો અર્થ એ છે કે મોડલ બટન સાથે રેન્ડર કરવામાં આવશે, જે એપ્લિકેશનના DOM વંશવેલોમાં ઊંડે સુધી નેસ્ટેડ હશે. CSS દ્વારા મોડલનું પોઝિશનિંગ (positioning) કરતી વખતે આ કેટલીક મુશ્કેલ સમસ્યાઓ ઊભી કરી શકે છે.
 
-Consider the following HTML structure.
+નીચેના HTML સ્ટ્રક્ચરને ધ્યાનમાં લો.
 
 ```vue-html
 <div class="outer">
-  <h3>Vue Teleport Example</h3>
+  <h3>Vue ટેલિપોર્ટ ઉદાહરણ</h3>
   <div>
     <MyModal />
   </div>
 </div>
 ```
 
-And here is the implementation of `<MyModal>`:
+અને અહીં `<MyModal>` નું અમલીકરણ (implementation) છે:
 
 <div class="composition-api">
 
@@ -36,7 +36,7 @@ const open = ref(false)
   <button @click="open = true">Open Modal</button>
 
   <div v-if="open" class="modal">
-    <p>Hello from the modal!</p>
+    <p>હેલો મોડલ માંથી!</p>
     <button @click="open = false">Close</button>
   </div>
 </template>
@@ -71,7 +71,7 @@ export default {
   <button @click="open = true">Open Modal</button>
 
   <div v-if="open" class="modal">
-    <p>Hello from the modal!</p>
+    <p>હેલો મોડલ માંથી!</p>
     <button @click="open = false">Close</button>
   </div>
 </template>
@@ -90,30 +90,30 @@ export default {
 
 </div>
 
-The component contains a `<button>` to trigger the opening of the modal, and a `<div>` with a class of `.modal`, which will contain the modal's content and a button to self-close.
+કમ્પોનન્ટમાં મોડલ ખોલવા માટે ટ્રિગર કરવા માટે એક `<button>` છે, અને `.modal` ક્લાસ સાથેનું એક `<div>` છે, જેમાં મોડલનું કન્ટેન્ટ અને સેલ્ફ-ક્લોઝ કરવા માટેનું બટન હશે.
 
-When using this component inside the initial HTML structure, there are a number of potential issues:
+પ્રારંભિક HTML સ્ટ્રક્ચરની અંદર આ કમ્પોનન્ટનો ઉપયોગ કરતી વખતે, ઘણી સમસ્યાઓ આવી શકે છે:
 
-- `position: fixed` only places the element relative to the viewport when no ancestor element has `transform`, `perspective` or `filter` property set. If, for example, we intend to animate the ancestor `<div class="outer">` with a CSS transform, it would break the modal layout!
+- `position: fixed` એ એલિમેન્ટને ત્યારે જ વ્યુપોર્ટ (viewport) ની સાપેક્ષે મૂકે છે જ્યારે પૂર્વજ (ancestor) એલિમેન્ટ પાસે `transform`, `perspective` અથવા `filter` પ્રોપર્ટી સેટ ન હોય. જો, ઉદાહરણ તરીકે, અમે CSS ટ્રાન્સફોર્મ સાથે પૂર્વજ `<div class="outer">` ને એનિમેટ કરવાનો ઇરાદો રાખીએ છીએ, તો તે મોડલ લેઆઉટને તોડી નાખશે!
 
-- The modal's `z-index` is constrained by its containing elements. If there is another element that overlaps with `<div class="outer">` and has a higher `z-index`, it would cover our modal.
+- મોડલનું `z-index` તેના સમાવિષ્ટ ઘટકો દ્વારા મર્યાદિત રહે છે. જો ત્યાં બીજું એલિમેન્ટ હોય જે `<div class="outer">` સાથે ઓવરલેપ થાય અને તેની પાસે ઉચ્ચ `z-index` હોય, તો તે અમારા મોડલને આવરી લેશે.
 
-`<Teleport>` provides a clean way to work around these, by allowing us to break out of the nested DOM structure. Let's modify `<MyModal>` to use `<Teleport>`:
+`<Teleport>` આપણને નેસ્ટેડ DOM સ્ટ્રક્ચરની બહાર નીકળવાની મંજૂરી આપીને, આ સમસ્યાઓ ઉકેલવાનો એક સ્વચ્છ માર્ગ પૂરો પાડે છે. ચાલો `<Teleport>` નો ઉપયોગ કરવા માટે `<MyModal>` માં ફેરફાર કરીએ:
 
 ```vue-html{3,8}
 <button @click="open = true">Open Modal</button>
 
 <Teleport to="body">
   <div v-if="open" class="modal">
-    <p>Hello from the modal!</p>
+    <p>હેલો મોડલ માંથી!</p>
     <button @click="open = false">Close</button>
   </div>
 </Teleport>
 ```
 
-The `to` target of `<Teleport>` expects a CSS selector string or an actual DOM node. Here, we are essentially telling Vue to "**teleport** this template fragment **to** the **`body`** tag".
+`<Teleport>` નું `to` ટાર્ગેટ CSS સિલેક્ટર સ્ટ્રિંગ અથવા વાસ્તવિક DOM નોડની અપેક્ષા રાખે છે. અહીં, આપણે આવશ્યકપણે Vue ને કહી રહ્યા છીએ કે "**આ ટેમ્પલેટ ફ્રેગમેન્ટને `body` ટૅગમાં ટેલિપોર્ટ કરો**".
 
-You can click the button below and inspect the `<body>` tag via your browser's devtools:
+તમે નીચેના બટનને ક્લિક કરી શકો છો અને તમારા બ્રાઉઝરના ડેવલૂલ્સ (devtools) દ્વારા `<body>` ટૅગ તપાસી શકો છો:
 
 <script setup>
 import { ref } from 'vue'
@@ -125,7 +125,7 @@ const open = ref(false)
   <ClientOnly>
     <Teleport to="body">
       <div v-if="open" class="demo modal-demo">
-        <p style="margin-bottom:20px">Hello from the modal!</p>
+        <p style="margin-bottom:20px">હેલો મોડલ માંથી!</p>
         <button @click="open = false">Close</button>
       </div>
     </Teleport>
@@ -147,21 +147,21 @@ const open = ref(false)
 }
 </style>
 
-You can combine `<Teleport>` with [`<Transition>`](./transition) to create animated modals - see [Example here](/examples/#modal).
+એનિમેટેડ મોડલ્સ બનાવવા માટે તમે [`<Transition>`](./transition) સાથે `<Teleport>` ને જોડી શકો છો - [અહીં ઉદાહરણ](/examples/#modal) જુઓ.
 
 :::tip
-The teleport `to` target must be already in the DOM when the `<Teleport>` component is mounted. Ideally, this should be an element outside the entire Vue application. If targeting another element rendered by Vue, you need to make sure that element is mounted before the `<Teleport>`. If you are using SSR, see [Handling Teleports in SSR](/guide/scaling-up/ssr#teleports).
+જ્યારે `<Teleport>` કમ્પોનન્ટ માઉન્ટ થાય ત્યારે ટેલિપોર્ટ `to` ટાર્ગેટ પહેલાથી જ DOM માં હોવું જોઈએ. આદર્શ રીતે, આ સમગ્ર Vue એપ્લિકેશનની બહારનું એલિમેન્ટ હોવું જોઈએ. જો Vue દ્વારા રેન્ડર કરાયેલ અન્ય એલિમેન્ટને લક્ષ્ય બનાવતા હોવ, તો તમારે ખાતરી કરવાની જરૂર છે કે તે એલિમેન્ટ `<Teleport>` પહેલા માઉન્ટ થયેલ છે. જો તમે SSR નો ઉપયોગ કરી રહ્યાં છો, તો [SSR માં ટેલિપોર્ટ્સ હેન્ડલ કરવું](/guide/scaling-up/ssr#teleports) જુઓ.
 :::
 
-## Using with Components {#using-with-components}
+## કમ્પોનન્ટ્સ સાથે ઉપયોગ (Using with Components) {#using-with-components}
 
-`<Teleport>` only alters the rendered DOM structure - it does not affect the logical hierarchy of the components. That is to say, if `<Teleport>` contains a component, that component will remain a logical child of the parent component containing the `<Teleport>`. Props passing and event emitting will continue to work the same way.
+`<Teleport>` માત્ર રેન્ડર થયેલા DOM સ્ટ્રક્ચરને બદલે છે - તે ઘટકોના લોજિકલ વંશવેલો (hierarchy) ને અસર કરતું નથી. એટલે કે, જો `<Teleport>` માં કોઈ ઘટક હોય, તો તે ઘટક `<Teleport>` ધરાવતા પેરેન્ટ કમ્પોનન્ટનું લોજિકલ બાળક રહેશે. પ્રોપ્સ પાસ કરવાનું અને ઇવેન્ટ એમિટિંગ સમાન રીતે કાર્ય કરવાનું ચાલુ રાખશે.
 
-This also means that injections from a parent component work as expected, and that the child component will be nested below the parent component in the Vue Devtools, instead of being placed where the actual content moved to.
+આનો અર્થ એ પણ છે કે પેરેન્ટ કમ્પોનન્ટમાંથી ઇન્જેક્શન અપેક્ષા મુજબ કામ કરે છે, અને તે કે ચાઇલ્ડ કમ્પોનન્ટ Vue Devtools માં પેરેન્ટ કમ્પોનન્ટની નીચે નેસ્ટેડ જ રહેશે, તે જે જગ્યાએ વાસ્તવિક કન્ટેન્ટ ખસેડવામાં આવ્યું છે ત્યાં મૂકવાને બદલે.
 
-## Disabling Teleport {#disabling-teleport}
+## ટેલિપોર્ટ અક્ષમ (Disable) કરવું (Disabling Teleport) {#disabling-teleport}
 
-In some cases, we may want to conditionally disable `<Teleport>`. For example, we may want to render a component as an overlay for desktop, but inline on mobile. `<Teleport>` supports the `disabled` prop which can be dynamically toggled:
+કેટલાક કિસ્સાઓમાં, અમે `<Teleport>` ને શરતી રીતે અક્ષમ કરવા માગીએ છીએ. ઉદાહરણ તરીકે, અમે ડેસ્કટોપ માટે ઓવરલે તરીકે કમ્પોનન્ટ રેન્ડર કરવા માગીએ છીએ, પરંતુ મોબાઇલ પર ઇનલાઇન (inline). `<Teleport>` `disabled` પ્રોપને સપોર્ટ કરે છે જે ગતિશીલ રીતે ટૉગલ કરી શકાય છે:
 
 ```vue-html
 <Teleport :disabled="isMobile">
@@ -169,13 +169,13 @@ In some cases, we may want to conditionally disable `<Teleport>`. For example, w
 </Teleport>
 ```
 
-We could then dynamically update `isMobile`.
+અમે પછી ગતિશીલ રીતે `isMobile` ને અપડેટ કરી શકીએ છીએ.
 
-## Multiple Teleports on the Same Target {#multiple-teleports-on-the-same-target}
+## સમાન ટાર્ગેટ પર બહુવિધ ટેલિપોર્ટ (Multiple Teleports on the Same Target) {#multiple-teleports-on-the-same-target}
 
-A common use case would be a reusable `<Modal>` component, with the potential for multiple instances to be active at the same time. For this kind of scenario, multiple `<Teleport>` components can mount their content to the same target element. The order will be a simple append, with later mounts located after earlier ones, but all within the target element.
+એક પુનઃઉપયોગી `<Modal>` કમ્પોનન્ટ એક સામાન્ય ઉપયોગ હોઈ શકે છે, જેમાં એક જ સમયે બહુવિધ ઇન્સ્ટન્સ સક્રિય હોવાની સંભાવના હોય છે. આ પ્રકારના દૃશ્ય માટે, બહુવિધ `<Teleport>` કમ્પોનન્ટ્સ તેમના કન્ટેન્ટને સમાન ટાર્ગેટ એલિમેન્ટ પર માઉન્ટ કરી શકે છે. ઓર્ડર એક સરળ એપેન્ડ (append) હશે, જેમાં પછીના માઉન્ટ્સ અગાઉના માઉન્ટ્સ પછી સ્થિત હશે, પરંતુ બધા ટાર્ગેટ એલિમેન્ટની અંદર હશે.
 
-Given the following usage:
+નીચેના વપરાશને જોતા:
 
 ```vue-html
 <Teleport to="#modals">
@@ -186,7 +186,7 @@ Given the following usage:
 </Teleport>
 ```
 
-The rendered result would be:
+રેન્ડર થયેલ પરિણામ આ હશે:
 
 ```html
 <div id="modals">
@@ -195,22 +195,22 @@ The rendered result would be:
 </div>
 ```
 
-## Deferred Teleport <sup class="vt-badge" data-text="3.5+" /> {#deferred-teleport}
+## વિલંબિત (Deferred) ટેલિપોર્ટ <sup class="vt-badge" data-text="3.5+" /> {#deferred-teleport}
 
-In Vue 3.5 and above, we can use the `defer` prop to defer the target resolving of a Teleport until other parts of the application have mounted. This allows the Teleport to target a container element that is rendered by Vue, but in a later part of the component tree:
+Vue ૩.૫ અને તેનાથી ઉપરના વર્ઝનમાં, અમે એપ્લિકેશનના અન્ય ભાગો માઉન્ટ થાય ત્યાં સુધી ટેલિપોર્ટના ટાર્ગેટ રિઝોલ્વિંગ (resolving) ને વિલંબિત કરવા માટે `defer` પ્રોપનો ઉપયોગ કરી શકીએ છીએ. આ ટેલિપોર્ટને કન્ટેનર એલિમેન્ટને ટાર્ગેટ કરવાની મંજૂરી આપે છે જે Vue દ્વારા રેન્ડર કરવામાં આવે છે, પરંતુ કમ્પોનન્ટ ટ્રીના પછીના ભાગમાં:
 
 ```vue-html
 <Teleport defer to="#late-div">...</Teleport>
 
-<!-- somewhere later in the template -->
+<!-- ટેમ્પલેટમાં ક્યાંક પછી -->
 <div id="late-div"></div>
 ```
 
-Note that the target element must be rendered in the same mount / update tick with the Teleport - i.e. if the `<div>` is only mounted a second later, the Teleport will still report an error. The defer works similarly to the `mounted` lifecycle hook.
+નોંધ કરો કે ટાર્ગેટ એલિમેન્ટ ટેલિપોર્ટ સાથે સમાન માઉન્ટ / અપડેટ ટીક (tick) માં રેન્ડર થયેલ હોવું જોઈએ - એટલે કે જો `<div>` માત્ર એક સેકન્ડ પછી માઉન્ટ થાય, તો ટેલિપોર્ટ હજી પણ ભૂલની જાણ કરશે. ડિફર (defer) `mounted` લાઇફસાયકલ હૂક જેવી જ રીતે કામ કરે છે.
 
 ---
 
-**Related**
+**સંબંધિત**
 
-- [`<Teleport>` API reference](/api/built-in-components#teleport)
-- [Handling Teleports in SSR](/guide/scaling-up/ssr#teleports)
+- [`<Teleport>` API રિફરન્સ](/api/built-in-components#teleport)
+- [SSR માં ટેલિપોર્ટ હેન્ડલ કરવું](/guide/scaling-up/ssr#teleports)

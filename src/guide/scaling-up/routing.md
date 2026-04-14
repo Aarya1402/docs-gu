@@ -1,29 +1,29 @@
-# Routing {#routing}
+# રાઉટીંગ (Routing) {#routing}
 
-## Client-Side vs. Server-Side Routing {#client-side-vs-server-side-routing}
+## ક્લાયન્ટ-સાઇડ વિરુદ્ધ સર્વર-સાઇડ રાઉટીંગ {#client-side-vs-server-side-routing}
 
-Routing on the server side means the server is sending a response based on the URL path that the user is visiting. When we click on a link in a traditional server-rendered web app, the browser receives an HTML response from the server and reloads the entire page with the new HTML.
+સર્વર બાજુ પર રાઉટીંગનો અર્થ એ છે કે વપરાશકર્તા જે URL પાથની મુલાકાત લઈ રહ્યો છે તેના આધારે સર્વર પ્રતિસાદ (response) મોકલે છે. જ્યારે આપણે પરંપરાગત સર્વર-રેન્ડર્ડ વેબ એપ્લિકેશનમાં લિંક પર ક્લિક કરીએ છીએ, ત્યારે બ્રાઉઝર સર્વર પાસેથી HTML પ્રતિસાદ પ્રાપ્ત કરે છે અને નવા HTML સાથે સમગ્ર પેજને ફરીથી લોડ કરે છે.
 
-In a [Single-Page Application](https://developer.mozilla.org/en-US/docs/Glossary/SPA) (SPA), however, the client-side JavaScript can intercept the navigation, dynamically fetch new data, and update the current page without full page reloads. This typically results in a more snappy user experience, especially for use cases that are more like actual "applications", where the user is expected to perform many interactions over a long period of time.
+જો કે, [સિંગલ-પેજ એપ્લિકેશન (Single-Page Application)](https://developer.mozilla.org/en-US/docs/Glossary/SPA) (SPA) માં ક્લાયન્ટ-સાઇડ JavaScript નેવિગેશનને અટકાવી શકે છે, ગતિશીલ રીતે નવો ડેટા મેળવી શકે છે અને સંપૂર્ણ પેજ રીલોડ કર્યા વિના વર્તમાન પેજને અપડેટ કરી શકે છે. આના પરિણામે સામાન્ય રીતે વધુ ઝડપી વપરાશકર્તા અનુભવ મળે છે, ખાસ કરીને એવા કિસ્સાઓ માટે કે જે વાસ્તવિક "એપ્લિકેશન્સ" જેવા વધુ હોય છે, જ્યાં વપરાશકર્તા લાંબા સમય સુધી ઘણી બધી ક્રિયાપ્રતિક્રિયાઓ કરે તેવી અપેક્ષા રાખવામાં આવે છે.
 
-In such SPAs, the "routing" is done on the client side, in the browser. A client-side router is responsible for managing the application's rendered view using browser APIs such as [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) or the [`hashchange` event](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event).
+આવા SPAs માં, "રાઉટીંગ" ક્લાયન્ટ બાજુએ, બ્રાઉઝરમાં કરવામાં આવે છે. ક્લાયન્ટ-સાઇડ રાઉટર બ્રાઉઝર APIs જેમ કે [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) અથવા [`hashchange` ઇવેન્ટ](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) નો ઉપયોગ કરીને એપ્લિકેશનના રેન્ડર કરેલા વ્યુને મેનેજ કરવા માટે જવાબદાર છે.
 
-## Official Router {#official-router}
+## સત્તાવાર રાઉટર (Official Router) {#official-router}
 
 <!-- TODO update links -->
 <div>
-  <VueSchoolLink href="https://vueschool.io/courses/vue-router-4-for-everyone" title="Free Vue Router Course">
-    Watch a Free Video Course on Vue School
+  <VueSchoolLink href="https://vueschool.io/courses/vue-router-4-for-everyone" title="ફ્રી Vue રાઉટર કોર્સ">
+    Vue School પર મફત વિડિઓ કોર્સ જુઓ
   </VueSchoolLink>
 </div>
 
-Vue is well-suited for building SPAs. For most SPAs, it's recommended to use the officially-supported [Vue Router library](https://github.com/vuejs/router). For more details, see Vue Router's [documentation](https://router.vuejs.org/).
+Vue SPAs બનાવવા માટે ખૂબ જ અનુકૂળ છે. મોટાભાગના SPAs માટે, સત્તાવાર રીતે સપોર્ટેડ [Vue Router લાઇબ્રેરી](https://github.com/vuejs/router) નો ઉપયોગ કરવાની ભલામણ કરવામાં આવે છે. વધુ વિગતો માટે, Vue Router ના [દસ્તાવેજો](https://router.vuejs.org/) જુઓ.
 
-## Simple Routing from Scratch {#simple-routing-from-scratch}
+## શરૂઆતથી (from Scratch) સાદું રાઉટીંગ {#simple-routing-from-scratch}
 
-If you only need very simple routing and do not wish to involve a full-featured router library, you can do so with [Dynamic Components](/guide/essentials/component-basics#dynamic-components) and update the current component state by listening to browser [`hashchange` events](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) or using the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History).
+જો તમને માત્ર ખૂબ જ સાદા રાઉટીંગની જરૂર હોય અને તમે ફુલ-ફીચર્ડ રાઉટર લાઇબ્રેરીનો સમાવેશ કરવા માંગતા ન હોવ, તો તમે [ડાયનેમિક કમ્પોનન્ટ્સ](/guide/essentials/component-basics#dynamic-components) સાથે તેમ કરી શકો છો અને બ્રાઉઝરની [`hashchange` ઇવેન્ટ્સ](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) સાંભળીને અથવા [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) નો ઉપયોગ કરીને વર્તમાન ઘટક સ્થિતિને અપડેટ કરી શકો છો.
 
-Here's a bare-bone example:
+અહીં એક સામાન્ય ઉદાહરણ છે:
 
 <div class="composition-api">
 
@@ -51,14 +51,14 @@ const currentView = computed(() => {
 </script>
 
 <template>
-  <a href="#/">Home</a> |
-  <a href="#/about">About</a> |
-  <a href="#/non-existent-path">Broken Link</a>
+  <a href="#/">હોમ (Home)</a> |
+  <a href="#/about">વિશે (About)</a> |
+  <a href="#/non-existent-path">તૂટેલી લિંક</a>
   <component :is="currentView" />
 </template>
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNptUk1vgkAQ/SsTegAThZp4MmhikzY9mKanXkoPWxjLRpgly6JN1P/eWb5Eywlm572ZN2/m5GyKwj9U6CydsIy1LAyUaKpiHZHMC6UNnEDjbgqxyovKYAIX2GmVg8sktwe9qhzbdz+wga15TW++VWX6fB3dAt6UeVEVJT2me2hhEcWKSgOamVjCCk4RAbiBu6xbT5tI2ML8VDeI6HLlxZXWSOZdmJTJPJB3lJSoo5+pWBipyE9FmU4soU2IJHk+MGUrS4OE2nMtIk4F/aA7BW8Cq3WjYlDbP4isQu4wVp0F1Q1uFH1IPDK+c9cb1NW8B03tyJ//uvhlJmP05hM4n60TX/bb2db0CoNmpbxMDgzmRSYMcgQQCkjZhlXkPASRs7YmhoFYw/k+WXvKiNrTcQgpmuFv7ZOZFSyQ4U9a7ZFgK2lvSTXFDqmIQbCUJTMHFkQOBAwKg16kM3W6O7K3eSs+nbeK+eee1V/XKK0dY4Q3vLhR6uJxMUK8/AFKaB6k)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNptUk1vgkAQ/SsTegAThZp4MmhikzY9mKanXkoPWxjLRpgly6JN1P/eWb5Eywlm572ZN2/m5GyKwj9U6CydsIy1LAyUaKpiHZHMC6UNnEDjbgqxyovKYAIX2GmVg8sktwe9qhzbdz+wga15TW++VWX6fB3dAt6UeVEVJT2me2hhEcWKSgOamVjCCk4RAbiBu6xbT5tI2ML8VDeI6HLlxZXWSOZdmJTJPJB3lJSoo5+pWBipyE9FmU4soU2IJHk+MGUrS4OE2nMtIk4F/aA7BW8Cq3WjYlDbP4isQu4wVp0F1Q1uFH1IPDK+c9cb1NW8B03tyJ//uvhlJmP05hM4n60TX/bb2db0CoNmpbxMDgzmRSYMcgQQCkjZhlXkPASRs7YmhoFYw/k+WXvKiNrTcQgpmuFv7ZOZFSyQ4U9a7ZFgK2lvSTXFDqmIQbCUJTMHFkQOBAwKg16kM3W6O7K3eSs+nbeK+eee1V/XKK0dY4Q3vLhR6uJxMUK8/AFKaB6k)
 
 </div>
 
@@ -95,13 +95,13 @@ export default {
 </script>
 
 <template>
-  <a href="#/">Home</a> |
-  <a href="#/about">About</a> |
-  <a href="#/non-existent-path">Broken Link</a>
+  <a href="#/">હોમ (Home)</a> |
+  <a href="#/about">વિશે (About)</a> |
+  <a href="#/non-existent-path">તૂટેલી લિંક</a>
   <component :is="currentView" />
 </template>
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNptUstO6zAQ/ZVR7iKtVJKLxCpKK3Gli1ggxIoNZmGSKbFoxpEzoUi0/87YeVBKNonHPmfOmcdndN00yXuHURblbeFMwxtFpm6sY7i1NcLW2RriJPWBB8bT8/WL7Xh6D9FPwL3lG9tROWHGiwGmqLDUMjhhYgtr+FQEEKdxFqRXfaR9YrkKAoqOnocfQaDEre523PNKzXqx7M8ADrlzNEYAReccEj9orjLYGyrtPtnZQrOxlFS6rXqgZJdPUC5s3YivMhuTDCkeDe6/dSalvognrkybnIgl7c4UuLhcwuHgS3v2/7EPvzRruRXJ7/SDU12W/98l451pGQndIvaWi0rTK8YrEPx64ymKFQOce5DOzlfs4cdlkA+NzdNpBSRgrJudZpQIINdQOdyuVfQnVdHGzydP9QYO549hXIII45qHkKUL/Ail8EUjBgX+z9k3JLgz9OZJgeInYElAkJlWmCcDUBGkAsrTyWS0isYV9bv803x1OTiWwzlrWtxZ2lDGDO90mWepV3+vZojHL3QQKQE=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNptUstO6zAQ/ZVR7iKtVJKLxCpKK3Gli1ggxIoNZmGSKbFoxpEzoUi0/87YeVBKNonHPmfOmcdndN00yXuHURblbeFMwxtFpm6sY7i1NcLW2RriJPWBB8bT8/WL7Xh6D9FPwL3lG9tROWHGiwGmqLDUMjhhYgtr+FQEEKdxFqRXfaR9YrkKAoqOnocfQaDEre523PNKzXqx7M8ADrlzNEYAReccEj9orjLYGyrtPtnZQrOxlFS6rXqgZJdPUC5s3YivMhuTDCkeDe6/dSalvognrkybnIgl7c4UuLhcwuHgS3v2/7EPvzRruRXJ7/SDU12W/98l451pGQndIvaWi0rTK8YrEPx64ymKFQOce5DOzlfs4cdlkA+NzdNpBSRgrJudZpQIINdQOdyuVfQnVdHGzydP9QYO549hXIII45qHkKUL/Ail8EUjBgX+z9k3JLgz9OZJgeInYElAkJlWmCcDUBGkAsrTyWS0isYV9bv803x1OTiWwzlrWtxZ2lDGDO90mWepV3+vZojHL3QQKQE=)
 
 </div>

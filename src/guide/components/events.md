@@ -4,7 +4,7 @@ import { onMounted } from 'vue'
 if (typeof window !== 'undefined') {
   const hash = window.location.hash
 
-  // The docs for v-model used to be part of this page. Attempt to redirect outdated links.
+  // v-model માટેના ડોક્સ આ પેજનો ભાગ હતા. જૂની લિંક્સને રીડાયરેક્ટ કરવાનો પ્રયાસ કરો.
   if ([
     '#usage-with-v-model',
     '#v-model-arguments',
@@ -18,26 +18,26 @@ if (typeof window !== 'undefined') {
 }
 </script>
 
-# Component Events {#component-events}
+# કમ્પોનન્ટ ઇવેન્ટ્સ (Component Events) {#component-events}
 
-> This page assumes you've already read the [Components Basics](/guide/essentials/component-basics). Read that first if you are new to components.
+> આ પેજ ધારે છે કે તમે પહેલાથી જ [કમ્પોનન્ટ્સના મૂળભૂત પાસાઓ](/guide/essentials/component-basics) વાંચી લીધું છે. જો તમે કમ્પોનન્ટ્સ માટે નવા હોવ તો પહેલા તે વાંચો.
 
 <div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/defining-custom-events-emits" title="Free Vue.js Lesson on Defining Custom Events"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/defining-custom-events-emits" title="ફ્રી Vue.js કસ્ટમ ઇવેન્ટ્સ લેસન"/>
 </div>
 
-## Emitting and Listening to Events {#emitting-and-listening-to-events}
+## ઇવેન્ટ્સ મોકલવી અને સાંભળવી (Emitting and Listening to Events) {#emitting-and-listening-to-events}
 
-A component can emit custom events directly in template expressions (e.g. in a `v-on` handler) using the built-in `$emit` method:
+કમ્પોનન્ટ બિલ્ટ-ઇન `$emit` મેથડનો ઉપયોગ કરીને ટેમ્પલેટ એક્સપ્રેશન્સમાં (દા.ત. `v-on` હેન્ડલરમાં) કસ્ટમ ઇવેન્ટ્સ સીધી રીતે મોકલી (emit) શકે છે:
 
 ```vue-html
 <!-- MyComponent -->
-<button @click="$emit('someEvent')">Click Me</button>
+<button @click="$emit('someEvent')">મને ક્લિક કરો</button>
 ```
 
 <div class="options-api">
 
-The `$emit()` method is also available on the component instance as `this.$emit()`:
+`$emit()` મેથડ કમ્પોનન્ટ ઇન્સ્ટન્સ પર `this.$emit()` તરીકે પણ ઉપલબ્ધ છે:
 
 ```js
 export default {
@@ -51,47 +51,47 @@ export default {
 
 </div>
 
-The parent can then listen to it using `v-on`:
+પેરેન્ટ પછી `v-on` નો ઉપયોગ કરીને તેને સાંભળી શકે છે:
 
 ```vue-html
 <MyComponent @some-event="callback" />
 ```
 
-The `.once` modifier is also supported on component event listeners:
+કમ્પોનન્ટ ઇવેન્ટ લિસનર્સ પર `.once` મોડિફાયર પણ સપોર્ટેડ છે:
 
 ```vue-html
 <MyComponent @some-event.once="callback" />
 ```
 
-Like components and props, event names provide an automatic case transformation. Notice we emitted a camelCase event, but can listen for it using a kebab-cased listener in the parent. As with [props casing](/guide/components/props#prop-name-casing), we recommend using kebab-cased event listeners in templates.
+કમ્પોનન્ટ્સ અને પ્રોપ્સની જેમ, ઇવેન્ટ નામો આપમેળે કેસ ટ્રાન્સફોર્મેશન પ્રદાન કરે છે. નોંધ કરો કે અમે camelCase ઇવેન્ટ મોકલી છે, પરંતુ પેરેન્ટમાં kebab-cased લિસનરનો ઉપયોગ કરીને તે સાંભળી શકીએ છીએ. [પ્રોપ્સ કેસિંગ](/guide/components/props#prop-name-casing) ની જેમ, અમે ટેમ્પલેટ્સમાં kebab-cased ઇવેન્ટ લિસનર્સનો ઉપયોગ કરવાની ભલામણ કરીએ છીએ.
 
 :::tip
-Unlike native DOM events, component emitted events do **not** bubble. You can only listen to the events emitted by a direct child component. If there is a need to communicate between sibling or deeply nested components, use an external event bus or a [global state management solution](/guide/scaling-up/state-management).
+નેટિવ DOM ઇવેન્ટ્સથી વિપરીત, કમ્પોનન્ટ એમિટ કરેલી ઇવેન્ટ્સ બબલ (bubble) થતી **નથી**. તમે ફક્ત ડાયરેક્ટ ચાઇલ્ડ કમ્પોનન્ટ દ્વારા મોકલવામાં આવેલી ઇવેન્ટ્સ જ સાંભળી શકો છો. જો ભાઈ-બહેન (sibling) અથવા ઊંડા નેસ્ટેડ ઘટકો વચ્ચે વાતચીત કરવાની જરૂર હોય, તો બાહ્ય ઇવેન્ટ બસ (external event bus) અથવા [ગ્લોબલ સ્ટેટ મેનેજમેન્ટ સોલ્યુશન](/guide/scaling-up/state-management) નો ઉપયોગ કરો.
 :::
 
-## Event Arguments {#event-arguments}
+## ઇવેન્ટ આર્ગ્યુમેન્ટ્સ (Event Arguments) {#event-arguments}
 
-It's sometimes useful to emit a specific value with an event. For example, we may want the `<BlogPost>` component to be in charge of how much to enlarge the text by. In those cases, we can pass extra arguments to `$emit` to provide this value:
+ઇવેન્ટ સાથે ચોક્કસ વેલ્યુ મોકલવી ક્યારેક ઉપયોગી છે. ઉદાહરણ તરીકે, આપણે ઈચ્છીએ છીએ કે લખાણને કેટલું મોટું કરવું તેનો હવાલો `<BlogPost>` કમ્પોનન્ટ પાસે હોય. તે કિસ્સાઓમાં, અમે આ વેલ્યુ પૂરી પાડવા માટે `$emit` માં વધારાની આર્ગ્યુમેન્ટ્સ પાસ કરી શકીએ છીએ:
 
 ```vue-html
 <button @click="$emit('increaseBy', 1)">
-  Increase by 1
+  ૧ વધારો
 </button>
 ```
 
-Then, when we listen to the event in the parent, we can use an inline arrow function as the listener, which allows us to access the event argument:
+પછી, જ્યારે આપણે પેરેન્ટમાં ઇવેન્ટ સાંભળીએ છીએ, ત્યારે અમે લિસનર તરીકે ઇનલાઇન એરો ફંક્શનનો ઉપયોગ કરી શકીએ છીએ, જે અમને ઇવેન્ટ આર્ગ્યુમેન્ટને એક્સેસ કરવાની મંજૂરી આપે છે:
 
 ```vue-html
 <MyButton @increase-by="(n) => count += n" />
 ```
 
-Or, if the event handler is a method:
+અથવા, જો ઇવેન્ટ હેન્ડલર મેથડ હોય:
 
 ```vue-html
 <MyButton @increase-by="increaseCount" />
 ```
 
-Then the value will be passed as the first parameter of that method:
+પછી વેલ્યુ તે મેથડના પ્રથમ પેરામીટર તરીકે પસાર થશે:
 
 <div class="options-api">
 
@@ -115,12 +115,12 @@ function increaseCount(n) {
 </div>
 
 :::tip
-All extra arguments passed to `$emit()` after the event name will be forwarded to the listener. For example, with `$emit('foo', 1, 2, 3)` the listener function will receive three arguments.
+ઇવેન્ટના નામ પછી `$emit()` માં પાસ કરેલી બધી વધારાની આર્ગ્યુમેન્ટ્સ લિસનરને ફોરવર્ડ કરવામાં આવશે. ઉદાહરણ તરીકે, `$emit('foo', 1, 2, 3)` સાથે લિસનર ફંક્શન ત્રણ આર્ગ્યુમેન્ટ્સ મેળવશે.
 :::
 
-## Declaring Emitted Events {#declaring-emitted-events}
+## એમિટ કરેલી ઇવેન્ટ્સ જાહેર કરવી {#declaring-emitted-events}
 
-A component can explicitly declare the events it will emit using the <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup#defineprops-defineemits) macro</span><span class="options-api">[`emits`](/api/options-state#emits) option</span>:
+કમ્પોનન્ટ <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup#defineprops-defineemits) મેક્રો</span><span class="options-api">[`emits`](/api/options-state#emits) ઓપ્શન</span> નો ઉપયોગ કરીને તે જે ઇવેન્ટ્સ મોકલશે તે સ્પષ્ટપણે જાહેર કરી શકે છે:
 
 <div class="composition-api">
 
@@ -130,7 +130,7 @@ defineEmits(['inFocus', 'submit'])
 </script>
 ```
 
-The `$emit` method that we used in the `<template>` isn't accessible within the `<script setup>` section of a component, but `defineEmits()` returns an equivalent function that we can use instead:
+અમે `<template>` માં જે `$emit` મેથડનો ઉપયોગ કર્યો છે તે કમ્પોનન્ટના `<script setup>` વિભાગમાં એક્સેસિબલ નથી, પરંતુ `defineEmits()` તેના બદલે આપણે જેનો ઉપયોગ કરી શકીએ તેવું સમકક્ષ ફંક્શન પરત કરે છે:
 
 ```vue
 <script setup>
@@ -142,9 +142,9 @@ function buttonClick() {
 </script>
 ```
 
-The `defineEmits()` macro **cannot** be used inside a function, it must be placed directly within `<script setup>`, as in the example above.
+`defineEmits()` મેક્રોનો ઉપયોગ ફંક્શનની અંદર કરી શકાતો **નથી**, તેને ઉપરના ઉદાહરણની જેમ સીધા જ `<script setup>` માં મૂકવો જોઈએ.
 
-If you're using an explicit `setup` function instead of `<script setup>`, events should be declared using the [`emits`](/api/options-state#emits) option, and the `emit` function is exposed on the `setup()` context:
+જો તમે `<script setup>` ને બદલે એક્સપ્લીસિટ `setup` ફંક્શનનો ઉપયોગ કરી રહ્યાં હોવ, તો ઇવેન્ટ્સ [`emits`](/api/options-state#emits) ઓપ્શનનો ઉપયોગ કરીને જાહેર કરવી જોઈએ, અને `emit` ફંક્શન `setup()` કોન્ટેક્સ્ટ પર એક્સપોઝ થાય છે:
 
 ```js
 export default {
@@ -155,7 +155,7 @@ export default {
 }
 ```
 
-As with other properties of the `setup()` context, `emit` can safely be destructured:
+`setup()` કોન્ટેક્સ્ટની અન્ય પ્રોપર્ટીઝની જેમ, `emit` ને સુરક્ષિત રીતે ડિસ્ટ્રક્ચર કરી શકાય છે:
 
 ```js
 export default {
@@ -177,7 +177,7 @@ export default {
 
 </div>
 
-The `emits` option and `defineEmits()` macro also support an object syntax. If using TypeScript you can type arguments, which allows us to perform runtime validation of the payload of the emitted events:
+`emits` ઓપ્શન અને `defineEmits()` મેક્રો ઓબ્જેક્ટ સિન્ટેક્સને પણ સપોર્ટ કરે છે. જો TypeScript નો ઉપયોગ કરતા હોવ તો તમે આર્ગ્યુમેન્ટ્સ ટાઇપ કરી શકો છો, જે અમને એમિટ કરેલી ઇવેન્ટ્સના પેલોડ (payload) નું રનટાઇમ વેલિડેશન કરવાની મંજૂરી આપે છે:
 
 <div class="composition-api">
 
@@ -185,14 +185,14 @@ The `emits` option and `defineEmits()` macro also support an object syntax. If u
 <script setup lang="ts">
 const emit = defineEmits({
   submit(payload: { email: string, password: string }) {
-    // return `true` or `false` to indicate
-    // validation pass / fail
+    // વેલિડેશન પાસ / ફેલ સૂચવવા માટે
+    // `true` અથવા `false` રિટર્ન કરો
   }
 })
 </script>
 ```
 
-If you are using TypeScript with `<script setup>`, it's also possible to declare emitted events using pure type annotations:
+જો તમે `<script setup>` સાથે TypeScript નો ઉપયોગ કરી રહ્યાં છો, તો શુદ્ધ ટાઇપ એનોટેશન્સ (pure type annotations) નો ઉપયોગ કરીને પણ એમિટ કરેલી ઇવેન્ટ્સ જાહેર કરવી શક્ય છે:
 
 ```vue
 <script setup lang="ts">
@@ -203,7 +203,7 @@ const emit = defineEmits<{
 </script>
 ```
 
-More details: [Typing Component Emits](/guide/typescript/composition-api#typing-component-emits) <sup class="vt-badge ts" />
+વધુ વિગતો: [Typing Component Emits](/guide/typescript/composition-api#typing-component-emits) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
@@ -212,43 +212,43 @@ More details: [Typing Component Emits](/guide/typescript/composition-api#typing-
 export default {
   emits: {
     submit(payload: { email: string, password: string }) {
-      // return `true` or `false` to indicate
-      // validation pass / fail
+      // વેલિડેશન પાસ / ફેલ સૂચવવા માટે
+      // `true` અથવા `false` રિટર્ન કરો
     }
   }
 }
 ```
 
-See also: [Typing Component Emits](/guide/typescript/options-api#typing-component-emits) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Component Emits](/guide/typescript/options-api#typing-component-emits) <sup class="vt-badge ts" />
 
 </div>
 
-Although optional, it is recommended to define all emitted events in order to better document how a component should work. It also allows Vue to exclude known listeners from [fallthrough attributes](/guide/components/attrs#v-on-listener-inheritance), avoiding edge cases caused by DOM events manually dispatched by 3rd party code.
+ભલે વૈકલ્પિક હોય, પણ ઘટકે કેવી રીતે કામ કરવું જોઈએ તેને વધુ સારી રીતે દસ્તાવેજ (document) કરવા માટે તમામ એમિટ કરેલી ઇવેન્ટ્સ વ્યાખ્યાયિત કરવાની ભલામણ કરવામાં આવે છે. તે Vue ને [Fallthrough Attributes](/guide/components/attrs#v-on-listener-inheritance) માંથી જાણીતા લિસનર્સને બાકાત રાખવાની પણ મંજૂરી આપે છે, જે થર્ડ પાર્ટી કોડ દ્વારા મેન્યુઅલી મોકલેલી DOM ઇવેન્ટ્સના કારણે થતી અસરોને ટાળે છે.
 
 :::tip
-If a native event (e.g., `click`) is defined in the `emits` option, the listener will now only listen to component-emitted `click` events and no longer respond to native `click` events.
+જો નેટિવ ઇવેન્ટ (દા.ત. `click`) `emits` ઓપ્શનમાં વ્યાખ્યાયિત કરેલ હોય, તો લિસનર હવે માત્ર કમ્પોનન્ટ-એમિટ કરેલી `click` ઇવેન્ટ્સ જ સાંભળશે અને નેટિવ `click` ઇવેન્ટ્સ માટે પ્રતિસાદ આપશે નહીં.
 :::
 
-## Events Validation {#events-validation}
+## ઇવેન્ટ્સ વેલિડેશન (Events Validation) {#events-validation}
 
-Similar to prop type validation, an emitted event can be validated if it is defined with the object syntax instead of the array syntax.
+પ્રોપ ટાઇપ વેલિડેશનની જેમ જ, એમિટ કરેલી ઇવેન્ટ ને વેલિડેટ કરી શકાય છે જો તેને એરે સિન્ટેક્સ ને બદલે ઓબ્જેક્ટ સિન્ટેક્સ સાથે વ્યાખ્યાયિત કરવામાં આવી હોય.
 
-To add validation, the event is assigned a function that receives the arguments passed to the <span class="options-api">`this.$emit`</span><span class="composition-api">`emit`</span> call and returns a boolean to indicate whether the event is valid or not.
+વેલિડેશન ઉમેરવા માટે, ઇવેન્ટને એક ફંક્શન અસાઇન કરવામાં આવે છે જે <span class="options-api">`this.$emit`</span><span class="composition-api">`emit`</span> કોલમાં પાસ કરેલી આર્ગ્યુમેન્ટ્સ મેળવે છે અને ઇવેન્ટ માન્ય છે કે નહીં તે સૂચવવા માટે બુલિયન પરત કરે છે.
 
 <div class="composition-api">
 
 ```vue
 <script setup>
 const emit = defineEmits({
-  // No validation
+  // કોઈ વેલિડેશન નથી
   click: null,
 
-  // Validate submit event
+  // submit ઇવેન્ટ વેલિડેટ કરો
   submit: ({ email, password }) => {
     if (email && password) {
       return true
     } else {
-      console.warn('Invalid submit event payload!')
+      console.warn('અમાન્ય સબમિટ ઇવેન્ટ પેલોડ!')
       return false
     }
   }
@@ -266,15 +266,15 @@ function submitForm(email, password) {
 ```js
 export default {
   emits: {
-    // No validation
+    // કોઈ વેલિડેશન નથી
     click: null,
 
-    // Validate submit event
+    // submit ઇવેન્ટ વેલિડેટ કરો
     submit: ({ email, password }) => {
       if (email && password) {
         return true
       } else {
-        console.warn('Invalid submit event payload!')
+        console.warn('અમાન્ય સબમિટ ઇવેન્ટ પેલોડ!')
         return false
       }
     }

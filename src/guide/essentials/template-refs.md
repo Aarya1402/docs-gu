@@ -1,24 +1,24 @@
-# Template Refs {#template-refs}
+# ટેમ્પલેટ રિફ્સ (Template Refs) {#template-refs}
 
-While Vue's declarative rendering model abstracts away most of the direct DOM operations for you, there may still be cases where we need direct access to the underlying DOM elements. To achieve this, we can use the special `ref` attribute:
+જ્યારે Vue નું ડિક્લેરેટિવ રેન્ડરિંગ મોડલ તમારા માટે મોટાભાગના ડાયરેક્ટ DOM ઓપરેશન્સને એબ્સ્ટ્રેક્ટ (abstracts) કરે છે, ત્યાં હજી પણ એવા કિસ્સાઓ હોઈ શકે છે કે જેમાં આપણે અંદરના DOM એલિમેન્ટ્સની ડાયરેક્ટ એક્સેસની જરૂર હોય. આ હાંસલ કરવા માટે, આપણે વિશેષ `ref` એટ્રિબ્યુટનો ઉપયોગ કરી શકીએ છીએ:
 
 ```vue-html
 <input ref="input">
 ```
 
-`ref` is a special attribute, similar to the `key` attribute discussed in the `v-for` chapter. It allows us to obtain a direct reference to a specific DOM element or child component instance after it's mounted. This may be useful when you want to, for example, programmatically focus an input on component mount, or initialize a 3rd party library on an element.
+`ref` એ એક વિશેષ એટ્રિબ્યુટ છે, જે `v-for` પ્રકરણમાં ચર્ચા કરાયેલ `key` એટ્રિબ્યુટ જેવું જ છે. તે આપણને માઉન્ટ થયા પછી ચોક્કસ DOM એલિમેન્ટ અથવા ચાઇલ્ડ કમ્પોનન્ટ ઇન્સ્ટન્સનો સીધો સંદર્ભ (direct reference) મેળવવાની મંજૂરી આપે છે. આ ત્યારે ઉપયોગી થઈ શકે છે જ્યારે તમે ઈચ્છતા હોવ કે, ઉદાહરણ તરીકે, પ્રોગ્રામેટિકલી રીતે કમ્પોનન્ટ માઉન્ટ પર ઇનપુટ ફોકસ કરવા માટે, અથવા એલિમેન્ટ પર થર્ડ પાર્ટી લાઇબ્રેરી શરૂ કરવા માટે.
 
-## Accessing the Refs {#accessing-the-refs}
+## રિફ્સ (Refs) ને એક્સેસ કરવા {#accessing-the-refs}
 
 <div class="composition-api">
 
-To obtain the reference with Composition API, we can use the [`useTemplateRef()`](/api/composition-api-helpers#usetemplateref) <sup class="vt-badge" data-text="3.5+" /> helper:
+Composition API સાથે સંદર્ભ મેળવવા માટે, આપણે [`useTemplateRef()`](/api/composition-api-helpers#usetemplateref) <sup class="vt-badge" data-text="3.5+" /> હેલ્પરનો ઉપયોગ કરી શકીએ છીએ:
 
 ```vue
 <script setup>
 import { useTemplateRef, onMounted } from 'vue'
 
-// the first argument must match the ref value in the template
+// પ્રથમ આર્ગ્યુમેન્ટ ટેમ્પલેટમાં રહેલી ref વેલ્યુ સાથે મેળ ખાતી હોવી જોઈએ
 const input = useTemplateRef('my-input')
 
 onMounted(() => {
@@ -31,19 +31,19 @@ onMounted(() => {
 </template>
 ```
 
-When using TypeScript, Vue's IDE support and `vue-tsc` will automatically infer the type of `input.value` based on what element or component the matching `ref` attribute is used on.
+જ્યારે TypeScript નો ઉપયોગ કરીએ છીએ, ત્યારે Vue ની IDE સપોર્ટ અને `vue-tsc` આપમેળે `input.value` ના પ્રકારનું અનુમાન કરશે કે કયા એલિમેન્ટ અથવા કમ્પોનન્ટ પર મેચિંગ `ref` એટ્રિબ્યુટ વપરાયેલ છે.
 
 <details>
-<summary>Usage before 3.5</summary>
+<summary>3.5 પહેલાનો વપરાશ</summary>
 
-In versions before 3.5 where `useTemplateRef()` was not introduced, we need to declare a ref with a name that matches the template ref attribute's value:
+3.5 પહેલાંના સંસ્કરણોમાં જ્યાં `useTemplateRef()` રજૂ કરવામાં આવ્યું ન હતું, અમારે એવા નામ સાથે રિફ જાહેર કરવાની જરૂર છે જે ટેમ્પલેટ રિફ એટ્રિબ્યુટની વેલ્યુ સાથે મેળ ખાતું હોય:
 
 ```vue
 <script setup>
 import { ref, onMounted } from 'vue'
 
-// declare a ref to hold the element reference
-// the name must match template ref value
+// એલિમેન્ટ સંદર્ભ રાખવા માટે રિફ જાહેર કરો
+// નામ ટેમ્પલેટ રિફ વેલ્યુ સાથે મેળ ખાતું હોવું જોઈએ
 const input = ref(null)
 
 onMounted(() => {
@@ -56,7 +56,7 @@ onMounted(() => {
 </template>
 ```
 
-If not using `<script setup>`, make sure to also return the ref from `setup()`:
+જો `<script setup>` નો ઉપયોગ ન કરતા હોવ, તો `setup()` માંથી રિફને પણ પરત (return) કરવાની ખાતરી કરો:
 
 ```js{6}
 export default {
@@ -75,7 +75,7 @@ export default {
 </div>
 <div class="options-api">
 
-The resulting ref is exposed on `this.$refs`:
+પરિણામી રિફ `this.$refs` પર એક્સપોઝ થયેલ છે:
 
 ```vue
 <script>
@@ -93,31 +93,31 @@ export default {
 
 </div>
 
-Note that you can only access the ref **after the component is mounted.** If you try to access <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span> in a template expression, it will be <span class="options-api">`undefined`</span><span class="composition-api">`null`</span> on the first render. This is because the element doesn't exist until after the first render!
+નોંધ કરો કે તમે કમ્પોનન્ટ માઉન્ટ થયા પછી જ રિફને એક્સેસ કરી શકો છો. જો તમે ટેમ્પલેટ એક્સપ્રેશનમાં <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span> ને એક્સેસ કરવાનો પ્રયાસ કરશો, તો પ્રથમ રેન્ડર પર તે <span class="options-api">`undefined`</span><span class="composition-api">`null`</span> હશે. આનું કારણ એ છે કે પ્રથમ રેન્ડર પછી જ એલિમેન્ટ અસ્તિત્વમાં આવે છે!
 
 <div class="composition-api">
 
-If you are trying to watch the changes of a template ref, make sure to account for the case where the ref has `null` value:
+જો તમે ટેમ્પલેટ રિફ ના ફેરફારોને વોચ (watch) કરવાનો પ્રયાસ કરી રહ્યાં છો, તો ખાતરી કરો કે જ્યાં રિફની વેલ્યુ `null` હોય તે કેસને ધ્યાનમાં લો:
 
 ```js
 watchEffect(() => {
   if (input.value) {
     input.value.focus()
   } else {
-    // not mounted yet, or the element was unmounted (e.g. by v-if)
+    // હજી માઉન્ટ થયેલ નથી, અથવા એલિમેન્ટ અનમાઉન્ટ કરવામાં આવ્યો હતો (દા.ત. v-if દ્વારા)
   }
 })
 ```
 
-See also: [Typing Template Refs](/guide/typescript/composition-api#typing-template-refs) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Template Refs](/guide/typescript/composition-api#typing-template-refs) <sup class="vt-badge ts" />
 
 </div>
 
-## Ref on Component {#ref-on-component}
+## કમ્પોનન્ટ પર રિફ (Ref on Component) {#ref-on-component}
 
-> This section assumes knowledge of [Components](/guide/essentials/component-basics). Feel free to skip it and come back later.
+> આ વિભાગ [કમ્પોનન્ટ્સના મૂળભૂત પાસાઓ](/guide/essentials/component-basics) ના જ્ઞાનને ધારે છે. તેને છોડી દેવા અને પછીથી પાછા આવવા માટે નિઃસંકોચ રહો.
 
-`ref` can also be used on a child component. In this case the reference will be that of a component instance:
+`ref` નો ઉપયોગ ચાઇલ્ડ કમ્પોનન્ટ પર પણ થઈ શકે છે. આ કિસ્સામાં સંદર્ભ કમ્પોનન્ટ ઇન્સ્ટન્સનો હશે:
 
 <div class="composition-api">
 
@@ -129,7 +129,7 @@ import Child from './Child.vue'
 const childRef = useTemplateRef('child')
 
 onMounted(() => {
-  // childRef.value will hold an instance of <Child />
+  // childRef.value એ <Child /> ઇન્સ્ટન્સ ધરાવશે
 })
 </script>
 
@@ -139,7 +139,7 @@ onMounted(() => {
 ```
 
 <details>
-<summary>Usage before 3.5</summary>
+<summary>3.5 પહેલાનો વપરાશ</summary>
 
 ```vue
 <script setup>
@@ -149,7 +149,7 @@ import Child from './Child.vue'
 const child = ref(null)
 
 onMounted(() => {
-  // child.value will hold an instance of <Child />
+  // child.value એ <Child /> ઇન્સ્ટન્સ ધરાવશે
 })
 </script>
 
@@ -172,7 +172,7 @@ export default {
     Child
   },
   mounted() {
-    // this.$refs.child will hold an instance of <Child />
+    // this.$refs.child એ <Child /> ઇન્સ્ટન્સ ધરાવશે
   }
 }
 </script>
@@ -184,11 +184,11 @@ export default {
 
 </div>
 
-<span class="composition-api">If the child component is using Options API or not using `<script setup>`, the</span><span class="options-api">The</span> referenced instance will be identical to the child component's `this`, which means the parent component will have full access to every property and method of the child component. This makes it easy to create tightly coupled implementation details between the parent and the child, so component refs should be only used when absolutely needed - in most cases, you should try to implement parent / child interactions using the standard props and emit interfaces first.
+<span class="composition-api">જો ચાઇલ્ડ કમ્પોનન્ટ Options API નો ઉપયોગ કરી રહ્યો હોય અથવા `<script setup>` નો ઉપયોગ કરી રહ્યો ન હોય, તો</span><span class="options-api">સંદર્ભિત</span> ઇન્સ્ટન્સ ચાઇલ્ડ કમ્પોનન્ટના `this` સમાન હશે, જેનો અર્થ છે કે પેરેન્ટ કમ્પોનન્ટ પાસે ચાઇલ્ડ કમ્પોનન્ટની દરેક પ્રોપર્ટી અને મેથડની સંપૂર્ણ એક્સેસ હશે. આ પેરેન્ટ અને ચાઇલ્ડ વચ્ચે ચુસ્તપણે જોડાયેલ (tightly coupled) અમલીકરણ વિગતો બનાવવાનું સરળ બનાવે છે, તેથી કમ્પોનન્ટ રિફ્સનો ઉપયોગ ત્યારે જ થવો જોઈએ જ્યારે તેની અત્યંત જરૂર હોય - મોટાભાગના કિસ્સાઓમાં, તમારે પહેલા સ્ટાન્ડર્ડ પ્રોપ્સ અને એમિટ (props and emit) ઇન્ટરફેસનો ઉપયોગ કરીને પેરેન્ટ / ચાઇલ્ડ ઇન્ટરેક્શન્સ અમલી બનાવવાનો પ્રયાસ કરવો જોઈએ.
 
 <div class="composition-api">
 
-An exception here is that components using `<script setup>` are **private by default**: a parent component referencing a child component using `<script setup>` won't be able to access anything unless the child component chooses to expose a public interface using the `defineExpose` macro:
+અહીં એક અપવાદ એ છે કે `<script setup>` નો ઉપયોગ કરતા ઘટકો **ડિફોલ્ટ રૂપે પ્રાઇવેટ (private)** હોય છે: `<script setup>` નો ઉપયોગ કરીને ચાઇલ્ડ કમ્પોનન્ટનો સંદર્ભ આપતો પેરેન્ટ કમ્પોનન્ટ જ્યાં સુધી ચાઇલ્ડ કમ્પોનન્ટ `defineExpose` મેક્રોનો ઉપયોગ કરીને પબ્લિક ઇન્ટરફેસને એક્સપોઝ કરવાનું પસંદ ન કરે ત્યાં સુધી કંઈપણ એક્સેસ કરી શકશે નહીં:
 
 ```vue
 <script setup>
@@ -197,7 +197,7 @@ import { ref } from 'vue'
 const a = 1
 const b = ref(2)
 
-// Compiler macros, such as defineExpose, don't need to be imported
+// કમ્પાઇલર મેક્રોસ, જેમ કે defineExpose, આયાત (import) કરવાની જરૂર નથી
 defineExpose({
   a,
   b
@@ -205,16 +205,16 @@ defineExpose({
 </script>
 ```
 
-When a parent gets an instance of this component via template refs, the retrieved instance will be of the shape `{ a: number, b: number }` (refs are automatically unwrapped just like on normal instances).
+જ્યારે પેરેન્ટ ટેમ્પલેટ રિફ્સ દ્વારા આ કમ્પોનન્ટનો ઇન્સ્ટન્સ મેળવે છે, ત્યારે પુનઃપ્રાપ્ત કરેલ ઇન્સ્ટન્સ `{ a: number, b: number }` આકારનું હશે (રિફ્સ સામાન્ય ઇન્સ્ટન્સની જેમ જ આપમેળે અનવ્રેપ થાય છે).
 
-Note that defineExpose must be called before any await operation. Otherwise, properties and methods exposed after the await operation will not be accessible. 
+નોંધ કરો કે કોઈપણ await ઓપરેશન પહેલાં defineExpose ને કૉલ કરવો આવશ્યક છે. અન્યથા, await ઓપરેશન પછી એક્સપોઝ થયેલ પ્રોપર્ટીઝ અને મેથડ્સ એક્સેસિબલ રહેશે નહીં. 
 
-See also: [Typing Component Template Refs](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Component Template Refs](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
 
-The `expose` option can be used to limit the access to a child instance:
+ચાઇલ્ડ ઇન્સ્ટન્સની એક્સેસને મર્યાદિત કરવા માટે `expose` ઓપ્શનનો ઉપયોગ કરી શકાય છે:
 
 ```js
 export default {
@@ -236,17 +236,17 @@ export default {
 }
 ```
 
-In the above example, a parent referencing this component via template ref will only be able to access `publicData` and `publicMethod`.
+ઉપરના ઉદાહરણમાં, ટેમ્પલેટ રિફ દ્વારા આ કમ્પોનન્ટનો સંદર્ભ આપતો પેરેન્ટ ફક્ત `publicData` અને `publicMethod` ને એક્સેસ કરી શકશે.
 
 </div>
 
-## Refs inside `v-for` {#refs-inside-v-for}
+## `v-for` ની અંદર રિફ્સ {#refs-inside-v-for}
 
-> Requires v3.5 or above
+> v3.5 અથવા તેનાથી ઉપરનું સંસ્કરણ જરૂરી છે
 
 <div class="composition-api">
 
-When `ref` is used inside `v-for`, the corresponding ref should contain an Array value, which will be populated with the elements after mount:
+જ્યારે `ref` નો ઉપયોગ `v-for` ની અંદર કરવામાં આવે છે, ત્યારે સંબંધિત રિફમાં એક એરે વેલ્યુ હોવી જોઈએ, જે માઉન્ટ થયા પછી એલિમેન્ટ્સ સાથે ભરાઈ જશે:
 
 ```vue
 <script setup>
@@ -270,12 +270,12 @@ onMounted(() => console.log(itemRefs.value))
 </template>
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNp9UsluwjAQ/ZWRLwQpDepyQoDUIg6t1EWUW91DFAZq6tiWF4oU5d87dtgqVRyyzLw3b+aN3bB7Y4ptQDZkI1dZYTw49MFMuBK10dZDAxZXOQSHC6yNLD3OY6zVsw7K4xJaWFldQ49UelxxVWnlPEhBr3GszT6uc7jJ4fazf4KFx5p0HFH+Kme9CLle4h6bZFkfxhNouAIoJVqfHQSKbSkDFnVpMhEpovC481NNVcr3SaWlZzTovJErCqgydaMIYBRk+tKfFLC9Wmk75iyqg1DJBWfRxT7pONvTAZom2YC23QsMpOg0B0l0NDh2YjnzjpyvxLrYOK1o3ckLZ5WujSBHr8YL2gxnw85lxEop9c9TynkbMD/kqy+svv/Jb9wu5jh7s+jQbpGzI+ZLu0byEuHZ+wvt6Ays9TJIYl8A5+i0DHHGjvYQ1JLGPuOlaR/TpRFqvXCzHR2BO5iKg0Zmm/ic0W2ZXrB+Gve2uEt1dJKs/QXbwePE)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNp9UsluwjAQ/ZWRLwQpDepyQoDUIg6t1EWUW91DFAZq6tiWF4oU5d87dtgqVRyyzLw3b+aN3bB7Y4ptQDZkI1dZYTw49MFMuBK10dZDAxZXOQSHC6yNLD3OY6zVsw7K4xJaWFldQ49UelxxVWnlPEhBr3GszT6uc7jJ4fazf4KFx5p0HFH+Kme9CLle4h6bZFkfxhNouAIoJVqfHQSKbSkDFnVpMhEpovC481NNVcr3SaWlZzTovJErCqgydaMIYBRk+tKfFLC9Wmk75iyqg1DJBWfRxT7pONvTAZom2YC23QsMpOg0B0l0NDh2YjnzjpyvxLrYOK1o3ckLZ5WujSBHr8YL2gxnw85lxEop9c9TynkbMD/kqy+svv/Jb9wu5jh7s+jQbpGzI+ZLu0byEuHZ+wvt6Ays9TJIYl8A5+i0DHHGjvYQ1JLGPuOlaR/TpRFqvXCzHR2BO5iKg0Zmm/ic0W2ZXrB+Gve2uEt1dJKs/QXbwePE)
 
 <details>
-<summary>Usage before 3.5</summary>
+<summary>3.5 પહેલાનો વપરાશ</summary>
 
-In versions before 3.5 where `useTemplateRef()` was not introduced, we need to declare a ref with a name that matches the template ref attribute's value. The ref should also contain an array value:
+3.5 પહેલાંના સંસ્કરણોમાં જ્યાં `useTemplateRef()` રજૂ કરવામાં આવ્યું ન હતું, અમારે એવા નામ સાથે રિફ જાહેર કરવાની જરૂર છે જે ટેમ્પલેટ રિફ એટ્રિબ્યુટની વેલ્યુ સાથે મેળ ખાતી હોય. રિફમાં એરે મૂલ્ય પણ હોવું જોઈએ:
 
 ```vue
 <script setup>
@@ -304,7 +304,7 @@ onMounted(() => console.log(itemRefs.value))
 </div>
 <div class="options-api">
 
-When `ref` is used inside `v-for`, the resulting ref value will be an array containing the corresponding elements:
+જ્યારે `ref` નો ઉપયોગ `v-for` ની અંદર કરવામાં આવે છે, ત્યારે પરિણામી રિફ વેલ્યુ એક એરે હશે જેમાં સંબંધિત એલિમેન્ટ્સ હશે:
 
 ```vue
 <script>
@@ -331,18 +331,18 @@ export default {
 </template>
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNpFjk0KwjAQha/yCC4Uaou6kyp4DuOi2KkGYhKSiQildzdNa4WQmTc/37xeXJwr35HEUdTh7pXjszT0cdYzWuqaqBm9NEDbcLPeTDngiaM3PwVoFfiI667AvsDhNpWHMQzF+L9sNEztH3C3JlhNpbaPNT9VKFeeulAqplfY5D1p0qurxVQSqel0w5QUUEedY8q0wnvbWX+SYgRAmWxIiuSzm4tBinkc6HvkuSE7TIBKq4lZZWhdLZfE8AWp4l3T)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNpFjk0KwjAQha/yCC4Uaou6kyp4DuOi2KkGYhKSiQildzdNa4WQmTc/37xeXJwr35HEUdTh7pXjszT0cdYzWuqaqBm9NEDbcLPeTDngiaM3PwVoFfiI667AvsDhNpWHMQzF+L9sNEztH3C3JlhNpbaPNT9VKFeeulAqplfY5D1p0qurxVQSqel0w5QUUEedY8q0wnvbWX+SYgRAmWxIiuSzm4tBinkc6HvkuSE7TIBKq4lZZWhdLZfE8AWp4l3T)
 
 </div>
 
-It should be noted that the ref array does **not** guarantee the same order as the source array.
+એ નોંધવું જોઈએ કે રિફ એરે સોર્સ એરે સમાન ક્રમની ગેરંટી આપતું **નથી**.
 
-## Function Refs {#function-refs}
+## ફંક્શન રિફ્સ (Function Refs) {#function-refs}
 
-Instead of a string key, the `ref` attribute can also be bound to a function, which will be called on each component update and gives you full flexibility on where to store the element reference. The function receives the element reference as the first argument:
+સ્ટ્રિંગ કીને બદલે, `ref` એટ્રિબ્યુટને ફંક્શન સાથે પણ બાંધી શકાય છે, જે દરેક કમ્પોનન્ટ અપડેટ પર કૉલ કરવામાં આવશે અને તમને એલિમેન્ટ રેફરન્સ ક્યાં સ્ટોર કરવો તે અંગે સંપૂર્ણ લવચીકતા આપશે. ફંક્શન પ્રથમ આર્ગ્યુમેન્ટ તરીકે એલિમેન્ટ રેફરન્સ મેળવે છે:
 
 ```vue-html
-<input :ref="(el) => { /* assign el to a property or ref */ }">
+<input :ref="(el) => { /* el ને પ્રોપર્ટી અથવા ref અસાઇન કરો */ }">
 ```
 
-Note we are using a dynamic `:ref` binding so we can pass it a function instead of a ref name string. When the element is unmounted, the argument will be `null`. You can, of course, use a method instead of an inline function.
+નોંધ કરો કે આપણે ડાયનેમિક `:ref` બાઈન્ડિંગનો ઉપયોગ કરી રહ્યા છીએ જેથી કરીને આપણે તેને રિફ નેમ સ્ટ્રિંગને બદલે ફંક્શન પાસ કરી શકીએ. જ્યારે એલિમેન્ટ અનમાઉન્ટ કરવામાં આવે છે, ત્યારે આર્ગ્યુમેન્ટ `null` હશે. તમે, અલબત્ત, ઇનલાઇન ફંક્શનને બદલે મેથડ નો ઉપયોગ કરી શકો છો.

@@ -1,24 +1,24 @@
-# Async Components {#async-components}
+# એસિંક કમ્પોનન્ટ્સ (Async Components) {#async-components}
 
-## Basic Usage {#basic-usage}
+## મૂળભૂત વપરાશ (Basic Usage) {#basic-usage}
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's needed. To make that possible, Vue has a [`defineAsyncComponent`](/api/general#defineasynccomponent) function:
+મોટી એપ્લિકેશન્સમાં, આપણે એપ્લિકેશનને નાના ટુકડાઓમાં વહેંચવાની જરૂર પડી શકે છે અને જ્યારે જરૂર હોય ત્યારે જ સર્વર પરથી ઘટક લોડ કરવાની જરૂર પડી શકે છે. તે શક્ય બનાવવા માટે, Vue પાસે [`defineAsyncComponent`](/api/general#defineasynccomponent) ફંક્શન છે:
 
 ```js
 import { defineAsyncComponent } from 'vue'
 
 const AsyncComp = defineAsyncComponent(() => {
   return new Promise((resolve, reject) => {
-    // ...load component from server
-    resolve(/* loaded component */)
+    // ...સર્વર પરથી ઘટક લોડ કરો
+    resolve(/* લોડ કરેલ ઘટક */)
   })
 })
-// ... use `AsyncComp` like a normal component
+// ... `AsyncComp` નો સામાન્ય ઘટક જેવો ઉપયોગ કરો
 ```
 
-As you can see, `defineAsyncComponent` accepts a loader function that returns a Promise. The Promise's `resolve` callback should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed.
+જેમ તમે જોઈ શકો છો, `defineAsyncComponent` લોડર ફંક્શન સ્વીકારે છે જે પ્રોમિસ (Promise) પરત કરે છે. પ્રોમિસનું `resolve` કોલબેક ત્યારે કૉલ કરવું જોઈએ જ્યારે તમે સર્વર પરથી તમારી કમ્પોનન્ટની ડેફીનેશન મેળવી લો. લોડ નિષ્ફળ ગયો છે તે સૂચવવા માટે તમે `reject(reason)` ને પણ કૉલ કરી શકો છો.
 
-[ES module dynamic import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) also returns a Promise, so most of the time we will use it in combination with `defineAsyncComponent`. Bundlers like Vite and webpack also support the syntax (and will use it as bundle split points), so we can use it to import Vue SFCs:
+[ES મોડ્યુલ ડાયનેમિક ઇમ્પોર્ટ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) પણ પ્રોમિસ પરત કરે છે, તેથી મોટાભાગના સમયે આપણે તેનો ઉપયોગ `defineAsyncComponent` સાથે સંયોજનમાં કરીશું. Vite અને webpack જેવા બંડલર્સ પણ આ સિન્ટેક્સને સપોર્ટ કરે છે (અને તેને બંડલ સ્પ્લિટ પોઈન્ટ્સ તરીકે ઉપયોગ કરશે), તેથી આપણે તેનો ઉપયોગ Vue SFCs ને ઇમ્પોર્ટ કરવા માટે કરી શકીએ છીએ:
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -28,9 +28,9 @@ const AsyncComp = defineAsyncComponent(() =>
 )
 ```
 
-The resulting `AsyncComp` is a wrapper component that only calls the loader function when it is actually rendered on the page. In addition, it will pass along any props and slots to the inner component, so you can use the async wrapper to seamlessly replace the original component while achieving lazy loading.
+પરિણામી `AsyncComp` એ એક રેપર (wrapper) કમ્પોનન્ટ છે જે જ્યારે પેજ પર ખરેખર રેન્ડર થાય ત્યારે જ લોડર ફંક્શનને કૉલ કરે છે. આ ઉપરાંત, તે કોઈપણ પ્રોપ્સ અને સ્લોટ્સને આંતરિક ઘટકમાં પસાર કરશે, જેથી તમે લેઝી લોડિંગ (lazy loading) પ્રાપ્ત કરતી વખતે મૂળ ઘટકને સીમલેસ રીતે બદલવા માટે એસિંક રેપરનો ઉપયોગ કરી શકો.
 
-As with normal components, async components can be [registered globally](/guide/components/registration#global-registration) using `app.component()`:
+સામાન્ય ઘટકોની જેમ, એસિંક ઘટકો પણ `app.component()` નો ઉપયોગ કરીને [ગ્લોબલ રજીસ્ટર કરી શકાય છે](/guide/components/registration#global-registration):
 
 ```js
 app.component('MyComponent', defineAsyncComponent(() =>
@@ -40,7 +40,7 @@ app.component('MyComponent', defineAsyncComponent(() =>
 
 <div class="options-api">
 
-You can also use `defineAsyncComponent` when [registering a component locally](/guide/components/registration#local-registration):
+[કમ્પોનન્ટને લોકલ રજીસ્ટર કરતી વખતે](/guide/components/registration#local-registration) તમે `defineAsyncComponent` નો ઉપયોગ પણ કરી શકો છો:
 
 ```vue
 <script>
@@ -64,7 +64,7 @@ export default {
 
 <div class="composition-api">
 
-They can also be defined directly inside their parent component:
+તેમને સીધા તેમના પેરેન્ટ કમ્પોનન્ટની અંદર પણ વ્યાખ્યાયિત કરી શકાય છે:
 
 ```vue
 <script setup>
@@ -82,58 +82,58 @@ const AdminPage = defineAsyncComponent(() =>
 
 </div>
 
-## Loading and Error States {#loading-and-error-states}
+## લોડિંગ અને એરર સ્ટેટ્સ (Loading and Error States) {#loading-and-error-states}
 
-Asynchronous operations inevitably involve loading and error states - `defineAsyncComponent()` supports handling these states via advanced options:
+અસિંક્રોનસ ઓપરેશન્સમાં અનિવાર્યપણે લોડિંગ અને એરર સ્ટેટ્સનો સમાવેશ થાય છે - `defineAsyncComponent()` એડવાન્સ્ડ ઓપ્શન્સ દ્વારા આ સ્ટેટ્સને હેન્ડલ કરવા માટે સપોર્ટ કરે છે:
 
 ```js
 const AsyncComp = defineAsyncComponent({
-  // the loader function
+  // લોડર ફંક્શન
   loader: () => import('./Foo.vue'),
 
-  // A component to use while the async component is loading
+  // એસિંક કમ્પોનન્ટ લોડ થઈ રહ્યો હોય ત્યારે વાપરવા માટેનો ઘટક
   loadingComponent: LoadingComponent,
-  // Delay before showing the loading component. Default: 200ms.
+  // લોડિંગ ઘટક બતાવતા પહેલા વિલંબ (delay). ડિફોલ્ટ: ૨૦૦ms.
   delay: 200,
 
-  // A component to use if the load fails
+  // જો લોડ નિષ્ફળ જાય તો વાપરવા માટેનો ઘટક
   errorComponent: ErrorComponent,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // જો ટાઈમઆઉટ (timeout) પ્રદાન કરવામાં આવે અને તે વધી જાય તો 
+  // એરર કમ્પોનન્ટ પ્રદર્શિત થશે. ડિફોલ્ટ: Infinity.
   timeout: 3000
 })
 ```
 
-If a loading component is provided, it will be displayed first while the inner component is being loaded. There is a default 200ms delay before the loading component is shown - this is because on fast networks, an instant loading state may get replaced too fast and end up looking like a flicker.
+જો લોડિંગ કમ્પોનન્ટ આપવામાં આવે છે, તો જ્યારે આંતરિક ઘટક લોડ થઈ રહ્યું હોય ત્યારે તે પહેલા પ્રદર્શિત થશે. લોડિંગ કમ્પોનન્ટ બતાવવામાં આવે તે પહેલા ડિફોલ્ટ ૨૦૦ms વિલંબ હોય છે - કારણ કે ઝડપી નેટવર્ક્સ પર, જ્યારે કોઈ ત્વરિત લોડિંગ સ્ટેટ ખૂબ જ ઝડપથી બદલાઈ જાય છે ત્યારે તે ફ્લિકરિંગ (flicker) જેવું લાગે છે.
 
-If an error component is provided, it will be displayed when the Promise returned by the loader function is rejected. You can also specify a timeout to show the error component when the request is taking too long.
+જો એરર કમ્પોનન્ટ પ્રદાન કરવામાં આવેલ હોય, તો જ્યારે લોડર ફંક્શન દ્વારા પ્રોમિસ રીજેક્ટ થાય ત્યારે તે પ્રદર્શિત થશે. જ્યારે રિક્વેસ્ટમાં વધુ સમય લાગી રહ્યો હોય ત્યારે એરર કમ્પોનન્ટ બતાવવા માટે તમે ટાઈમઆઉટ પણ સ્પષ્ટ કરી શકો છો.
 
-## Lazy Hydration <sup class="vt-badge" data-text="3.5+" /> {#lazy-hydration}
+## લેઝી હાઇડ્રેશન (Lazy Hydration) <sup class="vt-badge" data-text="3.5+" /> {#lazy-hydration}
 
-> This section only applies if you are using [Server-Side Rendering](/guide/scaling-up/ssr).
+> જો તમે [સર્વર-સાઇડ રેન્ડરિંગ (Server-Side Rendering)](/guide/scaling-up/ssr) નો ઉપયોગ કરી રહ્યા હોવ તો જ આ વિભાગ લાગુ પડે છે.
 
-In Vue 3.5+, async components can control when they are hydrated by providing a hydration strategy.
+Vue ૩.૫+ માં, અસિંક્રોનસ ઘટકો હાઇડ્રેશન સ્ટ્રેટેજી પ્રદાન કરીને તે ક્યારે હાઇડ્રેટ થાય છે તે નિયંત્રિત કરી શકે છે.
 
-- Vue provides a number of built-in hydration strategies. These built-in strategies need to be individually imported so they can be tree-shaken if not used.
+- Vue ઘણી બધી બિલ્ટ-ઇન હાઇડ્રેશન સ્ટ્રેટેજી પ્રદાન કરે છે. આ બિલ્ટ-ઇન સ્ટ્રેટેજી ને વ્યક્તિગત રીતે ઇમ્પોર્ટ કરવાની જરૂર છે જેથી જો તેનો ઉપયોગ ન કરવામાં આવે તો તેને ટ્રી-શેક (tree-shaken) કરી શકાય.
 
-- The design is intentionally low-level for flexibility. Compiler syntax sugar can potentially be built on top of this in the future either in core or in higher level solutions (e.g. Nuxt).
+- લવચીકતા (flexibility) માટે ડિઝાઇન ઇરાદાપૂર્વક લો-લેવલ છે. કમ્પાઇલર સિન્ટેક્સ સુગર (syntax sugar) ભવિષ્યમાં કાં તો કોરમાં અથવા ઉચ્ચ સ્તરના સોલ્યુશન્સમાં (દા.ત. Nuxt) આની ટોચ પર બનાવી શકાય છે.
 
-### Hydrate on Idle {#hydrate-on-idle}
+### આઈડલ (Idle) પર હાઈડ્રેટ {#hydrate-on-idle}
 
-Hydrates via `requestIdleCallback`:
+`requestIdleCallback` દ્વારા હાઈડ્રેટ થાય છે:
 
 ```js
 import { defineAsyncComponent, hydrateOnIdle } from 'vue'
 
 const AsyncComp = defineAsyncComponent({
   loader: () => import('./Comp.vue'),
-  hydrate: hydrateOnIdle(/* optionally pass a max timeout */)
+  hydrate: hydrateOnIdle(/* વૈકલ્પિક રીતે મહત્તમ ટાઈમઆઉટ પાસ કરો */)
 })
 ```
 
-### Hydrate on Visible {#hydrate-on-visible}
+### વિઝિબલ (Visible) પર હાઈડ્રેટ {#hydrate-on-visible}
 
-Hydrate when element(s) become visible via `IntersectionObserver`.
+`IntersectionObserver` દ્વારા જ્યારે એલિમેન્ટ દૃશ્યમાન (visible) થાય ત્યારે હાઈડ્રેટ થાય છે.
 
 ```js
 import { defineAsyncComponent, hydrateOnVisible } from 'vue'
@@ -144,15 +144,15 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-Can optionally pass in an options object value for the observer:
+ઓબ્ઝર્વર (observer) માટે ઓપ્શન્સ ઓબ્જેક્ટ વેલ્યુ વૈકલ્પિક રીતે પાસ કરી શકો છો:
 
 ```js
 hydrateOnVisible({ rootMargin: '100px' })
 ```
 
-### Hydrate on Media Query {#hydrate-on-media-query}
+### મીડિયા ક્વેરી પર હાઈડ્રેટ {#hydrate-on-media-query}
 
-Hydrates when the specified media query matches.
+જ્યારે ઉલ્લેખિત મીડિયા ક્વેરી મેળ ખાય ત્યારે હાઈડ્રેટ થાય છે.
 
 ```js
 import { defineAsyncComponent, hydrateOnMediaQuery } from 'vue'
@@ -163,9 +163,9 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-### Hydrate on Interaction {#hydrate-on-interaction}
+### ઇન્ટરેક્શન પર હાઈડ્રેટ {#hydrate-on-interaction}
 
-Hydrates when specified event(s) are triggered on the component element(s). The event that triggered the hydration will also be replayed once hydration is complete.
+જ્યારે કમ્પોનન્ટ એલિમેન્ટ્સ પર નિર્દિષ્ટ ઇવેન્ટ(ઓ) ટ્રિગર થાય ત્યારે હાઈડ્રેટ થાય છે. હાઇડ્રેશનને ટ્રિગર કરનાર ઇવેન્ટ હાઇડ્રેશન પૂર્ણ થયા પછી એકવાર ફરીથી પ્લે કરવામાં આવશે.
 
 ```js
 import { defineAsyncComponent, hydrateOnInteraction } from 'vue'
@@ -176,28 +176,27 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-Can also be a list of multiple event types:
+બહુવિધ ઇવેન્ટ પ્રકારોની સૂચિ (list) પણ હોઈ શકે છે:
 
 ```js
 hydrateOnInteraction(['wheel', 'mouseover'])
 ```
 
-### Custom Strategy {#custom-strategy}
+### કસ્ટમ સ્ટ્રેટેજી (Custom Strategy) {#custom-strategy}
 
 ```ts
 import { defineAsyncComponent, type HydrationStrategy } from 'vue'
 
 const myStrategy: HydrationStrategy = (hydrate, forEachElement) => {
-  // forEachElement is a helper to iterate through all the root elements
-  // in the component's non-hydrated DOM, since the root can be a fragment
-  // instead of a single element
+  // forEachElement એ કમ્પોનન્ટના બિન-હાઇડ્રેટેડ DOM માંના તમામ રૂટ એલિમેન્ટ્સ દ્વારા
+  // પુનરાવર્તન કરવામાં મદદરૂપ છે, કારણ કે રૂટ સિંગલ એલિમેન્ટને બદલે ફ્રેગમેન્ટ હોઈ શકે છે.
   forEachElement(el => {
     // ...
   })
-  // call `hydrate` when ready
+  // તૈયાર હોય ત્યારે `hydrate` ને કૉલ કરો
   hydrate()
   return () => {
-    // return a teardown function if needed
+    // જો જરૂર હોય તો ટીયરડાઉન (teardown) ફંક્શન પરત કરો
   }
 }
 
@@ -207,6 +206,6 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-## Using with Suspense {#using-with-suspense}
+## Suspense સાથે ઉપયોગ {#using-with-suspense}
 
-Async components can be used with the `<Suspense>` built-in component. The interaction between `<Suspense>` and async components is documented in the [dedicated chapter for `<Suspense>`](/guide/built-ins/suspense).
+એસિંક કમ્પોનન્ટ્સ `<Suspense>` બિલ્ટ-ઇન કમ્પોનન્ટ સાથે વાપરી શકાય છે. `<Suspense>` અને એસિંક કમ્પોનન્ટ્સ વચ્ચેની ક્રિયાપ્રતિક્રિયા [Suspense માટે સમર્પિત પ્રકરણમાં](/guide/built-ins/suspense) દસ્તાવેજિત છે.

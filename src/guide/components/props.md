@@ -1,18 +1,18 @@
-# Props {#props}
+# પ્રોપ્સ (Props) {#props}
 
-> This page assumes you've already read the [Components Basics](/guide/essentials/component-basics). Read that first if you are new to components.
+> આ પેજ ધારે છે કે તમે પહેલાથી જ [કમ્પોનન્ટ્સના મૂળભૂત પાસાઓ](/guide/essentials/component-basics) વાંચી લીધું છે. જો તમે કમ્પોનન્ટ્સ માટે નવા હોવ તો પહેલા તે વાંચો.
 
 <div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/vue-3-reusable-components-with-props" title="Free Vue.js Props Lesson"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-3-reusable-components-with-props" title="ફ્રી Vue.js પ્રોપ્સ લેસન"/>
 </div>
 
-## Props Declaration {#props-declaration}
+## પ્રોપ્સ જાહેર કરવા (Props Declaration) {#props-declaration}
 
-Vue components require explicit props declaration so that Vue knows what external props passed to the component should be treated as fallthrough attributes (which will be discussed in [its dedicated section](/guide/components/attrs)).
+Vue કમ્પોનન્ટ્સને સ્પષ્ટ પ્રોપ્સ ડિકલેરેશન (explicit props declaration) ની જરૂર હોય છે જેથી Vue ને ખબર પડે કે કમ્પોનન્ટમાં કયા બાહ્ય પ્રોપ્સ પાસ કરવામાં આવ્યા છે અને તેને ફૉલથ્રુ એટ્રિબ્યુટ્સ (fallthrough attributes) તરીકે ગણવા જોઈએ (જેની ચર્ચા [તેના બનેલા વિભાગ](/guide/components/attrs) માં કરવામાં આવશે).
 
 <div class="composition-api">
 
-In SFCs using `<script setup>`, props can be declared using the `defineProps()` macro:
+`<script setup>` નો ઉપયોગ કરતા SFCs માં, `defineProps()` મેક્રોનો ઉપયોગ કરીને પ્રોપ્સ જાહેર કરી શકાય છે:
 
 ```vue
 <script setup>
@@ -22,31 +22,31 @@ console.log(props.foo)
 </script>
 ```
 
-In non-`<script setup>` components, props are declared using the [`props`](/api/options-state#props) option:
+બિન-`<script setup>` કમ્પોનન્ટ્સમાં, પ્રોપ્સને [`props`](/api/options-state#props) ઓપ્શનનો ઉપયોગ કરીને જાહેર કરવામાં આવે છે:
 
 ```js
 export default {
   props: ['foo'],
   setup(props) {
-    // setup() receives props as the first argument.
+    // setup() પ્રોપ્સને પ્રથમ આર્ગ્યુમેન્ટ તરીકે મેળવે છે.
     console.log(props.foo)
   }
 }
 ```
 
-Notice the argument passed to `defineProps()` is the same as the value provided to the `props` options: the same props options API is shared between the two declaration styles.
+નોંધ કરો કે `defineProps()` ને પાસ કરવામાં આવેલી આર્ગ્યુમેન્ટ `props` ઓપ્શન્સને આપવામાં આવેલી વેલ્યુ જેવી જ છે: સમાન પ્રોપ્સ ઓપ્શન્સ API બે ડિક્લેરેશન સ્ટાઇલ વચ્ચે શેર કરવામાં આવે છે.
 
 </div>
 
 <div class="options-api">
 
-Props are declared using the [`props`](/api/options-state#props) option:
+પ્રોપ્સને [`props`](/api/options-state#props) ઓપ્શનનો ઉપયોગ કરીને જાહેર કરવામાં આવે છે:
 
 ```js
 export default {
   props: ['foo'],
   created() {
-    // props are exposed on `this`
+    // પ્રોપ્સ `this` પર એક્સપોઝ થાય છે
     console.log(this.foo)
   }
 }
@@ -54,7 +54,7 @@ export default {
 
 </div>
 
-In addition to declaring props using an array of strings, we can also use the object syntax:
+સ્ટ્રિંગ્સના એરેનો ઉપયોગ કરીને પ્રોપ્સ જાહેર કરવા ઉપરાંત, આપણે ઓબ્જેક્ટ સિન્ટેક્સનો પણ ઉપયોગ કરી શકીએ છીએ:
 
 <div class="options-api">
 
@@ -71,7 +71,7 @@ export default {
 <div class="composition-api">
 
 ```js
-// in <script setup>
+// <script setup> માં
 defineProps({
   title: String,
   likes: Number
@@ -79,7 +79,7 @@ defineProps({
 ```
 
 ```js
-// in non-<script setup>
+// non-<script setup> માં
 export default {
   props: {
     title: String,
@@ -90,19 +90,19 @@ export default {
 
 </div>
 
-For each property in the object declaration syntax, the key is the name of the prop, while the value should be the constructor function of the expected type.
+ઓબ્જેક્ટ ડિક્લેરેશન સિન્ટેક્સની દરેક પ્રોપર્ટી માટે, કી પ્રોપનું નામ છે, જ્યારે વેલ્યુ અપેક્ષિત પ્રકારનું કન્સ્ટ્રક્ટર (constructor) ફંક્શન હોવી જોઈએ.
 
-This not only documents your component, but will also warn other developers using your component in the browser console if they pass the wrong type. We will discuss more details about [prop validation](#prop-validation) further down this page.
+આ માત્ર તમારા કમ્પોનન્ટને ડોક્યુમેન્ટ જ કરતું નથી, પરંતુ જો બ્રાઉઝર કન્સોલમાં તમારું કમ્પોનન્ટ વાપરનારા અન્ય ડેવલપર્સ ખોટો ટાઇપ પાસ કરશે તો તેમને વોર્નિંગ (warn) પણ આપશે. અમે આ પેજ પર આગળ [પ્રોપ વેલિડેશન](#prop-validation) વિશે વધુ વિગતોની ચર્ચા કરીશું.
 
 <div class="options-api">
 
-See also: [Typing Component Props](/guide/typescript/options-api#typing-component-props) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Component Props](/guide/typescript/options-api#typing-component-props) <sup class="vt-badge ts" />
 
 </div>
 
 <div class="composition-api">
 
-If you are using TypeScript with `<script setup>`, it's also possible to declare props using pure type annotations:
+જો તમે `<script setup>` સાથે TypeScript નો ઉપયોગ કરી રહ્યાં છો, તો શુદ્ધ પ્રકારનાં એનોટેશન્સ (pure type annotations) નો ઉપયોગ કરીને પ્રોપ્સ જાહેર કરવાનું પણ શક્ય છે:
 
 ```vue
 <script setup lang="ts">
@@ -113,50 +113,50 @@ defineProps<{
 </script>
 ```
 
-More details: [Typing Component Props](/guide/typescript/composition-api#typing-component-props) <sup class="vt-badge ts" />
+વધુ વિગતો: [Typing Component Props](/guide/typescript/composition-api#typing-component-props) <sup class="vt-badge ts" />
 
 </div>
 
 <div class="composition-api">
 
-## Reactive Props Destructure <sup class="vt-badge" data-text="3.5+" /> \*\* {#reactive-props-destructure}
+## રિએક્ટિવ પ્રોપ્સ ડિસ્ટ્રક્ચર (Reactive Props Destructure) <sup class="vt-badge" data-text="3.5+" /> \*\* {#reactive-props-destructure}
 
-Vue's reactivity system tracks state usage based on property access. E.g. when you access `props.foo` in a computed getter or a watcher, the `foo` prop gets tracked as a dependency.
+Vue ની રિએક્ટિવિટી સિસ્ટમ પ્રોપર્ટી એક્સેસના આધારે સ્ટેટ વપરાશને ટ્રેક કરે છે. દા.ત. જ્યારે તમે કમ્પ્યુટેડ ગેટર અથવા વોચરમાં `props.foo` ને એક્સેસ કરો છો, ત્યારે `foo` પ્રોપ ડિપેન્ડન્સી તરીકે ટ્રેક કરવામાં આવે છે.
 
-So, given the following code:
+તેથી, નીચેના કોડને ધ્યાનમાં લેતા:
 
 ```js
 const { foo } = defineProps(['foo'])
 
 watchEffect(() => {
-  // runs only once before 3.5
-  // re-runs when the "foo" prop changes in 3.5+
+  // 3.5 પહેલા માત્ર એક જ વાર ચાલે છે
+  // 3.5+ માં જ્યારે "foo" પ્રોપ બદલાય છે ત્યારે ફરીથી ચાલે છે
   console.log(foo)
 })
 ```
 
-In version 3.4 and below, `foo` is an actual constant and will never change. In version 3.5 and above, Vue's compiler automatically prepends `props.` when code in the same `<script setup>` block accesses variables destructured from `defineProps`. Therefore the code above becomes equivalent to the following:
+સંસ્કરણ 3.4 અને નીચેનામાં, `foo` એક વાસ્તવિક કોન્સ્ટન્ટ (constant) છે અને તે ક્યારેય બદલાશે નહીં. સંસ્કરણ 3.5 અને તેથી ઉપરનામાં, Vue નું કમ્પાઇલર જ્યારે સમાન `<script setup>` બ્લોકમાંનો કોડ `defineProps` માંથી ડિસ્ટ્રક્ચર કરાયેલા વેરિએબલ્સને એક્સેસ કરે છે ત્યારે આપમેળે `props.` પ્રીપેન્ડ કરે છે. તેથી ઉપરોક્ત કોડ નીચે મુજબ સમાન બની જાય છે:
 
 ```js {5}
 const props = defineProps(['foo'])
 
 watchEffect(() => {
-  // `foo` transformed to `props.foo` by the compiler
+  // `foo` કમ્પાઇલર દ્વારા `props.foo` માં ટ્રાન્સફોર્મ કરવામાં આવ્યું છે
   console.log(props.foo)
 })
 ```
 
-In addition, you can use JavaScript's native default value syntax to declare default values for the props. This is particularly useful when using the type-based props declaration:
+વધુમાં, તમે પ્રોપ્સ માટે ડિફોલ્ટ વેલ્યુસ જાહેર કરવા માટે JavaScript ના નેટિવ ડિફોલ્ટ વેલ્યુ સિન્ટેક્સનો ઉપયોગ કરી શકો છો. આ ખાસ કરીને ત્યારે ઉપયોગી છે જ્યારે ટાઈપ-આધારિત (type-based) પ્રોપ્સ ડિક્લેરેશનનો ઉપયોગ કરવામાં આવે:
 
 ```ts
-const { foo = 'hello' } = defineProps<{ foo?: string }>()
+const { foo = 'હેલો' } = defineProps<{ foo?: string }>()
 ```
 
-If you prefer to have more visual distinction between destructured props and normal variables in your IDE, Vue's VSCode extension provides a setting to enable inlay-hints for destructured props.
+જો તમે તમારા IDE માં ડિસ્ટ્રક્ચર કરેલા પ્રોપ્સ અને સામાન્ય વેરિએબલ્સ વચ્ચે વધુ વિઝ્યુઅલ તફાવત રાખવાનું પસંદ કરો છો, તો Vue નું VSCode એક્સટેન્શન ડિસ્ટ્રક્ચર કરેલા પ્રોપ્સ માટે ઇનલે-હિન્ટ્સ (inlay-hints) સક્ષમ કરવા માટે સેટિંગ પૂરું પાડે છે.
 
-### Passing Destructured Props into Functions {#passing-destructured-props-into-functions}
+### ફંક્શન્સમાં ડિસ્ટ્રક્ચર કરેલા પ્રોપ્સ પાસ કરવા {#passing-destructured-props-into-functions}
 
-When we pass a destructured prop into a function, e.g.:
+જ્યારે આપણે ફંક્શનમાં ડિસ્ટ્રક્ચર કરેલા પ્રોપ ને પાસ કરીએ છીએ, દા.ત.:
 
 ```js
 const { foo } = defineProps(['foo'])
@@ -164,29 +164,29 @@ const { foo } = defineProps(['foo'])
 watch(foo, /* ... */)
 ```
 
-This will not work as expected because it is equivalent to `watch(props.foo, ...)` - we are passing a value instead of a reactive data source to `watch`. In fact, Vue's compiler will catch such cases and throw a warning.
+આ અપેક્ષા મુજબ કામ કરશે નહીં કારણ કે તે `watch(props.foo, ...)` ની બરાબર છે - અમે `watch` માં રિએક્ટિવ ડેટા સોર્સને બદલે વેલ્યુ પાસ કરી રહ્યા છીએ. હકીકતમાં, Vue નું કમ્પાઇલર આવા કેસોને પકડશે અને વોર્નિંગ આપશે.
 
-Similar to how we can watch a normal prop with `watch(() => props.foo, ...)`, we can watch a destructured prop also by wrapping it in a getter:
+જેમ આપણે `watch(() => props.foo, ...)` સાથે સામાન્ય પ્રોપને વોચ કરી શકીએ છીએ, તેમ આપણે તેને ગેટરમાં લપેટીને ડિસ્ટ્રક્ચર કરેલા પ્રોપ ને પણ જોઈ શકીએ છીએ:
 
 ```js
 watch(() => foo, /* ... */)
 ```
 
-In addition, this is the recommended approach when we need to pass a destructured prop into an external function while retaining reactivity:
+વધુમાં, જ્યારે આપણે રિએક્ટિવિટી જાળવી રાખીને કોઈ બાહ્ય ફંક્શનમાં ડિસ્ટ્રક્ચર કરેલા પ્રોપ ને પાસ કરવાની જરૂર હોય ત્યારે આ ભલામણ કરેલ અભિગમ છે:
 
 ```js
 useComposable(() => foo)
 ```
 
-The external function can call the getter (or normalize it with [toValue](/api/reactivity-utilities.html#tovalue)) when it needs to track changes of the provided prop, e.g. in a computed or watcher getter.
+જ્યારે પ્રદાન કરેલ પ્રોપના ફેરફારોને ટ્રૅક કરવાની જરૂર હોય ત્યારે બાહ્ય ફંક્શન ગેટરને કોલ કરી શકે છે (અથવા તેને [toValue](/api/reactivity-utilities.html#tovalue) સાથે નોર્મલાઈઝ કરી શકે છે), દા.ત. કમ્પ્યુટેડ અથવા વોચર ગેટરમાં.
 
 </div>
 
-## Prop Passing Details {#prop-passing-details}
+## પ્રોપ પાસ કરવાની વિગતો {#prop-passing-details}
 
-### Prop Name Casing {#prop-name-casing}
+### પ્રોપ નામ કેસિંગ (Prop Name Casing) {#prop-name-casing}
 
-We declare long prop names using camelCase because this avoids having to use quotes when using them as property keys, and allows us to reference them directly in template expressions because they are valid JavaScript identifiers:
+અમે ઊંટ શૈલી (camelCase) નો ઉપયોગ કરીને લાંબા પ્રોપ નામો જાહેર કરીએ છીએ કારણ કે આ પ્રોપર્ટી કી તરીકે ઉપયોગ કરતી વખતે અવતરણ ચિહ્નો (quotes) નો ઉપયોગ કરવાનું ટાળે છે, અને અમને ટેમ્પલેટ એક્સપ્રેશન્સમાં સીધો સંદર્ભ આપવા દે છે કારણ કે તે માન્ય JavaScript આઇડેન્ટિફાયર છે:
 
 <div class="composition-api">
 
@@ -213,77 +213,77 @@ export default {
 <span>{{ greetingMessage }}</span>
 ```
 
-Technically, you can also use camelCase when passing props to a child component (except in [in-DOM templates](/guide/essentials/component-basics#in-dom-template-parsing-caveats)). However, the convention is using kebab-case in all cases to align with HTML attributes:
+તકનીકી રીતે, તમે ચાઇલ્ડ કમ્પોનન્ટમાં પ્રોપ્સ પાસ કરતી વખતે camelCase નો ઉપયોગ પણ કરી શકો છો ([in-DOM templates](/guide/essentials/component-basics#in-dom-template-parsing-caveats) સિવાય). જો કે, સંમેલન (convention) એ HTML એટ્રિબ્યુટ્સ સાથે સંરેખિત થવા માટે તમામ કેસોમાં kebab-case નો ઉપયોગ કરવાનું છે:
 
 ```vue-html
-<MyComponent greeting-message="hello" />
+<MyComponent greeting-message="હેલો" />
 ```
 
-We use [PascalCase for component tags](/guide/components/registration#component-name-casing) when possible because it improves template readability by differentiating Vue components from native elements. However, there isn't as much practical benefit in using camelCase when passing props, so we choose to follow each language's conventions.
+જ્યારે શક્ય હોય ત્યારે અમે [કમ્પોનન્ટ ટેગ્સ માટે PascalCase](/guide/components/registration#component-name-casing) નો ઉપયોગ કરીએ છીએ કારણ કે તે નેટિવ એલિમેન્ટ્સ થી Vue કમ્પોનન્ટ્સને પ્રભેદિત (differentiating) કરીને ટેમ્પલેટની વાંચનક્ષમતા વધારે છે. જો કે, પ્રોપ્સ પસાર કરતી વખતે camelCase નો ઉપયોગ કરવાનો એટલો વ્યવહારુ ફાયદો નથી, તેથી અમે દરેક ભાષાના સંમેલનોને અનુસરવાનું પસંદ કરીએ છીએ.
 
-### Static vs. Dynamic Props {#static-vs-dynamic-props}
+### સ્ટેટિક વિરુદ્ધ ડાયનેમિક પ્રોપ્સ {#static-vs-dynamic-props}
 
-So far, you've seen props passed as static values, like in:
+અત્યાર સુધી, તમે પ્રોપ્સને સ્ટેટિક વેલ્યુસ તરીકે પસાર થતા જોયા હશે, જેમ કે:
 
 ```vue-html
-<BlogPost title="My journey with Vue" />
+<BlogPost title="Vue સાથેની મારી સફર" />
 ```
 
-You've also seen props assigned dynamically with `v-bind` or its `:` shortcut, such as in:
+તમે `v-bind` અથવા તેના ટૂંકાક્ષર `:` સાથે ગતિશીલ રીતે અસાઇન કરાયેલા પ્રોપ્સ પણ જોયા છે, જેમ કે:
 
 ```vue-html
-<!-- Dynamically assign the value of a variable -->
+<!-- વેરિએબલની વેલ્યુ ડાયનેમિકલી અસાઇન કરો -->
 <BlogPost :title="post.title" />
 
-<!-- Dynamically assign the value of a complex expression -->
+<!-- જટિલ એક્સપ્રેશનની વેલ્યુ ડાયનેમિકલી અસાઇન કરો -->
 <BlogPost :title="post.title + ' by ' + post.author.name" />
 ```
 
-### Passing Different Value Types {#passing-different-value-types}
+### વિવિધ પ્રકારના મૂલ્યો પાસ કરવા {#passing-different-value-types}
 
-In the two examples above, we happen to pass string values, but _any_ type of value can be passed to a prop.
+ઉપરના બે ઉદાહરણોમાં, અમે સ્ટ્રિંગ વેલ્યુ પાસ કરીએ છીએ, પરંતુ પ્રોપમાં _કોઈપણ_ પ્રકારની વેલ્યુ પાસ કરી શકાય છે.
 
-#### Number {#number}
+#### નંબર (Number) {#number}
 
 ```vue-html
-<!-- Even though `42` is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.       -->
+<!-- ભલે `42` સ્ટેટિક છે, તો પણ આપણને Vue ને જણાવવા માટે v-bind ની જરૂર છે કે -->
+<!-- આ સ્ટ્રિંગને બદલે JavaScript એક્સપ્રેશન છે. -->
 <BlogPost :likes="42" />
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- વેરિએબલની વેલ્યુ ડાયનેમિકલી અસાઇન કરો. -->
 <BlogPost :likes="post.likes" />
 ```
 
-#### Boolean {#boolean}
+#### બુલિયન (Boolean) {#boolean}
 
 ```vue-html
-<!-- Including the prop with no value will imply `true`. -->
+<!-- કોઈ વેલ્યુ વગર પ્રોપનો સમાવેશ કરવાથી `true` સૂચિત થશે. -->
 <BlogPost is-published />
 
-<!-- Even though `false` is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.          -->
+<!-- ભલે `false` સ્ટેટિક છે, તો પણ આપણને Vue ને જણાવવા માટે v-bind ની જરૂર છે કે -->
+<!-- આ સ્ટ્રિંગને બદલે JavaScript એક્સપ્રેશન છે. -->
 <BlogPost :is-published="false" />
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- વેરિએબલની વેલ્યુ ડાયનેમિકલી અસાઇન કરો. -->
 <BlogPost :is-published="post.isPublished" />
 ```
 
-#### Array {#array}
+#### એરે (Array) {#array}
 
 ```vue-html
-<!-- Even though the array is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.            -->
+<!-- ભલે એરે સ્ટેટિક છે, તો પણ આપણને Vue ને જણાવવા માટે v-bind ની જરૂર છે કે -->
+<!-- આ સ્ટ્રિંગને બદલે JavaScript એક્સપ્રેશન છે. -->
 <BlogPost :comment-ids="[234, 266, 273]" />
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- વેરિએબલની વેલ્યુ ડાયનેમિકલી અસાઇન કરો. -->
 <BlogPost :comment-ids="post.commentIds" />
 ```
 
-#### Object {#object}
+#### ઓબ્જેક્ટ (Object) {#object}
 
 ```vue-html
-<!-- Even though the object is static, we need v-bind to tell Vue that -->
-<!-- this is a JavaScript expression rather than a string.             -->
+<!-- ભલે ઓબ્જેક્ટ સ્ટેટિક છે, તો પણ આપણને Vue ને જણાવવા માટે v-bind ની જરૂર છે કે -->
+<!-- આ સ્ટ્રિંગને બદલે JavaScript એક્સપ્રેશન છે. -->
 <BlogPost
   :author="{
     name: 'Veronica',
@@ -291,13 +291,13 @@ In the two examples above, we happen to pass string values, but _any_ type of va
   }"
  />
 
-<!-- Dynamically assign to the value of a variable. -->
+<!-- વેરિએબલની વેલ્યુ ડાયનેમિકલી અસાઇન કરો. -->
 <BlogPost :author="post.author" />
 ```
 
-### Binding Multiple Properties Using an Object {#binding-multiple-properties-using-an-object}
+### ઓબ્જેક્ટનો ઉપયોગ કરીને બહુવિધ પ્રોપર્ટીઝ બાંધવી {#binding-multiple-properties-using-an-object}
 
-If you want to pass all the properties of an object as props, you can use [`v-bind` without an argument](/guide/essentials/template-syntax#dynamically-binding-multiple-attributes) (`v-bind` instead of `:prop-name`). For example, given a `post` object:
+જો તમે ઓબ્જેક્ટની તમામ પ્રોપર્ટીઝને પ્રોપ્સ તરીકે પાસ કરવા માંગો છો, તો તમે [આર્ગ્યુમેન્ટ વગર `v-bind`](/guide/essentials/template-syntax#dynamically-binding-multiple-attributes) નો ઉપયોગ કરી શકો છો (`:prop-name` ને બદલે `v-bind`). ઉદાહરણ તરીકે, આપેલ `post` ઓબ્જેક્ટ:
 
 <div class="options-api">
 
@@ -307,7 +307,7 @@ export default {
     return {
       post: {
         id: 1,
-        title: 'My Journey with Vue'
+        title: 'Vue સાથેની મારી સફર'
       }
     }
   }
@@ -320,36 +320,36 @@ export default {
 ```js
 const post = {
   id: 1,
-  title: 'My Journey with Vue'
+  title: 'Vue સાથેની મારી સફર'
 }
 ```
 
 </div>
 
-The following template:
+નીચેનું ટેમ્પલેટ:
 
 ```vue-html
 <BlogPost v-bind="post" />
 ```
 
-Will be equivalent to:
+આની સમકક્ષ હશે:
 
 ```vue-html
 <BlogPost :id="post.id" :title="post.title" />
 ```
 
-## One-Way Data Flow {#one-way-data-flow}
+## વન-વે ડેટા ફ્લો (One-Way Data Flow) {#one-way-data-flow}
 
-All props form a **one-way-down binding** between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.
+બધા પ્રોપ્સ ચાઇલ્ડ પ્રોપર્ટી અને પેરેન્ટ પ્રોપર્ટી વચ્ચે **એક-માર્ગી-ડાઉન બાઇન્ડિંગ (one-way-down binding)** બનાવે છે: જ્યારે પેરેન્ટ પ્રોપર્ટી અપડેટ થાય છે, ત્યારે તે ચાઇલ્ડ પાસે નીચે વહેશે, પરંતુ બીજી રીતે નહીં. આ ચાઇલ્ડ કમ્પોનન્ટ્સને અકસ્માતે પેરેન્ટના સ્ટેટને મ્યુટેટ કરવાથી અટકાવે છે, જે તમારી એપ્લિકેશનના ડેટા ફ્લોને સમજવામાં મુશ્કેલ બનાવી શકે છે.
 
-In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console:
+વધુમાં, જ્યારે પણ પેરેન્ટ કમ્પોનન્ટ અપડેટ થાય છે, ત્યારે ચાઇલ્ડ કમ્પોનન્ટના તમામ પ્રોપ્સ નવીનતમ વેલ્યુ સાથે રિફ્રેશ થશે. આનો અર્થ એ છે કે તમારે ચાઇલ્ડ કમ્પોનન્ટની અંદર પ્રોપને મ્યુટેટ કરવાનો પ્રયાસ કરવો જોઈએ **નહીં**. જો તમે કરો છો, તો Vue તમને કન્સોલમાં વોર્નિંગ આપશે:
 
 <div class="composition-api">
 
 ```js
 const props = defineProps(['foo'])
 
-// ❌ warning, props are readonly!
+// ❌ ચેતવણી, પ્રોપ્સ ફક્ત વાંચવા માટે છે!
 props.foo = 'bar'
 ```
 
@@ -360,7 +360,7 @@ props.foo = 'bar'
 export default {
   props: ['foo'],
   created() {
-    // ❌ warning, props are readonly!
+    // ❌ ચેતવણી, પ્રોપ્સ ફક્ત વાંચવા માટે છે!
     this.foo = 'bar'
   }
 }
@@ -368,17 +368,17 @@ export default {
 
 </div>
 
-There are usually two cases where it's tempting to mutate a prop:
+સામાન્ય રીતે એવા બે કિસ્સાઓ હોય છે જ્યાં પ્રોપ ને મ્યુટેટ કરવાની લાલચ હોય છે:
 
-1. **The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.** In this case, it's best to define a local data property that uses the prop as its initial value:
+1. **પ્રોપનો ઉપયોગ પ્રારંભિક વેલ્યુ પાસ કરવા માટે થાય છે; ચાઇલ્ડ કમ્પોનન્ટ પછીથી તેને લોકલ ડેટા પ્રોપર્ટી તરીકે વાપરવા માંગે છે.** આ કિસ્સામાં, લોકલ ડેટા પ્રોપર્ટીને વ્યાખ્યાયિત કરવી શ્રેષ્ઠ છે જે પ્રોપનો ઉપયોગ તેની પ્રારંભિક વેલ્યુ તરીકે કરે છે:
 
    <div class="composition-api">
 
    ```js
    const props = defineProps(['initialCounter'])
 
-   // counter only uses props.initialCounter as the initial value;
-   // it is disconnected from future prop updates.
+   // કાઉન્ટર ફક્ત પ્રારંભિક વેલ્યુ તરીકે props.initialCounter નો ઉપયોગ કરે છે;
+   // તે ભાવિ પ્રોપ અપડેટ્સથી ડિસ્કનેક્ટ (disconnected) છે.
    const counter = ref(props.initialCounter)
    ```
 
@@ -390,8 +390,8 @@ There are usually two cases where it's tempting to mutate a prop:
      props: ['initialCounter'],
      data() {
        return {
-         // counter only uses this.initialCounter as the initial value;
-         // it is disconnected from future prop updates.
+         // કાઉન્ટર ફક્ત પ્રારંભિક વેલ્યુ તરીકે props.initialCounter નો ઉપયોગ કરે છે;
+         // તે ભાવિ પ્રોપ અપડેટ્સથી ડિસ્કનેક્ટ (disconnected) છે.
          counter: this.initialCounter
        }
      }
@@ -400,14 +400,14 @@ There are usually two cases where it's tempting to mutate a prop:
 
    </div>
 
-2. **The prop is passed in as a raw value that needs to be transformed.** In this case, it's best to define a computed property using the prop's value:
+2. **પ્રોપને કાચા (raw) વેલ્યુ તરીકે પાસ કરવામાં આવે છે જેને ટ્રાન્સફોર્મ કરવાની જરૂર છે.** આ કિસ્સામાં, પ્રોપની વેલ્યુનો ઉપયોગ કરીને કમ્પ્યુટેડ પ્રોપર્ટીને વ્યાખ્યાયિત કરવી શ્રેષ્ઠ છે:
 
    <div class="composition-api">
 
    ```js
    const props = defineProps(['size'])
 
-   // computed property that auto-updates when the prop changes
+   // કમ્પ્યુટેડ પ્રોપર્ટી જે પ્રોપ બદલાય ત્યારે ઓટો-અપડેટ થાય છે
    const normalizedSize = computed(() => props.size.trim().toLowerCase())
    ```
 
@@ -418,7 +418,7 @@ There are usually two cases where it's tempting to mutate a prop:
    export default {
      props: ['size'],
      computed: {
-       // computed property that auto-updates when the prop changes
+       // કમ્પ્યુટેડ પ્રોપર્ટી જે પ્રોપ બદલાય ત્યારે ઓટો-અપડેટ થાય છે
        normalizedSize() {
          return this.size.trim().toLowerCase()
        }
@@ -428,74 +428,74 @@ There are usually two cases where it's tempting to mutate a prop:
 
    </div>
 
-### Mutating Object / Array Props {#mutating-object-array-props}
+### ઓબ્જેક્ટ / એરે પ્રોપ્સ ને મ્યુટેટ કરવા {#mutating-object-array-props}
 
-When objects and arrays are passed as props, while the child component cannot mutate the prop binding, it **will** be able to mutate the object or array's nested properties. This is because in JavaScript objects and arrays are passed by reference, and it is unreasonably expensive for Vue to prevent such mutations.
+જ્યારે ઓબ્જેક્ટ્સ અને એરેને પ્રોપ્સ તરીકે પાસ કરવામાં આવે છે, ત્યારે ચાઇલ્ડ કમ્પોનન્ટ પ્રોપ બાઇન્ડિંગને મ્યુટેટ કરી શકતું નથી, પરંતુ તે ઓબ્જેક્ટ અથવા એરેની નેસ્ટેડ પ્રોપર્ટીઝને મ્યુટેટ કરવા માટે સક્ષમ **હશે**. આ એટલા માટે છે કારણ કે JavaScript માં ઓબ્જેક્ટ્સ અને એરે સંદર્ભ (reference) દ્વારા પાસ કરવામાં આવે છે, અને Vue માટે આવા મ્યુટેશનને રોકવા અત્યંત મોંઘા છે.
 
-The main drawback of such mutations is that it allows the child component to affect parent state in a way that isn't obvious to the parent component, potentially making it more difficult to reason about the data flow in the future. As a best practice, you should avoid such mutations unless the parent and child are tightly coupled by design. In most cases, the child should [emit an event](/guide/components/events) to let the parent perform the mutation.
+આવા મ્યુટેશનનો મુખ્ય ગેરલાભ એ છે કે તે ચાઇલ્ડ કમ્પોનન્ટને પેરેન્ટ સ્ટેટને એવી રીતે અસર કરવાની મંજૂરી આપે છે જે પેરેન્ટ કમ્પોનન્ટ માટે સ્પષ્ટ હોતું નથી, સંભવિતપણે ભવિષ્યમાં ડેટા ફ્લો વિશે તર્ક કરવાનું વધુ મુશ્કેલ બનાવે છે. શ્રેષ્ઠ પ્રેક્ટિસ તરીકે, તમારે આવા મ્યુટેશન ટાળવા જોઈએ સિવાય કે પેરેન્ટ અને ચાઇલ્ડ ડિઝાઇન દ્વારા ચુસ્તપણે જોડાયેલા (tightly coupled) હોય. મોટાભાગના કિસ્સાઓમાં, ચાઇલ્ડે પેરેન્ટને મ્યુટેશન કરવા દેવા માટે [ઇવેન્ટ મોકલવી (emit)](/guide/components/events) જોઈએ.
 
-## Prop Validation {#prop-validation}
+## પ્રોપ વેલિડેશન (Prop Validation) {#prop-validation}
 
-Components can specify requirements for their props, such as the types you've already seen. If a requirement is not met, Vue will warn you in the browser's JavaScript console. This is especially useful when developing a component that is intended to be used by others.
+કમ્પોનન્ટ્સ તેમના પ્રોપ્સ માટે જરૂરિયાતો સ્પષ્ટ કરી શકે છે, જેમ કે તમે પહેલાથી જોયેલા ટાઇપ્સ. જો કોઈ જરૂરિયાત પૂરી ન થાય, તો Vue તમને બ્રાઉઝરના JavaScript કન્સોલમાં ચેતવણી આપશે. આ ખાસ કરીને ત્યારે ઉપયોગી છે જ્યારે તે ઘટક વિકસાવતી વખતે જે અન્ય લોકો દ્વારા ઉપયોગમાં લેવાનો હેતુ હોય.
 
-To specify prop validations, you can provide an object with validation requirements to the <span class="composition-api">`defineProps()` macro</span><span class="options-api">`props` option</span>, instead of an array of strings. For example:
+પ્રોપ વેલિડેશન સ્પષ્ટ કરવા માટે, તમે સ્ટ્રિંગ્સના એરેને બદલે, <span class="composition-api">`defineProps()` મેક્રો</span><span class="options-api">`props` ઓપ્શન</span> માટે વેલિડેશન જરૂરિયાતો સાથે ઓબ્જેક્ટ પ્રદાન કરી શકો છો. ઉદાહરણ તરીકે:
 
 <div class="composition-api">
 
 ```js
 defineProps({
-  // Basic type check
-  //  (`null` and `undefined` values will allow any type)
+  // બેઝિક ટાઇપ ચેક
+  // (`null` અને `undefined` વેલ્યુ કોઈપણ ટાઇપ ને સ્વીકારશે)
   propA: Number,
-  // Multiple possible types
+  // બહુવિધ શક્ય ટાઇપ્સ
   propB: [String, Number],
-  // Required string
+  // જરૂરી સ્ટ્રિંગ
   propC: {
     type: String,
     required: true
   },
-  // Required but nullable string
+  // જરૂરી પરંતુ નલેબલ (nullable) સ્ટ્રિંગ
   propD: {
     type: [String, null],
     required: true
   },
-  // Number with a default value
+  // ડિફોલ્ટ વેલ્યુ સાથેનો નંબર
   propE: {
     type: Number,
     default: 100
   },
-  // Object with a default value
+  // ડિફોલ્ટ વેલ્યુ સાથેનો ઓબ્જેક્ટ
   propF: {
     type: Object,
-    // Object or array defaults must be returned from
-    // a factory function. The function receives the raw
-    // props received by the component as the argument.
+    // ઓબ્જેક્ટ અથવા એરે ડિફોલ્ટ ફેક્ટરી ફંક્શનમાંથી
+    // પરત કરવા આવશ્યક છે. ફંક્શન આર્ગ્યુમેન્ટ તરીકે
+    // કમ્પોનન્ટ દ્વારા પ્રાપ્ત પાચા પ્રોપ્સ (raw props) મેળવે છે.
     default(rawProps) {
-      return { message: 'hello' }
+      return { message: 'હેલો' }
     }
   },
-  // Custom validator function
-  // full props passed as 2nd argument in 3.4+
+  // કસ્ટમ વેલિડેટર ફંક્શન
+  // સંપૂર્ણ પ્રોપ્સ 3.4+ માં બીજી આર્ગ્યુમેન્ટ તરીકે પાસ થાય છે
   propG: {
     validator(value, props) {
-      // The value must match one of these strings
+      // વેલ્યુ આ સ્ટ્રિંગ્સમાંથી એક સાથે મેળ ખાતી હોવી જોઈએ
       return ['success', 'warning', 'danger'].includes(value)
     }
   },
-  // Function with a default value
+  // ડિફોલ્ટ વેલ્યુ સાથેનું ફંક્શન
   propH: {
     type: Function,
-    // Unlike object or array default, this is not a factory
-    // function - this is a function to serve as a default value
+    // ઓબ્જેક્ટ અથવા એરે ડિફોલ્ટથી વિપરીત, આ ફેક્ટરી ફંક્શન નથી
+    // - આ ડિફોલ્ટ વેલ્યુ તરીકે સેવા આપવા માટેનું ફંક્શન છે
     default() {
-      return 'Default function'
+      return 'ડિફોલ્ટ ફંક્શન'
     }
   }
 })
 ```
 
 :::tip
-Code inside the `defineProps()` argument **cannot access other variables declared in `<script setup>`**, because the entire expression is moved to an outer function scope when compiled.
+`defineProps()` આર્ગ્યુમેન્ટની અંદરનો કોડ **`<script setup>` માં જાહેર કરાયેલા અન્ય વેરિએબલ્સને એક્સેસ કરી શકતો નથી**, કારણ કે જ્યારે કમ્પાઇલ કરવામાં આવે ત્યારે આખું એક્સપ્રેશન બહારના ફંક્શન સ્કોપમાં ખસેડવામાં આવે છે.
 :::
 
 </div>
@@ -504,51 +504,51 @@ Code inside the `defineProps()` argument **cannot access other variables declare
 ```js
 export default {
   props: {
-    // Basic type check
-    //  (`null` and `undefined` values will allow any type)
+    // બેઝિક ટાઇપ ચેક
+    // (`null` અને `undefined` વેલ્યુ કોઈપણ ટાઇપ ને સ્વીકારશે)
     propA: Number,
-    // Multiple possible types
+    // બહુવિધ શક્ય ટાઇપ્સ
     propB: [String, Number],
-    // Required string
+    // જરૂરી સ્ટ્રિંગ
     propC: {
       type: String,
       required: true
     },
-    // Required but nullable string
+    // જરૂરી પરંતુ નલેબલ (nullable) સ્ટ્રિંગ
     propD: {
       type: [String, null],
       required: true
     },
-    // Number with a default value
+    // ડિફોલ્ટ વેલ્યુ સાથેનો નંબર
     propE: {
       type: Number,
       default: 100
     },
-    // Object with a default value
+    // ડિફોલ્ટ વેલ્યુ સાથેનો ઓબ્જેક્ટ
     propF: {
       type: Object,
-      // Object or array defaults must be returned from
-      // a factory function. The function receives the raw
-      // props received by the component as the argument.
+      // ઓબ્જેક્ટ અથવા એરે ડિફોલ્ટ ફેક્ટરી ફંક્શનમાંથી
+      // પરત કરવા આવશ્યક છે. ફંક્શન આર્ગ્યુમેન્ટ તરીકે
+      // કમ્પોનન્ટ દ્વારા પ્રાપ્ત પાચા પ્રોપ્સ (raw props) મેળવે છે.
       default(rawProps) {
-        return { message: 'hello' }
+        return { message: 'હેલો' }
       }
     },
-    // Custom validator function
-    // full props passed as 2nd argument in 3.4+
+    // કસ્ટમ વેલિડેટર ફંક્શન
+    // સંપૂર્ણ પ્રોપ્સ 3.4+ માં બીજી આર્ગ્યુમેન્ટ તરીકે પાસ થાય છે
     propG: {
       validator(value, props) {
-        // The value must match one of these strings
+        // વેલ્યુ આ સ્ટ્રિંગ્સમાંથી એક સાથે મેળ ખાતી હોવી જોઈએ
         return ['success', 'warning', 'danger'].includes(value)
       }
     },
-    // Function with a default value
+    // ડિફોલ્ટ વેલ્યુ સાથેનું ફંક્શન
     propH: {
       type: Function,
-      // Unlike object or array default, this is not a factory
-      // function - this is a function to serve as a default value
+      // ઓબ્જેક્ટ અથવા એરે ડિફોલ્ટથી વિપરીત, આ ફેક્ટરી ફંક્શન નથી
+      // - આ ડિફોલ્ટ વેલ્યુ તરીકે સેવા આપવા માટેનું ફંક્શન છે
       default() {
-        return 'Default function'
+        return 'ડિફોલ્ટ ફંક્શન'
       }
     }
   }
@@ -557,34 +557,34 @@ export default {
 
 </div>
 
-Additional details:
+વધારાની વિગતો:
 
-- All props are optional by default, unless `required: true` is specified.
+- જ્યાં સુધી `required: true` સ્પષ્ટ કરવામાં ન આવે ત્યાં સુધી બધા પ્રોપ્સ મૂળભૂત રીતે વૈકલ્પિક (optional) છે.
 
-- An absent optional prop other than `Boolean` will have `undefined` value.
+- `Boolean` સિવાયના ગેરહાજર વૈકલ્પિક પ્રોપમાં `undefined` વેલ્યુ હશે.
 
-- The `Boolean` absent props will be cast to `false`. You can change this by setting a `default` for it — i.e.: `default: undefined` to behave as a non-Boolean prop.
+- `Boolean` ગેરહાજર પ્રોપ્સ `false` માં કાસ્ટ કરવામાં આવશે. તમે તેના માટે `default` સેટ કરીને આ બદલી શકો છો — એટલે કે: બિન-બુલિયન પ્રોપ તરીકે વર્તવા માટે `default: undefined`.
 
-- If a `default` value is specified, it will be used if the resolved prop value is `undefined` - this includes both when the prop is absent, or an explicit `undefined` value is passed.
+- જો `default` વેલ્યુ સ્પષ્ટ કરવામાં આવે છે, તો જો રિઝોલ્વ થયેલ પ્રોપ વેલ્યુ `undefined` હોય તો તેનો ઉપયોગ કરવામાં આવશે - આમાં પ્રોપ ગેરહાજર હોય અથવા સ્પષ્ટ `undefined` વેલ્યુ પાસ કરવામાં આવે તે બંને કિસ્સાઓનો સમાવેશ થાય છે.
 
-When prop validation fails, Vue will produce a console warning (if using the development build).
+જ્યારે પ્રોપ વેલિડેશન નિષ્ફળ જાય છે, ત્યારે Vue કન્સોલ વોર્નિંગ આપશે (જો ડેવલપમેન્ટ બિલ્ડનો ઉપયોગ કરી રહ્યા હોય).
 
 <div class="composition-api">
 
-If using [Type-based props declarations](/api/sfc-script-setup#type-only-props-emit-declarations) <sup class="vt-badge ts" />, Vue will try its best to compile the type annotations into equivalent runtime prop declarations. For example, `defineProps<{ msg: string }>` will be compiled into `{ msg: { type: String, required: true }}`.
+જો [Type-based props declarations](/api/sfc-script-setup#type-only-props-emit-declarations) <sup class="vt-badge ts" /> નો ઉપયોગ કરવામાં આવે તો, Vue ટાઈપ એનોટેશન્સ ને સમકક્ષ રનટાઇમ પ્રોપ ડિક્લેરેશન માં કમ્પાઇલ કરવાનો શ્રેષ્ઠ પ્રયાસ કરશે. ઉદાહરણ તરીકે, `defineProps<{ msg: string }>` ને `{ msg: { type: String, required: true }}` માં કમ્પાઇલ કરવામાં આવશે.
 
 </div>
 <div class="options-api">
 
-::: tip Note
-Note that props are validated **before** a component instance is created, so instance properties (e.g. `data`, `computed`, etc.) will not be available inside `default` or `validator` functions.
+::: tip નોંધ
+નોંધ કરો કે પ્રોપ્સ કમ્પોનન્ટ ઇન્સ્ટન્સ બનાવવામાં આવે તે **પહેલાં** વેલિડેટ કરવામાં આવે છે, તેથી ઇન્સ્ટન્સ પ્રોપર્ટીઝ (દા.ત. `data`, `computed`, વગેરે) `default` અથવા `validator` ફંક્શનની અંદર ઉપલબ્ધ રહેશે નહીં.
 :::
 
 </div>
 
-### Runtime Type Checks {#runtime-type-checks}
+### રનટાઈમ ટાઈપ ચેક (Runtime Type Checks) {#runtime-type-checks}
 
-The `type` can be one of the following native constructors:
+`type` નીચેના નેટિવ કન્સ્ટ્રક્ટરોમાંથી એક હોઈ શકે છે:
 
 - `String`
 - `Number`
@@ -596,7 +596,7 @@ The `type` can be one of the following native constructors:
 - `Symbol`
 - `Error`
 
-In addition, `type` can also be a custom class or constructor function and the assertion will be made with an `instanceof` check. For example, given the following class:
+વધુમાં, `type` કસ્ટમ ક્લાસ અથવા કન્સ્ટ્રક્ટર ફંક્શન પણ હોઈ શકે છે અને એસર્શન (assertion) `instanceof` ચેક સાથે કરવામાં આવશે. ઉદાહરણ તરીકે, આપેલ ક્લાસ:
 
 ```js
 class Person {
@@ -607,7 +607,7 @@ class Person {
 }
 ```
 
-You could use it as a prop's type:
+તમે તેને પ્રોપના ટાઇપ તરીકે ઉપયોગ કરી શકો છો:
 
 <div class="composition-api">
 
@@ -630,11 +630,11 @@ export default {
 
 </div>
 
-Vue will use `instanceof Person` to validate whether the value of the `author` prop is indeed an instance of the `Person` class.
+Vue `author` પ્રોપની વેલ્યુ ખરેખર `Person` ક્લાસનો ઇન્સ્ટન્સ છે કે કેમ તે ચકાસવા માટે `instanceof Person` નો ઉપયોગ કરશે.
 
-### Nullable Type {#nullable-type}
+### નલેબલ ટાઈપ (Nullable Type) {#nullable-type}
 
-If the type is required but nullable, you can use the array syntax that includes `null`:
+જો ટાઇપ જરૂરી છે પણ નલેબલ છે, તો તમે એરે સિન્ટેક્સનો ઉપયોગ કરી શકો છો જેમાં `null` શામેલ છે:
 
 <div class="composition-api">
 
@@ -663,11 +663,11 @@ export default {
 
 </div>
 
-Note that if `type` is just `null` without using the array syntax, it will allow any type.
+નોંધ કરો કે જો એરે સિન્ટેક્સનો ઉપયોગ કર્યા વગર `type` માત્ર `null` હોય, તો તે કોઈપણ પ્રકારને મંજૂરી આપશે.
 
-## Boolean Casting {#boolean-casting}
+## બુલિયન કાસ્ટિંગ (Boolean Casting) {#boolean-casting}
 
-Props with `Boolean` type have special casting rules to mimic the behavior of native boolean attributes. Given a `<MyComponent>` with the following declaration:
+`Boolean` ટાઇપ ધરાવતા પ્રોપ્સ પાસે નેટિવ બુલિયન એટ્રિબ્યુટ્સના વર્તનને મીમિક (mimic) કરવા માટે ખાસ કાસ્ટિંગ નિયમો છે. નીચેની ડિક્લેરેશન સાથે `<MyComponent>` આપેલ છે:
 
 <div class="composition-api">
 
@@ -690,37 +690,37 @@ export default {
 
 </div>
 
-The component can be used like this:
+કમ્પોનન્ટનો આ રીતે ઉપયોગ કરી શકાય છે:
 
 ```vue-html
-<!-- equivalent of passing :disabled="true" -->
+<!-- :disabled="true" પાસ કરવાને સમકક્ષ -->
 <MyComponent disabled />
 
-<!-- equivalent of passing :disabled="false" -->
+<!-- :disabled="false" પાસ કરવાને સમકક્ષ -->
 <MyComponent />
 ```
 
-When a prop is declared to allow multiple types, the casting rules for `Boolean` will also be applied. However, there is an edge when both `String` and `Boolean` are allowed - the Boolean casting rule only applies if Boolean appears before String:
+જ્યારે પ્રોપને બહુવિધ ટાઇપ્સને મંજૂરી આપવા માટે જાહેર કરવામાં આવે છે, ત્યારે `Boolean` માટે કાસ્ટિંગ નિયમો પણ લાગુ કરવામાં આવશે. જો કે, જ્યારે `String` અને `Boolean` બંનેને મંજૂરી આપવામાં આવે ત્યારે એક તફાવત (edge) હોય છે - બુલિયન કાસ્ટિંગ નિયમ ત્યારે જ લાગુ પડે છે જો Boolean, String ની પહેલા આવે:
 
 <div class="composition-api">
 
 ```js
-// disabled will be casted to true
+// disabled ને true માં કાસ્ટ કરવામાં આવશે
 defineProps({
   disabled: [Boolean, Number]
 })
 
-// disabled will be casted to true
+// disabled ને true માં કાસ્ટ કરવામાં આવશે
 defineProps({
   disabled: [Boolean, String]
 })
 
-// disabled will be casted to true
+// disabled ને true માં કાસ્ટ કરવામાં આવશે
 defineProps({
   disabled: [Number, Boolean]
 })
 
-// disabled will be parsed as an empty string (disabled="")
+// disabled ને ખાલી સ્ટ્રિંગ તરીકે પાર્સ કરવામાં આવશે (disabled="")
 defineProps({
   disabled: [String, Boolean]
 })
@@ -730,28 +730,28 @@ defineProps({
 <div class="options-api">
 
 ```js
-// disabled will be casted to true
+// disabled ને true માં કાસ્ટ કરવામાં આવશે
 export default {
   props: {
     disabled: [Boolean, Number]
   }
 }
 
-// disabled will be casted to true
+// disabled ને true માં કાસ્ટ કરવામાં આવશે
 export default {
   props: {
     disabled: [Boolean, String]
   }
 }
 
-// disabled will be casted to true
+// disabled ને true માં કાસ્ટ કરવામાં આવશે
 export default {
   props: {
     disabled: [Number, Boolean]
   }
 }
 
-// disabled will be parsed as an empty string (disabled="")
+// disabled ને ખાલી સ્ટ્રિંગ તરીકે પાર્સ કરવામાં આવશે (disabled="")
 export default {
   props: {
     disabled: [String, Boolean]

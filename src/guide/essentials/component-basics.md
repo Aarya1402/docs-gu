@@ -1,20 +1,20 @@
-# Components Basics {#components-basics}
+# કમ્પોનન્ટ્સના મૂળભૂત પાસાઓ (Components Basics) {#components-basics}
 
-<ScrimbaLink href="https://scrimba.com/links/vue-component-basics" title="Free Vue.js Components Basics Lesson" type="scrimba">
-  Watch an interactive video lesson on Scrimba
+<ScrimbaLink href="https://scrimba.com/links/vue-component-basics" title="ફ્રી Vue.js કમ્પોનન્ટ્સ લેસન" type="scrimba">
+  Scrimba પર ઇન્ટરેક્ટિવ વિડિઓ લેસન જુઓ
 </ScrimbaLink>
 
-Components allow us to split the UI into independent and reusable pieces, and think about each piece in isolation. It's common for an app to be organized into a tree of nested components:
+કમ્પોનન્ટ્સ આપણને UI ને સ્વતંત્ર અને પુનઃઉપયોગી ટુકડાઓમાં વિભાજિત કરવાની અને દરેક ટુકડા વિશે અલગથી વિચારવાની મંજૂરી આપે છે. એપ માટે નેસ્ટેડ કમ્પોનન્ટ્સના વૃક્ષ (tree) માં ગોઠવવું સામાન્ય છે:
 
-![Component Tree](./images/components.png)
+![કમ્પોનન્ટ એટલે ઘટક વૃક્ષ](./images/components.png)
 
 <!-- https://www.figma.com/file/qa7WHDQRWuEZNRs7iZRZSI/components -->
 
-This is very similar to how we nest native HTML elements, but Vue implements its own component model that allows us to encapsulate custom content and logic in each component. Vue also plays nicely with native Web Components. If you are curious about the relationship between Vue Components and native Web Components, [read more here](/guide/extras/web-components).
+આ આપણે નેટિવ HTML એલિમેન્ટ્સને કેવી રીતે નેસ્ટ કરીએ છીએ તેના જેવું જ છે, પરંતુ Vue તેનું પોતાનું કમ્પોનન્ટ મોડલ લાગુ કરે છે જે આપણને દરેક કમ્પોનન્ટમાં કસ્ટમ કન્ટેન્ટ અને લોજિકને એન્કેપ્સ્યુલેટ (encapsulate) કરવાની મંજૂરી આપે છે. Vue નેટિવ વેબ કમ્પોનન્ટ્સ (Web Components) સાથે પણ સારી રીતે કામ કરે છે. જો તમે Vue કમ્પોનન્ટ્સ અને નેટિવ વેબ કમ્પોનન્ટ્સ વચ્ચેના સંબંધ વિશે જાણવા માંગતા હો, તો [વધુ અહીં વાંચો](/guide/extras/web-components).
 
-## Defining a Component {#defining-a-component}
+## કમ્પોનન્ટ વ્યાખ્યાયિત કરવું {#defining-a-component}
 
-When using a build step, we typically define each Vue component in a dedicated file using the `.vue` extension - known as a [Single-File Component](/guide/scaling-up/sfc) (SFC for short):
+બિલ્ડ સ્ટેપનો ઉપયોગ કરતી વખતે, અમે સામાન્ય રીતે `.vue` એક્સ્ટેંશનનો ઉપયોગ કરીને સમર્પિત ફાઇલમાં દરેક Vue કમ્પોનન્ટને વ્યાખ્યાયિત કરીએ છીએ - જેને [સિંગલ-ફાઇલ કમ્પોનન્ટ (Single-File Component)](/guide/scaling-up/sfc) (ટૂંકમાં SFC) તરીકે ઓળખવામાં આવે છે:
 
 <div class="options-api">
 
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <button @click="count++">You clicked me {{ count }} times.</button>
+  <button @click="count++">તમે મને {{ count }} વાર ક્લિક કર્યો.</button>
 </template>
 ```
 
@@ -45,13 +45,13 @@ const count = ref(0)
 </script>
 
 <template>
-  <button @click="count++">You clicked me {{ count }} times.</button>
+  <button @click="count++">તમે મને {{ count }} વાર ક્લિક કર્યો.</button>
 </template>
 ```
 
 </div>
 
-When not using a build step, a Vue component can be defined as a plain JavaScript object containing Vue-specific options:
+બિલ્ડ સ્ટેપનો ઉપયોગ ન કરતી વખતે, Vue કમ્પોનન્ટને Vue-વિશિષ્ટ ઓપ્શન્સ ધરાવતા સાદા JavaScript ઓબ્જેક્ટ તરીકે વ્યાખ્યાયિત કરી શકાય છે:
 
 <div class="options-api">
 
@@ -64,7 +64,7 @@ export default {
   },
   template: `
     <button @click="count++">
-      You clicked me {{ count }} times.
+      તમે મને {{ count }} વાર ક્લિક કર્યો.
     </button>`
 }
 ```
@@ -82,26 +82,26 @@ export default {
   },
   template: `
     <button @click="count++">
-      You clicked me {{ count }} times.
+      તમે મને {{ count }} વાર ક્લિક કર્યો.
     </button>`
-  // Can also target an in-DOM template:
+  // in-DOM ટેમ્પલેટને પણ લક્ષ્ય બનાવી શકે છે:
   // template: '#my-template-element'
 }
 ```
 
 </div>
 
-The template is inlined as a JavaScript string here, which Vue will compile on the fly. You can also use an ID selector pointing to an element (usually native `<template>` elements) - Vue will use its content as the template source.
+ટેમ્પલેટ અહીં જાવાસ્ક્રિપ્ટ સ્ટ્રિંગ તરીકે ઇનલાઈન કરવામાં આવ્યું છે, જેને Vue ઉડતા-ઉડતા (on the fly) કમ્પાઇલ કરશે. તમે એલિમેન્ટ (સામાન્ય રીતે નેટિવ `<template>` એલિમેન્ટ્સ) તરફ નિર્દેશ કરતા ID સિલેક્ટરનો પણ ઉપયોગ કરી શકો છો - Vue તેના કન્ટેન્ટનો ટેમ્પલેટ સોર્સ તરીકે ઉપયોગ કરશે.
 
-The example above defines a single component and exports it as the default export of a `.js` file, but you can use named exports to export multiple components from the same file.
+ઉપરનું ઉદાહરણ સિંગલ કમ્પોનન્ટને વ્યાખ્યાયિત કરે છે અને તેને `.js` ફાઇલના ડિફોલ્ટ એક્સપોર્ટ તરીકે એક્સપોર્ટ કરે છે, પરંતુ તમે સમાન ફાઇલમાંથી બહુવિધ કમ્પોનન્ટ્સ એક્સપોર્ટ કરવા માટે નામવાળા એક્સપોર્ટ્સ (named exports) નો ઉપયોગ કરી શકો છો.
 
-## Using a Component {#using-a-component}
+## કમ્પોનન્ટનો ઉપયોગ કરવો {#using-a-component}
 
 :::tip
-We will be using SFC syntax for the rest of this guide - the concepts around components are the same regardless of whether you are using a build step or not. The [Examples](/examples/) section shows component usage in both scenarios.
+અમે આ માર્ગદર્શિકાના બાકીના ભાગ માટે SFC સિન્ટેક્સનો ઉપયોગ કરીશું - તમે બિલ્ડ સ્ટેપનો ઉપયોગ કરી રહ્યાં છો કે નહીં તેનાથી ધ્યાનમાં લીધા વગર કમ્પોનન્ટ્સ વિશેના ખ્યાલો સમાન છે. [ઉદાહરણો](/examples/) વિભાગ બંને સંજોગોમાં કમ્પોનન્ટનો વપરાશ દર્શાવે છે.
 :::
 
-To use a child component, we need to import it in the parent component. Assuming we placed our counter component inside a file called `ButtonCounter.vue`, the component will be exposed as the file's default export:
+ચાઇલ્ડ કમ્પોનન્ટનો ઉપયોગ કરવા માટે, આપણે તેને પેરેન્ટ કમ્પોનન્ટમાં ઇમ્પોર્ટ કરવાની જરૂર છે. ધારો કે આપણે આપણું કાઉન્ટર કમ્પોનન્ટ `ButtonCounter.vue` નામની ફાઇલની અંદર મૂક્યું છે, તો ઘટક ફાઇલના ડિફોલ્ટ એક્સપોર્ટ તરીકે એક્સપોઝ થશે:
 
 <div class="options-api">
 
@@ -117,12 +117,12 @@ export default {
 </script>
 
 <template>
-  <h1>Here is a child component!</h1>
+  <h1>અહીં એક ચાઇલ્ડ કમ્પોનન્ટ છે!</h1>
   <ButtonCounter />
 </template>
 ```
 
-To expose the imported component to our template, we need to [register](/guide/components/registration) it with the `components` option. The component will then be available as a tag using the key it is registered under.
+આપણા ટેમ્પલેટમાં ઇમ્પોર્ટ કરેલા કમ્પોનન્ટને એક્સપોઝ કરવા માટે, આપણે તેને `components` ઓપ્શન સાથે [રજીસ્ટર](/guide/components/registration) કરવાની જરૂર છે. કમ્પોનન્ટ તે જે કી હેઠળ નોંધાયેલ છે તે ટેગ તરીકે ઉપલબ્ધ થશે.
 
 </div>
 
@@ -134,21 +134,21 @@ import ButtonCounter from './ButtonCounter.vue'
 </script>
 
 <template>
-  <h1>Here is a child component!</h1>
+  <h1>અહીં એક ચાઇલ્ડ કમ્પોનન્ટ છે!</h1>
   <ButtonCounter />
 </template>
 ```
 
-With `<script setup>`, imported components are automatically made available to the template.
+`<script setup>` સાથે, ઇમ્પોર્ટ કરેલા ઘટકો ટેમ્પલેટ માટે આપમેળે ઉપલબ્ધ થાય છે.
 
 </div>
 
-It's also possible to globally register a component, making it available to all components in a given app without having to import it. The pros and cons of global vs. local registration is discussed in the dedicated [Component Registration](/guide/components/registration) section.
+કમ્પોનન્ટને ગ્લોબલી રજીસ્ટર કરવું પણ શક્ય છે, તેને ઇમ્પોર્ટ કર્યા વગર આપેલ એપના તમામ ઘટકો માટે ઉપલબ્ધ કરાવી શકાય છે. ગ્લોબલ વિરુદ્ધ લોકલ રજીસ્ટ્રેશનના ફાયદા અને ગેરફાયદાની ચર્ચા સમર્પિત [કમ્પોનન્ટ રજીસ્ટ્રેશન](/guide/components/registration) વિભાગમાં કરવામાં આવી છે.
 
-Components can be reused as many times as you want:
+કમ્પોનન્ટ્સનો તમે ઇચ્છો તેટલી વખત પુનઃઉપયોગ કરી શકાય છે:
 
 ```vue-html
-<h1>Here are many child components!</h1>
+<h1>અહીં ઘણા ચાઇલ્ડ કમ્પોનન્ટ્સ છે!</h1>
 <ButtonCounter />
 <ButtonCounter />
 <ButtonCounter />
@@ -156,35 +156,35 @@ Components can be reused as many times as you want:
 
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNqVUE1LxDAQ/StjLqusNHotcfHj4l8QcontLBtsJiGdiFL6301SdrEqyEJyeG9m3ps3k3gIoXlPKFqhxi7awDtN1gUfGR4Ts6cnn4gxwj56B5tGrtgyutEEoAk/6lCPe5MGhqmwnc9KhMRjuxCwFi3UrCk/JU/uGTC6MBjGglgdbnfPGBFM/s7QJ3QHO/TfxC+UzD21d72zPItU8uQrrsWvnKsT/ZW2N2wur45BI3KKdETlFlmphZsF58j/RgdQr3UJuO8G273daVFFtlstahngxSeoNezBIUzTYgPzDGwdjk1VkYvMj4jzF0nwsyQ=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNqVUE1LxDAQ/StjLqusNHotcfHj4l8QcontLBtsJiGdiFL6301SdrEqyEJyeG9m3ps3k3gIoXlPKFqhxi7awDtN1gUfGR4Ts6cnn4gxwj56B5tGrtgyutEEoAk/6lCPe5MGhqmwnc9KhMRjuxCwFi3UrCk/JU/uGTC6MBjGglgdbnfPGBFM/s7QJ3QHO/TfxC+UzD21d72zPItU8uQrrsWvnKsT/ZW2N2wur45BI3KKdETlFlmphZsF58j/RgdQr3UJuO8G273daVFFtlstahngxSeoNezBIUzTYgPzDGwdjk1VkYvMj4jzF0nwsyQ=)
 
 </div>
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNqVj91KAzEQhV/lmJsqlY3eSlr8ufEVhNys6ZQGNz8kE0GWfXez2SJUsdCLuZiZM9+ZM4qnGLvPQuJBqGySjYxMXOJWe+tiSIznwhz8SyieKWGfgsOqkyfTGbDSXsmFUG9rw+Ti0DPNHavD/faVEqGv5Xr/BXOwww4mVBNPnvOVklXTtKeO8qKhkj++4lb8+fL/mCMS7TEdAy6BtDfBZ65fVgA2s+L67uZMUEC9N0s8msGaj40W7Xa91qKtgbdQ0Ha0gyOM45E+TWDrKHeNIhfMr0DTN4U0me8=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNqVj91KAzEQhV/lmJsqlY3eSlr8ufEVhNys6ZQGNz8kE0GWfXez2SJUsdCLuZiZM9+ZM4qnGLvPQuJBqGySjYxMXOJWe+tiSIznwhz8SyieKWGfgsOqkyfTGbDSXsmFUG9rw+Ti0DPNHavD/faVEqGv5Xr/BXOwww4mVBNPnvOVklXTtKeO8qKhkj++4lb8+fL/mCMS7TEdAy6BtDfBZ65fVgA2s+L67uZMUEC9N0s8msGaj40W7Xa91qKtgbdQ0Ha0gyOM45E+TWDrKHeNIhfMr0DTN4U0me8=)
 
 </div>
 
-Notice that when clicking on the buttons, each one maintains its own, separate `count`. That's because each time you use a component, a new **instance** of it is created.
+નોંધ લો કે બટનો પર ક્લિક કરતી વખતે, દરેક તેનું પોતાનું, અલગ `count` જાળવી રાખે છે. તેનું કારણ એ છે કે જ્યારે પણ તમે કમ્પોનન્ટનો ઉપયોગ કરો છો, ત્યારે તેનો નવો **ઇન્સ્ટન્સ** બનાવવામાં આવે છે.
 
-In SFCs, it's recommended to use `PascalCase` tag names for child components to differentiate from native HTML elements. Although native HTML tag names are case-insensitive, Vue SFC is a compiled format so we are able to use case-sensitive tag names in it. We are also able to use `/>` to close a tag.
+SFC માં, નેટિવ HTML એલિમેન્ટ્સથી અલગ પાડવા માટે ચાઇલ્ડ કમ્પોનન્ટ્સ માટે `PascalCase` ટેગ નામોનો ઉપયોગ કરવાની ભલામણ કરવામાં આવે છે. જોકે નેટિવ HTML ટેગ નામો કેસ-ઇનસેન્સિટિવ (case-insensitive) છે, Vue SFC એ કમ્પાઇલ કરેલ ફોર્મેટ છે તેથી અમે તેમાં કેસ-સેન્સિટિવ ટેગ નામોનો ઉપયોગ કરવા સક્ષમ છીએ. અમે ટેગ બંધ કરવા માટે `/>` નો ઉપયોગ કરવા માટે પણ સક્ષમ છીએ.
 
-If you are authoring your templates directly in a DOM (e.g. as the content of a native `<template>` element), the template will be subject to the browser's native HTML parsing behavior. In such cases, you will need to use `kebab-case` and explicit closing tags for components:
+જો તમે તમારા ટેમ્પલેટ્સ સીધા DOM માં લખી રહ્યા છો (દા.ત. નેટિવ `<template>` એલિમેન્ટના કન્ટેન્ટ તરીકે), તો ટેમ્પલેટ બ્રાઉઝરના નેટિવ HTML પાર્સિંગ વર્તનને આધીન રહેશે. આવા કિસ્સાઓમાં, તમારે કમ્પોનન્ટ્સ માટે `kebab-case` અને સ્પષ્ટ બંધ ટેગ (closing tags) નો ઉપયોગ કરવાની જરૂર પડશે:
 
 ```vue-html
-<!-- if this template is written in the DOM -->
+<!-- જો આ ટેમ્પલેટ DOM માં લખાયેલ હોય -->
 <button-counter></button-counter>
 <button-counter></button-counter>
 <button-counter></button-counter>
 ```
 
-See [in-DOM template parsing caveats](#in-dom-template-parsing-caveats) for more details.
+વધુ વિગતો માટે [In-DOM ટેમ્પલેટ પાર્સિંગ સાવચેતીઓ](#in-dom-template-parsing-caveats) જુઓ.
 
-## Passing Props {#passing-props}
+## પ્રોપ્સ (Props) પાસ કરવા {#passing-props}
 
-If we are building a blog, we will likely need a component representing a blog post. We want all the blog posts to share the same visual layout, but with different content. Such a component won't be useful unless you can pass data to it, such as the title and content of the specific post we want to display. That's where props come in.
+જો આપણે બ્લોગ બનાવી રહ્યા છીએ, તો આપણને બ્લોગ પોસ્ટનું પ્રતિનિધિત્વ કરતા ઘટકની જરૂર પડશે. આપણે ઇચ્છીએ છીએ કે તમામ બ્લોગ પોસ્ટ સમાન વિઝ્યુઅલ લેઆઉટ શેર કરે, પરંતુ અલગ અલગ કન્ટેન્ટ સાથે. આવો કમ્પોનન્ટ ઉપયોગી થશે નહીં જ્યાં સુધી તમે તેને ડેટા પાસ ન કરી શકો, જેમ કે આપણે જે ચોક્કસ પોસ્ટ પ્રદર્શિત કરવા માંગીએ છીએ તેનું ટાઇટલ અને કન્ટેન્ટ. ત્યાં જ પ્રોપ્સ (props) કામમાં આવે છે.
 
-Props are custom attributes you can register on a component. To pass a title to our blog post component, we must declare it in the list of props this component accepts, using the <span class="options-api">[`props`](/api/options-state#props) option</span><span class="composition-api">[`defineProps`](/api/sfc-script-setup#defineprops-defineemits) macro</span>:
+પ્રોપ્સ એ કસ્ટમ એટ્રિબ્યુટ્સ છે જે તમે કમ્પોનન્ટ પર રજીસ્ટર કરી શકો છો. અમારી બ્લોગ પોસ્ટના ઘટકમાં ટાઇટલ પાસ કરવા માટે, અમે આ કમ્પોનન્ટ સ્વીકારે છે તે પ્રોપ્સની યાદીમાં <span class="options-api">[`props`](/api/options-state#props) ઓપ્શન</span><span class="composition-api">[`defineProps`](/api/sfc-script-setup#defineprops-defineemits) મેક્રો</span> નો ઉપયોગ કરીને તેને જાહેર કરવું જોઈએ:
 
 <div class="options-api">
 
@@ -200,7 +200,7 @@ export default {
 </template>
 ```
 
-When a value is passed to a prop attribute, it becomes a property on that component instance. The value of that property is accessible within the template and on the component's `this` context, just like any other component property.
+જ્યારે પ્રોપ એટ્રિબ્યુટમાં વેલ્યુ પાસ કરવામાં આવે છે, ત્યારે તે તે ઘટક ઇન્સ્ટન્સ પર પ્રોપર્ટી બની જાય છે. તે પ્રોપર્ટીની વેલ્યુ ટેમ્પલેટમાં અને અન્ય કોઈપણ કમ્પોનન્ટ પ્રોપર્ટીની જેમ જ કમ્પોનન્ટના `this` કોન્ટેક્સ્ટ પર એક્સેસિબલ હોય છે.
 
 </div>
 <div class="composition-api">
@@ -215,16 +215,16 @@ defineProps(['title'])
 </template>
 ```
 
-`defineProps` is a compile-time macro that is only available inside `<script setup>` and does not need to be explicitly imported. Declared props are automatically exposed to the template. `defineProps` also returns an object that contains all the props passed to the component, so that we can access them in JavaScript if needed:
+`defineProps` એ કોમ્પાઈલ-ટાઈમ મેક્રો છે જે ફક્ત `<script setup>` ની અંદર જ ઉપલબ્ધ છે અને તેને સ્પષ્ટ રીતે ઇમ્પોર્ટ કરવાની જરૂર નથી. જાહેર કરેલ પ્રોપ્સ આપમેળે ટેમ્પલેટમાં એક્સપોઝ થાય છે. `defineProps` એક ઓબ્જેક્ટ પણ પરત કરે છે જેમાં ઘટકમાં પાસ કરાયેલા તમામ પ્રોપ્સ હોય છે, જેથી જો જરૂર હોય તો આપણે તેને જાવાસ્ક્રિપ્ટમાં એક્સેસ કરી શકીએ:
 
 ```js
 const props = defineProps(['title'])
 console.log(props.title)
 ```
 
-See also: [Typing Component Props](/guide/typescript/composition-api#typing-component-props) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Component Props](/guide/typescript/composition-api#typing-component-props) <sup class="vt-badge ts" />
 
-If you are not using `<script setup>`, props should be declared using the `props` option, and the props object will be passed to `setup()` as the first argument:
+જો તમે `<script setup>` નો ઉપયોગ કરી રહ્યાં નથી, તો પ્રોપ્સને `props` ઓપ્શનનો ઉપયોગ કરીને જાહેર કરવા જોઈએ, અને પ્રોપ્સ ઓબ્જેક્ટ પ્રથમ આર્ગ્યુમેન્ટ તરીકે `setup()` માં પાસ કરવામાં આવશે:
 
 ```js
 export default {
@@ -237,17 +237,17 @@ export default {
 
 </div>
 
-A component can have as many props as you like and, by default, any value can be passed to any prop.
+કમ્પોનન્ટમાં તમે ઈચ્છો તેટલા પ્રોપ્સ હોઈ શકે છે અને, ડિફોલ્ટ રૂપે, કોઈપણ વેલ્યુ કોઈપણ પ્રોપમાં પાસ કરી શકાય છે.
 
-Once a prop is registered, you can pass data to it as a custom attribute, like this:
+એકવાર પ્રોપ રજીસ્ટર થઈ જાય, પછી તમે ડેટાને કસ્ટમ એટ્રિબ્યુટ તરીકે પાસ કરી શકો છો, આ રીતે:
 
 ```vue-html
-<BlogPost title="My journey with Vue" />
-<BlogPost title="Blogging with Vue" />
-<BlogPost title="Why Vue is so fun" />
+<BlogPost title="Vue સાથેની મારી સફર" />
+<BlogPost title="Vue સાથે બ્લોગિંગ" />
+  <BlogPost title="શા માટે Vue આટલું મજાનું છે" />
 ```
 
-In a typical app, however, you'll likely have an array of posts in your parent component:
+સામાન્ય એપમાં, જોકે, તમારા પેરેન્ટ કમ્પોનન્ટમાં પોસ્ટ્સનો એરે હશે:
 
 <div class="options-api">
 
@@ -257,9 +257,9 @@ export default {
   data() {
     return {
       posts: [
-        { id: 1, title: 'My journey with Vue' },
-        { id: 2, title: 'Blogging with Vue' },
-        { id: 3, title: 'Why Vue is so fun' }
+        { id: 1, title: 'Vue સાથેની મારી સફર' },
+        { id: 2, title: 'Vue સાથે બ્લોગિંગ' },
+        { id: 3, title: 'શા માટે Vue આટલું મજાનું છે' }
       ]
     }
   }
@@ -271,15 +271,15 @@ export default {
 
 ```js
 const posts = ref([
-  { id: 1, title: 'My journey with Vue' },
-  { id: 2, title: 'Blogging with Vue' },
-  { id: 3, title: 'Why Vue is so fun' }
+  { id: 1, title: 'Vue સાથેની મારી સફર' },
+  { id: 2, title: 'Vue સાથે બ્લોગિંગ' },
+  { id: 3, title: 'શા માટે Vue આટલું મજાનું છે' }
 ])
 ```
 
 </div>
 
-Then want to render a component for each one, using `v-for`:
+પછી `v-for` નો ઉપયોગ કરીને દરેક માટે એક ઘટક રેન્ડર કરવા માંગો છો:
 
 ```vue-html
 <BlogPost
@@ -291,24 +291,24 @@ Then want to render a component for each one, using `v-for`:
 
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNp9UU1rhDAU/CtDLrawVfpxklRo74We2kPtQdaoaTUJ8bmtiP+9ia6uC2VBgjOZeXnz3sCejAkPnWAx4+3eSkNJqmRjtCU817p81S2hsLpBEEYL4Q1BqoBUid9Jmosi62rC4Nm9dn4lFLXxTGAt5dG482eeUXZ1vdxbQZ1VCwKM0zr3x4KBATKPcbsDSapFjOClx5d2JtHjR1KFN9fTsfbWcXdy+CZKqcqL+vuT/r3qvQqyRatRdMrpF/nn/DNhd7iPR+v8HCDRmDoj4RHxbfyUDjeFto8p8yEh1Rw2ZV4JxN+iP96FMvest8RTTws/gdmQ8HUr7ikere+yHduu62y//y3NWG38xIOpeODyXcoE8OohGYZ5VhhHHjl83sD4B3XgyGI=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNp9UU1rhDAU/CtDLrawVfpxklRo74We2kPtQdaoaTUJ8bmtiP+9ia6uC2VBgjOZeXnz3sCejAkPnWAx4+3eSkNJqmRjtCU817p81S2hsLpBEEYL4Q1BqoBUid9Jmosi62rC4Nm9dn4lFLXxTGAt5dG482eeUXZ1vdxbQZ1VCwKM0zr3x4KBATKPcbsDSapFjOClx5d2JtHjR1KFN9fTsfbWcXdy+CZKqcqL+vuT/r3qvQqyRatRdMrpF/nn/DNhd7iPR+v8HCDRmDoj4RHxbfyUDjeFto8p8yEh1Rw2ZV4JxN+iP96FMvest8RTTws/gdmQ8HUr7ikere+yHduu62y//y3NWG38xIOpeODyXcoE8OohGYZ5VhhHHjl83sD4B3XgyGI=)
 
 </div>
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNp9kU9PhDAUxL/KpBfWBCH+OZEuid5N9qSHrQezFKhC27RlDSF8d1tYQBP1+N78OpN5HciD1sm54yQj1J6M0A6Wu07nTIpWK+MwwPASI0qjWkQejVbpsVHVQVl30ZJ0WQRHjwFMnpT0gPZLi32w2h2DMEAUGW5iOOEaniF66vGuOiN5j0/hajx7B4zxxt5ubIiphKz+IO828qXugw5hYRXKTnqSydcrJmk61/VF/eB4q5s3x8Pk6FJjauDO16Uye0ZCBwg5d2EkkED2wfuLlogibMOTbMpf9tMwP8jpeiMfRdM1l8Tk+/F++Y6Cl0Lyg1Ha7o7R5Bn9WwSg9X0+DPMxMI409fPP1PELlVmwdQ==)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNp9kU9PhDAUxL/KpBfWBCH+OZEuid5N9qSHrQezFKhC27RlDSF8d1tYQBP1+N78OpN5HciD1sm54yQj1J6M0A6Wu07nTIpWK+MwwPASI0qjWkQejVbpsVHVQVl30ZJ0WQRHjwFMnpT0gPZLi32w2h2DMEAUGW5iOOEaniF66vGuOiN5j0/hajx7B4zxxt5ubIiphKz+IO828qXugw5hYRXKTnPSSdcrJmk61/VF/eB4q5s3x8Pk6FJjauDO16Uye0ZCBwg5d2EkkED2wfuLlogibMOTbMpf9tMwP8jpeiMfRdM1l8Tk+/F++Y6Cl0Lyg1Ha7o7R5Bn9WwSg9X0+DPMxMI409fPP1PELlVmwdQ==)
 
 </div>
 
-Notice how [`v-bind` syntax](/api/built-in-directives#v-bind) (`:title="post.title"`) is used to pass dynamic prop values. This is especially useful when you don't know the exact content you're going to render ahead of time.
+નોંધ કરો કે ડાયનેમિક પ્રોપ વેલ્યુસ પાસ કરવા માટે [`v-bind` સિન્ટેક્સ](/api/built-in-directives#v-bind) (`:title="post.title"`) નો ઉપયોગ કેવી રીતે થાય છે. જ્યારે તમને ખબર હોતી નથી કે તમે કયું ચોક્કસ કન્ટેન્ટ આગળ રેન્ડર કરવા જેઈ રહ્યા છો ત્યારે આ ખાસ કરીને ઉપયોગી છે.
 
-That's all you need to know about props for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Props](/guide/components/props).
+અત્યારે પ્રોપ્સ વિશે તમારે આટલું જ જાણવાની જરૂર છે, પરંતુ એકવાર તમે આ પેજ વાંચવાનું પૂરું કરી લો અને તેના કન્ટેન્ટ સાથે આરામદાયક અનુભવો, પછી અમે [પ્રોપ્સ (Props)](/guide/components/props) પર સંપૂર્ણ માર્ગદર્શિકા વાંચવા માટે પછીથી પાછા આવવાની ભલામણ કરીએ છીએ.
 
-## Listening to Events {#listening-to-events}
+## ઇવેન્ટ્સ સાંભળવી {#listening-to-events}
 
-As we develop our `<BlogPost>` component, some features may require communicating back up to the parent. For example, we may decide to include an accessibility feature to enlarge the text of blog posts, while leaving the rest of the page at its default size.
+જેમ જેમ આપણે આપણું `<BlogPost>` કમ્પોનન્ટ વિકસાવીએ છીએ, કેટલીક સુવિધાઓ માટે પેરેન્ટ ને જણાવવાની જરૂર પડી શકે છે. ઉદાહરણ તરીકે, અમે બાકીના પેજને તેના ડિફોલ્ટ કદ પર રાખીને, બ્લોગ પોસ્ટ્સના લખાણને મોટું કરવા માટે એક્સેસિબિલિટી ફીચર (accessibility feature) સમાવવાનું નક્કી કરી શકીએ છીએ.
 
-In the parent, we can support this feature by adding a `postFontSize` <span class="options-api">data property</span><span class="composition-api">ref</span>:
+પેરેન્ટમાં, અમે `postFontSize` <span class="options-api">ડેટા પ્રોપર્ટી</span><span class="composition-api">રિફ</span> ઉમેરીને આ સુવિધાને સપોર્ટ કરી શકીએ છીએ:
 
 <div class="options-api">
 
@@ -336,7 +336,7 @@ const postFontSize = ref(1)
 
 </div>
 
-Which can be used in the template to control the font size of all blog posts:
+જેનો ઉપયોગ તમામ બ્લોગ પોસ્ટ્સના ફોન્ટ સાઈઝને નિયંત્રિત કરવા માટે ટેમ્પલેટમાં થઈ શકે છે:
 
 ```vue-html{1,7}
 <div :style="{ fontSize: postFontSize + 'em' }">
@@ -348,19 +348,19 @@ Which can be used in the template to control the font size of all blog posts:
 </div>
 ```
 
-Now let's add a button to the `<BlogPost>` component's template:
+હવે ચાલો `<BlogPost>` કમ્પોનન્ટના ટેમ્પલેટમાં એક બટન ઉમેરીએ:
 
 ```vue{5} [BlogPost.vue]
-<!-- omitting <script> -->
+<!-- <script> ને અવગણીને -->
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
-    <button>Enlarge text</button>
+    <button>લખાણ મોટું કરો</button>
   </div>
 </template>
 ```
 
-The button doesn't do anything yet - we want clicking the button to communicate to the parent that it should enlarge the text of all posts. To solve this problem, components provide a custom events system. The parent can choose to listen to any event on the child component instance with `v-on` or `@`, just as we would with a native DOM event:
+બટન હજુ સુધી કંઈ કરતું નથી - અમે ઇચ્છીએ છીએ કે બટન પર ક્લિક કરવાથી પેરેન્ટને જાણ કરવામાં આવે કે તેણે બધી પોસ્ટના લખાણને મોટું કરવું જોઈએ. આ સમસ્યાને ઉકેલવા માટે, ઘટકો કસ્ટમ ઇવેન્ટ સિસ્ટમ પ્રદાન કરે છે. પેરેન્ટ `v-on` અથવા `@` સાથે ચાઇલ્ડ કમ્પોનન્ટ ઇન્સ્ટન્સ પર કોઈપણ ઇવેન્ટ સાંભળવાનું પસંદ કરી શકે છે, જેમ આપણે નેટિવ DOM ઇવેન્ટ સાથે કરીશું:
 
 ```vue-html{3}
 <BlogPost
@@ -369,32 +369,32 @@ The button doesn't do anything yet - we want clicking the button to communicate 
  />
 ```
 
-Then the child component can emit an event on itself by calling the built-in [**`$emit`** method](/api/component-instance#emit), passing the name of the event:
+પછી ચાઇલ્ડ કમ્પોનન્ટ બિલ્ટ-ઇન [**`$emit`** મેથડ](/api/component-instance#emit) ને કૉલ કરીને, ઇવેન્ટનું નામ પાસ કરીને પોતાની જાત પર ઇવેન્ટ મોકલી શકે છે:
 
 ```vue{5} [BlogPost.vue]
-<!-- omitting <script> -->
+<!-- <script> ને અવગણીને -->
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
-    <button @click="$emit('enlarge-text')">Enlarge text</button>
+    <button @click="$emit('enlarge-text')">લખાણ મોટું કરો</button>
   </div>
 </template>
 ```
 
-Thanks to the `@enlarge-text="postFontSize += 0.1"` listener, the parent will receive the event and update the value of `postFontSize`.
+`@enlarge-text="postFontSize += 0.1"` લિસનરના કારણે, પેરેન્ટ ઇવેન્ટ પ્રાપ્ત કરશે અને `postFontSize` ની વેલ્યુ અપડેટ કરશે.
 
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNqNUsFOg0AQ/ZUJMaGNbbHqidCmmujNxMRED9IDhYWuhV0CQy0S/t1ZYIEmaiRkw8y8N/vmMZVxl6aLY8EM23ByP+Mprl3Bk1RmCPexjJ5ljhBmMgFzYemEIpiuAHAFOzXQgIVeESNUKutL4gsmMLfbBPStVFTP1Bl46E2mup4xLDKhI4CUsMR+1zFABTywYTkD5BgzG8ynEj4kkVgJnxz38Eqaut5jxvXAUCIiLqI/8TcD/m1fKhTwHHIJYSEIr+HbnqikPkqBL/yLSMs23eDooNexel8pQJaksYeMIgAn4EewcyxjtnKNCsK+zbgpXILJEnW30bCIN7ZTPcd5KDNqoWjARWufa+iyfWBlV13wYJRvJtWVJhiKGyZiL4vYHNkJO8wgaQVXi6UGr51+Ndq5LBqMvhyrH9eYGePtOVu3n3YozWSqFsBsVJmt3SzhzVaYY2nm9l82+7GX5zTGjlTM1SyNmy5SeX+7rqr2r0NdOxbFXWVXIEoBGz/m/oHIF0rB5Pz6KTV6aBOgEo7Vsn51ov4GgAAf2A==)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNqNUsFOg0AQ/ZUJMaGNbbHqidCmmujNxMRED9IDhYWuhV0CQy0S/t1ZYIEmaiRkw8y8N/vmMZVxl6aLY8EM23ByP+Mprl3Bk1RmCPexjJ5ljhBmMgFzYemEIpiuAHAFOzXQgIVeESNUKutL4gsmMLfbBPStVFTP1Bl46E2mup4xLDKhI4CUsMR+1zFABTywYTkD5BgzG8ynEj4kkVgJnxz38Eqaut5jxvXAUCIiLqI/8TcD/m1fKhTwHHIJYSEIr+HbnqikPkqBL/yLSMs23eDooNexel8pQJaksYeMIgAn4EewcyxjtnKNCsK+zbgpXILJEnW30bCIN7ZTPcd5KDNqoWjARWufa+iyfWBlV13wYJRvJtWVJhiKGyZiL4vYHNkJO8wgaQVXi6UGr51+Ndq5LBqMvhyrH9eYGePtOVu3n3YozWSqFsBsVJmt3SzhzVaYY2nm9l82+7GX5zTGjlTM1SyNmy5SeX+7rqr2r0NdOxbFXWVXIEoBGz/m/oHIF0rB5Pz6KTV6aBOgEo7Vsn51ov4GgAAf2A==)
 
 </div>
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNp1Uk1PwkAQ/SuTxqQYgYp6ahaiJngzITHRA/UAZQor7W7TnaK16X93th8UEuHEvPdm5s3bls5Tmo4POTq+I0yYyZTAIOXpLFAySXVGUEKGEVQQZToBl6XukXqO9XahDbXc2OsAO5FlAIEKtWJByqCBqR01WFqiBLnxYTIEkhSjD+5rAV86zxQW8C1pB+88Aaphr73rtXbNVqrtBeV9r/zYFZYHacBoiHLFykB9Xgfq1NmLVvQmf7E1OGFaeE0anAMXhEkarwhtRWIjD+AbKmKcBk4JUdvtn8+6ARcTu87hLuCf6NJpSoDDKNIZj7BtIFUTUuB0tL/HomXHcnOC18d1TF305COqeJVtcUT4Q62mtzSF2/GkE8/E8b1qh8Ljw/if8I7nOkPn9En/+Ug2GEmFi0ynZrB0azOujbfB54kki5+aqumL8bING28Yr4xh+2vePrI39CnuHmZl2TwwVJXwuG6ZdU6kFTyGsQz33HyFvH5wvvyaB80bACwgvKbrYgLVH979DQc=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNp1Uk1PwkAQ/SuTxqQYgYp6ahaiJngzITHRA/UAZQor7W7TnaK16X93th8UEuHEvPdm5s3bls5Tmo4POTq+I0yYyZTAIOXpLFAySXVGUEKGEVQQZToBl6XukXqO9XahDbXc2OsAO5FlAIEKtWJByqCBqR01WFqiBLnxYTIEkhSjD+5rAV86zxQW8C1pB+88Aaphr73rtXbNVqrtBeV9r/zYFZYHacBoiHLFykB9Xgfq1NmLVvQmf7E1OGFaeE0anAMXhEkarwhtRWIjD+AbKmKcBk4JUdvtn8+6ARcTu87หૉપિલામપોનેન્ટોએલટ-બૉક્સ)
 
 </div>
 
-We can optionally declare emitted events using the <span class="options-api">[`emits`](/api/options-state#emits) option</span><span class="composition-api">[`defineEmits`](/api/sfc-script-setup#defineprops-defineemits) macro</span>:
+આપણે વૈકલ્પિક રીતે <span class="options-api">[`emits`](/api/options-state#emits) ઓપ્શન</span><span class="composition-api">[`defineEmits`](/api/sfc-script-setup#defineprops-defineemits) મેક્રો</span> નો ઉપયોગ કરીને એમિટ થયેલ ઇવેન્ટ્સ જાહેર કરી શકીએ છીએ:
 
 <div class="options-api">
 
@@ -419,11 +419,11 @@ defineEmits(['enlarge-text'])
 
 </div>
 
-This documents all the events that a component emits and optionally [validates them](/guide/components/events#events-validation). It also allows Vue to avoid implicitly applying them as native listeners to the child component's root element.
+આ ઘટક જે બધી ઇવેન્ટ્સ મોકલે છે તેને દસ્તાવેજ (documents) કરે છે અને વૈકલ્પિક રીતે [તેમને વેલિડેટ કરે છે](/guide/components/events#events-validation). તે Vue ને ચાઇલ્ડ કમ્પોનન્ટના રૂટ એલિમેન્ટ પર નેટિવ લિસનર્સ તરીકે સ્પષ્ટપણે લાગુ કરવાનું ટાળવાની પણ મંજૂરી આપે છે.
 
 <div class="composition-api">
 
-Similar to `defineProps`, `defineEmits` is only usable in `<script setup>` and doesn't need to be imported. It returns an `emit` function that is equivalent to the `$emit` method. It can be used to emit events in the `<script setup>` section of a component, where `$emit` isn't directly accessible:
+`defineProps` ની જેમ જ, `defineEmits` ફક્ત `<script setup>` માં જ વાપરી શકાય છે અને તેને ઇમ્પોર્ટ કરવાની જરૂર નથી. તે એક `emit` ફંક્શન પરત કરે છે જે `$emit` મેથડ ની સમકક્ષ છે. તેનો ઉપયોગ કમ્પોનન્ટના `<script setup>` વિભાગમાં ઇવેન્ટ્સ મોકલવા માટે થઈ શકે છે, જ્યાં `$emit` સીધી રીતે એક્સેસિબલ નથી:
 
 ```vue
 <script setup>
@@ -433,9 +433,9 @@ emit('enlarge-text')
 </script>
 ```
 
-See also: [Typing Component Emits](/guide/typescript/composition-api#typing-component-emits) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Component Emits](/guide/typescript/composition-api#typing-component-emits) <sup class="vt-badge ts" />
 
-If you are not using `<script setup>`, you can declare emitted events using the `emits` option. You can access the `emit` function as a property of the setup context (passed to `setup()` as the second argument):
+જો તમે `<script setup>` નો ઉપયોગ કરી રહ્યાં નથી, તો તમે `emits` ઓપ્શનનો ઉપયોગ કરીને એમિટ કરેલી ઇવેન્ટ્સ જાહેર કરી શકો છો. તમે સેટઅપ કોન્ટેક્સ્ટની પ્રોપર્ટી તરીકે `emit` ફંક્શનને એક્સેસ કરી શકો છો (બીજી આર્ગ્યુમેન્ટ તરીકે `setup()` માં પાસ કરેલ છે):
 
 ```js
 export default {
@@ -448,30 +448,30 @@ export default {
 
 </div>
 
-That's all you need to know about custom component events for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Custom Events](/guide/components/events).
+કસ્ટમ કમ્પોનન્ટ ઇવેન્ટ્સ વિશે અત્યારે તમારે આટલું જ જાણવાની જરૂર છે, પરંતુ એકવાર તમે આ પેજ વાંચવાનું પૂરું કરી લો અને તેના કન્ટેન્ટ સાથે આરામદાયક અનુભવો, પછી અમે [કસ્ટમ ઇવેન્ટ્સ](/guide/components/events) પર સંપૂર્ણ માર્ગદર્શિકા વાંચવા માટે પછીથી પાછા આવવાની ભલામણ કરીએ છીએ.
 
-## Content Distribution with Slots {#content-distribution-with-slots}
+## સ્લોટ્સ (Slots) સાથે કન્ટેન્ટ ડિસ્ટ્રિબ્યુશન {#content-distribution-with-slots}
 
-Just like with HTML elements, it's often useful to be able to pass content to a component, like this:
+બરાબર HTML એલિમેન્ટ્સની જેમ, કમ્પોનન્ટમાં કન્ટેન્ટ પાસ કરવામાં સક્ષમ હોવું ઘણીવાર ઉપયોગી છે, આ રીતે:
 
 ```vue-html
 <AlertBox>
-  Something bad happened.
+  કંઈક ખરાબ થયું.
 </AlertBox>
 ```
 
-Which might render something like:
+જે આના જેવું કંઈક રેન્ડર કરી શકે છે:
 
-:::danger This is an Error for Demo Purposes
-Something bad happened.
+:::danger ડેમો હેતુઓ માટે આ એક ભૂલ છે
+કંઈક ખરાબ થયું.
 :::
 
-This can be achieved using Vue's custom `<slot>` element:
+આ Vue ના કસ્ટમ `<slot>` એલિમેન્ટનો ઉપયોગ કરીને પ્રાપ્ત કરી શકાય છે:
 
 ```vue{4} [AlertBox.vue]
 <template>
   <div class="alert-box">
-    <strong>This is an Error for Demo Purposes</strong>
+    <strong>ડેમો હેતુઓ માટે આ એક ભૂલ છે</strong>
     <slot />
   </div>
 </template>
@@ -483,42 +483,42 @@ This can be achieved using Vue's custom `<slot>` element:
 </style>
 ```
 
-As you'll see above, we use the `<slot>` as a placeholder where we want the content to go – and that's it. We're done!
+જેમ તમે ઉપર જોશો, અમે `<slot>` નો ઉપયોગ પ્લેસહોલ્ડર (placeholder) તરીકે કરીએ છીએ જ્યાં અમે કન્ટેન્ટ રાખવા માંગીએ છીએ – અને બસ. અમે કરી દીધું!
 
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNpVUcFOwzAM/RUTDruwFhCaUCmThsQXcO0lbbKtIo0jx52Kpv07TreWouTynl+en52z2oWQnXqrClXGhtrA28q3XUBi2DlL/IED7Ak7WGX5RKQHq8oDVN4Oo9TYve4dwzmxDcp7bz3HAs5/LpfKyy3zuY0Atl1wmm1CXE5SQeLNX9hZPrb+ALU2cNQhWG9NNkrnLKIt89lGPahlyDTVogVAadoTNE7H+F4pnZTrGodKjUUpRyb0h+0nEdKdRL3CW7GmfNY5ZLiiMhfP/ynG0SL/OAuxwWCNMNncbVqSQyrgfrPZvCVcIxkrxFMYIKJrDZA1i8qatGl72ehLGEY6aGNkNwU8P96YWjffB8Lem/Xkvn9NR6qy+fRd14FSgopvmtQmzTT9Toq9VZdfIpa5jQ==)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNpVUcFOwzAM/RUTDruwFhCaUCmThsQXcO0lbbKtIo0jx52Kpv07TreWouTynl+en52z2oWQnXqrClXGhtrA28q3XUBi2DlL/IED7Ak7WGX5RKQHq8oDVN4Oo9TYve4dwzmxDcp7bz3HAs5/LpfKyy3zuY0Atl1wmm1CXE5SQeLNX9hZPrb+ALU2cNQhWG9NNkrnLKIt89lGPahlyDTVogVAadoTNE7H+F4pnZTrGodKjUUpRyb0h+0nEdKdRL3CW7GmfNY5ZLiiMhfP/ynG0SL/OAuxwWCNMNncbVqSQyrgfrPZvCVcIxkrxFMYIKJrDZA1i8qatGl72ehLGEY6aGNkNwU8P96YWjffB8Lem/Xkvn9NR6qy+fRd14FSgopvmtQmzTT9Toq9VZdfIpa5jQ==)
 
 </div>
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNpVUEtOwzAQvcpgFt3QBBCqUAiRisQJ2GbjxG4a4Xis8aQKqnp37PyUyqv3mZn3fBVH55JLr0Umcl9T6xi85t4VpW07h8RwNJr4Cwc4EXawS9KFiGO70ubpNBcmAmDdOSNZR8T5Yg0IoOQf7DSfW9tAJRWcpXPaapWM1nVt8ObpukY8ie29GHNzAiBX7QVqI73/LIWMzn2FQylGMcieCW1TfBMhPYSoE5zFitLVZ5BhQnkadt6nGKt5/jMafI1Oq8Ak6zW4xrEaDVIGj4fD4SPiCknpQLy4ATyaVgFptVH2JFXb+wze3DDSTioV/iaD1+eZqWT92xD2Vu2X7af3+IJ6G7/UToVigpJnTzwTO42eWDnELsTtH/wUqH4=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNpVUEtOwzAQvcpgFt3QBBCqUAiRisQJ2GbjxG4a4Xis8aQKqnp37PyUyqv3mZn3fBVH55JLr0Umcl9T6xi85t4VpW07h8RwNJr4Cwc4EXawS9KFiGO70ubpNBcmAmDdOSNZR8T5Yg0IoOQf7DSfW9tAJRWcpXPaapWM1nVt8ObpukY8ie29GHNzAiBX7QVqI73/LIWMzn2FQylGMcieCW1TfBMhPYSoE5zFitLVZ5BhQnkadt6nGKt5/jMafI1Oq8Ak6zW4xrEaDVIGj4fD4SPiCknpQLy4ATyaVgFptVH2JFXb+wze3DDSTioV/iaD1+eZqWT92xD2Vu2X7af3+IJ6G7/UToVigpJnTzwTO42eWDnELsTtH/wUqH4=)
 
 </div>
 
-That's all you need to know about slots for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Slots](/guide/components/slots).
+સ્લોટ્સ વિશે અત્યારે તમારે આટલું જ જાણવાની જરૂર છે, પરંતુ એકવાર તમે આ પેજ વાંચવાનું પૂરું કરી લો અને તેના કન્ટેન્ટ સાથે આરામદાયક અનુભવો, પછી અમે [સ્લોટ્સ (Slots)](/guide/components/slots) પર સંપૂર્ણ માર્ગદર્શિકા વાંચવા માટે પછીથી પાછા આવવાની ભલામણ કરીએ છીએ.
 
-## Dynamic Components {#dynamic-components}
+## ડાયનેમિક કમ્પોનન્ટ્સ (Dynamic Components) {#dynamic-components}
 
-Sometimes, it's useful to dynamically switch between components, like in a tabbed interface:
+કેટલીકવાર, ઘટકો વચ્ચે ડાયનેમિકલી સ્વિચ કરવું ઉપયોગી છે, જેમ કે ટેબ્ડ ઇન્ટરફેસ (tabbed interface) માં:
 
 <div class="options-api">
 
-[Open example in the Playground](https://play.vuejs.org/#eNqNVE2PmzAQ/Ssj9kArLSHbrXpwk1X31mMPvS17cIxJrICNbJMmivLfO/7AEG2jRiDkefP85sNmztlr3y8OA89ItjJMi96+VFJ0vdIWfqqOQ6NVB/midIYj5sn9Sxlrkt9b14RXzXbiMElEO5IAKsmPnljzhg6thbNDmcLdkktrSADAJ/IYlj5MXEc9Z1w8VFNLP30ed2luBy1HC4UHrVH2N90QyJ1kHnUALN1gtLeIQu6juEUMkb8H5sXHqiS+qzK1Cw3Lu76llqMFsKrFAVhLjVlXWc07VWUeR89msFbhhhAWDkWjNJIwPgjp06iy5CV7fgrOOTgKv+XoKIIgpnoGyiymSmZ1wnq9dqJweZ8p/GCtYHtUmBMdLXFitgDnc9ju68b0yxDO1WzRTEcFRLiUJsEqSw3wwi+rMpFDj0psEq5W5ax1aBp7at1y4foWzq5R0hYN7UR7ImCoNIXhWjTfnW+jdM01gaf+CEa1ooYHzvnMVWhaiwEP90t/9HBP61rILQJL3POMHw93VG+FLKzqUYx3c2yjsOaOwNeRO2B8zKHlzBKQWJNH1YHrplV/iiMBOliFILYNK5mOKdSTMviGCTyNojFdTKBoeWNT3s8f/Vpsd7cIV61gjHkXnotR6OqVkJbrQKdsv9VqkDWBh2bpnn8VXaDcHPexE4wFzsojO9eDUOSVPF+65wN/EW7sHRsi5XaFqaexn+EH9Xcpe8zG2eWG3O0/NVzUaeJMk+jGhUXlNPXulw5j8w7t2bi8X32cuf/Vv/wF/SL98A==)
+[Playground માં ઉદાહરણ ખોલો](https://play.vuejs.org/#eNqNVE2PmzAQ/Ssj9kArLSHbrXpwk1X31mMPvS17cIxJrICNbJMmivLfO/7AEG2jRiDkefP85sNmztlr3y8OA89ItjJMi96+VFJ0vdIWfqqOQ6NVB/midIYj5sn9Sxlrkt9b14RXzXbiMElEO5IAKsmPnljzhg6thbNDmcLdkktrSADAJ/IYlj5MXEc9Z1w8VFNLP30ed2luBy1HC4UHrVH2N90QyJ1kHnUALN1gtLeIQu6juEUMkb8H5sXHqiS+qzK1Cw3Lu76llqMFsKrFAVhLjVlXWc07VWUeR89msFbhhhAWDkWjNJIwPgjp06iy5CV7fgrOOTgKv+XoKIIgpnoGyiymSmZ1wnq9dqJweZ8p/GCtYHtUmBMdLXFitgDnc9ju68b0yxDO1WzRTEcFRLiUJsEqSw3wwi+rMpFDj0psEq5W5ax1aBp7at1y4foWzq5R0hYN7UR7ImCoNIXhWjTfnW+jdM01gaf+CEa1ooYHzvnMVWhaiwEP90t/9HBP61rILQJL3POMHw93VG+FLKzqUYx3c2yjsOaOwNeRO2B8zKHlzBKQWJNH1YHrplV/iiMBOliFILYNK5mOKdSTMviGCTyNojFdTKBoeWNT3s8f/Vpsd7cIV61gjHkXnotR6OqVkJbrQKdsv9VqkDWBh2bpnn8VXaDcHPexE4wFzsojO9eDUOSVPF+65wN/EW7sHRsi5XuFqaexn+EH9Xcpe8zG2eWG3O0/NVzUaeJMk+jGhUXlNPXulw5j8w7t2bi8X32cuf/Vv/wF/SL98A==)
 
 </div>
 <div class="composition-api">
 
-[Open example in the Playground](https://play.vuejs.org/#eNqNVMGOmzAQ/ZURe2BXCiHbrXpwk1X31mMPvS1V5RiTWAEb2SZNhPLvHdvggLZRE6TIM/P8/N5gpk/e2nZ57HhCkrVhWrQWDLdd+1pI0bRKW/iuGg6VVg2ky9wFDp7G8g9lrIl1H80Bb5rtxfFKMcRzUA+aV3AZQKEEhWRKGgus05pL+5NuYeNwj6mTkT4VckRYujVY63GT17twC6/Fr4YjC3kp5DoPNtEgBpY3bU0txwhgXYojsJoasymSkjeqSHweK9vOWoUbXIC/Y1YpjaDH3wt39hMI6TUUSYSQAz8jArPT5Mj+nmIhC6zpAu1TZlEhmXndbBwpXH5NGL6xWrADMsyaMj1lkAzQ92E7mvYe8nCcM24xZApbL5ECiHCSnP73KyseGnvh6V/XedwS2pVjv3C1ziddxNDYc+2WS9fC8E4qJW1W0UbUZwKGSpMZrkX11dW2SpdcE3huT2BULUp44JxPSpmmpegMgU/tyadbWpZC7jCxwj0v+OfTDdU7ITOrWiTjzTS3Vei8IfB5xHZ4PmqoObMEJHryWXXkuqrVn+xEgHZWYRKbh06uLyv4iQq+oIDnkXSQiwKymlc26n75WNdit78FmLWCMeZL+GKMwlKrhLRcBzhlh51WnSwJPFQr9/zLdIZ007w/O6bR4MQe2bseBJMzer5yzwf8MtzbOzYMkNsOY0+HfoZv1d+lZJGMg8fNqdsfbbio4b77uRVv7I0Li8xxZN1PHWbeHdyTWXc/+zgw/8t/+QsROe9h)
+[Playground માં ઉદાહરણ ખોલો](https://play.vuejs.org/#eNqNVMGOmzAQ/ZURe2BXCiHbrXpwk1X31mMPvS1V5RiTWAEb2SZNhPLvHdvggLZRE6TIM/P8/N5gpk/e2nZ57HhCkrVhWrQWDLdd+1pI0bRKW/iuGg6VVg2ky9wFDp7G8g9lrIl1H80Bb5rtxfFKMcRzUA+aV3AZQKEEhWRKGgus05pL+5NuYeNwj6mTkT4VckRYujVY63GT17twC6/Fr4YjC3kp5DoPNtEgBpY3bU0txwhgXYojsJoasymSkjeqSHweK9vOWoUbXIC/Y1YpjaDH3wt39hMI6TUUSYSQAz8jArPT5Mj+nmIhC6zpAu1TZlEhmXndbBwpXH5NGL6xWrADMsyaMj1lkAzQ92E7mvYe8nCcM24xZApbL5ECiHCSnP73KyseGnvh6V/XedwS2pVjv3C1ziddxNDYc+2WS9fC8E4qJW1W0UbUZwKGSpMZrkX11dW2SpdcE3huT2BULUp44JxPSpmmpegMgU/tyadbWpZC7jCxwj0v+OfTDdU7ITOrWiTjzTS3Vei8IfB5xHZ4PmqoObMEJHryWXXkuqrVn+xEgHZWYRKbh06uLyv4iQq+oIDnkXSQiwKymlc26n75WNdit78FmLWCMeZL+GKMwlKrhLRcBzhlh51WnSwJPFQr9/zLdIZ007w/O6bR4MQe2bseBJMzer5yzwf8MtzbOzYMkNsOY0+HfoZv1d+lZJGMg8fNqdsfbbio4b77uRVv7I0Li8xxZN1PHWbeHdyTWXc/+zgw/8t/+QsROe9h)
 
 </div>
 
-The above is made possible by Vue's `<component>` element with the special `is` attribute:
+ઉપરોક્ત વિશેષ `is` એટ્રિબ્યુટ સાથે Vue ના `<component>` એલિમેન્ટ દ્વારા શક્ય બન્યું છે:
 
 <div class="options-api">
 
 ```vue-html
-<!-- Component changes when currentTab changes -->
+<!-- જ્યારે currentTab બદલાય ત્યારે ઘટક બદલાય છે -->
 <component :is="currentTab"></component>
 ```
 
@@ -526,39 +526,39 @@ The above is made possible by Vue's `<component>` element with the special `is` 
 <div class="composition-api">
 
 ```vue-html
-<!-- Component changes when currentTab changes -->
+<!-- જ્યારે currentTab બદલાય ત્યારે ઘટક બદલાય છે -->
 <component :is="tabs[currentTab]"></component>
 ```
 
 </div>
 
-In the example above, the value passed to `:is` can contain either:
+ઉપરના ઉદાહરણમાં, `:is` ને પાસ કરાયેલ વેલ્યુ કાં તો આ હોઈ શકે છે:
 
-- the name string of a registered component, OR
-- the actual imported component object
+- નોંધાયેલ કમ્પોનન્ટનું નામ સ્ટ્રિંગ, અથવા
+- વાસ્તવિક ઇમ્પોર્ટ કરેલ કમ્પોનન્ટ ઓબ્જેક્ટ
 
-You can also use the `is` attribute to create regular HTML elements.
+તમે રેગ્યુલર HTML એલિમેન્ટ્સ બનાવવા માટે `is` એટ્રિબ્યુટનો પણ ઉપયોગ કરી શકો છો.
 
-When switching between multiple components with `<component :is="...">`, a component will be unmounted when it is switched away from. We can force the inactive components to stay "alive" with the built-in [`<KeepAlive>` component](/guide/built-ins/keep-alive).
+`<component :is="...">` સાથે બહુવિધ ઘટકો વચ્ચે સ્વિચ કરતી વખતે, ઘટક જ્યારે સ્વિચ કરવામાં આવે ત્યારે તે અનમાઉન્ટ થઈ જશે. અમે બિલ્ટ-ઇન [`<KeepAlive>` કમ્પોનન્ટ](/guide/built-ins/keep-alive) વડે નિષ્ક્રિય ઘટકોને "જીવંત (alive)" રહેવા માટે દબાણ કરી શકીએ છીએ.
 
-## in-DOM Template Parsing Caveats {#in-dom-template-parsing-caveats}
+## in-DOM ટેમ્પલેટ પાર્સિંગ સાવચેતીઓ {#in-dom-template-parsing-caveats}
 
-If you are writing your Vue templates directly in the DOM, Vue will have to retrieve the template string from the DOM. This leads to some caveats due to browsers' native HTML parsing behavior.
+જો તમે તમારા Vue ટેમ્પલેટ સીધા DOM માં લખી રહ્યા છો, તો Vue એ DOM માંથી ટેમ્પલેટ સ્ટ્રિંગ મેળવવી પડશે. આ બ્રાઉઝર્સના નેટિવ HTML પાર્સિંગ વર્તનને કારણે કેટલીક સાવચેતીઓ દોરે છે.
 
 :::tip
-It should be noted that the limitations discussed below only apply if you are writing your templates directly in the DOM. They do NOT apply if you are using string templates from the following sources:
+તે નોંધવું જોઈએ કે નીચે ચર્ચા કરવામાં આવેલ મર્યાદાઓ ત્યારે જ લાગુ થાય છે જો તમે તમારા ટેમ્પલેટ સીધા DOM માં લખી રહ્યા હોવ. જો તમે નીચેના સ્ત્રોતોમાંથી સ્ટ્રિંગ ટેમ્પલેટ્સનો ઉપયોગ કરી રહ્યાં હોવ તો તે લાગુ પડતી નથી:
 
-- Single-File Components
-- Inlined template strings (e.g. `template: '...'`)
+- સિંગલ-ફાઇલ કમ્પોનન્ટ્સ (SFC)
+- ઇનલાઈન ટેમ્પલેટ સ્ટ્રિંગ્સ (દા.ત. `template: '...'`)
 - `<script type="text/x-template">`
   :::
 
-### Case Insensitivity {#case-insensitivity}
+### કેસ ઇનસેન્સિટિવિટી (Case Insensitivity) {#case-insensitivity}
 
-HTML tags and attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you’re using in-DOM templates, PascalCase component names and camelCased prop names or `v-on` event names all need to use their kebab-cased (hyphen-delimited) equivalents:
+HTML ટેગ્સ અને એટ્રિબ્યુટ નામો કેસ-ઇનસેન્સિટિવ છે, તેથી બ્રાઉઝર્સ કોઈપણ અપરકેસ અક્ષરોને લોઅરકેસ તરીકે અર્થઘટન કરશે. તેનો અર્થ એ કે જ્યારે તમે in-DOM ટેમ્પલેટ્સનો ઉપયોગ કરી રહ્યાં હોવ, ત્યારે PascalCase કમ્પોનન્ટ નામો અને camelCased પ્રોપ નામો અથવા `v-on` ઇવેન્ટ નામો બધાએ તેમના kebab-cased (હાઇફન-સીમિત) સમકક્ષોનો ઉપયોગ કરવાની જરૂર છે:
 
 ```js
-// camelCase in JavaScript
+// JavaScript માં camelCase
 const BlogPost = {
   props: ['postTitle'],
   emits: ['updatePost'],
@@ -569,46 +569,46 @@ const BlogPost = {
 ```
 
 ```vue-html
-<!-- kebab-case in HTML -->
-<blog-post post-title="hello!" @update-post="onUpdatePost"></blog-post>
+<!-- HTML માં kebab-case -->
+<blog-post post-title="હેલો!" @update-post="onUpdatePost"></blog-post>
 ```
 
-### Self Closing Tags {#self-closing-tags}
+### સ્વયં બંધ થતા ટેગ (Self Closing Tags) {#self-closing-tags}
 
-We have been using self-closing tags for components in previous code samples:
+અમે અગાઉના કોડ નમૂનાઓમાં ઘટકો માટે સ્વયં-બંધ (self-closing) ટેગનો ઉપયોગ કરી રહ્યા છીએ:
 
 ```vue-html
 <MyComponent />
 ```
 
-This is because Vue's template parser respects `/>` as an indication to end any tag, regardless of its type.
+આનું કારણ એ છે કે Vue નું ટેમ્પલેટ પાર્સર તેના પ્રકારને ધ્યાનમાં લીધા વગર કોઈપણ ટેગને સમાપ્ત કરવાના સંકેત તરીકે `/>` ને માન આપે છે.
 
-In in-DOM templates, however, we must always include explicit closing tags:
+જોકે, in-DOM ટેમ્પલેટ્સમાં, આપણે હંમેશા સ્પષ્ટ સમાપ્તિ ટેગ (explicit closing tags) નો સમાવેશ કરવો જોઈએ:
 
 ```vue-html
 <my-component></my-component>
 ```
 
-This is because the HTML spec only allows [a few specific elements](https://html.spec.whatwg.org/multipage/syntax.html#void-elements) to omit closing tags, the most common being `<input>` and `<img>`. For all other elements, if you omit the closing tag, the native HTML parser will think you never terminated the opening tag. For example, the following snippet:
+આનું કારણ એ છે કે HTML સ્પેક ફક્ત [થોડા વિશિષ્ટ એલિમેન્ટ્સ](https://html.spec.whatwg.org/multipage/syntax.html#void-elements) ને ક્લોઝિંગ ટેગ્સ છોડવાની મંજૂરી આપે છે, જે સૌથી સામાન્ય `<input>` અને `<img>` છે. અન્ય તમામ એલિમેન્ટ્સ માટે, જો તમે ક્લોઝિંગ ટેગ છોડી દો છો, તો નેટિવ HTML પાર્સર વિચારશે કે તમે ઓપનિંગ ટેગ ક્યારેય સમાપ્ત કર્યો નથી. ઉદાહરણ તરીકે, નીચેનું સ્નિપેટ:
 
 ```vue-html
-<my-component /> <!-- we intend to close the tag here... -->
-<span>hello</span>
+<my-component /> <!-- અમે અહીં ટેગ બંધ કરવાનો ઈરાદો રાખીએ છીએ... -->
+<span>હેલો</span>
 ```
 
-will be parsed as:
+આ રીતે પાર્સ કરવામાં આવશે:
 
 ```vue-html
 <my-component>
-  <span>hello</span>
-</my-component> <!-- but the browser will close it here. -->
+  <span>હેલો</span>
+</my-component> <!-- પરંતુ બ્રાઉઝર તેને અહીં બંધ કરશે. -->
 ```
 
-### Element Placement Restrictions {#element-placement-restrictions}
+### એલિમેન્ટ પ્લેસમેન્ટ પ્રતિબંધો (Element Placement Restrictions) {#element-placement-restrictions}
 
-Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>`, `<tr>`, and `<option>` can only appear inside certain other elements.
+કેટલાક HTML એલિમેન્ટ્સ, જેમ કે `<ul>`, `<ol>`, `<table>` અને `<select>` ની અંદર કયા એલિમેન્ટ્સ દેખાઈ શકે છે તેના પર પ્રતિબંધો છે, અને કેટલાક એલિમેન્ટ્સ જેમ કે `<li>`, `<tr>`, અને `<option>` ફક્ત અમુક અન્ય એલિમેન્ટ્સની અંદર જ દેખાઈ શકે છે.
 
-This will lead to issues when using components with elements that have such restrictions. For example:
+જ્યારે આવા પ્રતિબંધો ધરાવતા એલિમેન્ટ્સ સાથે કમ્પોનન્ટ્સનો ઉપયોગ કરવામાં આવે ત્યારે આ સમસ્યાઓ તરફ દોરી જશે. ઉદાહરણ તરીકે:
 
 ```vue-html
 <table>
@@ -616,7 +616,7 @@ This will lead to issues when using components with elements that have such rest
 </table>
 ```
 
-The custom component `<blog-post-row>` will be hoisted out as invalid content, causing errors in the eventual rendered output. We can use the special [`is` attribute](/api/built-in-special-attributes#is) as a workaround:
+કસ્ટમ કમ્પોનન્ટ `<blog-post-row>` અમાન્ય કન્ટેન્ટ તરીકે બહાર આવશે, જે અંતિમ રેન્ડર આઉટપુટમાં ભૂલો પેદા કરશે. અમે ઉકેલ તરીકે વિશેષ [`is` એટ્રિબ્યુટ](/api/built-in-special-attributes#is) નો ઉપયોગ કરી શકીએ છીએ:
 
 ```vue-html
 <table>
@@ -625,9 +625,9 @@ The custom component `<blog-post-row>` will be hoisted out as invalid content, c
 ```
 
 :::tip
-When used on native HTML elements, the value of `is` must be prefixed with `vue:` in order to be interpreted as a Vue component. This is required to avoid confusion with native [customized built-in elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example).
+જ્યારે નેટિવ HTML એલિમેન્ટ્સ પર ઉપયોગ કરવામાં આવે છે, ત્યારે Vue કમ્પોનન્ટ તરીકે અર્થઘટન કરવા માટે `is` ના મૂલ્યને `vue:` સાથે પ્રીફિક્સ કરવું આવશ્યક છે. નેટિવ [કસ્ટમાઇઝ્ડ બિલ્ટ-ઇન એલિમેન્ટ્સ](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example) સાથે મૂંઝવણ ટાળવા માટે આ જરૂરી છે.
 :::
 
-That's all you need to know about in-DOM template parsing caveats for now - and actually, the end of Vue's _Essentials_. Congratulations! There's still more to learn, but first, we recommend taking a break to play with Vue yourself - build something fun, or check out some of the [Examples](/examples/) if you haven't already.
+ઇન-DOM ટેમ્પલેટ પાર્સિંગ સાવચેતીઓ વિશે અત્યારે તમારે આટલું જ જાણવાની જરૂર છે - અને ખરેખર, Vue ના _બેઝિક્સ_ નો અંત. અભિનંદન! હજી ઘણું શીખવાનું બાકી છે, પરંતુ પ્રથમ, અમે ભલામણ કરીએ છીએ કે તમે જાતે Vue સાથે રમવા માટે વિરામ લો - કંઈક મજાનું બનાવો, અથવા જો તમે પહેલેથી જોયા નથી તો કેટલાક [ઉદાહરણો](/examples/) તપાસો.
 
-Once you feel comfortable with the knowledge you've just digested, move on with the guide to learn more about components in depth.
+એકવાર તમે હમણાં જ મેળવેલા જ્ઞાન સાથે આરામદાયક અનુભવો, પછી ઘટકો વિશે વધુ ઊંડાણપૂર્વક જાણવા માટે માર્ગદર્શિકા સાથે આગળ વધો.

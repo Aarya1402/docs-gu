@@ -1,35 +1,35 @@
-# Creating a Vue Application {#creating-a-vue-application}
+# Vue એપ્લિકેશન બનાવવી {#creating-a-vue-application}
 
-## The Application Instance {#the-application-instance}
+## એપ્લિકેશન ઇન્સ્ટન્સ {#the-application-instance}
 
-Every Vue application starts by creating a new **application instance** with the [`createApp`](/api/application#createapp) function:
+દરેક Vue એપ્લિકેશન [`createApp`](/api/application#createapp) ફંક્શન સાથે નવો **એપ્લિકેશન ઇન્સ્ટન્સ (application instance)** બનાવીને શરૂ થાય છે:
 
 ```js
 import { createApp } from 'vue'
 
 const app = createApp({
-  /* root component options */
+  /* રૂટ કમ્પોનન્ટ ઓપ્શન */
 })
 ```
 
-## The Root Component {#the-root-component}
+## રૂટ કમ્પોનન્ટ {#the-root-component}
 
-The object we are passing into `createApp` is in fact a component. Every app requires a "root component" that can contain other components as its children.
+`createApp` માં આપણે જે ઓબ્જેક્ટ પાસ કરીએ છીએ તે ખરેખર એક ઘટક (component) છે. દરેક એપને એક "રૂટ કમ્પોનન્ટ (root component)" ની જરૂર હોય છે જે તેના બાળકો (children) તરીકે અન્ય કમ્પોનન્ટ્સ ધરાવી શકે છે.
 
-If you are using Single-File Components, we typically import the root component from another file:
+જો તમે સિંગલ-ફાઇલ કમ્પોનન્ટ્સ (Single-File Components) નો ઉપયોગ કરી રહ્યાં છો, તો અમે સામાન્ય રીતે રૂટ કમ્પોનન્ટને બીજી ફાઇલમાંથી ઇમ્પોર્ટ કરીએ છીએ:
 
 ```js
 import { createApp } from 'vue'
-// import the root component App from a single-file component.
+// સિંગલ-ફાઇલ કમ્પોનન્ટમાંથી રૂટ કમ્પોનન્ટ App ઇમ્પોર્ટ કરો.
 import App from './App.vue'
 
 const app = createApp(App)
 ```
 
-While many examples in this guide only need a single component, most real applications are organized into a tree of nested, reusable components. For example, a Todo application's component tree might look like this:
+ભલે આ માર્ગદર્શિકાના ઘણા ઉદાહરણોને ફક્ત એક જ કમ્પોનન્ટની જરૂર હોય, પણ મોટાભાગની વાસ્તવિક એપ્લિકેશનો નેસ્ટેડ (nested), પુનઃઉપયોગ કરી શકાય તેવા કમ્પોનન્ટ્સના ટ્રી (tree) માં ગોઠવાયેલી હોય છે. ઉદાહરણ તરીકે, Todo એપ્લિકેશનનો કમ્પોનન્ટ ટ્રી કંઈક આના જેવો દેખાઈ શકે છે:
 
 ```
-App (root component)
+App (રૂટ કમ્પોનન્ટ)
 ├─ TodoList
 │  └─ TodoItem
 │     ├─ TodoDeleteButton
@@ -39,11 +39,11 @@ App (root component)
    └─ TodoStatistics
 ```
 
-In later sections of the guide, we will discuss how to define and compose multiple components together. Before that, we will focus on what happens inside a single component.
+માર્ગદર્શિકાના પછીના વિભાગોમાં, આપણે એકસાથે બહુવિધ કમ્પોનન્ટ્સને કેવી રીતે વ્યાખ્યાયિત કરવા અને કમ્પોઝ કરવા તેની ચર્ચા કરીશું. તે પહેલાં, આપણે એક જ કમ્પોનન્ટની અંદર શું થાય છે તેના પર ધ્યાન કેન્દ્રિત કરીશું.
 
-## Mounting the App {#mounting-the-app}
+## એપને માઉન્ટ કરવું {#mounting-the-app}
 
-An application instance won't render anything until its `.mount()` method is called. It expects a "container" argument, which can either be an actual DOM element or a selector string:
+એપ્લિકેશન ઇન્સ્ટન્સ જ્યાં સુધી તેની `.mount()` મેથડ કૉલ કરવામાં ન આવે ત્યાં સુધી કંઈપણ રેન્ડર કરશે નહીં. તે "કન્ટેનર" આર્ગ્યુમેન્ટની અપેક્ષા રાખે છે, જે કાં તો વાસ્તવિક DOM એલિમેન્ટ અથવા સિલેક્ટર સ્ટ્રિંગ (selector string) હોઈ શકે છે:
 
 ```html
 <div id="app"></div>
@@ -53,13 +53,13 @@ An application instance won't render anything until its `.mount()` method is cal
 app.mount('#app')
 ```
 
-The content of the app's root component will be rendered inside the container element. The container element itself is not considered part of the app.
+એપના રૂટ કમ્પોનન્ટની સામગ્રી કન્ટેનર એલિમેન્ટની અંદર રેન્ડર કરવામાં આવશે. કન્ટેનર એલિમેન્ટ પોતે એપનો ભાગ માનવામાં આવતો નથી.
 
-The `.mount()` method should always be called after all app configurations and asset registrations are done. Also note that its return value, unlike the asset registration methods, is the root component instance instead of the application instance.
+બધા એપ કોન્ફિગરેશન અને એસેટ રજીસ્ટ્રેશન (asset registrations) પૂર્ણ થયા પછી જ `.mount()` મેથડ હંમેશા કૉલ કરવી જોઈએ. એ પણ નોંધો કે તેનું રિટર્ન મૂલ્ય, એસેટ રજીસ્ટ્રેશન મેથડ્સથી વિપરીત, એપ્લિકેશન ઇન્સ્ટન્સને બદલે રૂટ કમ્પોનન્ટ ઇન્સ્ટન્સ છે.
 
-### In-DOM Root Component Template {#in-dom-root-component-template}
+### In-DOM રૂટ કમ્પોનન્ટ ટેમ્પલેટ {#in-dom-root-component-template}
 
-The template for the root component is usually part of the component itself, but it is also possible to provide the template separately by writing it directly inside the mount container:
+રૂટ કમ્પોનન્ટ માટેનું ટેમ્પલેટ સામાન્ય રીતે કમ્પોનન્ટનો જ ભાગ હોય છે, પરંતુ ટેમ્પલેટને માઉન્ટ કન્ટેનરની અંદર સીધું લખીને અલગથી પ્રદાન કરવું પણ શક્ય છે:
 
 ```html
 <div id="app">
@@ -81,33 +81,33 @@ const app = createApp({
 app.mount('#app')
 ```
 
-Vue will automatically use the container's `innerHTML` as the template if the root component does not already have a `template` option.
+જો રૂટ કમ્પોનન્ટ પાસે પહેલેથી જ `template` ઓપ્શન ન હોય તો Vue આપોઆપ કન્ટેનરની `innerHTML` ને ટેમ્પલેટ તરીકે ઉપયોગ કરશે.
 
-In-DOM templates are often used in applications that are [using Vue without a build step](/guide/quick-start.html#using-vue-from-cdn). They can also be used in conjunction with server-side frameworks, where the root template might be generated dynamically by the server.
+In-DOM ટેમ્પલેટ્સનો ઉપયોગ ઘણીવાર એવી એપ્લિકેશનોમાં થાય છે જે [બિલ્ડ સ્ટેપ વિના Vue નો ઉપયોગ કરી રહી છે](/guide/quick-start.html#using-vue-from-cdn). તેનો ઉપયોગ સર્વર-સાઇડ ફ્રેમવર્ક સાથે પણ થઈ શકે છે, જ્યાં રૂટ ટેમ્પલેટ સર્વર દ્વારા ગતિશીલ રીતે જનરેટ કરવામાં આવી શકે છે.
 
-## App Configurations {#app-configurations}
+## એપ કોન્ફિગરેશન {#app-configurations}
 
-The application instance exposes a `.config` object that allows us to configure a few app-level options, for example, defining an app-level error handler that captures errors from all descendant components:
+એપ્લિકેશન ઇન્સ્ટન્સ એક `.config` ઓબ્જેક્ટ એક્સપોઝ કરે છે જે આપણને થોડા એપ-લેવલ ઓપ્શન્સને કોન્ફિગર કરવાની મંજૂરી આપે છે, ઉદાહરણ તરીકે, એપ-લેવલ એરર હેન્ડલર (error handler) વ્યાખ્યાયિત કરવું જે તમામ વંશજ ઘટકો (descendant components) માંથી ભૂલોને કેપ્ચર કરે છે:
 
 ```js
 app.config.errorHandler = (err) => {
-  /* handle error */
+  /* ભૂલ હેન્ડલ કરો */
 }
 ```
 
-The application instance also provides a few methods for registering app-scoped assets. For example, registering a component:
+એપ્લિકેશન ઇન્સ્ટન્સ એપ-સ્કોપ્ડ એસેટ્સને રજીસ્ટર કરવા માટે કેટલીક મેથડ્સ પણ પ્રદાન કરે છે. ઉદાહરણ તરીકે, કમ્પોનન્ટ રજીસ્ટર કરવું:
 
 ```js
 app.component('TodoDeleteButton', TodoDeleteButton)
 ```
 
-This makes the `TodoDeleteButton` available for use anywhere in our app. We will discuss registration for components and other types of assets in later sections of the guide. You can also browse the full list of application instance APIs in its [API reference](/api/application).
+આ આપણી એપમાં ક્યાંય પણ વાપરવા માટે `TodoDeleteButton` ને ઉપલબ્ધ કરાવે છે. અમે માર્ગદર્શિકાના પછીના વિભાગોમાં કમ્પોનન્ટ્સ અને અન્ય પ્રકારની એસેટ્સ માટે રજીસ્ટ્રેશનની ચર્ચા કરીશું. તમે [API સંદર્ભ](/api/application) માં એપ્લિકેશન ઇન્સ્ટન્સ API ની સંપૂર્ણ સૂચિ પણ બ્રાઉઝ કરી શકો છો.
 
-Make sure to apply all app configurations before mounting the app!
+એપને માઉન્ટ કરતા પહેલા તમામ એપ કોન્ફિગરેશન લાગુ કરવાની ખાતરી કરો!
 
-## Multiple Application Instances {#multiple-application-instances}
+## એકથી વધુ એપ્લિકેશન ઇન્સ્ટન્સ {#multiple-application-instances}
 
-You are not limited to a single application instance on the same page. The `createApp` API allows multiple Vue applications to co-exist on the same page, each with its own scope for configuration and global assets:
+તમે સમાન પૃષ્ઠ પર એક જ એપ્લિકેશન ઇન્સ્ટન્સ સુધી મર્યાદિત નથી. `createApp` API એક જ પૃષ્ઠ પર બહુવિધ Vue એપ્લિકેશનોને સહ-અસ્તિત્વમાં રહેવાની મંજૂરી આપે છે, જેમાંના દરેકનો કોન્ફિગરેશન અને ગ્લોબલ એસેટ્સ માટે પોતાનો સ્કોપ (scope) હોય છે:
 
 ```js
 const app1 = createApp({
@@ -121,4 +121,4 @@ const app2 = createApp({
 app2.mount('#container-2')
 ```
 
-If you are using Vue to enhance server-rendered HTML and only need Vue to control specific parts of a large page, avoid mounting a single Vue application instance on the entire page. Instead, create multiple small application instances and mount them on the elements they are responsible for.
+જો તમે સર્વર-રેન્ડર્ડ HTML ને બહેતર બનાવવા માટે Vue નો ઉપયોગ કરી રહ્યાં છો અને કોઈ મોટા પૃષ્ઠના ચોક્કસ ભાગોને નિયંત્રિત કરવા માટે જ Vue ની જરૂર છે, તો આખા પૃષ્ઠ પર સિંગલ Vue એપ્લિકેશન ઇન્સ્ટન્સ માઉન્ટ કરવાનું ટાળો. તેના બદલે, બહુવિધ નાના એપ્લિકેશન ઇન્સ્ટન્સ બનાવો અને તેમને તે એલિમેન્ટ્સ પર માઉન્ટ કરો જેના માટે તેઓ જવાબદાર છે.

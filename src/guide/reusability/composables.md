@@ -1,4 +1,4 @@
-# Composables {#composables}
+# કમ્પોઝેબલ્સ (Composables) {#composables}
 
 <script setup>
 import { useMouse } from './mouse'
@@ -6,20 +6,20 @@ const { x, y } = useMouse()
 </script>
 
 :::tip
-This section assumes basic knowledge of Composition API. If you have been learning Vue with Options API only, you can set the API Preference to Composition API (using the toggle at the top of the left sidebar) and re-read the [Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals) and [Lifecycle Hooks](/guide/essentials/lifecycle) chapters.
+આ વિભાગ Composition API ના મૂળભૂત જ્ઞાનને ધારે છે. જો તમે માત્ર Options API સાથે Vue શીખી રહ્યા છો, તો તમે API પ્રેફરન્સ (API Preference) ને Composition API પર સેટ કરી શકો છો (ડાબી સાઇડબારની ટોચ પરના ટૉગલનો ઉપયોગ કરીને) અને [રિએક્ટિવિટીના મૂળભૂત પાસાઓ](/guide/essentials/reactivity-fundamentals) અને [લાઇફસાયકલ હૂક્સ](/guide/essentials/lifecycle) પ્રકરણો ફરીથી વાંચી શકો છો.
 :::
 
-## What is a "Composable"? {#what-is-a-composable}
+## "કમ્પોઝેબલ" શું છે? (What is a "Composable"?) {#what-is-a-composable}
 
-In the context of Vue applications, a "composable" is a function that leverages Vue's Composition API to encapsulate and reuse **stateful logic**.
+Vue એપ્લિકેશનના સંદર્ભમાં, "કમ્પોઝેબલ" એ એક ફંક્શન છે જે **સ્ટેટફુલ લોજિક (stateful logic)** ને એન્કેપ્સ્યુલેટ કરવા અને તેનો પુનઃઉપયોગ કરવા માટે Vue ના Composition API નો લાભ લે છે.
 
-When building frontend applications, we often need to reuse logic for common tasks. For example, we may need to format dates in many places, so we extract a reusable function for that. This formatter function encapsulates **stateless logic**: it takes some input and immediately returns expected output. There are many libraries out there for reusing stateless logic - for example [lodash](https://lodash.com/) and [date-fns](https://date-fns.org/), which you may have heard of.
+ફ્રન્ટએન્ડ એપ્લિકેશન બનાવતી વખતે, આપણે ઘણીવાર સામાન્ય કાર્યો માટે લોજિકનો પુનઃઉપયોગ કરવાની જરૂર પડે છે. ઉદાહરણ તરીકે, અમને ઘણી જગ્યાએ તારીખો ફોર્મેટ કરવાની જરૂર પડી શકે છે, તેથી અમે તેના માટે પુનઃઉપયોગી ફંક્શન એક્સટ્રેક્ટ કરીએ છીએ. આ ફોર્મેટર ફંક્શન **સ્ટેટલેસ લોજિક (stateless logic)** ને એન્કેપ્સ્યુલેટ કરે છે: તે કોઈ ઇનપુટ લે છે અને તરત જ અપેક્ષિત આઉટપુટ પરત કરે છે. સ્ટેટલેસ લોજિકનો પુનઃઉપયોગ કરવા માટે ઘણી લાઈબ્રેરીઓ છે - ઉદાહરણ તરીકે [lodash](https://lodash.com/) અને [date-fns](https://date-fns.org/), જેના વિશે તમે કદાચ સાંભળ્યું હશે.
 
-By contrast, stateful logic involves managing state that changes over time. A simple example would be tracking the current position of the mouse on a page. In real-world scenarios, it could also be more complex logic such as touch gestures or connection status to a database.
+તેનાથી વિપરીત, સ્ટેટફુલ લોજિકમાં સ્ટેટનું સંચાલન કરવામાં આવે છે જે સમય સાથે બદલાય છે. સાદું ઉદાહરણ પેજ પર માઉસની વર્તમાન સ્થિતિને ટ્રેક કરવાનું છે. વાસ્તવિક દુનિયાના દૃશ્યોમાં, તે ટચ જેસ્ચર (touch gestures) અથવા ડેટાબેઝ સાથે કનેક્શન સ્ટેટસ જેવું વધુ જટિલ લોજિક પણ હોઈ શકે છે.
 
-## Mouse Tracker Example {#mouse-tracker-example}
+## માઉસ ટ્રેકર ઉદાહરણ (Mouse Tracker Example) {#mouse-tracker-example}
 
-If we were to implement the mouse tracking functionality using the Composition API directly inside a component, it would look like this:
+જો આપણે કમ્પોનન્ટની અંદર સીધા Composition API નો ઉપયોગ કરીને માઉસ ટ્રેકિંગ કાર્યક્ષમતાને લાગુ કરવા માંગતા હોઈએ, તો તે આના જેવું દેખાશે:
 
 ```vue [MouseComponent.vue]
 <script setup>
@@ -37,37 +37,37 @@ onMounted(() => window.addEventListener('mousemove', update))
 onUnmounted(() => window.removeEventListener('mousemove', update))
 </script>
 
-<template>Mouse position is at: {{ x }}, {{ y }}</template>
+<template>માઉસની સ્થિતિ છે: {{ x }}, {{ y }}</template>
 ```
 
-But what if we want to reuse the same logic in multiple components? We can extract the logic into an external file, as a composable function:
+પરંતુ જો આપણે બહુવિધ ઘટકોમાં સમાન લોજિકનો પુનઃઉપયોગ કરવા માંગતા હોઈએ તો શું? અમે લોજિકને કમ્પોઝેબલ ફંક્શન તરીકે બાહ્ય ફાઇલમાં એક્સટ્રેક્ટ કરી શકીએ છીએ:
 
 ```js [mouse.js]
 import { ref, onMounted, onUnmounted } from 'vue'
 
-// by convention, composable function names start with "use"
+// પરંપરા મુજબ, કમ્પોઝેબલ ફંક્શનના નામ "use" થી શરૂ થાય છે
 export function useMouse() {
-  // state encapsulated and managed by the composable
+  // કમ્પોઝેબલ દ્વારા એન્કેપ્સ્યુલેટેડ અને મેનેજ કરવામાં આવતી સ્ટેટ (state)
   const x = ref(0)
   const y = ref(0)
 
-  // a composable can update its managed state over time.
+  // કમ્પોઝેબલ સમય જતાં તેની મેનેજ કરેલી સ્થિતિને અપડેટ કરી શકે છે.
   function update(event) {
     x.value = event.pageX
     y.value = event.pageY
   }
 
-  // a composable can also hook into its owner component's
-  // lifecycle to setup and teardown side effects.
+  // કમ્પોઝેબલ સાઇડ ઇફેક્ટ્સ ગોઠવવા અને તેને દૂર કરવા માટે 
+  // તેના માલિક કમ્પોનન્ટના લાઇફસાયકલમાં પણ હૂક કરી શકે છે.
   onMounted(() => window.addEventListener('mousemove', update))
   onUnmounted(() => window.removeEventListener('mousemove', update))
 
-  // expose managed state as return value
+  // મેનેજ કરેલી સ્ટેટને રિટર્ન વેલ્યુ તરીકે એક્સપોઝ કરો
   return { x, y }
 }
 ```
 
-And this is how it can be used in components:
+અને આ રીતે તેનો ઘટકોમાં ઉપયોગ કરી શકાય છે:
 
 ```vue [MouseComponent.vue]
 <script setup>
@@ -76,33 +76,33 @@ import { useMouse } from './mouse.js'
 const { x, y } = useMouse()
 </script>
 
-<template>Mouse position is at: {{ x }}, {{ y }}</template>
+<template>માઉસની સ્થિતિ છે: {{ x }}, {{ y }}</template>
 ```
 
 <div class="demo">
-  Mouse position is at: {{ x }}, {{ y }}
+  માઉસની સ્થિતિ છે: {{ x }}, {{ y }}
 </div>
 
-[Try it in the Playground](https://play.vuejs.org/#eNqNkj1rwzAQhv/KocUOGKVzSAIdurVjoQUvJj4XlfgkJNmxMfrvPcmJkkKHLrbu69H7SlrEszFyHFDsxN6drDIeHPrBHGtSvdHWwwKDwzfNHwjQWd1DIbd9jOW3K2qq6aTJxb6pgpl7Dnmg3NS0365YBnLgsTfnxiNHACvUaKe80gTKQeN3sDAIQqjignEhIvKYqMRta1acFVrsKtDEQPLYxuU7cV8Msmg2mdTilIa6gU5p27tYWKKq1c3ENphaPrGFW25+yMXsHWFaFlfiiOSvFIBJjs15QJ5JeWmaL/xYS/Mfpc9YYrPxl52ULOpwhIuiVl9k07Yvsf9VOY+EtizSWfR6xKK6itgkvQ/+fyNs6v4XJXIsPwVL+WprCiL8AEUxw5s=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNqNkj1rwzAQhv/KocUOGKVzSAIdurVjoQUvJj4XlfgkJNmxMfrvPcmJkkKHLrbu69H7SlrEszFyHFDsxN6drDIeHPrBHGtSvdHWwwKDwzfNHwjQWd1DIbd9jOW3K2qq6aTJxb6pgpl7Dnmg3NS0365YBnLgsTfnxiNHACvUaKe80gTKQeN3sDAIQqjignEhIvKYqMRta1acFVrsKtDEQPLYxuU7cV8Msmg2mdTilIa6gU5p27tYWKKq1c3ENphaPrGFW25+yMXsHWFaFlfiiOSvFIBJjs15QJ5JeWmaL/xYS/Mfpc9YYrPxl52ULOpwhIuiVl9k07Yvsf9VOY+EtizSWfR6xKK6itgkvQ/+fyNs6v4XJXIsPwVL+WprCiL8AEUxw5s=)
 
-As we can see, the core logic remains identical - all we had to do was move it into an external function and return the state that should be exposed. Just like inside a component, you can use the full range of [Composition API functions](/api/#composition-api) in composables. The same `useMouse()` functionality can now be used in any component.
+જેમ આપણે જોઈ શકીએ છીએ, કોર લોજિક સમાન રહે છે - અમારે જે કરવાનું હતું તે તેને બાહ્ય ફંક્શનમાં ખસેડવાનું હતું અને સ્ટેટ પરત કરવાની હતી જે એક્સપોઝ થવી જોઈએ. કમ્પોનન્ટની અંદરની જેમ જ, તમે કમ્પોઝેબલ્સમાં [Composition API ફંક્શન્સ](/api/#composition-api) ની સંપૂર્ણ શ્રેણીનો ઉપયોગ કરી શકો છો. સમાન `useMouse()` કાર્યક્ષમતા હવે કોઈપણ કમ્પોનન્ટમાં વાપરી શકાય છે.
 
-The cooler part about composables though, is that you can also nest them: one composable function can call one or more other composable functions. This enables us to compose complex logic using small, isolated units, similar to how we compose an entire application using components. In fact, this is why we decided to call the collection of APIs that make this pattern possible Composition API.
+કમ્પોઝેબલ્સ વિશે વધુ સારી વાત એ છે કે તમે તેને નેસ્ટ (nest) પણ કરી શકો છો: એક કમ્પોઝેબલ ફંક્શન એક અથવા વધુ અન્ય કમ્પોઝેબલ ફંક્શન્સને કૉલ કરી શકે છે. આ આપણને નાના, અલગ યુનિટ્સનો ઉપયોગ કરીને જટિલ લોજિક કમ્પોઝ કરવામાં સક્ષમ બનાવે છે, જેવી રીતે આપણે કમ્પોનન્ટ્સનો ઉપયોગ કરીને સંપૂર્ણ એપ્લિકેશન બનાવીએ છીએ. હકીકતમાં, આ જ કારણ છે કે અમે API ના સંગ્રહને કcallલ કરવાનું નક્કી કર્યું જે આ પેટર્નને Composition API ને શક્ય બનાવે છે.
 
-For example, we can extract the logic of adding and removing a DOM event listener into its own composable:
+ઉદાહરણ તરીકે, અમે DOM ઇવેન્ટ લિસનરને ઉમેરવા અને દૂર કરવાના લોજિકને તેના પોતાના કમ્પોઝેબલમાં એક્સટ્રેક્ટ કરી શકીએ છીએ:
 
 ```js [event.js]
 import { onMounted, onUnmounted } from 'vue'
 
 export function useEventListener(target, event, callback) {
-  // if you want, you can also make this
-  // support selector strings as target
+  // જો તમે ઇચ્છો તો, તમે આને સિલેક્ટર સ્ટ્રિંગ્સને
+  // ટાર્ગેટ તરીકે સપોર્ટ કરતું પણ બનાવી શકો છો
   onMounted(() => target.addEventListener(event, callback))
   onUnmounted(() => target.removeEventListener(event, callback))
 }
 ```
 
-And now our `useMouse()` composable can be simplified to:
+અને હવે અમારું `useMouse()` કમ્પોઝેબલ સરળ રીતે આ બનશે:
 
 ```js{2,8-11} [mouse.js]
 import { ref } from 'vue'
@@ -122,12 +122,12 @@ export function useMouse() {
 ```
 
 :::tip
-Each component instance calling `useMouse()` will create its own copies of `x` and `y` state so they won't interfere with one another. If you want to manage shared state between components, read the [State Management](/guide/scaling-up/state-management) chapter.
+કૉલ કરતો દરેક ઘટક ઇન્સ્ટન્સ `useMouse()` તેની પોતાની `x` અને `y` સ્ટેટની નકલો બનાવશે જેથી તેઓ એકબીજા સાથે દખલ ન કરે. જો તમે ઘટકો વચ્ચે શેર કરેલ સ્ટેટ (shared state) મેનેજ કરવા માંગતા હો, તો [સ્ટેટ મેનેજમેન્ટ](/guide/scaling-up/state-management) પ્રકરણ વાંચો.
 :::
 
-## Async State Example {#async-state-example}
+## એસિંક સ્ટેટ ઉદાહરણ (Async State Example) {#async-state-example}
 
-The `useMouse()` composable doesn't take any arguments, so let's take a look at another example that makes use of one. When doing async data fetching, we often need to handle different states: loading, success, and error:
+`useMouse()` કમ્પોઝેબલ કોઈ આર્ગ્યુમેન્ટ લેતું નથી, તેથી ચાલો બીજા ઉદાહરણ પર નજર કરીએ જે તેનો ઉપયોગ કરે છે. એસિંક ડેટા ફેચિંગ (fetching) કરતી વખતે, અમારે ઘણીવાર વિવિધ પરિસ્થિતિઓ (states) ને હેન્ડલ કરવાની જરૂર હોય છે: લોડિંગ, સક્સેસ અને એરર:
 
 ```vue
 <script setup>
@@ -143,16 +143,16 @@ fetch('...')
 </script>
 
 <template>
-  <div v-if="error">Oops! Error encountered: {{ error.message }}</div>
+  <div v-if="error">અરેરે! એરર આવી: {{ error.message }}</div>
   <div v-else-if="data">
-    Data loaded:
+    ડેટા લોડ થયો:
     <pre>{{ data }}</pre>
   </div>
-  <div v-else>Loading...</div>
+  <div v-else>લોડ થઈ રહ્યું છે...</div>
 </template>
 ```
 
-It would be tedious to have to repeat this pattern in every component that needs to fetch data. Let's extract it into a composable:
+ડેટા મેળવવાની જરૂર હોય તેવા દરેક ઘટકમાં આ પેટર્નનું પુનરાવર્તન કરવું કંટાળાજનક હશે. ચાલો તેને કમ્પોઝેબલમાં એક્સટ્રેક્ટ કરીએ:
 
 ```js [fetch.js]
 import { ref } from 'vue'
@@ -170,7 +170,7 @@ export function useFetch(url) {
 }
 ```
 
-Now in our component we can just do:
+હવે આપણા ઘટકમાં આપણે આ કરી શકીએ છીએ:
 
 ```vue
 <script setup>
@@ -180,29 +180,29 @@ const { data, error } = useFetch('...')
 </script>
 ```
 
-### Accepting Reactive State {#accepting-reactive-state}
+### રિએક્ટિવ સ્ટેટ સ્વીકારવું {#accepting-reactive-state}
 
-`useFetch()` takes a static URL string as input - so it performs the fetch only once and is then done. What if we want it to re-fetch whenever the URL changes? In order to achieve this, we need to pass reactive state into the composable function, and let the composable create watchers that perform actions using the passed state.
+`useFetch()` ઇનપુટ તરીકે સ્ટેટિક URL સ્ટ્રિંગ લે છે - તેથી તે માત્ર એક જ વાર ફેચ કરે છે અને પછી પૂરું થઈ જાય છે. જો આપણે ઈચ્છીએ કે જ્યારે પણ URL બદલાય ત્યારે તે ફરીથી ફેચ થાય તો શું? આ હાંસલ કરવા માટે, આપણે કમ્પોઝેબલ ફંક્શનમાં રિએક્ટિવ સ્ટેટ પાસ કરવાની જરૂર છે, અને કમ્પોઝેબલને વોચર્સ બનાવવા દેવા જોઈએ જે પાસ કરેલી સ્ટેટનો ઉપયોગ કરીને ક્રિયાઓ કરે છે.
 
-For example, `useFetch()` should be able to accept a ref:
+ઉદાહરણ તરીકે, `useFetch()` એ રિફ (ref) સ્વીકારવા માટે સક્ષમ હોવું જોઈએ:
 
 ```js
 const url = ref('/initial-url')
 
 const { data, error } = useFetch(url)
 
-// this should trigger a re-fetch
+// આનાથી ફરીથી ડેટા મેળવવો (re-fetch) જોઈએ
 url.value = '/new-url'
 ```
 
-Or, accept a [getter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description):
+અથવા, [ગેટર ફંક્શન](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description) સ્વીકારો:
 
 ```js
-// re-fetch when props.id changes
+// જ્યારે props.id બદલાય ત્યારે ફરીથી ફેચ કરો
 const { data, error } = useFetch(() => `/posts/${props.id}`)
 ```
 
-We can refactor our existing implementation with the [`watchEffect()`](/api/reactivity-core.html#watcheffect) and [`toValue()`](/api/reactivity-utilities.html#tovalue) APIs:
+અમે [`watchEffect()`](/api/reactivity-core.html#watcheffect) અને [`toValue()`](/api/reactivity-utilities.html#tovalue) APIs સાથે અમારા હાલના પ્રલીકરણ (implementation) ને રિફેક્ટર કરી શકીએ છીએ:
 
 ```js{7,12} [fetch.js]
 import { ref, watchEffect, toValue } from 'vue'
@@ -212,7 +212,7 @@ export function useFetch(url) {
   const error = ref(null)
 
   const fetchData = () => {
-    // reset state before fetching..
+    // ડેટા મેળવતા પહેલા સ્ટેટ રિસેટ કરો..
     data.value = null
     error.value = null
 
@@ -230,87 +230,87 @@ export function useFetch(url) {
 }
 ```
 
-`toValue()` is an API added in 3.3. It is designed to normalize refs or getters into values. If the argument is a ref, it returns the ref's value; if the argument is a function, it will call the function and return its return value. Otherwise, it returns the argument as-is. It works similarly to [`unref()`](/api/reactivity-utilities.html#unref), but with special treatment for functions.
+`toValue()` એ ૩.૩ માં ઉમેરવામાં આવેલ API છે. તે રિફ્સ અથવા ગેટર્સને મૂલ્યોમાં સામાન્ય (normalize) કરવા માટે રચાયેલ છે. જો આર્ગ્યુમેન્ટ રિફ હોય, તો તે રિફની વેલ્યુ પરત કરે છે; જો આર્ગ્યુમેન્ટ ફંક્શન હોય, તો તે ફંક્શનને કૉલ કરશે અને તેની રિટર્ન વેલ્યુ પરત કરશે. અન્યથા, તે આર્ગ્યુમેન્ટને છે તેમ જ પરત કરે છે. તે [`unref()`](/api/reactivity-utilities.html#unref) ની જેમ જ કામ કરે છે, પરંતુ ફંક્શન્સ માટે વિશેષ ટ્રીટમેન્ટ સાથે.
 
-Notice that `toValue(url)` is called **inside** the `watchEffect` callback. This ensures that any reactive dependencies accessed during the `toValue()` normalization are tracked by the watcher.
+નોંધ કરો કે `toValue(url)` એ `watchEffect` કોલબેકની **અંદર** કૉલ કરવામાં આવે છે. આ સુનિશ્ચિત કરે છે કે `toValue()` નોર્મલાઇઝેશન દરમિયાન એક્સેસ કરાયેલ કોઈપણ રિએક્ટિવ ડિપેન્ડન્સીસ વોચર દ્વારા ટ્રૅક કરવામાં આવે છે.
 
-This version of `useFetch()` now accepts static URL strings, refs, and getters, making it much more flexible. The watch effect will run immediately, and will track any dependencies accessed during `toValue(url)`. If no dependencies are tracked (e.g. url is already a string), the effect runs only once; otherwise, it will re-run whenever a tracked dependency changes.
+`useFetch()` નું આ વર્ઝન હવે સ્ટેટિક URL સ્ટ્રિંગ્સ, રિફ્સ અને ગેટર્સ સ્વીકારે છે, જે તેને વધુ લવચીક બનાવે છે. વોચ ઇફેક્ટ તાત્કાલિક ચાલશે, અને `toValue(url)` દરમિયાન એક્સેસ કરાયેલ કોઈપણ ડિપેન્ડન્સીસ ને ટ્રૅક કરશે. જો કોઈ ડિપેન્ડન્સીસ ટ્રૅક કરવામાં આવતી નથી (દા.ત. યુઆરએલ પહેલેથી જ સ્ટ્રિંગ છે), તો ઇફેક્ટ ફક્ત એક જ વાર ચાલે છે; અન્યથા, જ્યારે પણ ટ્રૅક કરેલી ડિપેન્ડન્સી બદલાશે ત્યારે તે ફરીથી ચાલશે.
 
-Here's [the updated version of `useFetch()`](https://play.vuejs.org/#eNp9Vdtu20YQ/ZUpUUA0qpAOjL4YktCbC7Rom8BN8sSHrMihtfZql9iLZEHgv2dml6SpxMiDIWkuZ+acmR2fs1+7rjgEzG6zlaut7Dw49KHbVFruO2M9nMFiu4Ta7LvgsYEeWmv2sKCkxSwoOPwTfb2b/EU5mopHR5GVro12HrbC4UerYA2Lnfeduy3LR2d0p0SNO6MatIU/dbI2DRZUtPSmMa4kgJQuG8qkjvLF28XVaAwRb2wxz69gvZkK/UQ5xUGogBQ/ZpyhEV4sAa01lnpeTwRyApsFWvT2RO6Eea40THBMgfq6NLwlS1/pVZnUJB3ph8c98fNIvwD+MaKBzkQut2xYbYP3RsPhTWvsusokSA0/Vxn8UitZP7GFSX/+8Sz7z1W2OZ9BQt+vypQXS1R+1cgDQciW4iMrimR0wu8270znfoC7SBaJWdAeLTa3QFgxuNijc+IBIy5PPyYOjU19RDEI954/Z/UptKTy6VvqA5XD1AwLTTl/0Aco4s5lV51F5sG+VJJ+v4qxYbmkfiiKYvSvyknPbJnNtoyW+HJpj4Icd22LtV+CN5/ikC4XuNL4HFPaoGsvie3FIqSJp1WIzabl00HxkoyetEVfufhv1kAu3EnX8z0CKEtKofcGzhMb2CItAELL1SPlFMV1pwVj+GROc/vWPoc26oDgdxhfSArlLnbWaBOcOoEzIP3CgbeifqLXLRyICaDBDnVD+3KC7emCSyQ4sifspOx61Hh4Qy/d8BsaOEdkYb1sZS2FoiJKnIC6FbqhsaTVZfk8gDgK6cHLPZowFGUzAQTNWl/BUSrFbzRYHXmSdeAp28RMsI0fyFDaUJg9Spd0SbERZcvZDBRleCPdQMCPh8ARwdRRnBCTjGz5WkT0i0GlSMqixTR6VKyHmmWEHIfV+naSOETyRx8vEYwMv7pa8dJU+hU9Kz2t86ReqjcgaTzCe3oGpEOeD4uyJOcjTXe+obScHwaAi82lo9dC/q/wuyINjrwbuC5uZrS4WAQeyTN9ftOXIVwy537iecoX92kR4q/F1UvqIMsSbq6vo5XF6ekCeEcTauVDFJpuQESvMv53IBXadx3r4KqMrt0w0kwoZY5/R5u3AZejvd5h/fSK/dE9s63K3vN7tQesssnnhX1An9x3//+Hz/R9cu5NExRFf8d5zyIF7jGF/RZ0Q23P4mK3f8XLRmfhg7t79qjdSIobjXLE+Cqju/b7d6i/tHtT3MQ8VrH/Ahstp5A=), with an artificial delay and randomized error for demo purposes.
+ડેમો હેતુઓ માટે આર્ટિફિશિયલ વિલંબ અને રેન્ડમાઇઝ્ડ એરર સાથેનું [`useFetch()` નું અપડેટેડ વર્ઝન](https://play.vuejs.org/#eNp9Vdtu20YQ/ZUpUUA0qpAOjલૂક-ઇન-વોચર્સ-એડ્રીએન્ટ) અહીં છે.
 
-## Conventions and Best Practices {#conventions-and-best-practices}
+## પરંપરાઓ અને શ્રેષ્ઠ પદ્ધતિઓ (Conventions and Best Practices) {#conventions-and-best-practices}
 
-### Naming {#naming}
+### નામકરણ (Naming) {#naming}
 
-It is a convention to name composable functions with camelCase names that start with "use".
+કમ્પોઝેબલ ફંક્શનના નામ camelCase નામો સાથે રાખવાની પરંપરા છે જે "use" થી શરૂ થાય છે.
 
-### Input Arguments {#input-arguments}
+### ઇનપુટ આર્ગ્યુમેન્ટ્સ (Input Arguments) {#input-arguments}
 
-A composable can accept ref or getter arguments even if it doesn't rely on them for reactivity. If you are writing a composable that may be used by other developers, it's a good idea to handle the case of input arguments being refs or getters instead of raw values. The [`toValue()`](/api/reactivity-utilities#tovalue) utility function will come in handy for this purpose:
+કમ્પોઝેબલ રિફ અથવા ગેટર આર્ગ્યુમેન્ટ્સ સ્વીકારી શકે છે ભલે તે રિએક્ટિવિટી માટે તેમના પર આધાર રાખતું ન હોય. જો તમે કમ્પોઝેબલ લખી રહ્યા છો જે અન્ય ડેવલપર્સ દ્વારા ઉપયોગમાં લેવાયેલ હોઈ શકે છે, તો ઇનપુટ આર્ગ્યુમેન્ટ્સ રો ડેટા (raw values) ને બદલે રિફ્સ અથવા ગેટર્સ હોવાના કિસ્સામાં હેન્ડલ કરવું સારો વિચાર છે. આ હેતુ માટે [`toValue()`](/api/reactivity-utilities#tovalue) યુટિલિટી ફંક્શન કામમાં આવશે:
 
 ```js
 import { toValue } from 'vue'
 
 function useFeature(maybeRefOrGetter) {
-  // If maybeRefOrGetter is a ref or a getter,
-  // its normalized value will be returned.
-  // Otherwise, it is returned as-is.
+  // જો maybeRefOrGetter એ રિફ અથવા ગેટર છે,
+  // તો તેની નોર્મલાઇઝ્ડ વેલ્યુ પરત કરવામાં આવશે.
+  // અન્યથા, તે છે તેમ જ પરત કરવામાં આવે છે.
   const value = toValue(maybeRefOrGetter)
 }
 ```
 
-If your composable creates reactive effects when the input is a ref or a getter, make sure to either explicitly watch the ref / getter with `watch()`, or call `toValue()` inside a `watchEffect()` so that it is properly tracked.
+જો ઇનપુટ રિફ અથવા ગેટર હોય ત્યારે તમારા કમ્પોઝેબલ રિએક્ટિવ ઇફેક્ટ્સ બનાવે છે, તો ખાતરી કરો કે કાં તો `watch()` સાથે રિફ / ગેટરને સ્પષ્ટપણે વોચ કરો અથવા `watchEffect()` ની અંદર `toValue()` ને કૉલ કરો જેથી તે યોગ્ય રીતે ટ્રેક થાય.
 
-The [useFetch() implementation discussed earlier](#accepting-reactive-state) provides a concrete example of a composable that accepts refs, getters and plain values as input argument.
+[અગાઉ ચર્ચા કરેલ useFetch() અમલીકરણ](#accepting-reactive-state) કમ્પોઝેબલનું કોંક્રિટ ઉદાહરણ પૂરું પાડે છે જે ઇનપુટ આર્ગ્યુમેન્ટ તરીકે રિફ્સ, ગેટર્સ અને પ્લેન વેલ્યુસ સ્વીકારે છે.
 
-### Return Values {#return-values}
+### રિટર્નિંગ વેલ્યુસ (Return Values) {#return-values}
 
-You have probably noticed that we have been exclusively using `ref()` instead of `reactive()` in composables. The recommended convention is for composables to always return a plain, non-reactive object containing multiple refs. This allows it to be destructured in components while retaining reactivity:
+તમે કદાચ નોંધ્યું હશે કે અમે કમ્પોઝેબલ્સમાં `reactive()` ને બદલે ખાસ કરીને `ref()` નો ઉપયોગ કરી રહ્યા છીએ. કમ્પોઝેબલ્સ માટે ભલામણ કરેલ કન્વેન્શન હંમેશા બહુવિધ રિફ્સ ધરાવતા સાદા, નોન-રિએક્ટિવ ઓબ્જેક્ટને પરત કરવા માટેની છે. આ તે રિએક્ટિવિટી જાળવી રાખતી વખતે કમ્પોનન્ટ્સમાં ડિસ્ટ્રક્ચર (destructured) કરવાની મંજૂરી આપે છે:
 
 ```js
-// x and y are refs
+// x અને y એ રિફ્સ છે
 const { x, y } = useMouse()
 ```
 
-Returning a reactive object from a composable will cause such destructures to lose the reactivity connection to the state inside the composable, while the refs will retain that connection.
+કમ્પોઝેબલમાંથી રિએક્ટિવ ઓબ્જેક્ટ પરત કરવાથી આવા ડિસ્ટ્રક્ચર્સ કમ્પોઝેબલની અંદર સ્ટેટ સાથે રિએક્ટિવિટી કનેક્શન ગુમાવે છે, જ્યારે રિફ્સ તે કનેક્શન જાળવી રાખશે.
 
-If you prefer to use returned state from composables as object properties, you can wrap the returned object with `reactive()` so that the refs are unwrapped. For example:
+જો તમે કમ્પોઝેબલ્સમાંથી પરત કરેલ સ્ટેટનો ઓબ્જેક્ટ પ્રોપર્ટીઝ તરીકે ઉપયોગ કરવાનું પસંદ કરો છો, તો તમે પરત કરેલા ઓબ્જેક્ટને `reactive()` સાથે લપેટી શકો છો જેથી રિફ્સ અનરેપ (unwrapped) થઈ જાય. ઉદાહરણ તરીકે:
 
 ```js
 const mouse = reactive(useMouse())
-// mouse.x is linked to original ref
+// mouse.x મૂળ રિફ સાથે જોડાયેલ છે
 console.log(mouse.x)
 ```
 
 ```vue-html
-Mouse position is at: {{ mouse.x }}, {{ mouse.y }}
+માઉસની સ્થિતિ છે: {{ mouse.x }}, {{ mouse.y }}
 ```
 
-### Side Effects {#side-effects}
+### સાઇડ ઇફેક્ટ્સ (Side Effects) {#side-effects}
 
-It is OK to perform side effects (e.g. adding DOM event listeners or fetching data) in composables, but pay attention to the following rules:
+કમ્પોઝેબલ્સમાં સાઇડ ઇફેક્ટ્સ (દા.ત. DOM ઇવેન્ટ લિસનર્સ ઉમેરવા અથવા ડેટા ફેચિંગ) કરવા ઠીક છે, પરંતુ નીચેના નિયમો પર ધ્યાન આપો:
 
-- If you are working on an application that uses [Server-Side Rendering](/guide/scaling-up/ssr) (SSR), make sure to perform DOM-specific side effects in post-mount lifecycle hooks, e.g. `onMounted()`. These hooks are only called in the browser, so you can be sure that code inside them has access to the DOM.
+- જો તમે એવી એપ્લિકેશન પર કામ કરી રહ્યાં હોવ કે જે [સર્વર-સાઇડ રેન્ડરિંગ (SSR)](/guide/scaling-up/ssr) નો ઉપયોગ કરે છે, તો પોસ્ટ-માઉન્ટ (post-mount) લાઇફસાયકલ હૂક્સમાં DOM-વિશિષ્ટ સાઇડ ઇફેક્ટ્સ કરવાનું સુનિશ્ચિત કરો, દા.ત. `onMounted()`. આ હૂક્સ ફક્ત બ્રાઉઝરમાં જ કૉલ કરવામાં આવે છે, તેથી તમે ખાતરી કરી શકો છો કે તેમની અંદરના કોડ પાસે DOM ની એક્સેસ છે.
 
-- Remember to clean up side effects in `onUnmounted()`. For example, if a composable sets up a DOM event listener, it should remove that listener in `onUnmounted()` as we have seen in the `useMouse()` example. It can be a good idea to use a composable that automatically does this for you, like the `useEventListener()` example.
+- `onUnmounted()` માં સાઇડ ઇફેક્ટ્સ ક્લીન કરવાનું યાદ રાખો. ઉદાહરણ તરીકે, જો કમ્પોઝેબલ DOM ઇવેન્ટ લિસનર સેટ કરે છે, તો તે `onUnmounted()` માં તે લિસનરને દૂર કરવું જોઈએ જે આપણે `useMouse()` ઉદાહરણમાં જોયું છે. કમ્પોઝેબલનો ઉપયોગ કરવો સારો વિચાર હોઈ શકે છે જે આપમેળે તમારા માટે આ કરે છે, જેમ કે `useEventListener()` ઉદાહરણ.
 
-### Usage Restrictions {#usage-restrictions}
+### વપરાશ પ્રતિબંધો (Usage Restrictions) {#usage-restrictions}
 
-Composables should only be called in `<script setup>` or the `setup()` hook. They should also be called **synchronously** in these contexts. In some cases, you can also call them in lifecycle hooks like `onMounted()`.
+કમ્પોઝેબલ્સ ફક્ત `<script setup>` અથવા `setup()` હૂકમાં જ કૉલ કરવા જોઈએ. તેઓ આ સંદર્ભોમાં **સિંક્રનસ (synchronously)** રીતે કૉલ કરવા જોઈએ. કેટલાક કિસ્સાઓમાં, તમે તેમને `onMounted()` જેવા લાઇફસાયકલ હૂક્સમાં પણ કૉલ કરી શકો છો.
 
-These restrictions are important because these are the contexts where Vue is able to determine the current active component instance. Access to an active component instance is necessary so that:
+આ પ્રતિબંધો મહત્વપૂર્ણ છે કારણ કે આ એવા સંદર્ભો છે જ્યાં Vue વર્તમાન સક્રિય ઘટક ઇન્સ્ટન્સ નક્કી કરવામાં સક્ષમ છે. સક્રિય ઘટક ઇન્સ્ટન્સની એક્સેસ આવશ્યક છે જેથી કરીને:
 
-1. Lifecycle hooks can be registered to it.
+૧. લાઇફસાયકલ હૂક્સ તેમાં રજીસ્ટર કરી શકાય.
 
-2. Watchers can be linked to it, so that they can be disposed when the instance is unmounted to prevent memory leaks.
+૨. વોચર્સને તેની સાથે લિંક કરી શકાય છે, જેથી જ્યારે મેમરી લિક અટકાવવા માટે ઇન્સ્ટન્સ અનમાઉન્ટ કરવામાં આવે ત્યારે તેનો નિકાલ કરી શકાય.
 
 :::tip
-`<script setup>` is the only place where you can call composables **after** using `await`. The compiler automatically restores the active instance context for you after the async operation.
+`<script setup>` એ એકમાત્ર એવી જગ્યા છે જ્યાં તમે `await` નો ઉપયોગ કર્યા **પછી** પણ કમ્પોઝેબલ્સને કૉલ કરી શકો છો. એસિંક ઓપરેશન પછી કમ્પાઇલર આપમેળે તમારા માટે એક્ટિવ ઇન્સ્ટન્સ કોન્ટેક્સ્ટને પુનઃસ્થાપિત કરે છે.
 :::
 
-## Extracting Composables for Code Organization {#extracting-composables-for-code-organization}
+## કોડ ઓર્ગેનાઈઝેશન માટે કમ્પોઝેબલ્સનો ઉપયોગ {#extracting-composables-for-code-organization}
 
-Composables can be extracted not only for reuse, but also for code organization. As the complexity of your components grows, you may end up with components that are too large to navigate and reason about. Composition API gives you the full flexibility to organize your component code into smaller functions based on logical concerns:
+કમ્પોઝેબલ્સને માત્ર પુનઃઉપયોગ માટે જ નહીં, પણ કોડ ઓર્ગેનાઈઝેશન માટે પણ એક્સટ્રેક્ટ કરી શકાય છે. જેમ જેમ તમારા ઘટકોની જટિલતા વધે છે તેમ, તમે એવા ઘટકો સાથે સમાપ્ત થઈ શકો છો જે નેવિગેટ કરવા અને સમજવા માટે ખૂબ મોટા છે. Composition API તમને લોજિકલ ચિંતાઓના આધારે તમારા ઘટક કોડને નાના ફંક્શન્સમાં ગોઠવવાની સંપૂર્ણ લવચીકતા આપે છે:
 
 ```vue
 <script setup>
@@ -324,11 +324,11 @@ const { qux } = useFeatureC(baz)
 </script>
 ```
 
-To some extent, you can think of these extracted composables as component-scoped services that can talk to one another.
+અમુક અંશે, તમે આ એક્સટ્રેક્ટ કરેલા કમ્પોઝેબલ્સને કમ્પોનન્ટ-સ્કોપ્ડ સર્વિસ તરીકે વિચારી શકો છો જે એકબીજા સાથે વાત કરી શકે છે.
 
-## Using Composables in Options API {#using-composables-in-options-api}
+## Options API માં કમ્પોઝેબલ્સનો ઉપયોગ કરવો {#using-composables-in-options-api}
 
-If you are using Options API, composables must be called inside `setup()`, and the returned bindings must be returned from `setup()` so that they are exposed to `this` and the template:
+જો તમે Options API નો ઉપયોગ કરી રહ્યાં છો, તો કમ્પોઝેબલ્સને `setup()` ની અંદર કૉલ કરવા જ જોઈએ, અને પરત કરેલા બાઈન્ડિંગ્સને `setup()` માંથી પરત કરવા જ જોઈએ જેથી કરીને તે `this` અને ટેમ્પલેટમાં એક્સપોઝ થાય:
 
 ```js
 import { useMouse } from './mouse.js'
@@ -341,42 +341,42 @@ export default {
     return { x, y, data, error }
   },
   mounted() {
-    // setup() exposed properties can be accessed on `this`
+    // setup() એક્સપોઝ કરેલી પ્રોપર્ટીઝને `this` પર એક્સેસ કરી શકાય છે
     console.log(this.x)
   }
-  // ...other options
+  // ...અન્ય ઓપ્શન્સ
 }
 ```
 
-## Comparisons with Other Techniques {#comparisons-with-other-techniques}
+## અન્ય તકનીકો સાથે સરખામણી {#comparisons-with-other-techniques}
 
-### vs. Mixins {#vs-mixins}
+### મિક્સિન્સ (Mixins) વિરુદ્ધ {#vs-mixins}
 
-Users coming from Vue 2 may be familiar with the [mixins](/api/options-composition#mixins) option, which also allows us to extract component logic into reusable units. There are three primary drawbacks to mixins:
+Vue 2 માંથી આવતા યુઝર્સ [મિક્સિન્સ (mixins)](/api/options-composition#mixins) ઓપ્શનથી પરિચિત હોઈ શકે છે, જે આપણને કમ્પોનન્ટ લોજિકને પુનઃઉપયોગી એકમોમાં એક્સટ્રેક્ટ કરવાની મંજૂરી આપે છે. મિક્સિન્સની ત્રણ પ્રાથમિક ખામીઓ છે:
 
-1. **Unclear source of properties**: when using many mixins, it becomes unclear which instance property is injected by which mixin, making it difficult to trace the implementation and understand the component's behavior. This is also why we recommend using the refs + destructure pattern for composables: it makes the property source clear in consuming components.
+૧. **પ્રોપર્ટીઝનો અસ્પષ્ટ સ્ત્રોત**: ઘણા મિક્સિન્સનો ઉપયોગ કરતી વખતે, તે અસ્પષ્ટ બની જાય છે કે કઈ ઇન્સ્ટન્સ પ્રોપર્ટી કયા મિક્સિન દ્વારા ઇન્જેક્ટ કરવામાં આવી છે, જે અમલીકરણને ટ્રેસ કરવાનું અને ઘટકના વર્તનને સમજવાનું મુશ્કેલ બનાવે છે. આ જ કારણ છે કે અમે કમ્પોઝેબલ્સ માટે રિફ્સ + ડિસ્ટ્રક્ચર પેટર્નનો ઉપયોગ કરવાની ભલામણ કરીએ છીએ: તે ઘટકોમાં પ્રોપર્ટીના સ્ત્રોતને સ્પષ્ટ બનાવે છે.
 
-2. **Namespace collisions**: multiple mixins from different authors can potentially register the same property keys, causing namespace collisions. With composables, you can rename the destructured variables if there are conflicting keys from different composables.
+૨. **નેમસ્પેસ અથડામણ (Namespace collisions)**: વિવિધ લેખકોના બહુવિધ મિક્સિન્સ સંભવિતપણે સમાન પ્રોપર્ટી કી રજીસ્ટર કરી શકે છે, જે નેમસ્પેસ અથડામણનું કારણ બને છે. કમ્પોઝેબલ્સ સાથે, જો વિવિધ કમ્પોઝેબલ્સમાંથી વિરોધાભાસી કીઓ હોય તો તમે ડિસ્ટ્રક્ચર કરેલા વેરીએબલ્સનું નામ બદલી શકો છો.
 
-3. **Implicit cross-mixin communication**: multiple mixins that need to interact with one another have to rely on shared property keys, making them implicitly coupled. With composables, values returned from one composable can be passed into another as arguments, just like normal functions.
+૩. **ગૌણ ક્રોસ-મિક્સિન કમ્યુનિકેશન**: બહુવિધ મિક્સિન્સ કે જેણે એકબીજા સાથે સંપર્ક કરવાની જરૂર હોય છે તેઓએ શેર કરેલ પ્રોપર્ટી કી પર આધાર રાખવો પડે છે, જે તેમને ગૌણ રીતે જોડે છે. કમ્પોઝેબલ્સ સાથે, એક કમ્પોઝેબલમાંથી પરત કરવામાં આવેલી વેલ્યુસ અન્ય માં આર્ગ્યુમેન્ટ્સ તરીકે પાસ કરી શકાય છે, બિલકુલ સામાન્ય ફંક્શન્સની જેમ.
 
-For the above reasons, we no longer recommend using mixins in Vue 3. The feature is kept only for migration and familiarity reasons.
+ઉપરોક્ત કારણોસર, અમે હવે Vue 3 માં મિક્સિન્સનો ઉપયોગ કરવાની ભલામણ કરતા નથી. આ સુવિધાને માત્ર માઈગ્રેશન અને પરિચિતતાના કારણોસર રાખવામાં આવી છે.
 
-### vs. Renderless Components {#vs-renderless-components}
+### રેન્ડરલેસ કમ્પોનન્ટ્સ (Renderless Components) વિરુદ્ધ {#vs-renderless-components}
 
-In the component slots chapter, we discussed the [Renderless Component](/guide/components/slots#renderless-components) pattern based on scoped slots. We even implemented the same mouse tracking demo using renderless components.
+કમ્પોનન્ટ સ્લોટ્સ પ્રકરણમાં, અમે સ્કોપ્ડ સ્લોટ્સ પર આધારિત [રેન્ડરલેસ કમ્પોનન્ટ (Renderless Component)](/guide/components/slots#renderless-components) પેટર્ન વિશે ચર્ચા કરી. અમે રેન્ડરલેસ કમ્પોનન્ટ્સનો ઉપયોગ કરીને સમાન માઉસ ટ્રેકિંગ ડેમો પણ લાગુ કર્યો.
 
-The main advantage of composables over renderless components is that composables do not incur the extra component instance overhead. When used across an entire application, the amount of extra component instances created by the renderless component pattern can become a noticeable performance overhead.
+રેન્ડરલેસ કમ્પોનન્ટ્સ પર કમ્પોઝેબલ્સનો મુખ્ય ફાયદો એ છે કે કમ્પોઝેબલ્સમાં વધારાના ઘટક ઇન્સ્ટન્સ ઓવરહેડ થતો નથી. જ્યારે સમગ્ર એપ્લિકેશનમાં ઉપયોગ કરવામાં આવે છે, ત્યારે રેન્ડરલેસ કમ્પોનન્ટ પેટર્ન દ્વારા બનાવવામાં આવેલા વધારાના ઘટક ઇન્સ્ટન્સની માત્રા નોંધપાત્ર પરફોર્મન્સ ઓવરહેડ બની શકે છે.
 
-The recommendation is to use composables when reusing pure logic, and use components when reusing both logic and visual layout.
+ભલામણ એ છે કે શુદ્ધ લોજિકનો પુનઃઉપયોગ કરતી વખતે કમ્પોઝેબલ્સનો ઉપયોગ કરવો અને લોજિક અને વિઝ્યુઅલ લેઆઉટ બંનેનો પુનઃઉપયોગ કરતી વખતે કમ્પોનન્ટ્સનો ઉપયોગ કરવો.
 
-### vs. React Hooks {#vs-react-hooks}
+### React Hooks વિરુદ્ધ {#vs-react-hooks}
 
-If you have experience with React, you may notice that this looks very similar to custom React hooks. Composition API was in part inspired by React hooks, and Vue composables are indeed similar to React hooks in terms of logic composition capabilities. However, Vue composables are based on Vue's fine-grained reactivity system, which is fundamentally different from React hooks' execution model. This is discussed in more detail in the [Composition API FAQ](/guide/extras/composition-api-faq#comparison-with-react-hooks).
+જો તમારી પાસે React નો અનુભવ છે, તો તમે નોંધ્યું હશે કે આ કસ્ટમ React હુક્સ જેવું જ દેખાય છે. Composition API અંશતઃ React હુક્સ દ્વારા પ્રેરિત હતું, અને Vue કમ્પોઝેબલ્સ ખરેખર લોજિક કમ્પોઝિશન ક્ષમતાઓના સંદર્ભમાં React હુક્સ જેવા જ છે. જો કે, Vue કમ્પોઝેબલ્સ Vue ની ફાઇન-ગ્રેઇન્ડ રિએક્ટિવિટી સિસ્ટમ પર આધારિત છે, જે React હુક્સના એક્ઝેક્યુશન મોડલથી મૂળભૂત રીતે અલગ છે. આની ચર્ચા [Composition API FAQ](/guide/extras/composition-api-faq#comparison-with-react-hooks) માં વધુ વિગતવાર કરવામાં આવી છે.
 
-## Further Reading {#further-reading}
+## વધુ વાંચન {#further-reading}
 
-- [Reactivity In Depth](/guide/extras/reactivity-in-depth): for a low-level understanding of how Vue's reactivity system works.
-- [State Management](/guide/scaling-up/state-management): for patterns of managing state shared by multiple components.
-- [Testing Composables](/guide/scaling-up/testing#testing-composables): tips on unit testing composables.
-- [VueUse](https://vueuse.org/): an ever-growing collection of Vue composables. The source code is also a great learning resource.
+- [રિએક્ટિવિટી ઊંડાણમાં (Reactivity In Depth)](/guide/extras/reactivity-in-depth): Vue ની રિએક્ટિવિટી સિસ્ટમ કેવી રીતે કાર્ય કરે છે તેની લો-લેવલ સમજણ માટે.
+- [સ્ટેટ મેનેજમેન્ટ (State Management)](/guide/scaling-up/state-management): બહુવિધ ઘટકો દ્વારા શેર કરાયેલ સ્ટેટ ને મેનેજ કરવાની પેટર્ન માટે.
+- [કમ્પોઝેબલ્સનું પરીક્ષણ (Testing Composables)](/guide/scaling-up/testing#testing-composables): કમ્પોઝેબલ્સના યુનિટ ટેસ્ટિંગ પર ટિપ્સ.
+- [VueUse](https://vueuse.org/): Vue કમ્પોઝેબલ્સનો સતત વધતો જતો સંગ્રહ. સોર્સ કોડ પણ શીખવા માટેનું એક ઉત્તમ રિસોર્સ છે.

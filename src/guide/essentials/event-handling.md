@@ -1,26 +1,26 @@
-# Event Handling {#event-handling}
+# ઇવેન્ટ હેન્ડલિંગ (Event Handling) {#event-handling}
 
 <div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/user-events-in-vue-3" title="Free Vue.js Events Lesson"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/user-events-in-vue-3" title="ફ્રી Vue.js ઇવેન્ટ્સ લેસન"/>
 </div>
 
 <div class="composition-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-user-events-in-vue-3" title="Free Vue.js Events Lesson"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-user-events-in-vue-3" title="ફ્રી Vue.js ઇવેન્ટ્સ લેસન"/>
 </div>
 
-## Listening to Events {#listening-to-events}
+## ઇવેન્ટ્સ સાંભળવી (Listening to Events) {#listening-to-events}
 
-We can use the `v-on` directive, which we typically shorten to the `@` symbol, to listen to DOM events and run some JavaScript when they're triggered. The usage would be `v-on:click="handler"` or with the shortcut, `@click="handler"`.
+આપણે `v-on` ડિરેક્ટિવનો ઉપયોગ કરી શકીએ છીએ, જેને આપણે સામાન્ય રીતે `@` ચિહ્નથી ટૂંકું કરીએ છીએ, DOM ઇવેન્ટ્સ સાંભળવા માટે અને જ્યારે તેઓ ટ્રિગર થાય ત્યારે અમુક જાવાસ્ક્રિપ્ટ ચલાવવા માટે. વપરાશ `v-on:click="handler"` અથવા શોર્ટકટ સાથે, `@click="handler"` હશે.
 
-The handler value can be one of the following:
+હેન્ડલર વેલ્યુ (handler value) નીચેનામાંથી એક હોઈ શકે છે:
 
-1. **Inline handlers:** Inline JavaScript to be executed when the event is triggered (similar to the native `onclick` attribute).
+1. **ઇનલાઇન હેન્ડલર્સ:** ઇવેન્ટ ટ્રિગર થાય ત્યારે એક્ઝિક્યુટ કરવા માટે ઇનલાઇન જાવાસ્ક્રિપ્ટ (નેટિવ `onclick` એટ્રિબ્યુટ જેવું જ).
 
-2. **Method handlers:** A property name or path that points to a method defined on the component.
+2. **મેથડ હેન્ડલર્સ:** કમ્પોનન્ટ પર વ્યાખ્યાયિત મેથડ (method) તરફ નિર્દેશ કરતું પ્રોપર્ટીનું નામ અથવા પાથ.
 
-## Inline Handlers {#inline-handlers}
+## ઇનલાઇન હેન્ડલર્સ (Inline Handlers) {#inline-handlers}
 
-Inline handlers are typically used in simple cases, for example:
+ઇનલાઇન હેન્ડલર્સનો ઉપયોગ સામાન્ય રીતે સાદા કિસ્સાઓમાં થાય છે, ઉદાહરણ તરીકે:
 
 <div class="composition-api">
 
@@ -42,26 +42,26 @@ data() {
 </div>
 
 ```vue-html
-<button @click="count++">Add 1</button>
-<p>Count is: {{ count }}</p>
+<button @click="count++">૧ ઉમેરો</button>
+<p>ગણતરી છે: {{ count }}</p>
 ```
 
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNo9jssKgzAURH/lko0tgrbbEqX+Q5fZaLxiqHmQ3LgJ+fdqFZcD58xMYp1z1RqRvRgP0itHEJCia4VR2llPkMDjBBkmbzUUG1oII4y0JhBIGw2hh2Znbo+7MLw+WjZ/C4TaLT3hnogPkcgaeMtFyW8j2GmXpWBtN47w5PWBHLhrPzPCKfWDXRHmPsCAaOBfgSOkdH3IGUhpDBWv9/e8vsZZ/gFFhFJN)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNo9jssKgzAURH/lko0tgrbbEqX+Q5fZaLxiqHmQ3LgJ+fdqFZcD58xMYp1z1RqRvRvP0itHEJCia4VR2llPkMDjBBkmbzUUG1oII4y0JhBIGw2hh2Znbo+7MLw+WjZ/C4TaLT3hnogPkcgaeMtFyW8j2GmXpWBtN47w5PWBHLhrPzPCKfWDXRHmPsCAaOBfgSOkdH3IGUhpDBWv9/e8vsZZ/gFFhFJN)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNo9jcEKgzAQRH9lyKlF0PYqqdR/6DGXaLYo1RjiRgrivzepIizLzu7sm1XUzuVLIFEKObe+d1wpS183eYahtw4DY1UWMJr15ZpmxYAnDt7uF0BxOwXL5Evc0kbxlmyxxZLFyY2CaXSDZkqKZROYJ4tnO/Tt56HEgckyJaraGNxlsVt2u6teHeF40s20EDo9oyGy+CPIYF1xULBt4H6kOZeFiwBZnOFi+wH0B1hk)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNo9jcEKgzAQRH9lyKlF0PYqqdR/6DGXaLYo1RjiRgrivzepIizLzu7sm1XUzuVLIFEKObe+d1wpS183eYahtw4DY1UWMJr15ZpmxYAnDt7uF0BxOwXL5Evc0kbxlmyxxZLFyY2CaXSDZkqKZROYJ4tnO/Tt56HEgckyJaraGNxlsVt2u6teHeF40s20EDo9oyGy+CPIYF1xULBt4H6kOZeFiwBZnOFi+wH0B1hk)
 
 </div>
 
-## Method Handlers {#method-handlers}
+## મેથડ હેન્ડલર્સ (Method Handlers) {#method-handlers}
 
-The logic for many event handlers will be more complex though, and likely isn't feasible with inline handlers. That's why `v-on` can also accept the name or path of a component method you'd like to call.
+ઘણા ઇવેન્ટ હેન્ડલર્સ માટેનું લોજિક વધુ જટિલ હશે અને ઇનલાઇન હેન્ડલર્સ સાથે શક્ય ન હોઈ શકે. તેથી જ `v-on` કમ્પોનન્ટ મેથડનું નામ અથવા પાથ પણ સ્વીકારી શકે છે જેને તમે કૉલ કરવા માંગો છો.
 
-For example:
+ઉદાહરણ તરીકે:
 
 <div class="composition-api">
 
@@ -69,8 +69,8 @@ For example:
 const name = ref('Vue.js')
 
 function greet(event) {
-  alert(`Hello ${name.value}!`)
-  // `event` is the native DOM event
+  alert(`નમસ્તે ${name.value}!`)
+  // `event` એ નેટિવ DOM ઇવેન્ટ છે
   if (event) {
     alert(event.target.tagName)
   }
@@ -88,9 +88,9 @@ data() {
 },
 methods: {
   greet(event) {
-    // `this` inside methods points to the current active instance
-    alert(`Hello ${this.name}!`)
-    // `event` is the native DOM event
+    // મેથડ્સની અંદર `this` વર્તમાન એક્ટિવ ઇન્સ્ટન્સ તરફ નિર્દેશ કરે છે
+    alert(`નમસ્તે ${this.name}!`)
+    // `event` એ નેટિવ DOM ઇવેન્ટ છે
     if (event) {
       alert(event.target.tagName)
     }
@@ -101,41 +101,41 @@ methods: {
 </div>
 
 ```vue-html
-<!-- `greet` is the name of the method defined above -->
-<button @click="greet">Greet</button>
+<!-- `greet` એ ઉપર વ્યાખ્યાયિત મેથડનું નામ છે -->
+<button @click="greet">અભિવાદન (Greet)</button>
 ```
 
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNpVj0FLxDAQhf/KMwjtXtq7dBcFQS/qzVMOrWFao2kSkkkvpf/dJIuCEBgm771vZnbx4H23JRJ3YogqaM+IxMlfpNWrd4GxI9CMA3NwK5psbaSVVjkbGXZaCediaJv3RN1XbE5FnZNVrJ3FEoi4pY0sn7BLC0yGArfjMxnjcLsXQrdNJtFxM+Ys0PcYa2CEjuBPylNYb4THtxdUobj0jH/YX3D963gKC5WyvGZ+xR7S5jf01yPzeblhWr2ZmErHw0dizivfK6PV91mKursUl6dSh/4qZ+vQ/+XE8QODonDi)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNpVj0FLxDAQhf/KMwjtXtq7dBcFQS/qzVMOrWFao2kSkkkvpf/dJIuCEBgm771vZnbx4H23JRJ3YogqaM+IxMlfpNWrd4GxI9CMA3NwK5psbaSVVjkbGXZaCediaJv3RN1XbE5FnZNVrJ3FEoi4pY0sn7BLC0yGArfjMxnjcLsXQrdNJtFxM+Ys0PcYa2CEjuBPylNYb4THtxdUobj0jH/YX3D963gKC5WyvGZ+xR7S5jf01yPzeblhWr2ZmErHw0dizivfK6PV91mKursUl6dSh/4qZ+vQ/+XE8QODonDi)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNplUE1LxDAQ/StjEbYL0t5LXRQEvag3Tz00prNtNE1CMilC6X83SUkRhJDJfLz3Jm8tHo2pFo9FU7SOW2Ho0in8MdoSDHhlXhKsnQIYGLHyvL8BLJK3KmcAis3YwOnDY/XlTnt1i2G7i/eMNOnBNRkwWkQqcUFFByVAXUNPk3A9COXEgBkGRgtFDkgDTQjcWxuAwDiJBeMsMcUxszCJlsr+BaXUcLtGwiqut930579KST1IBd5Aqlgie3p/hdTIk+IK//bMGqleEbMjxjC+BZVDIv0+m9CpcNr6MDgkhLORjDBm1H56Iq3ggUvBv++7IhnUFZfnGNt6b4fRtj5wxfYL9p+Sjw==)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNplUE1LxDAQ/StjEbYL0t5LXRQEvag3Tz00prNtNE1CMilC6X83SUkRhJDJfLz3Jm8tHo2pFo9FU7SOW2Ho0in8MdoSDHhlXhKsnQIYGLHyvL8BLJK3KmcAis3YwOnDY/XlTnt1i2G7i/eMNOnBNRkwWkQqcUFFByVAXUNPk3A9COXEgBkGRgtFDkgDTQjcWxuAwDiJBeMsMcUxszCJlsr+BaXUcLtGwiqut930579KST1IBd5Aqlgie3p/hdTIk+IK//bMGqleEbMjxjC+BZVDIv0+m9CpcNr6MDgkhLORjDBm1H56Iq3ggUvBv++7IhnUFZfnGNt6b4fRtj5wxfYL9p+Sjw==)
 
 </div>
 
-A method handler automatically receives the native DOM Event object that triggers it - in the example above, we are able to access the element dispatching the event via `event.target`.
+મેથડ હેન્ડલરને તે ટ્રિગર કરતી નેટિવ DOM ઇવેન્ટ ઓબ્જેક્ટ આપમેળે પ્રાપ્ત થાય છે - ઉપરના ઉદાહરણમાં, અમે `event.target` દ્વારા ઇવેન્ટ મોકલનાર એલિમેન્ટને એક્સેસ કરવા સક્ષમ છીએ.
 
 <div class="composition-api">
 
-See also: [Typing Event Handlers](/guide/typescript/composition-api#typing-event-handlers) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Event Handlers](/guide/typescript/composition-api#typing-event-handlers) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
 
-See also: [Typing Event Handlers](/guide/typescript/options-api#typing-event-handlers) <sup class="vt-badge ts" />
+આ પણ જુઓ: [Typing Event Handlers](/guide/typescript/options-api#typing-event-handlers) <sup class="vt-badge ts" />
 
 </div>
 
-### Method vs. Inline Detection {#method-vs-inline-detection}
+### મેથડ વિરુદ્ધ ઇનલાઇન ડિટેક્શન {#method-vs-inline-detection}
 
-The template compiler detects method handlers by checking whether the `v-on` value string is a valid JavaScript identifier or property access path. For example, `foo`, `foo.bar` and `foo['bar']` are treated as method handlers, while `foo()` and `count++` are treated as inline handlers.
+ટેમ્પલેટ કમ્પાઇલર શુ `v-on` વેલ્યુ સ્ટ્રિંગ માન્ય જાવાસ્ક્રિપ્ટ આઇડેન્ટિફાયર (identifier) અથવા પ્રોપર્ટી એક્સેસ પાથ છે કે કેમ તે ચકાસીને મેથડ હેન્ડલર્સને ઓળખે છે. ઉદાહરણ તરીકે, `foo`, `foo.bar` અને `foo['bar']` ને મેથડ હેન્ડલર્સ તરીકે ગણવામાં આવે છે, જ્યારે `foo()` અને `count++` ને ઇનલાઇન હેન્ડલર્સ તરીકે ગણવામાં આવે છે.
 
-## Calling Methods in Inline Handlers {#calling-methods-in-inline-handlers}
+## ઇનલાઇન હેન્ડલર્સમાં મેથડ્સ કોલ કરવી {#calling-methods-in-inline-handlers}
 
-Instead of binding directly to a method name, we can also call methods in an inline handler. This allows us to pass the method custom arguments instead of the native event:
+મેથડના નામ સાથે સીધા બાંધવાને બદલે, આપણે ઇનલાઇન હેન્ડલરમાં મેથડ્સ પણ કોલ કરી શકીએ છીએ. આ આપણને નેટિવ ઇવેન્ટને બદલે મેથડમાં કસ્ટમ આર્ગ્યુમેન્ટ્સ પાસ કરવાની મંજૂરી આપે છે:
 
 <div class="composition-api">
 
@@ -159,34 +159,34 @@ methods: {
 </div>
 
 ```vue-html
-<button @click="say('hello')">Say hello</button>
-<button @click="say('bye')">Say bye</button>
+<button @click="say('હેલો')">હેલો બોલો</button>
+<button @click="say('બાય')">બાય બોલો</button>
 ```
 
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNp9jTEOwjAMRa8SeSld6I5CBWdg9ZJGBiJSN2ocpKjq3UmpFDGx+Vn//b/ANYTjOxGcQEc7uyAqkqTQI98TW3ETq2jyYaQYzYNatSArZTzNUn/IK7Ludr2IBYTG4I3QRqKHJFJ6LtY7+zojbIXNk7yfmhahv5msvqS7PfnHGjJVp9w/hu7qKKwfEd1NSg==)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNp9jTEOwjAMRa8SeSld6I5CBWdg9ZJGBiJSN2ocpKjq3UmpFDGx+Vn//b/ANYTjOxGcQEc7uyAqkqTQI98TW3ETq2jyYaQYzYNatSArZTzNUn/IK7Ludr2IBYTG4I3QRqKHJFJ6LtY7+zojbIXNk7yfmhahv5msvqS7PfnHGjJVp9w/hu7qKKwfEd1NSg==)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNptjUEKwjAQRa8yZFO7sfsSi57B7WzGdjTBtA3NVC2ldzehEFwIw8D7vM9f1cX742tmVSsd2sl6aXDgjx8ngY7vNDuBFQeAnsWMXagToQAEWg49h0APLncDAIUcT5LzlKJsqRBfPF3ljQjCvXcknEj0bRYZBzi3zrbPE6o0UBhblKiaKy1grK52J/oA//23IcmNBD8dXeVBtX0BF0pXsg==)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNptjUEKwjAQRa8yZFO7sfsSi57B7WzGdjTBtA3NVC2ldzehEFwIw8D7vM9f1cX742tmVSsd2sl6aXDgjx8ngY7vNDuBFQeAnsWMXagToQAEWg49h0APLncDAIUcT5LzlKJsqRBfPF3ljQjCvXcknEj0bRYZBzi3zrbPE6o0UBhblKiaKy1grK52J/oA//23IcmNBD8dXeVBtX0BF0pXsg==)
 
 </div>
 
-## Accessing Event Argument in Inline Handlers {#accessing-event-argument-in-inline-handlers}
+## ઇનલાઇન હેન્ડલર્સમાં ઇવેન્ટ આર્ગ્યુમેન્ટ એક્સેસ કરવી {#accessing-event-argument-in-inline-handlers}
 
-Sometimes we also need to access the original DOM event in an inline handler. You can pass it into a method using the special `$event` variable, or use an inline arrow function:
+ક્યારેક આપણે ઇનલાઇન હેન્ડલરમાં અસલ DOM ઇવેન્ટને એક્સેસ કરવાની પણ જરૂર પડે છે. તમે તેને વિશિષ્ટ `$event` વેરિએબલનો ઉપયોગ કરીને મેથડમાં પાસ કરી શકો છો અથવા ઇનલાઇન એરો ફંક્શનનો ઉપયોગ કરી શકો છો:
 
 ```vue-html
-<!-- using $event special variable -->
-<button @click="warn('Form cannot be submitted yet.', $event)">
-  Submit
+<!-- $event વિશેષ વેરિએબલનો ઉપયોગ કરીને -->
+<button @click="warn('ફોર્મ હજુ સબમિટ કરી શકાતું નથી.', $event)">
+  સબમિટ
 </button>
 
-<!-- using inline arrow function -->
-<button @click="(event) => warn('Form cannot be submitted yet.', event)">
-  Submit
+<!-- ઇનલાઇન એરો ફંક્શનનો ઉપયોગ કરીને -->
+<button @click="(event) => warn('ફોર્મ હજુ સબમિટ કરી શકાતું નથી.', event)">
+  સબમિટ
 </button>
 ```
 
@@ -194,7 +194,7 @@ Sometimes we also need to access the original DOM event in an inline handler. Yo
 
 ```js
 function warn(message, event) {
-  // now we have access to the native event
+  // હવે આપણી પાસે નેટિવ ઇવેન્ટની એક્સેસ છે
   if (event) {
     event.preventDefault()
   }
@@ -208,7 +208,7 @@ function warn(message, event) {
 ```js
 methods: {
   warn(message, event) {
-    // now we have access to the native event
+    // હવે આપણી પાસે નેટિવ ઇવેન્ટની એક્સેસ છે
     if (event) {
       event.preventDefault()
     }
@@ -219,11 +219,11 @@ methods: {
 
 </div>
 
-## Event Modifiers {#event-modifiers}
+## ઇવેન્ટ મોડિફાયર્સ (Event Modifiers) {#event-modifiers}
 
-It is a very common need to call `event.preventDefault()` or `event.stopPropagation()` inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.
+ઇવેન્ટ હેન્ડલર્સની અંદર `event.preventDefault()` અથવા `event.stopPropagation()` ને કોલ કરવાની સામાન્ય જરૂરિયાત હોય છે. જોકે આપણે મેથડ્સની અંદર આ સરળતાથી કરી શકીએ છીએ, જો મેથડ્સ DOM ઇવેન્ટની વિગતો સાથે વ્યવહાર કરવાને બદલે સંપૂર્ણ રીતે ડેટા લોજિક વિશે હોઈ શકે તો તે વધુ સારું રહેશે.
 
-To address this problem, Vue provides **event modifiers** for `v-on`. Recall that modifiers are directive postfixes denoted by a dot.
+આ સમસ્યાને ઉકેલવા માટે, Vue `v-on` માટે **ઇવેન્ટ મોડિફાયર્સ (event modifiers)** પૂરા પાડે છે. યાદ કરો કે મોડિફાયર્સ બિંદુ (dot) દ્વારા સૂચવવામાં આવેલ ડિરેક્ટિવ પોસ્ટફિક્સ છે.
 
 - `.stop`
 - `.prevent`
@@ -233,74 +233,74 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 - `.passive`
 
 ```vue-html
-<!-- the click event's propagation will be stopped -->
+<!-- ક્લિક ઇવેન્ટનું પ્રોપેગેશન (propagation) અટકાવી દેવામાં આવશે -->
 <a @click.stop="doThis"></a>
 
-<!-- the submit event will no longer reload the page -->
+<!-- સબમિટ ઇવેન્ટ હવે પેજ લોડ થશે નહિ -->
 <form @submit.prevent="onSubmit"></form>
 
-<!-- modifiers can be chained -->
+<!-- મોડિફાયર્સને સાંકળી (chained) શકાય છે -->
 <a @click.stop.prevent="doThat"></a>
 
-<!-- just the modifier -->
+<!-- માત્ર મોડિફાયર -->
 <form @submit.prevent></form>
 
-<!-- only trigger handler if event.target is the element itself -->
-<!-- i.e. not from a child element -->
+<!-- જો event.target એલિમેન્ટ પોતે હોય તો જ હેન્ડલર ટ્રિગર કરો -->
+<!-- એટલે કે ચાઇલ્ડ એલિમેન્ટમાંથી નહીં -->
 <div @click.self="doThat">...</div>
 ```
 
 ::: tip
-Order matters when using modifiers because the relevant code is generated in the same order. Therefore using `@click.prevent.self` will prevent **click's default action on the element itself and its children**, while `@click.self.prevent` will only prevent click's default action on the element itself.
+મોડિફાયરનો ઉપયોગ કરતી વખતે ક્રમ (order) મહત્વનો છે કારણ કે સંબંધિત કોડ સમાન ક્રમમાં જનરેટ થાય છે. તેથી `@click.prevent.self` નો ઉપયોગ કરવાથી **એલિમેન્ટ પોતે અને તેના ચિલ્ડ્રન પર ક્લિકની ડિફોલ્ટ એક્શન અટકશે**, જ્યારે `@click.self.prevent` ફક્ત એલિમેન્ટ પર જ ક્લિકની ડિફોલ્ટ એક્શનને અટકાવશે.
 :::
 
-The `.capture`, `.once`, and `.passive` modifiers mirror the [options of the native `addEventListener` method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#options):
+`.capture`, `.once`, અને `.passive` મોડિફાયર્સ નેટિવ `addEventListener` મેથડના [ઓપ્શન્સ](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#options) ને પ્રતિબિંબિત કરે છે:
 
 ```vue-html
-<!-- use capture mode when adding the event listener     -->
-<!-- i.e. an event targeting an inner element is handled -->
-<!-- here before being handled by that element           -->
+<!-- ઇવેન્ટ લિસનર ઉમેરતી વખતે કેપ્ચર મોડ (capture mode) નો ઉપયોગ કરો -->
+<!-- એટલે કે આંતરિક એલિમેન્ટને લક્ષ્ય બનાવતી ઇવેન્ટ અહીં હેન્ડલ કરવામાં આવે છે -->
+<!-- તે એલિમેન્ટ દ્વારા હેન્ડલ કરવામાં આવે તે પહેલાં -->
 <div @click.capture="doThis">...</div>
 
-<!-- the click event will be triggered at most once -->
+<!-- ક્લિક ઇવેન્ટ વધુમાં વધુ એકવાર ટ્રિગર થશે -->
 <a @click.once="doThis"></a>
 
-<!-- the scroll event's default behavior (scrolling) will happen -->
-<!-- immediately, instead of waiting for `onScroll` to complete  -->
-<!-- in case it contains `event.preventDefault()`                -->
+<!-- સ્ક્રોલ ઇવેન્ટનું ડિફોલ્ટ વર્તન (સ્ક્રોલિંગ) તરત જ થશે -->
+<!-- `onScroll` પૂર્ણ થવાની રાહ જોવાને બદલે -->
+<!-- જો તેમાં `event.preventDefault()` હોય તો -->
 <div @scroll.passive="onScroll">...</div>
 ```
 
-The `.passive` modifier is typically used with touch event listeners for [improving performance on mobile devices](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scroll_performance_using_passive_listeners).
+`.passive` મોડિફાયરનો ઉપયોગ સામાન્ય રીતે [મોબાઇલ ઉપકરણો પર પર્ફોર્મન્સ સુધારવા માટે](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scroll_performance_using_passive_listeners) ટચ ઇવેન્ટ લિસનર્સ સાથે કરવામાં આવે છે.
 
 ::: tip
-Do not use `.passive` and `.prevent` together, because `.passive` already indicates to the browser that you _do not_ intend to prevent the event's default behavior, and you will likely see a warning from the browser if you do so.
+`.passive` અને `.prevent` નો એકસાથે ઉપયોગ કરશો નહીં, કારણ કે `.passive` પહેલેથી જ બ્રાઉઝરને સૂચવે છે કે તમે ઇવેન્ટની ડિફોલ્ટ વર્તણૂકને અટકાવવા માંગતા _નથી_, અને જો તમે આવું કરશો તો તમને બ્રાઉઝર તરફથી વોર્નિંગ દેખાશે.
 :::
 
-## Key Modifiers {#key-modifiers}
+## કી મોડિફાયર્સ (Key Modifiers) {#key-modifiers}
 
-When listening for keyboard events, we often need to check for specific keys. Vue allows adding key modifiers for `v-on` or `@` when listening for key events:
+કીબોર્ડ ઇવેન્ટ્સ સાંભળતી વખતે, આપણે ઘણીવાર ચોક્કસ કી ચેક કરવાની જરૂર પડે છે. કી ઇવેન્ટ્સ સાંભળતી વખતે Vue `v-on` અથવા `@` માટે કી મોડિફાયર્સ ઉમેરવાની મંજૂરી આપે છે:
 
 ```vue-html
-<!-- only call `submit` when the `key` is `Enter` -->
+<!-- જ્યારે `key` એ `Enter` હોય ત્યારે જ `submit` ને કોલ કરો -->
 <input @keyup.enter="submit" />
 ```
 
-You can directly use any valid key names exposed via [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) as modifiers by converting them to kebab-case.
+તમે [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) દ્વારા એક્સપોઝ થયેલ કોઈપણ માન્ય કી નામોને કેબાબ-કેસ (kebab-case) માં કન્વર્ટ કરીને સીધા જ મોડિફાયર તરીકે ઉપયોગ કરી શકો છો.
 
 ```vue-html
 <input @keyup.page-down="onPageDown" />
 ```
 
-In the above example, the handler will only be called if `$event.key` is equal to `'PageDown'`.
+ઉપરના ઉદાહરણમાં, જો `$event.key` એ `'PageDown'` ની સમાન હોય તો જ હેન્ડલર કોલ કરવામાં આવશે.
 
-### Key Aliases {#key-aliases}
+### કી એલિયાસીસ (Key Aliases) {#key-aliases}
 
-Vue provides aliases for the most commonly used keys:
+Vue સૌથી સામાન્ય રીતે ઉપયોગમાં લેવાતી કી માટે એલિયાસ (aliases) પ્રદાન કરે છે:
 
 - `.enter`
 - `.tab`
-- `.delete` (captures both "Delete" and "Backspace" keys)
+- `.delete` ("Delete" અને "Backspace" બંને કી માટે)
 - `.esc`
 - `.space`
 - `.up`
@@ -308,54 +308,54 @@ Vue provides aliases for the most commonly used keys:
 - `.left`
 - `.right`
 
-### System Modifier Keys {#system-modifier-keys}
+### સિસ્ટમ મોડિફાયર કીઝ {#system-modifier-keys}
 
-You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:
+જ્યારે સંબંધિત મોડિફાયર કી દબાવવામાં આવે ત્યારે જ માઉસ અથવા કીબોર્ડ ઇવેન્ટ લિસનર્સને ટ્રિગર કરવા માટે તમે નીચેના મોડિફાયર્સનો ઉપયોગ કરી શકો છો:
 
 - `.ctrl`
 - `.alt`
 - `.shift`
 - `.meta`
 
-::: tip Note
-On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the Windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.
+::: tip નોંધ
+Macintosh કીબોર્ડ પર, meta એ કમાન્ડ કી (⌘) છે. Windows કીબોર્ડ પર, meta એ Windows કી (⊞) છે. Sun Microsystems કીબોર્ડ પર, meta સોલિડ ડાયમંડ (◆) તરીકે ચિહ્નિત થયેલ છે. અમુક કીબોર્ડ્સ પર, ખાસ કરીને MIT અને Lisp મશીન કીબોર્ડ્સ અને અનુગામીઓ, જેમ કે Knight કીબોર્ડ, meta પર "META" લેબલ હોય છે. Symbolics કીબોર્ડ પર, meta પર "META" અથવા "Meta" લેબલ હોય છે.
 :::
 
-For example:
+ઉદાહરણ તરીકે:
 
 ```vue-html
 <!-- Alt + Enter -->
 <input @keyup.alt.enter="clear" />
 
 <!-- Ctrl + Click -->
-<div @click.ctrl="doSomething">Do something</div>
+<div @click.ctrl="doSomething">કંઈક કરો</div>
 ```
 
 ::: tip
-Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone.
+નોંધ લો કે મોડિફાયર કી સામાન્ય કીથી અલગ છે અને જ્યારે `keyup` ઇવેન્ટ્સ સાથે ઉપયોગમાં લેવામાં આવે છે, ત્યારે ઇવેન્ટ ઈમીટ (emit) થાય ત્યારે તેને દબાવવી પડે છે. બીજા શબ્દોમાં કહીએ તો, જો તમે `ctrl` દબાવી રાખીને કી છોડો તો જ `keyup.ctrl` ટ્રિગર થશે. જો તમે એકલા `ctrl` કી છોડશો તો તે ટ્રિગર થશે નહીં.
 :::
 
-### `.exact` Modifier {#exact-modifier}
+### `.exact` મોડિફાયર {#exact-modifier}
 
-The `.exact` modifier allows control of the exact combination of system modifiers needed to trigger an event.
+`.exact` મોડિફાયર ઇવેન્ટને ટ્રિગર કરવા માટે જરૂરી સિસ્ટમ મોડિફાયર્સના ચોક્કસ સંયોજન (combination) ને નિયંત્રિત કરવાની મંજૂરી આપે છે.
 
 ```vue-html
-<!-- this will fire even if Alt or Shift is also pressed -->
+<!-- જો Alt અથવા Shift પણ દબાવવામાં આવે તો પણ આ ફાયર થશે -->
 <button @click.ctrl="onClick">A</button>
 
-<!-- this will only fire when Ctrl and no other keys are pressed -->
+<!-- જ્યારે Ctrl દબાવવામાં આવે અને બીજી કોઈ કી દબાવવામાં ન આવે ત્યારે જ આ ફાયર થશે -->
 <button @click.ctrl.exact="onCtrlClick">A</button>
 
-<!-- this will only fire when no system modifiers are pressed -->
+<!-- જ્યારે કોઈ સિસ્ટમ મોડિફાયર દબાવવામાં ન આવે ત્યારે જ આ ફાયર થશે -->
 <button @click.exact="onClick">A</button>
 ```
 
-## Mouse Button Modifiers {#mouse-button-modifiers}
+## માઉસ બટન મોડિફાયર્સ {#mouse-button-modifiers}
 
 - `.left`
 - `.right`
 - `.middle`
 
-These modifiers restrict the handler to events triggered by a specific mouse button.
+આ મોડિફાયર્સ હેન્ડલરને ચોક્કસ માઉસ બટન દ્વારા ટ્રિગર કરાયેલ ઇવેન્ટ્સ સુધી મર્યાદિત કરે છે.
 
-Note, however, that `.left`, `.right`, and `.middle` modifier names are based on the typical right-handed mouse layout, but in fact represent "main", "secondary", and "auxiliary" pointing device event triggers, respectively, and not the actual physical buttons. So that for a left-handed mouse layout the "main" button might physically be the right one but would trigger the `.left` modifier handler. Or a trackpad might trigger the `.left` handler with a one-finger tap, the `.right` handler with a two-finger tap, and the `.middle` handler with a three-finger tap. Similarly, other devices and event sources generating "mouse" events might have trigger modes that are not related to "left" and "right" whatsoever.
+જોકે, નોંધ કરો કે `.left`, `.right`, અને `.middle` મોડિફાયર નામો સામાન્ય જમણા હાથના માઉસ લેઆઉટ પર આધારિત છે, પરંતુ વાસ્તવમાં અનુક્રમે "main", "secondary", અને "auxiliary" પોઇન્ટિંગ ડિવાઇસ ઇવેન્ટ ટ્રિગર્સનું પ્રતિનિધિત્વ કરે છે, અને વાસ્તવિક ફિઝિકલ બટનોનું નહીં. તેથી ડાબા હાથના માઉસ લેઆઉટ માટે "મુખ્ય" બટન જમણું હોઈ શકે છે પરંતુ તે `.left` મોડિફાયર હેન્ડલરને ટ્રિગર કરશે. અથવા ટ્રેકપેડ એક આંગળીના ટેપ સાથે `.left` હેન્ડલર, બે આંગળીના ટેપ સાથે `.right` હેન્ડલર અને ત્રણ આંગળીના ટેપ સાથે `.middle` હેન્ડલર ટ્રિગર કરી શકે છે. તે જ રીતે, "માઉસ" ઇવેન્ટ્સ જનરેટ કરતા અન્ય ઉપકરણો અને ઇવેન્ટ સ્ત્રોતોમાં ટ્રિગર મોડ્સ હોઈ શકે છે જે "ડાબે" અને "જમણે" સાથે બિલકુલ સંબંધિત નથી.

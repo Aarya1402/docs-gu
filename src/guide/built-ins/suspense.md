@@ -2,41 +2,41 @@
 outline: deep
 ---
 
-# Suspense {#suspense}
+# સસ્પેન્સ (Suspense) {#suspense}
 
-:::warning Experimental Feature
-`<Suspense>` is an experimental feature. It is not guaranteed to reach stable status and the API may change before it does.
+:::warning પ્રાયોગિક સુવિધા (Experimental Feature)
+`<Suspense>` એ એક પ્રાયોગિક સુવિધા છે. તે સ્ટેબલ સ્ટેટસ સુધી પહોંચશે તેની કોઈ ગેરંટી નથી અને તે થાય તે પહેલા API બદલાઈ શકે છે.
 :::
 
-`<Suspense>` is a built-in component for orchestrating async dependencies in a component tree. It can render a loading state while waiting for multiple nested async dependencies down the component tree to be resolved.
+`<Suspense>` એ કમ્પોનન્ટ ટ્રીમાં એસિંક ડિપેન્ડન્સીસને ઓર્કેસ્ટ્રેટ કરવા માટેનું બિલ્ટ-ઇન ઘટક છે. તે કમ્પોનન્ટ ટ્રીમાં બહુવિધ નેસ્ટેડ એસિંક ડિપેન્ડન્સીસ રિઝોલ્વ થવાની રાહ જોતી વખતે લોડિંગ સ્ટેટ રેન્ડર કરી શકે છે.
 
-## Async Dependencies {#async-dependencies}
+## એસિંક ડિપેન્ડન્સીસ (Async Dependencies) {#async-dependencies}
 
-To explain the problem `<Suspense>` is trying to solve and how it interacts with these async dependencies, let's imagine a component hierarchy like the following:
+`<Suspense>` જે સમસ્યા હલ કરવાનો પ્રયાસ કરી રહ્યું છે અને તે આ એસિંક ડિપેન્ડન્સીસ સાથે કેવી રીતે ક્રિયાપ્રતિક્રિયા કરે છે તે સમજાવવા માટે, ચાલો નીચે મુજબના કમ્પોનન્ટ વંશવેલો (hierarchy) ની કલ્પના કરીએ:
 
 ```
 <Suspense>
 └─ <Dashboard>
    ├─ <Profile>
-   │  └─ <FriendStatus> (component with async setup())
+   │  └─ <FriendStatus> (એસિંક setup() વાળો ઘટક)
    └─ <Content>
-      ├─ <ActivityFeed> (async component)
-      └─ <Stats> (async component)
+      ├─ <ActivityFeed> (એસિંક ઘટક)
+      └─ <Stats> (એસિંક ઘટક)
 ```
 
-In the component tree there are multiple nested components whose rendering depends on some async resource to be resolved first. Without `<Suspense>`, each of them will need to handle its own loading / error and loaded states. In the worst case scenario, we may see three loading spinners on the page, with content displayed at different times.
+કમ્પોનન્ટ ટ્રીમાં બહુવિધ નેસ્ટેડ ઘટકો છે જેનું રેન્ડરિંગ કેટલીક એસિંક રિસોર્સ પર આધાર રાખે છે જે પહેલાથી રિઝોલ્વ થવા જોઈએ. `<Suspense>` વિના, તેમાંના દરેકે પોતાના લોડિંગ / એરર અને લોડેડ સ્ટેટ્સને હેન્ડલ કરવાની જરૂર પડશે. સૌથી ખરાબ પરિસ્થિતિમાં, આપણે પેજ પર ત્રણ લોડિંગ સ્પિનર્સ જોઈ શકીએ છીએ, જેમાં વિવિધ સમયે કન્ટેન્ટ પ્રદર્શિત થાય છે.
 
-The `<Suspense>` component gives us the ability to display top-level loading / error states while we wait on these nested async dependencies to be resolved.
+`<Suspense>` ઘટક આપણને ટોપ-લેવલ લોડિંગ / એરર સ્ટેટ્સ પ્રદર્શિત કરવાની ક્ષમતા આપે છે જ્યારે આપણે આ નેસ્ટેડ એસિંક ડિપેન્ડન્સીસ રિઝોલ્વ થવાની રાહ જોતા હોઈએ.
 
-There are two types of async dependencies that `<Suspense>` can wait on:
+ત્યાં બે પ્રકારની એસિંક ડિપેન્ડન્સીસ છે જેના પર `<Suspense>` રાહ જોઈ શકે છે:
 
-1. Components with an async `setup()` hook. This includes components using `<script setup>` with top-level `await` expressions.
+૧. એસિંક `setup()` હૂક ધરાવતા ઘટકો. આમાં ટોપ-લેવલ `await` એક્સપ્રેશન સાથે `<script setup>` નો ઉપયોગ કરતા ઘટકોનો સમાવેશ થાય છે.
 
-2. [Async Components](/guide/components/async).
+૨. [એસિંક કમ્પોનન્ટ્સ](/guide/components/async).
 
-### `async setup()` {#async-setup}
+### `એસિંક (async) setup()` {#async-setup}
 
-A Composition API component's `setup()` hook can be async:
+Composition API ઘટકનું `setup()` હૂક એસિંક હોઈ શકે છે:
 
 ```js
 export default {
@@ -50,7 +50,7 @@ export default {
 }
 ```
 
-If using `<script setup>`, the presence of top-level `await` expressions automatically makes the component an async dependency:
+જો `<script setup>` નો ઉપયોગ કરી રહ્યાં હોવ, તો ટોપ-લેવલ `await` એક્સપ્રેશનની હાજરી આપમેળે ઘટકને એસિંક ડિપેન્ડન્સી બનાવે છે:
 
 ```vue
 <script setup>
@@ -63,53 +63,53 @@ const posts = await res.json()
 </template>
 ```
 
-### Async Components {#async-components}
+### એસિંક કમ્પોનન્ટ્સ (Async Components) {#async-components}
 
-Async components are **"suspensible"** by default. This means that if it has a `<Suspense>` in the parent chain, it will be treated as an async dependency of that `<Suspense>`. In this case, the loading state will be controlled by the `<Suspense>`, and the component's own loading, error, delay and timeout options will be ignored.
+એસિંક ઘટકો ડિફોલ્ટ રૂપે **"સસ્પેન્સિબલ (suspensible)"** હોય છે. આનો અર્થ એ છે કે જો તેની પેરેન્ટ ચેઇનમાં `<Suspense>` હોય, તો તેને તે `<Suspense>` ની એસિંક ડિપેન્ડન્સી તરીકે ગણવામાં આવશે. આ કિસ્સામાં, લોડિંગ સ્ટેટને `<Suspense>` દ્વારા નિયંત્રિત કરવામાં આવશે, અને ઘટકના પોતાના લોડિંગ, એરર, વિલંબ અને ટાઈમઆઉટ ઓપ્શન્સને અવગણવામાં આવશે.
 
-The async component can opt-out of `Suspense` control and let the component always control its own loading state by specifying `suspensible: false` in its options.
+એસિંક કમ્પોનન્ટ તેના ઓપ્શન્સમાં `suspensible: false` સ્પષ્ટ કરીને `Suspense` કંટ્રોલમાંથી નાપસંદ (opt-out) કરી શકે છે અને કમ્પોનન્ટને હંમેશા તેની પોતાની લોડિંગ સ્ટેટ નિયંત્રિત કરવા દે છે.
 
-## Loading State {#loading-state}
+## લોડિંગ સ્ટેટ (Loading State) {#loading-state}
 
-The `<Suspense>` component has two slots: `#default` and `#fallback`. Both slots only allow for **one** immediate child node. The node in the default slot is shown if possible. If not, the node in the fallback slot will be shown instead.
+`<Suspense>` ઘટકમાં બે સ્લોટ્સ છે: `#default` અને `#fallback`. બંને સ્લોટ્સ માત્ર **એક** તાત્કાલિક બાળ (immediate child) નોડ માટે પરવાનગી આપે છે. જો શક્ય હોય તો ડિફોલ્ટ સ્લોટમાં નોડ બતાવવામાં આવે છે. જો નહીં, તો તેના બદલે ફોલબેક સ્લોટમાં નોડ બતાવવામાં આવશે.
 
 ```vue-html
 <Suspense>
-  <!-- component with nested async dependencies -->
+  <!-- નેસ્ટેડ એસિંક ડિપેન્ડન્સીસવાળા ઘટક -->
   <Dashboard />
 
-  <!-- loading state via #fallback slot -->
+  <!-- #fallback સ્લોટ દ્વારા લોડિંગ સ્ટેટ -->
   <template #fallback>
-    Loading...
+    લોડ થઈ રહ્યું છે...
   </template>
 </Suspense>
 ```
 
-On initial render, `<Suspense>` will render its default slot content in memory. If any async dependencies are encountered during the process, it will enter a **pending** state. During the pending state, the fallback content will be displayed. When all encountered async dependencies have been resolved, `<Suspense>` enters a **resolved** state and the resolved default slot content is displayed.
+પ્રારંભિક રેન્ડર પર, `<Suspense>` મેમરીમાં તેના ડિફોલ્ટ સ્લોટ કન્ટેન્ટને રેન્ડર કરશે. જો પ્રક્રિયા દરમિયાન કોઈ એસિંક ડિપેન્ડન્સી મળે છે, તો તે **પેન્ડિંગ (pending)** સ્ટેટમાં પ્રવેશશે. પેન્ડિંગ સ્ટેટ દરમિયાન, ફોલબેક કન્ટેન્ટ પ્રદર્શિત કરવામાં આવશે. જ્યારે મળેલી તમામ એસિંક ડિપેન્ડન્સીસ રિઝોલ્વ થઈ જાય, ત્યારે `<Suspense>` **રિઝોલ્વ્ડ (resolved)** સ્ટેટમાં પ્રવેશે છે અને રિઝોલ્વ થયેલ ડિફોલ્ટ સ્લોટ કન્ટેન્ટ પ્રદર્શિત થાય છે.
 
-If no async dependencies were encountered during the initial render, `<Suspense>` will directly go into a resolved state.
+જો પ્રારંભિક રેન્ડર દરમિયાન કોઈ એસિંક ડિપેન્ડન્સી મળી નથી, તો `<Suspense>` સીધું રિઝોલ્વ સ્ટેટમાં જશે.
 
-Once in a resolved state, `<Suspense>` will only revert to a pending state if the root node of the `#default` slot is replaced. New async dependencies nested deeper in the tree will **not** cause the `<Suspense>` to revert to a pending state.
+એકવાર રિઝોલ્વ સ્ટેટમાં આવ્યા પછી, જો `#default` સ્લોટના રૂટ નોડને બદલવામાં આવે તો જ `<Suspense>` ફરીથી પેન્ડિંગ સ્ટેટમાં પાછું આવશે. ટ્રીમાં ઊંડે નેસ્ટ કરેલી નવી એસિંક ડિપેન્ડન્સીસ `<Suspense>` ને પેન્ડિંગ સ્ટેટમાં પાછા લાવવાનું કારણ બનશે **નહીં**.
 
-When a revert happens, fallback content will not be immediately displayed. Instead, `<Suspense>` will display the previous `#default` content while waiting for the new content and its async dependencies to be resolved. This behavior can be configured with the `timeout` prop: `<Suspense>` will switch to fallback content if it takes longer than `timeout` milliseconds to render the new default content. A `timeout` value of `0` will cause the fallback content to be displayed immediately when default content is replaced.
+જ્યારે રિવર્ટ (revert) થાય છે, ત્યારે ફોલબેક કન્ટેન્ટ તરત જ પ્રદર્શિત કરવામાં આવશે નહીં. તેના બદલે, `<Suspense>` નવું કન્ટેન્ટ અને તેની એસિંક ડિપેન્ડન્સીસ રિઝોલ્વ થવાની રાહ જોતી વખતે અગાઉનું `#default` કન્ટેન્ટ પ્રદર્શિત કરશે. આ વર્તનને `timeout` પ્રોપ સાથે કોન્ફિગર કરી શકાય છે: જો નવું ડિફોલ્ટ કન્ટેન્ટ રેન્ડર કરવામાં `timeout` મિલિસેકન્ડ્સ કરતા વધુ સમય લાગે તો `<Suspense>` ફોલબેક કન્ટેન્ટ પર સ્વિચ કરશે. `timeout` ની `0` કિંમત જ્યારે ડિફોલ્ટ કન્ટેન્ટ બદલવામાં આવે ત્યારે ફોલબેક કન્ટેન્ટ તરત જ પ્રદર્શિત કરવાનું કારણ બનશે.
 
-## Events {#events}
+## ઇવેન્ટ્સ (Events) {#events}
 
-The `<Suspense>` component emits 3 events: `pending`, `resolve` and `fallback`. The `pending` event occurs when entering a pending state. The `resolve` event is emitted when new content has finished resolving in the `default` slot. The `fallback` event is fired when the contents of the `fallback` slot are shown.
+`<Suspense>` ઘટક ૩ ઇવેન્ટ્સ આપે છે: `pending`, `resolve` અને `fallback`. `pending` ઇવેન્ટ જ્યારે પેન્ડિંગ સ્ટેટમાં પ્રવેશે ત્યારે થાય છે. `resolve` ઇવેન્ટ ત્યારે ઉત્સર્જિત થાય છે જ્યારે `default` સ્લોટમાં નવું કન્ટેન્ટ રિઝોલ્વ કરવાનું સમાપ્ત કરે છે. `fallback` ઇવેન્ટ જ્યારે `fallback` સ્લોટની સામગ્રી બતાવવામાં આવે ત્યારે ફાયર થાય છે.
 
-The events could be used, for example, to show a loading indicator in front of the old DOM while new components are loading.
+ઇવેન્ટ્સનો ઉપયોગ કરી શકાય છે, ઉદાહરણ તરીકે, જ્યારે નવા ઘટકો લોડ થઈ રહ્યા હોય ત્યારે જૂના DOM ની સામે લોડિંગ સૂચક (loading indicator) બતાવવા માટે.
 
-## Error Handling {#error-handling}
+## એરર હેન્ડલિંગ (Error Handling) {#error-handling}
 
-`<Suspense>` currently does not provide error handling via the component itself - however, you can use the [`errorCaptured`](/api/options-lifecycle#errorcaptured) option or the [`onErrorCaptured()`](/api/composition-api-lifecycle#onerrorcaptured) hook to capture and handle async errors in the parent component of `<Suspense>`.
+`<Suspense>` હાલમાં ઘટક દ્વારા જ એરર હેન્ડલિંગ પ્રદાન કરતું નથી - જો કે, તમે [`errorCaptured`](/api/options-lifecycle#errorcaptured) ઓપ્શન અથવા [`onErrorCaptured()`](/api/composition-api-lifecycle#onerrorcaptured) હૂકનો ઉપયોગ કરી શકો છો જેથી તે `<Suspense>` ના પેરેન્ટ કમ્પોનન્ટમાં એસિંક એરર્સ કૅપ્ચર અને હેન્ડલ કરી શકે.
 
-## Combining with Other Components {#combining-with-other-components}
+## અન્ય કમ્પોનન્ટ્સ સાથે સંયોજન {#combining-with-other-components}
 
-It is common to want to use `<Suspense>` in combination with the [`<Transition>`](./transition) and [`<KeepAlive>`](./keep-alive) components. The nesting order of these components is important to get them all working correctly.
+ઘણીવાર [``<Transition>`](./transition)` અને [``<KeepAlive>`](./keep-alive)` ઘટકો સાથે સંયોજનમાં `<Suspense>` નો ઉપયોગ કરવામાં આવે છે. આ ઘટકોનો નેસ્ટિંગ ઓર્ડર તે બધાને યોગ્ય રીતે કાર્ય કરવા માટે મહત્વપૂર્ણ છે.
 
-In addition, these components are often used in conjunction with the `<RouterView>` component from [Vue Router](https://router.vuejs.org/).
+વધારામાં, આ ઘટકોનો ઉપયોગ ઘણીવાર [Vue Router](https://router.vuejs.org/) ના `<RouterView>` ઘટક સાથે કરવામાં આવે છે.
 
-The following example shows how to nest these components so that they all behave as expected. For simpler combinations you can remove the components that you don't need:
+નીચેનું ઉદાહરણ બતાવે છે કે આ ઘટકોને કેવી રીતે નેસ્ટ કરવા જોઈએ જેથી તેઓ અપેક્ષા મુજબ વર્તે. સરળ સંયોજનો માટે તમે ઘટકોને દૂર કરી શકો છો જેની તમને જરૂર નથી:
 
 ```vue-html
 <RouterView v-slot="{ Component }">
@@ -117,12 +117,12 @@ The following example shows how to nest these components so that they all behave
     <Transition mode="out-in">
       <KeepAlive>
         <Suspense>
-          <!-- main content -->
+          <!-- મુખ્ય સામગ્રી (main content) -->
           <component :is="Component"></component>
 
-          <!-- loading state -->
+          <!-- લોડિંગ સ્ટેટ -->
           <template #fallback>
-            Loading...
+            લોડ થઈ રહ્યું છે...
           </template>
         </Suspense>
       </KeepAlive>
@@ -131,13 +131,13 @@ The following example shows how to nest these components so that they all behave
 </RouterView>
 ```
 
-Vue Router has built-in support for [lazily loading components](https://router.vuejs.org/guide/advanced/lazy-loading.html) using dynamic imports. These are distinct from async components and currently they will not trigger `<Suspense>`. However, they can still have async components as descendants and those can trigger `<Suspense>` in the usual way.
+Vue Router પાસે ડાયનેમિક ઇમ્પોર્ટ્સનો ઉપયોગ કરીને [લેઝીલી લોડિંગ કમ્પોનન્ટ્સ](https://router.vuejs.org/guide/advanced/lazy-loading.html) માટે બિલ્ટ-ઇન સપોર્ટ છે. આ એસિંક કમ્પોનન્ટ્સ થી અલગ છે અને હાલમાં તેઓ `<Suspense>` ને ટ્રિગર કરશે નહીં. જો કે, તેઓ હજુ પણ વંશજો તરીકે એસિંક કમ્પોનન્ટ્સ ધરાવી શકે છે અને તે સામાન્ય રીતે `<Suspense>` ને ટ્રિગર કરી શકે છે.
 
-## Nested Suspense {#nested-suspense}
+## નેસ્ટેડ સસ્પેન્સ (Nested Suspense) {#nested-suspense}
 
-- Only supported in 3.3+
+- માત્ર ૩.૩+ માં સપોર્ટેડ છે
 
-When we have multiple async components (common for nested or layout-based routes) like this:
+જ્યારે આપણી પાસે આ રીતે બહુવિધ એસિંક ઘટકો હોય (નેસ્ટેડ અથવા લેઆઉટ-આધારિત રૂટ્સ માટે સામાન્ય):
 
 ```vue-html
 <Suspense>
@@ -147,24 +147,24 @@ When we have multiple async components (common for nested or layout-based routes
 </Suspense>
 ```
 
-`<Suspense>` creates a boundary that will resolve all the async components down the tree, as expected. However, when we change `DynamicAsyncOuter`, `<Suspense>` awaits it correctly, but when we change `DynamicAsyncInner`, the nested `DynamicAsyncInner` renders an empty node until it has been resolved (instead of the previous one or fallback slot).
+`<Suspense>` અપેક્ષા મુજબ ટ્રીની નીચે રહેલા તમામ એસિંક કમ્પોનન્ટ્સને રિઝોલ્વ કરશે તેવી બાઉન્ડ્રી બનાવે છે. જો કે, જ્યારે આપણે `DynamicAsyncOuter` બદલીએ છીએ, ત્યારે `<Suspense>` તેની યોગ્ય રીતે રાહ જુએ છે, પરંતુ જ્યારે આપણે `DynamicAsyncInner` બદલીએ છીએ, ત્યારે નેસ્ટેડ `DynamicAsyncInner` જ્યાં સુધી તે રિઝોલ્વ ન થાય ત્યાં સુધી ખાલી નોડ રેન્ડર કરે છે (તેના બદલે અગાઉના એક અથવા ફોલબેક સ્લોટને બદલે).
 
-In order to solve that, we could have a nested suspense to handle the patch for the nested component, like:
+તેને ઉકેલવા માટે, આપણે નેસ્ટેડ ઘટક માટે પેચ (patch) ને હેન્ડલ કરવા માટે નેસ્ટેડ સસ્પેન્સ ધરાવી શકીએ છીએ, જેમ કે:
 
 ```vue-html
 <Suspense>
   <component :is="DynamicAsyncOuter">
-    <Suspense suspensible> <!-- this -->
+    <Suspense suspensible> <!-- આ -->
       <component :is="DynamicAsyncInner" />
     </Suspense>
   </component>
 </Suspense>
 ```
 
-If you don't set the `suspensible` prop, the inner `<Suspense>` will be treated like a sync component by the parent `<Suspense>`. That means that it has its own fallback slot and if both `Dynamic` components change at the same time, there might be empty nodes and multiple patching cycles while the child `<Suspense>` is loading its own dependency tree, which might not be desirable. When it's set, all the async dependency handling is given to the parent `<Suspense>` (including the events emitted) and the inner `<Suspense>` serves solely as another boundary for the dependency resolution and patching.
+જો તમે `suspensible` પ્રોપ સેટ ન કરો, તો આંતરિક `<Suspense>` પેરેન્ટ `<Suspense>` દ્વારા સિંક ઘટકની જેમ ગણવામાં આવશે. તેનો અર્થ એ છે કે તેની પાસે પોતાનો ફોલબેક સ્લોટ છે અને જો બંને `Dynamic` ઘટકો એક જ સમયે બદલાય છે, તો જ્યારે બાળક `<Suspense>` તેની પોતાની ડિપેન્ડન્સી ટ્રી લોડ કરી રહ્યો હોય ત્યારે ખાલી નોડ્સ અને બહુવિધ પેચિંગ સાયકલ હોઈ શકે છે, જે કદાચ ઇચ્છનીય નથી. જ્યારે સેટ કરવામાં આવે, ત્યારે તમામ એસિંક ડિપેન્ડન્સી હેન્ડલિંગ પેરેન્ટ `<Suspense>` ને આપવામાં આવે છે (જેમાં ઉત્સર્જિત ઇવેન્ટ્સનો પણ સમાવેશ થાય છે) અને આંતરિક `<Suspense>` માત્ર ડિપેન્ડન્સી રિઝોલ્યુશન અને પેચિંગ માટે બીજી બાઉન્ડ્રી તરીકે કામ કરે છે.
 
 ---
 
-**Related**
+**સંબંધિત**
 
-- [`<Suspense>` API reference](/api/built-in-components#suspense)
+- [`<Suspense>` API રિફરન્સ](/api/built-in-components#suspense)

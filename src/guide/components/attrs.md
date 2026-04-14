@@ -2,139 +2,139 @@
 outline: deep
 ---
 
-# Fallthrough Attributes {#fallthrough-attributes}
+# ફોલથ્રુ એટ્રિબ્યુટ્સ (Fallthrough Attributes) {#fallthrough-attributes}
 
-> This page assumes you've already read the [Components Basics](/guide/essentials/component-basics). Read that first if you are new to components.
+> આ પેજ ધારે છે કે તમે પહેલાથી જ [કમ્પોનન્ટ્સના મૂળભૂત પાસાઓ](/guide/essentials/component-basics) વાંચી લીધું છે. જો તમે કમ્પોનન્ટ્સ માટે નવા હોવ તો પહેલા તે વાંચો.
 
-## Attribute Inheritance {#attribute-inheritance}
+## એટ્રિબ્યુટ ઇનહેરિટન્સ (Attribute Inheritance) {#attribute-inheritance}
 
-A "fallthrough attribute" is an attribute or `v-on` event listener that is passed to a component, but is not explicitly declared in the receiving component's [props](./props) or [emits](./events#declaring-emitted-events). Common examples of this include `class`, `style`, and `id` attributes.
+"ફોલથ્રુ એટ્રિબ્યુટ" એ એક એટ્રિબ્યુટ અથવા `v-on` ઇવેન્ટ લિસનર છે જે ઘટકને પાસ કરવામાં આવે છે, પરંતુ તે મેળવનાર ઘટકના [પ્રોપ્સ](./props) અથવા [એમિટ્સ](./events#declaring-emitted-events) માં સ્પષ્ટપણે જાહેર કરવામાં આવતું નથી. આના સામાન્ય ઉદાહરણોમાં `class`, `style` અને `id` એટ્રિબ્યુટ્સનો સમાવેશ થાય છે.
 
-When a component renders a single root element, fallthrough attributes will be automatically added to the root element's attributes. For example, given a `<MyButton>` component with the following template:
+જ્યારે કમ્પોનન્ટ સિંગલ રૂટ એલિમેન્ટ (root element) રેન્ડર કરે છે, ત્યારે ફોલથ્રુ એટ્રિબ્યુટ્સ રૂટ એલિમેન્ટના એટ્રિબ્યુટ્સમાં આપમેળે ઉમેરવામાં આવશે. ઉદાહરણ તરીકે, નીચેના ટેમ્પલેટ સાથે `<MyButton>` કમ્પોનન્ટ આપેલ છે:
 
 ```vue-html
-<!-- template of <MyButton> -->
-<button>Click Me</button>
+<!-- <MyButton> નું ટેમ્પલેટ -->
+<button>મને ક્લિક કરો</button>
 ```
 
-And a parent using this component with:
+અને આ કમ્પોનન્ટનો ઉપયોગ કરતા પેરેન્ટ છે:
 
 ```vue-html
 <MyButton class="large" />
 ```
 
-The final rendered DOM would be:
+અંતિમ રેન્ડર કરાયેલ DOM આ પ્રમાણે હશે:
 
 ```html
-<button class="large">Click Me</button>
+<button class="large">મને ક્લિક કરો</button>
 ```
 
-Here, `<MyButton>` did not declare `class` as an accepted prop. Therefore, `class` is treated as a fallthrough attribute and automatically added to `<MyButton>`'s root element.
+અહીં, `<MyButton>` એ સ્વીકૃત પ્રોપ તરીકે `class` જાહેર કર્યું નથી. તેથી, `class` ને ફોલથ્રુ એટ્રિબ્યુટ તરીકે ગણવામાં આવે છે અને આપમેળે `<MyButton>` ના રૂટ એલિમેન્ટમાં ઉમેરવામાં આવે છે.
 
-### `class` and `style` Merging {#class-and-style-merging}
+### `class` અને `style` મર્જિંગ (Merging) {#class-and-style-merging}
 
-If the child component's root element already has existing `class` or `style` attributes, it will be merged with the `class` and `style` values that are inherited from the parent. Suppose we change the template of `<MyButton>` in the previous example to:
+જો ચાઇલ્ડ કમ્પોનન્ટના રૂટ એલિમેન્ટમાં પહેલેથી જ `class` અથવા `style` એટ્રિબ્યુટ્સ હોય, તો તે `class` અને `style` વેલ્યુસ સાથે મર્જ કરવામાં આવશે જે પેરેન્ટ પાસેથી વારસામાં (inherited) મળે છે. માની લો કે આપણે અગાઉના ઉદાહરણમાં `<MyButton>` ના ટેમ્પલેટને આ પ્રમાણે બદલીએ છીએ:
 
 ```vue-html
-<!-- template of <MyButton> -->
-<button class="btn">Click Me</button>
+<!-- <MyButton> નું ટેમ્પલેટ -->
+<button class="btn">મને ક્લિક કરો</button>
 ```
 
-Then the final rendered DOM would now become:
+પછી અંતિમ રેન્ડર કરાયેલ DOM હવે આ બનશે:
 
 ```html
-<button class="btn large">Click Me</button>
+<button class="btn large">મને ક્લિક કરો</button>
 ```
 
-### `v-on` Listener Inheritance {#v-on-listener-inheritance}
+### `v-on` લિસનર ઇનહેરિટન્સ {#v-on-listener-inheritance}
 
-The same rule applies to `v-on` event listeners:
+આ જ નિયમ `v-on` ઇવેન્ટ લિસનર્સને લાગુ પડે છે:
 
 ```vue-html
 <MyButton @click="onClick" />
 ```
 
-The `click` listener will be added to the root element of `<MyButton>`, i.e. the native `<button>` element. When the native `<button>` is clicked, it will trigger the `onClick` method of the parent component. If the native `<button>` already has a `click` listener bound with `v-on`, then both listeners will trigger.
+`click` લિસનર `<MyButton>` ના રૂટ એલિમેન્ટમાં ઉમેરવામાં આવશે, એટલે કે નેટિવ `<button>` એલિમેન્ટ. જ્યારે નેટિવ `<button>` પર ક્લિક કરવામાં આવે છે, ત્યારે તે પેરેન્ટ કમ્પોનન્ટની `onClick` મેથડને ટ્રિગર કરશે. જો નેટિવ `<button>` પાસે પહેલેથી જ `v-on` સાથે જોડાયેલ `click` લિસનર હોય, તો બંને લિસનર ટ્રિગર થશે.
 
-### Nested Component Inheritance {#nested-component-inheritance}
+### નેસ્ટેડ કમ્પોનન્ટ ઇનહેરિટન્સ {#nested-component-inheritance}
 
-If a component renders another component as its root node, for example, we refactored `<MyButton>` to render a `<BaseButton>` as its root:
+જો કમ્પોનન્ટ તેના રૂટ નોડ તરીકે બીજા કમ્પોનન્ટને રેન્ડર કરે છે, ઉદાહરણ તરીકે, અમે તેના રૂટ તરીકે `<BaseButton>` રેન્ડર કરવા માટે `<MyButton>` ને રિફેક્ટર કર્યું છે:
 
 ```vue-html
-<!-- template of <MyButton/> that simply renders another component -->
+<!-- <MyButton/> નું ટેમ્પલેટ જે બીજા ઘટકને રેન્ડર કરે છે -->
 <BaseButton />
 ```
 
-Then the fallthrough attributes received by `<MyButton>` will be automatically forwarded to `<BaseButton>`.
+પછી `<MyButton>` દ્વારા પ્રાપ્ત ફોલથ્રુ એટ્રિબ્યુટ્સ આપમેળે `<BaseButton>` ને ફોરવર્ડ કરવામાં આવશે.
 
-Note that:
+નોંધ કરો કે:
 
-1. Forwarded attributes do not include any attributes that are declared as props, or `v-on` listeners of declared events by `<MyButton>` - in other words, the declared props and listeners have been "consumed" by `<MyButton>`.
+૧. ફોરવર્ડ કરાયેલા એટ્રિબ્યુટ્સમાં એવા કોઈ પણ એટ્રિબ્યુટ્સનો સમાવેશ થતો નથી જે પ્રોપ્સ તરીકે જાહેર કરવામાં આવ્યા હોય, અથવા `<MyButton>` દ્વારા જાહેર કરાયેલી ઇવેન્ટ્સના `v-on` લિસનર્સ હોય - બીજા શબ્દોમાં કહીએ તો, જાહેર કરેલા પ્રોપ્સ અને લિસનર્સ `<MyButton>` દ્વારા "વપરાઈ" ગયા છે.
 
-2. Forwarded attributes may be accepted as props by `<BaseButton>`, if declared by it.
+૨. ફોરવર્ડ કરાયેલા એટ્રિબ્યુટ્સ જો `<BaseButton>` દ્વારા જાહેર કરવામાં આવ્યા હોય તો તે પ્રોપ્સ તરીકે સ્વીકારવામાં આવી શકે છે.
 
-## Disabling Attribute Inheritance {#disabling-attribute-inheritance}
+## એટ્રિબ્યુટ ઇનહેરિટન્સ અક્ષમ કરવું {#disabling-attribute-inheritance}
 
-If you do **not** want a component to automatically inherit attributes, you can set `inheritAttrs: false` in the component's options.
+જો તમે **નથી** માંગતા કે કમ્પોનન્ટ આપમેળે એટ્રિબ્યુટ્સ મેળવે, તો તમે કમ્પોનન્ટના ઓપ્શન્સ માં `inheritAttrs: false` સેટ કરી શકો છો.
 
 <div class="composition-api">
 
- Since 3.3 you can also use [`defineOptions`](/api/sfc-script-setup#defineoptions) directly in `<script setup>`:
+ ૩.૩ થી તમે `<script setup>` માં સીધા જ [`defineOptions`](/api/sfc-script-setup#defineoptions) નો ઉપયોગ કરી શકો છો:
 
 ```vue
 <script setup>
 defineOptions({
   inheritAttrs: false
 })
-// ...setup logic
+// ...setup લોજિક
 </script>
 ```
 
 </div>
 
-The common scenario for disabling attribute inheritance is when attributes need to be applied to other elements besides the root node. By setting the `inheritAttrs` option to `false`, you can take full control over where the fallthrough attributes should be applied.
+એટ્રિબ્યુટ ઇનહેરિટન્સ ને અક્ષમ કરવા માટેનું સામાન્ય કારણ ત્યારે હોય છે જ્યારે એટ્રિબ્યુટ્સને રૂટ નોડ સિવાયના અન્ય એલિમેન્ટ્સ પર લાગુ કરવાની જરૂર હોય. `inheritAttrs` ઓપ્શનને `false` પર સેટ કરીને, તમે ફોલથ્રુ એટ્રિબ્યુટ્સ ક્યાં લાગુ કરવા જોઈએ તેના પર સંપૂર્ણ નિયંત્રણ લઈ શકો છો.
 
-These fallthrough attributes can be accessed directly in template expressions as `$attrs`:
+આ ફોલથ્રુ એટ્રિબ્યુટ્સને ટેમ્પલેટ એક્સપ્રેશન્સમાં સીધા જ `$attrs` તરીકે એક્સેસ કરી શકાય છે:
 
 ```vue-html
-<span>Fallthrough attributes: {{ $attrs }}</span>
+<span>ફોલથ્રુ એટ્રિબ્યુટ્સ: {{ $attrs }}</span>
 ```
 
-The `$attrs` object includes all attributes that are not declared by the component's `props` or `emits` options (e.g., `class`, `style`, `v-on` listeners, etc.).
+`$attrs` ઓબ્જેક્ટમાં એવા તમામ એટ્રિબ્યુટ્સનો સમાવેશ થાય છે જે ઘટકના `props` અથવા `emits` ઓપ્શન્સ (દા.ત., `class`, `style`, `v-on` લિસનર્સ, વગેરે) દ્વારા જાહેર કરવામાં આવતા નથી.
 
-Some notes:
+કેટલીક નોંધો:
 
-- Unlike props, fallthrough attributes preserve their original casing in JavaScript, so an attribute like `foo-bar` needs to be accessed as `$attrs['foo-bar']`.
+- પ્રોપ્સથી વિપરીત, ફોલથ્રુ એટ્રિબ્યુટ્સ જાવાસ્ક્રિપ્ટમાં તેમનું અસલ કેસિંગ જાળવી રાખે છે, તેથી `foo-bar` જેવા એટ્રિબ્યુટને `$attrs['foo-bar']` તરીકે એક્સેસ કરવાની જરૂર છે.
 
-- A `v-on` event listener like `@click` will be exposed on the object as a function under `$attrs.onClick`.
+- `@click` જેવા `v-on` ઇવેન્ટ લિસનરને ઓબ્જેક્ટ પર `$attrs.onClick` હેઠળ ફંક્શન તરીકે એક્સપોઝ કરવામાં આવશે.
 
-Using our `<MyButton>` component example from the [previous section](#attribute-inheritance) - sometimes we may need to wrap the actual `<button>` element with an extra `<div>` for styling purposes:
+અગાઉના વિભાગમાંથી અમારા `<MyButton>` કમ્પોનન્ટ ઉદાહરણનો ઉપયોગ કરીને - ક્યારેક આપણે સ્ટાઇલ હેતુઓ માટે વાસ્તવિક `<button>` એલિમેન્ટને વધારાના `<div>` સાથે લપેટવાની (wrap) જરૂર પડી શકે છે:
 
 ```vue-html
 <div class="btn-wrapper">
-  <button class="btn">Click Me</button>
+  <button class="btn">મને ક્લિક કરો</button>
 </div>
 ```
 
-We want all fallthrough attributes like `class` and `v-on` listeners to be applied to the inner `<button>`, not the outer `<div>`. We can achieve this with `inheritAttrs: false` and `v-bind="$attrs"`:
+અમે ઇચ્છીએ છીએ કે `class` અને `v-on` લિસનર્સ જેવા તમામ ફોલથ્રુ એટ્રિબ્યુટ્સ અંદરના `<button>` પર લાગુ થાય, બહારના `<div>` પર નહીં. અમે આને `inheritAttrs: false` અને `v-bind="$attrs"` સાથે પ્રાપ્ત કરી શકીએ છીએ:
 
 ```vue-html{2}
 <div class="btn-wrapper">
-  <button class="btn" v-bind="$attrs">Click Me</button>
+  <button class="btn" v-bind="$attrs">મને ક્લિક કરો</button>
 </div>
 ```
 
-Remember that [`v-bind` without an argument](/guide/essentials/template-syntax#dynamically-binding-multiple-attributes) binds all the properties of an object as attributes of the target element.
+યાદ રાખો કે [આર્ગ્યુમેન્ટ વગર `v-bind`](/guide/essentials/template-syntax#dynamically-binding-multiple-attributes) ઓબ્જેક્ટની તમામ પ્રોપર્ટીઝને લક્ષિત એલિમેન્ટના એટ્રિબ્યુટ્સ તરીકે બાંધે છે.
 
-## Attribute Inheritance on Multiple Root Nodes {#attribute-inheritance-on-multiple-root-nodes}
+## બહુવિધ રૂટ નોડ્સ પર એટ્રિબ્યુટ ઇનહેરિટન્સ {#attribute-inheritance-on-multiple-root-nodes}
 
-Unlike components with a single root node, components with multiple root nodes do not have an automatic attribute fallthrough behavior. If `$attrs` are not bound explicitly, a runtime warning will be issued.
+સિંગલ રૂટ નોડ વાળા કમ્પોનન્ટ્સ થી વિપરીત, બહુવિધ રૂટ નોડ્સ વાળા કમ્પોનન્ટ્સ માં ઓટોમેટિક એટ્રિબ્યુટ ફોલથ્રુ વર્તન હોતું નથી. જો `$attrs` સ્પષ્ટ રીતે બાઉન્ડ ન હોય, તો રનટાઇમ વોર્નિંગ આપવામાં આવશે.
 
 ```vue-html
 <CustomLayout id="custom-layout" @click="changeValue" />
 ```
 
-If `<CustomLayout>` has the following multi-root template, there will be a warning because Vue cannot be sure where to apply the fallthrough attributes:
+જો `<CustomLayout>` પાસે નીચેનું મલ્ટી-રૂટ ટેમ્પલેટ છે, તો વોર્નિંગ આવશે કારણ કે Vue ચોક્કસ હોઈ શકતું નથી કે ફોલથ્રુ એટ્રિબ્યુટ્સ ક્યાં લાગુ કરવા:
 
 ```vue-html
 <header>...</header>
@@ -142,7 +142,7 @@ If `<CustomLayout>` has the following multi-root template, there will be a warni
 <footer>...</footer>
 ```
 
-The warning will be suppressed if `$attrs` is explicitly bound:
+જો `$attrs` સ્પષ્ટ રીતે બાઉન્ડ હોય તો વોર્નિંગ રદ કરવામાં આવશે:
 
 ```vue-html{2}
 <header>...</header>
@@ -150,11 +150,11 @@ The warning will be suppressed if `$attrs` is explicitly bound:
 <footer>...</footer>
 ```
 
-## Accessing Fallthrough Attributes in JavaScript {#accessing-fallthrough-attributes-in-javascript}
+## JavaScript માં ફોલથ્રુ એટ્રિબ્યુટ્સ ને એક્સેસ કરવા {#accessing-fallthrough-attributes-in-javascript}
 
 <div class="composition-api">
 
-If needed, you can access a component's fallthrough attributes in `<script setup>` using the `useAttrs()` API:
+જો જરૂર હોય, તો તમે `useAttrs()` API નો ઉપયોગ કરીને `<script setup>` માં ઘટકના ફોલથ્રુ એટ્રિબ્યુટ્સને એક્સેસ કરી શકો છો:
 
 ```vue
 <script setup>
@@ -164,24 +164,24 @@ const attrs = useAttrs()
 </script>
 ```
 
-If not using `<script setup>`, `attrs` will be exposed as a property of the `setup()` context:
+જો `<script setup>` નો ઉપયોગ ન કરતા હોય, તો `attrs` `setup()` કોન્ટેક્સ્ટની પ્રોપર્ટી તરીકે એક્સપોઝ થશે:
 
 ```js
 export default {
   setup(props, ctx) {
-    // fallthrough attributes are exposed as ctx.attrs
+    // ફોલથ્રુ એટ્રિબ્યુટ્સ ctx.attrs તરીકે એક્સપોઝ થાય છે
     console.log(ctx.attrs)
   }
 }
 ```
 
-Note that although the `attrs` object here always reflects the latest fallthrough attributes, it isn't reactive (for performance reasons). You cannot use watchers to observe its changes. If you need reactivity, use a prop. Alternatively, you can use `onUpdated()` to perform side effects with the latest `attrs` on each update.
+નોંધ કરો કે જોકે અહીંનો `attrs` ઓબ્જેક્ટ હંમેશા નવીનતમ ફોલથ્રુ એટ્રિબ્યુટ્સને પ્રતિબિંબિત કરે છે, તે રિએક્ટિવ નથી (પરફોર્મન્સના કારણોસર). તમે તેના ફેરફારોને જોવા માટે વોચર્સનો ઉપયોગ કરી શકતા નથી. જો તમને રિએક્ટિવિટીની જરૂર હોય, તો પ્રોપનો ઉપયોગ કરો. વૈકલ્પિક રીતે, તમે દરેક અપડેટ પર નવીનતમ `attrs` સાથે સાઇડ ઇફેક્ટ્સ કરવા માટે `onUpdated()` નો ઉપયોગ કરી શકો છો.
 
 </div>
 
 <div class="options-api">
 
-If needed, you can access a component's fallthrough attributes via the `$attrs` instance property:
+જો જરૂર હોય, તો તમે `$attrs` ઇન્સ્ટન્સ પ્રોપર્ટી દ્વારા ઘટકના ફોલથ્રુ એટ્રિબ્યુટ્સને એક્સેસ કરી શકો છો:
 
 ```js
 export default {
