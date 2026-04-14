@@ -1,12 +1,12 @@
-# Slots {#slots}
+# સ્લોટ્સ (Slots) {#slots}
 
-In addition to passing data via props, the parent component can also pass down template fragments to the child via **slots**:
+પ્રોપ્સ દ્વારા ડેટા પાસ કરવા ઉપરાંત, પેરન્ટ ઘટક ચાઇલ્ડને **સ્લોટ્સ (slots)** દ્વારા ટેમ્પલેટ ફ્રેગમેન્ટ્સ (fragments) પણ પાસ કરી શકે છે:
 
 <div class="sfc">
 
 ```vue-html
 <ChildComp>
-  This is some slot content!
+  આ સ્લોટ કન્ટેન્ટ છે!
 </ChildComp>
 ```
 
@@ -15,18 +15,18 @@ In addition to passing data via props, the parent component can also pass down t
 
 ```vue-html
 <child-comp>
-  This is some slot content!
+  આ સ્લોટ કન્ટેન્ટ છે!
 </child-comp>
 ```
 
 </div>
 
-In the child component, it can render the slot content from the parent using the `<slot>` element as outlet:
+ચાઇલ્ડ ઘટકમાં, પેરન્ટના સ્લોટ કન્ટેન્ટને આઉટલેટ (outlet) તરીકે `<slot>` એલિમેન્ટનો ઉપયોગ કરીને રેન્ડર કરી શકાય છે:
 
 <div class="sfc">
 
 ```vue-html
-<!-- in child template -->
+<!-- ચાઇલ્ડ ટેમ્પલેટમાં -->
 <slot/>
 ```
 
@@ -34,16 +34,16 @@ In the child component, it can render the slot content from the parent using the
 <div class="html">
 
 ```vue-html
-<!-- in child template -->
+<!-- ચાઇલ્ડ ટેમ્પલેટમાં -->
 <slot></slot>
 ```
 
 </div>
 
-Content inside the `<slot>` outlet will be treated as "fallback" content: it will be displayed if the parent did not pass down any slot content:
+`<slot>` આઉટલેટની અંદરના કન્ટેન્ટને "ફોલબેક (fallback)" કન્ટેન્ટ તરીકે ગણવામાં આવશે: જો પેરન્ટ કોઈ સ્લોટ કન્ટેન્ટ પાસ ન કરે તો તે પ્રદર્શિત થશે:
 
 ```vue-html
-<slot>Fallback content</slot>
+<slot>ફોલબેક (Fallback) કન્ટેન્ટ</slot>
 ```
 
-Currently we are not passing any slot content to `<ChildComp>`, so you should see the fallback content. Let's provide some slot content to the child while making use of the parent's `msg` state.
+હાલમાં અમે `<ChildComp>` માં કોઈ સ્લોટ કન્ટેન્ટ પાસ કરી રહ્યા નથી, તેથી તમારે ફોલબેક કન્ટેન્ટ જોવું જોઈએ. ચાલો પેરન્ટના `msg` સ્ટેટનો ઉપયોગ કરતી વખતે ચાઇલ્ડને સ્લોટ કન્ટેન્ટ પ્રદાન કરીએ.

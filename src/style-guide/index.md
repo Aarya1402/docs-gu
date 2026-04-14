@@ -2,44 +2,44 @@
 outline: deep
 ---
 
-# Style Guide {#style-guide}
+# સ્ટાઇલ ગાઇડ (Style Guide) {#style-guide}
 
-::: warning Note
-This Vue.js Style Guide is outdated and needs to be reviewed. If you have any questions or suggestions, please [open an issue](https://github.com/vuejs/docs/issues/new).
+::: warning નોંધ
+આ Vue.js સ્ટાઇલ ગાઇડ જૂની છે અને તેની સમીક્ષા કરવાની જરૂર છે. જો તમારી પાસે કોઈ પ્રશ્નો અથવા સૂચનો હોય, તો કૃપા કરીને [ઇશ્યુ ઓપન કરો (open an issue)](https://github.com/vuejs/docs/issues/new).
 :::
 
-This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
+Vue-વિશિષ્ટ કોડ માટે આ સત્તાવાર સ્ટાઇલ ગાઇડ છે. જો તમે પ્રોજેક્ટમાં Vue નો ઉપયોગ કરો છો, તો તે ભૂલો અને એન્ટી-પેટર્નથી બચવા માટેનો એક ઉત્તમ સંદર્ભ છે. જો કે, અમે એવું માનતા નથી કે કોઈપણ સ્ટાઇલ ગાઇડ બધી ટીમો અથવા પ્રોજેક્ટ્સ માટે આદર્શ છે, તેથી પાછલા અનુભવ, આસપાસના ટેક સ્ટેક અને વ્યક્તિગત મૂલ્યોના આધારે સાવધ વિચલનો (mindful deviations) ને પ્રોત્સાહન આપવામાં આવે છે.
 
-For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't mind whether you use semicolons or trailing commas. We don't mind whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
+મોટા ભાગના કિસ્સાઓમાં, અમે સામાન્ય રીતે JavaScript અથવા HTML વિશેના સૂચનો પણ ટાળીએ છીએ. તમે સેમીકોલન (semicolons) અથવા ટ્રેલિંગ કોમા (trailing commas) નો ઉપયોગ કરો છો કે કેમ તેનાથી અમને કોઈ વાંધો નથી. તમારા HTML એટ્રિબ્યુટ વેલ્યુઝ માટે સિંગલ-ક્વોટ્સ (single-quotes) અથવા ડબલ-ક્વોટ્સ (double-quotes) નો ઉપયોગ કરે છે કે કેમ તેનાથી અમને કોઈ વાંધો નથી. જો કે કેટલાક અપવાદો અસ્તિત્વમાં હશે, જ્યાં અમને જાણવા મળ્યું છે કે Vue ના સંદર્ભમાં ચોક્કસ પેટર્ન મદદરૂપ છે.
 
-Finally, we've split rules into four categories:
+છેલ્લે, અમે નિયમોને ચાર શ્રેણીઓમાં વિભાજિત કર્યા છે:
 
-## Rule Categories {#rule-categories}
+## નિયમ શ્રેણીઓ {#rule-categories}
 
-### Priority A: Essential (Error Prevention) {#priority-a-essential-error-prevention}
+### પ્રાથમિકતા A: આવશ્યક (ભૂલ નિવારણ) {#priority-a-essential-error-prevention}
 
-These rules help prevent errors, so learn and abide by them at all costs. Exceptions may exist, but should be very rare and only be made by those with expert knowledge of both JavaScript and Vue.
+આ નિયમો ભૂલોને રોકવામાં મદદ કરે છે, તેથી કોઈપણ ભોગે તેને શીખો અને તેનું પાલન કરો. અપવાદો અસ્તિત્વમાં હોઈ શકે છે, પરંતુ તે ખૂબ જ દુર્લભ હોવા જોઈએ અને તે ફક્ત તે જ લોકો દ્વારા બનાવવામાં આવવા જોઈએ જેમણે JavaScript અને Vue બંનેનું નિષ્ણાત જ્ઞાન હોય.
 
-- [See all priority A rules](./rules-essential)
+- [તમામ પ્રાથમિકતા A નિયમો જુઓ](./rules-essential)
 
-### Priority B: Strongly Recommended {#priority-b-strongly-recommended}
+### પ્રાથમિકતા B: ભારપૂર્વક ભલામણ કરેલ {#priority-b-strongly-recommended}
 
-These rules have been found to improve readability and/or developer experience in most projects. Your code will still run if you violate them, but violations should be rare and well-justified.
+આ નિયમો મોટાભાગના પ્રોજેક્ટ્સમાં વાંચવાની ક્ષમતા અને/અથવા ડેવલપરના અનુભવને સુધારવા માટે મળ્યા છે. જો તમે તેનું ઉલ્લંઘન કરશો તો પણ તમારો કોડ ચાલશે, પરંતુ ઉલ્લંઘન દુર્લભ અને યોગ્ય રીતે વાજબી હોવું જોઈએ.
 
-- [See all priority B rules](./rules-strongly-recommended)
+- [તમામ પ્રાથમિકતા B નિયમો જુઓ](./rules-strongly-recommended)
 
-### Priority C: Recommended {#priority-c-recommended}
+### પ્રાથમિકતા C: ભલામણ કરેલ {#priority-c-recommended}
 
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
+જ્યાં એકથી વધુ, સરખી રીતે સારા વિકલ્પો અસ્તિત્વમાં હોય, ત્યાં સુસંગતતા સુનિશ્ચિત કરવા માટે મનસ્વી પસંદગી કરી શકાય છે. આ નિયમોમાં, અમે દરેક સ્વીકાર્ય વિકલ્પનું વર્ણન કરીએ છીએ અને ડિફોલ્ટ પસંદગી સૂચવીએ છીએ. તેનો અર્થ એ કે તમે તમારા પોતાના કોડબેઝમાં અલગ પસંદગી કરવા માટે મુક્ત લાગે શકો છો, જ્યાં સુધી તમે સુસંગત હોવ અને તમારી પાસે તે માટે યોગ્ય કારણ હોય. કૃપા કરીને યોગ્ય કારણ રાખો! સમુદાય ધોરણ (Community standard) ને અનુરૂપ થઈને, તમે આ કરી શકશો:
 
-1. Train your brain to more easily parse most of the community code you encounter
-2. Be able to copy and paste most community code examples without modification
-3. Often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
+૧. તમે જે સમુદાય કોડનો સામનો કરો છો તેને વધુ સરળતાથી પાર્સ (parse) કરવા માટે તમારા મગજને તાલીમ આપો
+૨. મોટાભાગના સમુદાય કોડ ઉદાહરણોને ફેરફાર કર્યા વિના કોપી અને પેસ્ટ કરી શકશો
+૩. નવા સભ્યો પહેલેથી જ તમારી મનપસંદ કોડિંગ શૈલીથી ટેવાયેલા હશે, ઓછામાં ઓછું Vue ના સંદર્ભમાં તો ચોક્કસપણે
 
-- [See all priority C rules](./rules-recommended)
+- [તમામ પ્રાથમિકતા C નિયમો જુઓ](./rules-recommended)
 
-### Priority D: Use with Caution {#priority-d-use-with-caution}
+### પ્રાથમિકતા D: સાવધાની સાથે ઉપયોગ કરો {#priority-d-use-with-caution}
 
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+Vue ની કેટલીક સુવિધાઓ દુર્લભ એજ કેસ અથવા જૂના કોડ બેઝમાંથી સ્મૂધ માઇગ્રેશન માટે અસ્તિત્વમાં છે. જો કે જ્યારે વધુ પડતો ઉપયોગ કરવામાં આવે છે, ત્યારે તે તમારા કોડને મેન્ટેન કરવાનું વધુ મુશ્કેલ બનાવી શકે છે અથવા તો બગ્સનું કારણ પણ બની શકે છે. આ નિયમો સંભવિત જોખમી સુવિધાઓ પર પ્રકાશ પાડે છે, તે સમજાવે છે કે ક્યારે અને શા માટે તેમને ટાળવા જોઈએ.
 
-- [See all priority D rules](./rules-use-with-caution)
+- [તમામ પ્રાથમિકતા D નિયમો જુઓ](./rules-use-with-caution)

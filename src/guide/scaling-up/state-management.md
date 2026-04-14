@@ -1,8 +1,8 @@
-# State Management {#state-management}
+# સ્ટેટ મેનેજમેન્ટ (State Management) {#state-management}
 
-## What is State Management? {#what-is-state-management}
+## સ્ટેટ મેનેજમેન્ટ શું છે? (What is State Management?) {#what-is-state-management}
 
-Technically, every Vue component instance already "manages" its own reactive state. Take a simple counter component as an example:
+તકનીકી રીતે, દરેક Vue કમ્પોનન્ટ ઇન્સ્ટન્સ પહેલેથી જ તેની પોતાની રિએક્ટિવ (reactive) સ્થિતિ "મેનેજ" કરે છે. ઉદાહરણ તરીકે એક સાદો કાઉન્ટર (counter) ઘટક લો:
 
 <div class="composition-api">
 
@@ -10,16 +10,16 @@ Technically, every Vue component instance already "manages" its own reactive sta
 <script setup>
 import { ref } from 'vue'
 
-// state
+// સ્ટેટ (state)
 const count = ref(0)
 
-// actions
+// એક્શન્સ (actions)
 function increment() {
   count.value++
 }
 </script>
 
-<!-- view -->
+<!-- વ્યુ (view) -->
 <template>{{ count }}</template>
 ```
 
@@ -29,13 +29,13 @@ function increment() {
 ```vue
 <script>
 export default {
-  // state
+  // સ્ટેટ (state)
   data() {
     return {
       count: 0
     }
   },
-  // actions
+  // એક્શન્સ (actions)
   methods: {
     increment() {
       this.count++
@@ -44,44 +44,44 @@ export default {
 }
 </script>
 
-<!-- view -->
+<!-- વ્યુ (view) -->
 <template>{{ count }}</template>
 ```
 
 </div>
 
-It is a self-contained unit with the following parts:
+તે નીચેના ભાગો સાથેનો સ્વનિર્ભર એકમ છે:
 
-- The **state**, the source of truth that drives our app;
-- The **view**, a declarative mapping of the **state**;
-- The **actions**, the possible ways the state could change in reaction to user inputs from the **view**.
+- **સ્ટેટ (state)**, સત્યનો સ્ત્રોત (source of truth) જે આપણી એપ્લિકેશનને ચલાવે છે;
+- **વ્યુ (view)**, સ્ટેટનું ડિક્લેરેટિવ મેપિંગ;
+- **એક્શન્સ (actions)**, વ્યુમાંથી વપરાશકર્તાના ઇનપુટ્સની પ્રતિક્રિયામાં સ્ટેટ બદલાઈ શકે તેવા સંભવિત માર્ગો.
 
-This is a simple representation of the concept of "one-way data flow":
+આ "વન-વે ડેટા ફ્લો" ની વિભાવનાનું એક સરળ પ્રતિનિધિત્વ છે:
 
 <p style="text-align: center">
   <img alt="state flow diagram" src="./images/state-flow.png" width="252px" style="margin: 40px auto">
 </p>
 
-However, the simplicity starts to break down when we have **multiple components that share a common state**:
+જો કે, જ્યારે આપણી પાસે **બહુવિધ ઘટકો હોય જે સામાન્ય સ્ટેટ શેર કરે છે** ત્યારે સરળતા તૂટવા લાગે છે:
 
-1. Multiple views may depend on the same piece of state.
-2. Actions from different views may need to mutate the same piece of state.
+૧. બહુવિધ વ્યુ સ્ટેટના સમાન ભાગ પર આધારિત હોઈ શકે છે.
+૨. વિવિધ વ્યુ માંની એક્શન્સને સ્ટેટના સમાન ભાગને મ્યુટેટ (mutate) કરવાની જરૂર પડી શકે છે.
 
-For case one, a possible workaround is by "lifting" the shared state up to a common ancestor component, and then pass it down as props. However, this quickly gets tedious in component trees with deep hierarchies, leading to another problem known as [Prop Drilling](/guide/components/provide-inject#prop-drilling).
+પ્રથમ કેસ માટે, એક સંભવિત ઉકેલ એ છે કે શેર કરેલ સ્ટેટને સમાન પૂર્વજ ઘટક (common ancestor component) સુધી "લિફ્ટ (lift)" કરવું અને પછી તેને પ્રોપ્સ (props) તરીકે નીચે પસાર કરવું. જો કે, ઊંડા વંશવેલો (hierarchies) ધરાવતા કમ્પોનન્ટ ટ્રીમાં આ ઝડપથી કંટાળાજનક બની જાય છે, જે બીજી સમસ્યા તરફ દોરી જાય છે જેને [પ્રોપ ડ્રીલિંગ (Prop Drilling)](/guide/components/provide-inject#prop-drilling) તરીકે ઓળખવામાં આવે છે.
 
-For case two, we often find ourselves resorting to solutions such as reaching for direct parent / child instances via template refs, or trying to mutate and synchronize multiple copies of the state via emitted events. Both of these patterns are brittle and quickly lead to unmaintainable code.
+બીજા કેસ માટે, આપણે ઘણીવાર ટેમ્પલેટ રેફ્સ (template refs) દ્વારા સીધા પેરેન્ટ / ચાઇલ્ડ ઇન્સ્ટન્સ સુધી પહોંચવા અથવા એમિટેડ ઇવેન્ટ્સ દ્વારા સ્ટેટની બહુવિધ નકલોને મ્યુટેટ અને સિંક્રનાઇઝ કરવાનો પ્રયાસ કરવા જેવા ઉકેલોનો આશરો લઈએ છીએ. આ બંને પેટર્ન બરડ છે અને ઝડપથી જાળવી ન શકાય તેવા કોડ તરફ દોરી જાય છે.
 
-A simpler and more straightforward solution is to extract the shared state out of the components, and manage it in a global singleton. With this, our component tree becomes a big "view", and any component can access the state or trigger actions, no matter where they are in the tree!
+વધુ સરળ અને સીધો ઉકેલ એ છે કે ઘટકોમાંથી શેર કરેલી સ્ટેટ બહાર કાઢી તેને વૈશ્વિક સિંગલટન (global singleton) માં મેનેજ કરવી. આ સાથે, આપણું કમ્પોનન્ટ ટ્રી એક મોટો "વ્યુ" બની જાય છે, અને કોઈપણ ઘટક ટ્રીમાં તેઓ ગમે ત્યાં હોય, સ્ટેટ એક્સેસ કરી શકે છે અથવા એક્શન્સ ટ્રિગર કરી શકે છે!
 
-## Simple State Management with Reactivity API {#simple-state-management-with-reactivity-api}
+## રિએક્ટિવિટી (Reactivity) API સાથે સાદું સ્ટેટ મેનેજમેન્ટ {#simple-state-management-with-reactivity-api}
 
 <div class="options-api">
 
-In Options API, reactive data is declared using the `data()` option. Internally, the object returned by `data()` is made reactive via the [`reactive()`](/api/reactivity-core#reactive) function, which is also available as a public API.
+Options API માં, રિએક્ટિવ ડેટા `data()` ઓપ્શનનો ઉપયોગ કરીને જાહેર કરવામાં આવે છે. આંતરિક રીતે, `data()` દ્વારા પરત કરવામાં આવેલ ઓબ્જેક્ટને [`reactive()`](/api/reactivity-core#reactive) ફંક્શન દ્વારા રિએક્ટિવ બનાવવામાં આવે છે, જે સાર્વજનિક API તરીકે પણ ઉપલબ્ધ છે.
 
 </div>
 
-If you have a piece of state that should be shared by multiple instances, you can use [`reactive()`](/api/reactivity-core#reactive) to create a reactive object, and then import it into multiple components:
+જો તમારી પાસે સ્ટેટનો કોઈ ટુકડો છે જે બહુવિધ ઇન્સ્ટન્સ દ્વારા શેર થવો જોઈએ, તો તમે રિએક્ટિવ ઓબ્જેક્ટ બનાવવા માટે [`reactive()`](/api/reactivity-core#reactive) નો ઉપયોગ કરી શકો છો અને પછી તેને બહુવિધ ઘટકોમાં ઇમ્પોર્ટ કરી શકો છો:
 
 ```js [store.js]
 import { reactive } from 'vue'
@@ -98,7 +98,7 @@ export const store = reactive({
 import { store } from './store.js'
 </script>
 
-<template>From A: {{ store.count }}</template>
+<template>A તરફથી: {{ store.count }}</template>
 ```
 
 ```vue [ComponentB.vue]
@@ -106,7 +106,7 @@ import { store } from './store.js'
 import { store } from './store.js'
 </script>
 
-<template>From B: {{ store.count }}</template>
+<template>B તરફથી: {{ store.count }}</template>
 ```
 
 </div>
@@ -125,7 +125,7 @@ export default {
 }
 </script>
 
-<template>From A: {{ store.count }}</template>
+<template>A તરફથી: {{ store.count }}</template>
 ```
 
 ```vue [ComponentB.vue]
@@ -141,24 +141,24 @@ export default {
 }
 </script>
 
-<template>From B: {{ store.count }}</template>
+<template>B તરફથી: {{ store.count }}</template>
 ```
 
 </div>
 
-Now whenever the `store` object is mutated, both `<ComponentA>` and `<ComponentB>` will update their views automatically - we have a single source of truth now.
+હવે જ્યારે પણ `store` ઓબ્જેક્ટ મ્યુટેટ થાય છે, ત્યારે `<ComponentA>` અને `<ComponentB>` બંને તેમના વ્યુને આપમેળે અપડેટ કરશે - આપણી પાસે હવે સત્યનો એક જ સ્ત્રોત (single source of truth) છે.
 
-However, this also means any component importing `store` can mutate it however they want:
+જો કે, આનો અર્થ એ પણ છે કે `store` ને ઇમ્પોર્ટ કરનાર કોઈપણ ઘટક તેને જે રીતે ઈચ્છે તે રીતે મ્યુટેટ (mutate) કરી શકે છે:
 
 ```vue-html{2}
 <template>
   <button @click="store.count++">
-    From B: {{ store.count }}
+    B તરફથી: {{ store.count }}
   </button>
 </template>
 ```
 
-While this works in simple cases, global state that can be arbitrarily mutated by any component is not going to be very maintainable in the long run. To ensure the state-mutating logic is centralized like the state itself, it is recommended to define methods on the store with names that express the intention of the actions:
+જ્યારે આ સરળ કિસ્સાઓમાં કાર્ય કરે છે, ત્યારે વૈશ્વિક સ્ટેટ કે જે કોઈપણ ઘટક દ્વારા મનસ્સી રીતે પરિવર્તિત કરી શકાય છે તે લાંબા ગાળે જાળવી શકાય તેવી નથી. સ્ટેટ-મ્યુટેટીંગ લોજિક સ્ટેટની જેમ જ વ્યાપક છે તેની ખાતરી કરવા માટે, સ્ટોર પર એવી મેથડ્સ વ્યાખ્યાયિત કરવાની ભલામણ કરવામાં આવે છે જેના નામ એક્શન્સના ઇરાદાને વ્યક્ત કરે:
 
 ```js{5-7} [store.js]
 import { reactive } from 'vue'
@@ -174,36 +174,36 @@ export const store = reactive({
 ```vue-html{2}
 <template>
   <button @click="store.increment()">
-    From B: {{ store.count }}
+    B તરફથી: {{ store.count }}
   </button>
 </template>
 ```
 
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNrNkk1uwyAQha8yYpNEiUzXllPVrtRTeJNSqtLGgGBsVbK4ewdwnT9FWWSTFczwmPc+xMhqa4uhl6xklRdOWQQvsbfPrVadNQ7h1dCqpcYaPp3pYFHwQyteXVxKm0tpM0krnm3IgAqUnd3vUFIFUB1Z8bNOkzoVny+wDTuNcZ1gBI/GSQhzqlQX3/5Gng81pA1t33tEo+FF7JX42bYsT1BaONlRguWqZZMU4C261CWMk3EhTK8RQphm8Twse/BscoUsvdqDkTX3kP3nI6aZwcmdQDUcMPJPabX8TQphtCf0RLqd1csxuqQAJTxtYnEUGtIpAH4pn1Ou17FDScOKhT+QNAVM)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNrNkk1uwyAQha8yYpNEiUzXllPVrtRTeJNSqtLGgGBsVbK4ewdwnT9FWWSTFczwmPc+xMhqa4uhl6xklRdOWQQvsbfPrVadNQ7h1dCqpcYaPp3pYFHwQyteXVxKm0tpM0krnm3IgAqUnd3vUFIFUB1Z8bNOkzoVny+wDTuNcZ1gBI/GSQhzqlQX3/5Gng81pA1t33tEo+FF7JX42bYsT1BaONlRguWqZZMU4C261CWMk3EhTK8RQphm8Twse/BscoUsvdqDkTX3kP3nI6aZwcmdQDUcMPJPabX8TQphtCf0RLqd1csxuqQAJTxtYnEUGtIpAH4pn1Ou17FDScOKhT+QNAVM)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNrdU8FqhDAU/JVHLruyi+lZ3FIt9Cu82JilaTWR5CkF8d8bE5O1u1so9FYQzAyTvJnRTKTo+3QcOMlIbpgWPT5WUnS90gjPyr4ll1jAWasOdim9UMum3a20vJWWqxSgkvzTyRt+rocWYVpYFoQm8wRsJh+viHLBcyXtk9No2ALkXd/WyC0CyDfW6RVTOiancQM5ku+x7nUxgUGlOcwxn8Ppu7HJ7udqaqz3SYikOQ5aBgT+OA9slt9kasToFnb5OiAqCU+sFezjVBHvRUimeWdT7JOKrFKAl8VvYatdI6RMDRJhdlPtWdQf5mdQP+SHdtyX/IftlH9pJyS1vcQ2NK8ZivFSiL8BsQmmpMG1s1NU79frYA1k8OD+/I3pUA6+CeNdHg6hmoTMX9pPSnk=)
+[Playground માં તે અજમાવી જુઓ](https://play.vuejs.org/#eNrdU8FqhDAU/JVHLruyi+lZ3FIt9Cu82JilaTWR5CkF8d8bE5O1u1so9FYQzAyTvJnRTKTo+3QcOMlIbpgWPT5WUnS90gjPyr4ll1jAWasOdim9UMum3a20vJWWqxSgkvzTyRt+rocWYVpYFoQm8wRsJh+viHLBcyXtk9No2ALkXd/WyC0CyDfW6RVTOiancQM5ku+x7nUxgUGlOcwxn8Ppu7HJ7udqaqz3SYikOQ5aBgT+OA9slt9kasToFnb5OiAqCU+sFezjVBHvRUimeWdT7JOKrFKAl8VvYatdI6RMDRJhdlPtWdQf5mdQP+SHdtyX/IftlH9pJyS1vcQ2NK8ZivFSiL8BsQmmpMG1s1NU79frYA1k8OD+/I3pUA6+CeNdHg6hmoTMX9pPSnk=)
 
 </div>
 
 :::tip
-Note the click handler uses `store.increment()` with parentheses - this is necessary to call the method with the proper `this` context since it's not a component method.
+નોંધ લો કે ક્લિક હેન્ડલર કૌંસ સાથે `store.increment()` નો ઉપયોગ કરે છે - યોગ્ય `this` કોન્ટેક્સ્ટ સાથે મેથડને કૉલ કરવા માટે આ જરૂરી છે કારણ કે તે ઘટક મેથડ નથી.
 :::
 
-Although here we are using a single reactive object as a store, you can also share reactive state created using other [Reactivity APIs](/api/reactivity-core) such as `ref()` or `computed()`, or even return global state from a [Composable](/guide/reusability/composables):
+જો કે અહીં આપણે સ્ટોર તરીકે સિંગલ રિએક્ટિવ ઓબ્જેક્ટનો ઉપયોગ કરી રહ્યા છીએ, તમે અન્ય [રિએક્ટિવિટી APIs](/api/reactivity-core) જેમ કે `ref()` અથવા `computed()` નો ઉપયોગ કરીને બનાવેલ રિએક્ટિવ સ્ટેટ પણ શેર કરી શકો છો, અથવા [Composable](/guide/reusability/composables) માંથી વૈશ્વિક સ્ટેટ પરત કરી શકો છો:
 
 ```js
 import { ref } from 'vue'
 
-// global state, created in module scope
+// વૈશ્વિક સ્ટેટ, મોડ્યુલ સ્કોપમાં બનાવેલ છે
 const globalCount = ref(1)
 
 export function useCount() {
-  // local state, created per-component
+  // લોકલ સ્ટેટ, પ્રત્યેક ઘટક દીઠ બનાવેલ છે
   const localCount = ref(1)
 
   return {
@@ -213,25 +213,25 @@ export function useCount() {
 }
 ```
 
-The fact that Vue's reactivity system is decoupled from the component model makes it extremely flexible.
+Vue ની રિએક્ટિવિટી સિસ્ટમ ઘટક મોડેલ (component model) થી અલગ છે તે હજારો ફ્લેક્સિબલ બનાવે છે.
 
-## SSR Considerations {#ssr-considerations}
+## SSR સંબંધિત બાબતો (SSR Considerations) {#ssr-considerations}
 
-If you are building an application that leverages [Server-Side Rendering (SSR)](./ssr), the above pattern can lead to issues due to the store being a singleton shared across multiple requests. This is discussed in [more details](./ssr#cross-request-state-pollution) in the SSR guide.
+જો તમે એવી એપ્લિકેશન બનાવી રહ્યા છો જે [સર્વર-સાઇડ રેન્ડરિંગ (SSR)](./ssr) નો લાભ લે છે, તો ઉપરની પેટર્ન સ્ટોરને કારણે બહુવિધ વિનંતીઓ પર શેર કરાયેલ સિંગલટન હોવાથી સમસ્યાઓ તરફ દોરી શકે છે. આ વિશે SSR ગાઇડમાં [વધુ વિગતો](./ssr#cross-request-state-pollution) માં ચર્ચા કરવામાં આવી છે.
 
-## Pinia {#pinia}
+## પિનિયા (Pinia) {#pinia}
 
-While our hand-rolled state management solution will suffice in simple scenarios, there are many more things to consider in large-scale production applications:
+જ્યારે રજૂ કરેલો સ્ટેટ મેનેજમેન્ટ સોલ્યુશન સરળ પરિસ્થિતિઓમાં પૂરતો રહેશે, ત્યારે મોટા પાયે પ્રોડક્શન એપ્લિકેશન્સમાં ધ્યાનમાં લેવા જેવી ઘણી બધી બાબતો છે:
 
-- Stronger conventions for team collaboration
-- Integrating with the Vue DevTools, including timeline, in-component inspection, and time-travel debugging
-- Hot Module Replacement
-- Server-Side Rendering support
+- ટીમ સહયોગ માટે મજબૂત ફોર્મેટ
+- Vue DevTools સાથે સંકલન, જેમાં ટાઈમલાઈન, ઇન-કમ્પોનન્ટ ઇન્સ્પેક્શન અને ટાઇમ-ટ્રાવેલ ડિબગિંગનો સમાવેશ થાય છે
+- હોટ મોડ્યુલ રિપ્લેસમેન્ટ (Hot Module Replacement)
+- સર્વર-સાઇડ રેન્ડરિંગ સપોર્ટ
 
-[Pinia](https://pinia.vuejs.org) is a state management library that implements all of the above. It is maintained by the Vue core team, and works with both Vue 2 and Vue 3.
+[Pinia](https://pinia.vuejs.org) એક સ્ટેટ મેનેજમેન્ટ લાઇબ્રેરી છે જે ઉપરોક્ત તમામનો અમલ કરે છે. તે Vue કોર ટીમ દ્વારા જાળવવામાં આવે છે અને Vue 2 અને Vue 3 બંને સાથે કામ કરે છે.
 
-Existing users may be familiar with [Vuex](https://vuex.vuejs.org/), the previous official state management library for Vue. With Pinia serving the same role in the ecosystem, Vuex is now in maintenance mode. It still works, but will no longer receive new features. It is recommended to use Pinia for new applications.
+વર્તમાન વપરાશકર્તાઓ [Vuex](https://vuex.vuejs.org/) થી પરિચિત હોઈ શકે છે, જે Vue માટે અગાઉની સત્તાવાર સ્ટેટ મેનેજમેન્ટ લાઇબ્રેરી હતી. પિનિયા ઇકોસિસ્ટમમાં સમાન ભૂમિકા ભજવે છે, તેથી Vuex હવે મેન્ટેનન્સ મોડમાં છે. તે હજુ પણ કામ કરે છે, પરંતુ હવે તેમાં નવી સુવિધાઓ પ્રાપ્ત થશે નહીં. નવી એપ્લિકેશનો માટે Pinia નો ઉપયોગ કરવાની ભલામણ કરવામાં આવે છે.
 
-Pinia started out as an exploration of what the next iteration of Vuex could look like, incorporating many ideas from core team discussions for Vuex 5. Eventually, we realized that Pinia already implements most of what we wanted in Vuex 5, and decided to make it the new recommendation instead.
+પિનિયા એ Vuex 5 માટેની કોર ટીમની ચર્ચાઓમાંથી ઘણા વિચારોનો ઉપયોગ કરીને કરી છે. અંતે, અમને સમજાયું કે Pinia પહેલેથી જ Vuex 5 માં જે જોઈએ છે તે અમલ કરે છે અને તેના બદલે તેને નવી ભલામણ બનાવવાનું નક્કી કર્યું.
 
-Compared to Vuex, Pinia provides a simpler API with less ceremony, offers Composition-API-style APIs, and most importantly, has solid type inference support when used with TypeScript.
+Vuex ની તુલનામાં, Pinia ઓછી વિધિ સાથે સરળ API પ્રદાન કરે છે, Composition-API-શૈલીના APIs ઓફર કરે છે અને સૌથી અગત્યનું, જ્યારે TypeScript સાથે ઉપયોગ કરવામાં આવે ત્યારે તેમાં મજબૂત ટાઇપ ઇન્ફરન્સ (type inference) સપોર્ટ હોય છે.

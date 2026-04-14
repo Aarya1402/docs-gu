@@ -1,20 +1,20 @@
-# Conditional Rendering {#conditional-rendering}
+# કન્ડિશનલ રેન્ડરિંગ (Conditional Rendering) {#conditional-rendering}
 
-We can use the `v-if` directive to conditionally render an element:
-
-```vue-html
-<h1 v-if="awesome">Vue is awesome!</h1>
-```
-
-This `<h1>` will be rendered only if the value of `awesome` is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy). If `awesome` changes to a [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) value, it will be removed from the DOM.
-
-We can also use `v-else` and `v-else-if` to denote other branches of the condition:
+આપણે એલિમેન્ટને કન્ડિશનલી (શરતી રીતે) રેન્ડર કરવા માટે `v-if` ડાયરેક્ટિવનો ઉપયોગ કરી શકીએ છીએ:
 
 ```vue-html
-<h1 v-if="awesome">Vue is awesome!</h1>
-<h1 v-else>Oh no 😢</h1>
+<h1 v-if="awesome">Vue અદભૂત છે!</h1>
 ```
 
-Currently, the demo is showing both `<h1>`s at the same time, and the button does nothing. Try to add `v-if` and `v-else` directives to them, and implement the `toggle()` method so that we can use the button to toggle between them.
+આ `<h1>` ત્યારે જ રેન્ડર કરવામાં આવશે જો `awesome` ની વેલ્યુ [ટ્રુથી (truthy)](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) હોય. જો `awesome` [ફેલ્સી (falsy)](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) વેલ્યુમાં બદલાય છે, તો તે DOM માંથી દૂર કરવામાં આવશે.
 
-More details on `v-if`: <a target="_blank" href="/guide/essentials/conditional.html">Guide - Conditional Rendering</a>
+અમે શરતની અન્ય શાખાઓ દર્શાવવા માટે `v-else` અને `v-else-if` નો પણ ઉપયોગ કરી શકીએ છીએ:
+
+```vue-html
+<h1 v-if="awesome">Vue અદભૂત છે!</h1>
+<h1 v-else>અરે ના 😢</h1>
+```
+
+હાલમાં, ડેમો બંને `<h1>` ને એક જ સમયે બતાવી રહ્યો છે, અને બટન કંઈ કરતું નથી. તેમાં `v-if` અને `v-else` ડાયરેક્ટિવ્સ ઉમેરવાનો પ્રયાસ કરો, અને `toggle()` મેથડ અમલમાં મૂકો જેથી કરીને આપણે તેમની વચ્ચે ટૉગલ (toggle) કરી શકીએ.
+
+`v-if` પર વધુ વિગતો: <a target="_blank" href="/guide/essentials/conditional.html">માર્ગદર્શિકા - કન્ડિશનલ રેન્ડરિંગ</a>

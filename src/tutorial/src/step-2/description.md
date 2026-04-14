@@ -1,16 +1,16 @@
-# Declarative Rendering {#declarative-rendering}
+# ડિક્લેરેટિવ રેન્ડરિંગ (Declarative Rendering) {#declarative-rendering}
 
 <div class="sfc">
 
-What you see in the editor is a Vue Single-File Component (SFC). An SFC is a reusable self-contained block of code that encapsulates HTML, CSS and JavaScript that belong together, written inside a `.vue` file.
+તમે એડિટરમાં જે જોઈ રહ્યા છો તે Vue સિંગલ-ફાઇલ કમ્પોનન્ટ (SFC) છે. SFC એ કોડનો પુનઃઉપયોગ કરી શકાય તેવો સ્વનિર્ભર બ્લોક છે જે HTML, CSS અને JavaScript ને સમાવે છે જે એક સાથે જોડાયેલા હોય છે, જે `.vue` ફાઇલમાં લખાયેલ હોય છે.
 
 </div>
 
-The core feature of Vue is **declarative rendering**: using a template syntax that extends HTML, we can describe how the HTML should look based on JavaScript state. When the state changes, the HTML updates automatically.
+Vue ની મુખ્ય વિશેષતા **ડિક્લેરેટિવ રેન્ડરિંગ (declarative rendering)** છે: HTML ને વિસ્તૃત કરતા ટેમ્પલેટ સિન્ટેક્સનો ઉપયોગ કરીને, આપણે વર્ણન કરી શકીએ છીએ કે JavaScript સ્ટેટના આધારે HTML કેવું દેખાવું જોઈએ. જ્યારે સ્ટેટ બદલાય છે, ત્યારે HTML આપમેળે અપડેટ થાય છે.
 
 <div class="composition-api">
 
-State that can trigger updates when changed is considered **reactive**. We can declare reactive state using Vue's `reactive()` API. Objects created from `reactive()` are JavaScript [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) that work just like normal objects:
+સ્ટેટ જે બદલાય ત્યારે અપડેટ્સ ટ્રિગર કરી શકે છે તેને **રિએક્ટિવ (reactive)** માનવામાં આવે છે. આપણે Vue ના `reactive()` API નો ઉપયોગ કરીને રિએક્ટિવ સ્ટેટ જાહેર કરી શકીએ છીએ. `reactive()` માંથી બનાવેલા ઓબ્જેક્ટ્સ JavaScript [પ્રોક્સીઝ (Proxies)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) છે જે સામાન્ય ઓબ્જેક્ટ્સની જેમ જ કાર્ય કરે છે:
 
 ```js
 import { reactive } from 'vue'
@@ -23,33 +23,33 @@ console.log(counter.count) // 0
 counter.count++
 ```
 
-`reactive()` only works on objects (including arrays and built-in types like `Map` and `Set`). `ref()`, on the other hand, can take any value type and create an object that exposes the inner value under a `.value` property:
+`reactive()` માત્ર ઓબ્જેક્ટ્સ (એરે અને બિલ્ટ-ઇન ટાઇપ્સ જેમ કે `Map` અને `Set` સહિત) પર જ કામ કરે છે. બીજી તરફ, `ref()` કોઈપણ વેલ્યુ ટાઇપ લઈ શકે છે અને એક ઓબ્જેક્ટ બનાવી શકે છે જે `.value` પ્રોપર્ટી હેઠળ આંતરિક વેલ્યુને એક્સપોઝ કરે છે:
 
 ```js
 import { ref } from 'vue'
 
-const message = ref('Hello World!')
+const message = ref('નમસ્તે દુનિયા!')
 
-console.log(message.value) // "Hello World!"
-message.value = 'Changed'
+console.log(message.value) // "નમસ્તે દુનિયા!"
+message.value = 'બદલાયેલ'
 ```
 
-Details on `reactive()` and `ref()` are discussed in <a target="_blank" href="/guide/essentials/reactivity-fundamentals.html">Guide - Reactivity Fundamentals</a>.
+`reactive()` અને `ref()` પરની વિગતો <a target="_blank" href="/guide/essentials/reactivity-fundamentals.html">માર્ગદર્શિકા - રિએક્ટિવિટી ફંડામેન્ટલ્સ</a> માં ચર્ચવામાં આવી છે.
 
 <div class="sfc">
 
-Reactive state declared in the component's `<script setup>` block can be used directly in the template. This is how we can render dynamic text based on the value of the `counter` object and `message` ref, using mustaches syntax:
+ઘટકના `<script setup>` બ્લોકમાં જાહેર કરાયેલ રિએક્ટિવ સ્ટેટનો સીધો ઉપયોગ ટેમ્પલેટમાં થઈ શકે છે. આ રીતે આપણે મસ્ટાશ (mustaches) સિન્ટેક્સનો ઉપયોગ કરીને `counter` ઓબ્જેક્ટ અને `message` રેફની વેલ્યુના આધારે ડાયનેમિક ટેક્સ્ટ રેન્ડર કરી શકીએ છીએ:
 
 </div>
 
 <div class="html">
 
-The object being passed to `createApp()` is a Vue component. A component's state should be declared inside its `setup()` function, and returned using an object:
+`createApp()` માં પસાર કરવામાં આવતો ઓબ્જેક્ટ એ Vue ઘટક છે. ઘટકની સ્ટેટ તેના `setup()` ફંક્શનની અંદર જાહેર કરવી જોઈએ અને ઓબ્જેક્ટનો ઉપયોગ કરીને પરત કરવી જોઈએ:
 
 ```js{2,5}
 setup() {
   const counter = reactive({ count: 0 })
-  const message = ref('Hello World!')
+  const message = ref('નમસ્તે દુનિયા!')
   return {
     counter,
     message
@@ -57,24 +57,24 @@ setup() {
 }
 ```
 
-Properties in the returned object will be made available in the template. This is how we can render dynamic text based on the value of `message`, using mustaches syntax:
+પરત કરેલા ઓબ્જેક્ટમાં રહેલી પ્રોપર્ટીઝ ટેમ્પલેટમાં ઉપલબ્ધ કરાવવામાં આવશે. આ રીતે આપણે મસ્ટાશ સિન્ટેક્સનો ઉપયોગ કરીને `message` ની વેલ્યુના આધારે ડાયનેમિક ટેક્સ્ટ રેન્ડર કરી શકીએ છીએ:
 
 </div>
 
 ```vue-html
 <h1>{{ message }}</h1>
-<p>Count is: {{ counter.count }}</p>
+<p>કાઉન્ટ છે: {{ counter.count }}</p>
 ```
 
-Notice how we did not need to use `.value` when accessing the `message` ref in templates: it is automatically unwrapped for more succinct usage.
+નોંધ લો કે ટેમ્પલેટ્સમાં `message` રેફને એક્સેસ કરતી વખતે આપણે `.value` નો ઉપયોગ કરવાની જરૂર નથી: તે વધુ સંક્ષિપ્ત વપરાશ માટે આપમેળે અનરેપ (unwrapped) થઈ જાય છે.
 
 </div>
 
 <div class="options-api">
 
-State that can trigger updates when changed are considered **reactive**. In Vue, reactive state is held in components. <span class="html">In the example code, the object being passed to `createApp()` is a component.</span>
+સ્ટેટ જે બદલાય ત્યારે અપડેટ્સ ટ્રિગર કરી શકે છે તેને **રિએક્ટિવ (reactive)** ગણવામાં આવે છે. Vue માં, રિએક્ટિવ સ્ટેટ ઘટકોમાં રાખવામાં આવે છે. <span class="html">ઉદાહરણ કોડમાં, `createApp()` માં પસાર કરવામાં આવેલો ઓબ્જેક્ટ એક ઘટક છે.</span>
 
-We can declare reactive state using the `data` component option, which should be a function that returns an object:
+આપણે `data` ઘટક ઓપ્શનનો ઉપયોગ કરીને રિએક્ટિવ સ્ટેટ જાહેર કરી શકીએ છીએ, જે એક ફંક્શન હોવું જોઈએ જે ઓબ્જેક્ટ પરત કરે છે:
 
 <div class="sfc">
 
@@ -82,7 +82,7 @@ We can declare reactive state using the `data` component option, which should be
 export default {
   data() {
     return {
-      message: 'Hello World!'
+      message: 'નમસ્તે દુનિયા!'
     }
   }
 }
@@ -95,7 +95,7 @@ export default {
 createApp({
   data() {
     return {
-      message: 'Hello World!'
+      message: 'નમસ્તે દુનિયા!'
     }
   }
 })
@@ -103,7 +103,7 @@ createApp({
 
 </div>
 
-The `message` property will be made available in the template. This is how we can render dynamic text based on the value of `message`, using mustaches syntax:
+`message` પ્રોપર્ટી ટેમ્પલેટમાં ઉપલબ્ધ કરાવવામાં આવશે. આ રીતે આપણે મસ્ટાશ સિન્ટેક્સનો ઉપયોગ કરીને `message` ની વેલ્યુના આધારે ડાયનેમિક ટેક્સ્ટ રેન્ડર કરી શકીએ છીએ:
 
 ```vue-html
 <h1>{{ message }}</h1>
@@ -111,7 +111,7 @@ The `message` property will be made available in the template. This is how we ca
 
 </div>
 
-The content inside the mustaches is not limited to just identifiers or paths - we can use any valid JavaScript expression:
+મસ્ટાશની અંદરનો કન્ટેન્ટ માત્ર આઇડેન્ટિફાયર અથવા પાથ પૂરતો મર્યાદિત નથી - આપણે કોઈપણ માન્ય JavaScript એક્સપ્રેશનનો ઉપયોગ કરી શકીએ છીએ:
 
 ```vue-html
 <h1>{{ message.split('').reverse().join('') }}</h1>
@@ -119,12 +119,12 @@ The content inside the mustaches is not limited to just identifiers or paths - w
 
 <div class="composition-api">
 
-Now, try to create some reactive state yourself, and use it to render dynamic text content for the `<h1>` in the template.
+હવે, તમારી જાતે થોડો રિએક્ટિવ સ્ટેટ બનાવવાનો પ્રયાસ કરો, અને ટેમ્પલેટમાં `<h1>` માટે ડાયનેમિક ટેક્સ્ટ કન્ટેન્ટ રેન્ડર કરવા માટે તેનો ઉપયોગ કરો.
 
 </div>
 
 <div class="options-api">
 
-Now, try to create a data property yourself, and use it as the text content for the `<h1>` in the template.
+હવે, તમારી જાતે ડેટા પ્રોપર્ટી બનાવવાનો પ્રયાસ કરો, અને ટેમ્પલેટમાં `<h1>` માટે ટેક્સ્ટ કન્ટેન્ટ તરીકે તેનો ઉપયોગ કરો.
 
 </div>

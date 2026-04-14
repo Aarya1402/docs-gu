@@ -1,36 +1,36 @@
-# Getting Started {#getting-started}
+# શરૂઆત કરવી {#getting-started}
 
-Welcome to the Vue tutorial!
+Vue ટ્યુટોરીયલ પર આપનું સ્વાગત છે!
 
-The goal of this tutorial is to quickly give you an experience of what it feels like to work with Vue, right in the browser. It does not aim to be comprehensive, and you don't need to understand everything before moving on. However, after you complete it, make sure to also read the <a target="_blank" href="/guide/introduction.html">Guide</a> which covers each topic in more detail.
+આ ટ્યુટોરીયલનો ઉદ્દેશ્ય તમને બ્રાઉઝરમાં જ Vue સાથે કામ કરવાનો અનુભવ કેવો લાગે છે તેનો ઝડપથી અનુભવ કરાવવાનો છે. તેનો હેતુ સર્વગ્રાહી હોવાનો નથી, અને તમારે આગળ વધતા પહેલા બધું જ સમજવાની જરૂર નથી. જો કે, તમે તેને પૂર્ણ કરી લો તે પછી, <a target="_blank" href="/guide/introduction.html">માર્ગદર્શિકા (Guide)</a> પણ વાંચવાનું ભૂલશો નહીં જે દરેક વિષયને વધુ વિગતમાં આવરી લે છે.
 
-## Prerequisites {#prerequisites}
+## પૂર્વજરૂરિયાતો (Prerequisites) {#prerequisites}
 
-The tutorial assumes basic familiarity with HTML, CSS and JavaScript. If you are totally new to front-end development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.
+ટ્યુટોરીયલ HTML, CSS અને JavaScript સાથે મૂળભૂત પરિચિતતા ધારી લે છે. જો તમે ફ્રન્ટ-એન્ડ ડેવલપમેન્ટમાં તદ્દન નવા છો, તો તમારા પ્રથમ પગલા તરીકે સીધા ફ્રેમવર્ક પર જવું એ શ્રેષ્ઠ વિચાર હોઈ શકે નહીં - મૂળભૂત બાબતોને સમજો અને પછી પાછા આવો! અન્ય ફ્રેમવર્ક સાથેનો અગાઉનો અનુભવ મદદ કરે છે, પરંતુ જરૂરી નથી.
 
-## How to Use This Tutorial {#how-to-use-this-tutorial}
+## આ ટ્યુટોરીયલનો ઉપયોગ કેવી રીતે કરવો {#how-to-use-this-tutorial}
 
-You can edit the code <span class="wide">on the right</span><span class="narrow">below</span> and see the result update instantly. Each step will introduce a core feature of Vue, and you will be expected to complete the code to get the demo working. If you get stuck, you will have a "Show me!" button that reveals the working code for you. Try not to rely on it too much - you'll learn faster by figuring things out on your own.
+તમે <span class="wide">જમણી બાજુએ</span><span class="narrow">નીચે</span> કોડ એડિટ કરી શકો છો અને તરત જ પરિણામ અપડેટ થતું જોઈ શકો છો. દરેક સ્ટેપ Vue ની મુખ્ય વિશેષતા રજૂ કરશે, અને ડેમો ચલાવવા માટે તમારે કોડ પૂર્ણ કરવો પડશે. જો તમે અટકી જાઓ છો, તો તમારી પાસે "મને બતાવો! (Show me!)" બટન હશે જે તમારા માટે સાચો કોડ બતાવશે. તેના પર વધુ પડતો આધાર ન રાખવાનો પ્રયાસ કરો - તમે તમારી જાતે વસ્તુઓ શોધીને ઝડપથી શીખી શકશો.
 
-If you are an experienced developer coming from Vue 2 or other frameworks, there are a few settings you can tweak to make the best use of this tutorial. If you are a beginner, it's recommended to go with the defaults.
+જો તમે Vue 2 અથવા અન્ય ફ્રેમવર્કમાંથી આવતા અનુભવી ડેવલપર છો, તો આ ટ્યુટોરીયલનો શ્રેષ્ઠ ઉપયોગ કરવા માટે તમે કેટલીક સેટિંગ્સ બદલી શકો છો. જો તમે શિખાઉ છો, તો ડિફોલ્ટ સેટિંગ્સ સાથે જવાની ભલામણ કરવામાં આવે છે.
 
 <details>
-<summary>Tutorial Setting Details</summary>
+<summary>ટ્યુટોરીયલ સેટિંગ વિગતો</summary>
 
-- Vue offers two API styles: Options API and Composition API. This tutorial is designed to work for both - you can choose your preferred style using the **API Preference** switches at the top. <a target="_blank" href="/guide/introduction.html#api-styles">Learn more about API styles</a>.
+- Vue બે API સ્ટાઇલ ઓફર કરે છે: ઓપ્શન્સ (Options) API અને કોમ્પોઝિશન (Composition) API. આ ટ્યુટોરીયલ બંને માટે કામ કરવા માટે તૈયાર કરવામાં આવ્યું છે - તમે ટોચ પરના **API પ્રેફરન્સ (Preference)** સ્વીચોનો ઉપયોગ કરીને તમારી પસંદગીની સ્ટાઇલ પસંદ કરી શકો છો. <a target="_blank" href="/guide/introduction.html#api-styles">API સ્ટાઇલ વિશે વધુ જાણો</a>.
 
-- You can also switch between SFC-mode or HTML-mode. The former will show code examples in <a target="_blank" href="/guide/introduction.html#single-file-components">Single-File Component</a> (SFC) format, which is what most developers use when they use Vue with a build step. HTML-mode shows usage without a build step.
+- તમે SFC-મોડ અથવા HTML-મોડ વચ્ચે પણ સ્વિચ કરી શકો છો. અગાઉનું <a target="_blank" href="/guide/introduction.html#single-file-components">સિંગલ-ફાઇલ કમ્પોનન્ટ</a> (SFC) ફોર્મેટમાં કોડ ઉદાહરણો બતાવશે, જેનો ઉપયોગ મોટાભાગના ડેવલપર્સ જ્યારે બિલ્ડ સ્ટેપ સાથે Vue નો ઉપયોગ કરે છે ત્યારે કરે છે. HTML-મોડ બિલ્ડ સ્ટેપ વગર વપરાશ બતાવે છે.
 
 <div class="html">
 
 :::tip
-If you're about to use HTML-mode without a build step in your own applications, make sure you either change imports to:
+જો તમે તમારા પોતાના રો (raw) એપ્લિકેશન્સમાં બિલ્ડ સ્ટેપ વિના HTML-મોડનો ઉપયોગ કરવા જઈ રહ્યા હોવ, તો ખાતરી કરો કે તમે ઇમ્પોર્ટને કાં તો આમાં બદલો:
 
 ```js
 import { ... } from 'vue/dist/vue.esm-bundler.js'
 ```
 
-inside your scripts or configure your build tool to resolve `vue` accordingly. Sample config for [Vite](https://vite.dev/):
+તમારી સ્ક્રિપ્ટ્સની અંદર અથવા તે મુજબ `vue` ને રિઝોલ્વ કરવા માટે તમારા બિલ્ડ ટૂલને કોન્ફિગર કરો. [Vite](https://vite.dev/) માટે નમૂનારૂપ કોન્ફિગરેશન:
 
 ```js [vite.config.js]
 export default {
@@ -42,11 +42,11 @@ export default {
 }
 ```
 
-See the respective [section in Tooling guide](/guide/scaling-up/tooling.html#note-on-in-browser-template-compilation) for more information.
+વધુ માહિતી માટે [ટૂલિંગ ગાઇડમાં સંબંધિત વિભાગ](/guide/scaling-up/tooling.html#note-on-in-browser-template-compilation) જુઓ.
 :::
 
 </div>
 
 </details>
 
-Ready? Click "Next" to get started.
+તૈયાર છો? શરૂ કરવા માટે "આગળ (Next)" પર ક્લિક કરો.

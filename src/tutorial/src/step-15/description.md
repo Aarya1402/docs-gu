@@ -1,13 +1,13 @@
-# You Did It! {#you-did-it}
+# તમે કરી બતાવ્યું! (You Did It!) {#you-did-it}
 
-You have finished the tutorial!
+તમે ટ્યુટોરીયલ સમાપ્ત કર્યું છે!
 
-At this point, you should have a good idea of what it's like to work with Vue. However, we covered a lot of things really fast and glossed over the details, so definitely keep learning! As a next step, you can:
+આ સમયે, તમને Vue સાથે કામ કરવું કેવું લાગે છે તેનો સારો ખ્યાલ આવી ગયો હશે. જો કે, અમે ઘણી વસ્તુઓ ખૂબ જ ઝડપથી આવરી લીધી છે અને વિગતોની ઉપરછલ્લી ચર્ચા કરી છે, તેથી ચોક્કસપણે શીખતા રહો! આગળના સ્ટેપ તરીકે, તમે નીચે મુજબ કરી શકો છો:
 
-- Set up a real Vue project on your machine by following the [Quick Start](/guide/quick-start).
+- [ઝડપી શરૂઆત (Quick Start)](/guide/quick-start) ને અનુસરીને તમારા મશીન પર વાસ્તવિક Vue પ્રોજેક્ટ સેટ કરો.
 
-- Go through the [Main Guide](/guide/essentials/application), which covers all the topics we learned so far in greater details, and much more.
+- [મુખ્ય માર્ગદર્શિકા (Main Guide)](/guide/essentials/application) પર જાઓ, જે આપણે અત્યાર સુધી શીખ્યા તે તમામ વિષયોને વધુ વિગતમાં આવરી લે છે, અને ઘણું બધું.
 
-- Check out some more practical [Examples](/examples/).
+- કેટલાક વધુ પ્રેક્ટિકલ [ઉદાહરણો (Examples)](/examples/) તપાસો.
 
-We can't wait to see what you build next!
+તમે આગળ શું બનાવો છો તે જોવા માટે અમે આતુર છીએ!

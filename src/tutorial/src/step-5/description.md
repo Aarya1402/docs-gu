@@ -1,6 +1,6 @@
-# Form Bindings {#form-bindings}
+# ફોર્મ બાઇન્ડિંગ્સ (Form Bindings) {#form-bindings}
 
-Using `v-bind` and `v-on` together, we can create two-way bindings on form input elements:
+`v-bind` અને `v-on` નો એકસાથે ઉપયોગ કરીને, આપણે ફોર્મ ઇનપુટ એલિમેન્ટ્સ પર ટુ-વે (two-way) બાઇન્ડિંગ્સ બનાવી શકીએ છીએ:
 
 ```vue-html
 <input :value="text" @input="onInput">
@@ -11,8 +11,8 @@ Using `v-bind` and `v-on` together, we can create two-way bindings on form input
 ```js
 methods: {
   onInput(e) {
-    // a v-on handler receives the native DOM event
-    // as the argument.
+    // v-on હેન્ડલર આર્ગ્યુમેન્ટ તરીકે નેટિવ DOM ઇવેન્ટ
+    // પ્રાપ્ત કરે છે.
     this.text = e.target.value
   }
 }
@@ -24,24 +24,24 @@ methods: {
 
 ```js
 function onInput(e) {
-  // a v-on handler receives the native DOM event
-  // as the argument.
+  // v-on હેન્ડલર આર્ગ્યુમેન્ટ તરીકે નેટિવ DOM ઇવેન્ટ
+  // પ્રાપ્ત કરે છે.
   text.value = e.target.value
 }
 ```
 
 </div>
 
-Try typing in the input box - you should see the text in `<p>` updating as you type.
+ઇનપુટ બોક્સમાં લખવાનો પ્રયાસ કરો - તમે જોશો કે જેમ તમે લખો છો તેમ `<p>` માં ટેક્સ્ટ અપડેટ થાય છે.
 
-To simplify two-way bindings, Vue provides a directive, `v-model`, which is essentially syntactic sugar for the above:
+ટુ-વે બાઇન્ડિંગ્સને સરળ બનાવવા માટે, Vue એક ડાયરેક્ટિવ, `v-model` પ્રદાન કરે છે, જે અનિવાર્યપણે ઉપરની પ્રક્રિયા માટેની સિન્ટેક્ટિક શુગર (syntactic sugar) છે:
 
 ```vue-html
 <input v-model="text">
 ```
 
-`v-model` automatically syncs the `<input>`'s value with the bound state, so we no longer need to use an event handler for that.
+`v-model` આપમેળે `<input>` ની વેલ્યુને બાઉન્ડ (bound) સ્ટેટ સાથે સિંક કરે છે, તેથી આપણે હવે તેના માટે ઇવેન્ટ હેન્ડલરનો ઉપયોગ કરવાની જરૂર નથી.
 
-`v-model` works not only on text inputs, but also on other input types such as checkboxes, radio buttons, and select dropdowns. We cover more details in <a target="_blank" href="/guide/essentials/forms.html">Guide - Form Bindings</a>.
+`v-model` માત્ર ટેક્સ્ટ ઇનપુટ્સ પર જ નહીં, પણ ચેકબોક્સ, રેડિયો બટન્સ અને સિલેક્ટ ડ્રોપડાઉન જેવા અન્ય ઇનપુટ પ્રકારો પર પણ કામ કરે છે. અમે <a target="_blank" href="/guide/essentials/forms.html">માર્ગદર્શિકા - ફોર્મ બાઇન્ડિંગ્સ</a> માં વધુ વિગતો આવરી લેવા છે.
 
-Now, try to refactor the code to use `v-model` instead.
+હવે, તેના બદલે `v-model` નો ઉપયોગ કરવા માટે કોડને રિફેક્ટર (refactor) કરવાનો પ્રયાસ કરો.

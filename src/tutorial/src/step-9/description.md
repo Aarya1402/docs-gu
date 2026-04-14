@@ -1,16 +1,16 @@
-# Lifecycle and Template Refs {#lifecycle-and-template-refs}
+# લાઇફસાયકલ અને ટેમ્પલેટ રેફ્સ (Lifecycle and Template Refs) {#lifecycle-and-template-refs}
 
-So far, Vue has been handling all the DOM updates for us, thanks to reactivity and declarative rendering. However, inevitably there will be cases where we need to manually work with the DOM.
+અત્યાર સુધી, Vue રિએક્ટિવિટી અને ડિક્લેરેટિવ રેન્ડરિંગને કારણે અમારા માટે તમામ DOM અપડેટ્સને હેન્ડલ કરી રહ્યું છે. જો કે, અનિવાર્યપણે એવા કિસ્સાઓ હશે જ્યાં અમારે DOM સાથે મેન્યુઅલી કામ કરવાની જરૂર પડશે.
 
-We can request a **template ref** - i.e. a reference to an element in the template - using the <a target="_blank" href="/api/built-in-special-attributes.html#ref">special `ref` attribute</a>:
+આપણે ખાસ `ref` એટ્રિબ્યુટનો ઉપયોગ કરીને **ટેમ્પલેટ રેફ (template ref)** મેળવી શકીએ છીએ - એટલે કે ટેમ્પલેટમાં રહેલા એલિમેન્ટનો સંદર્ભ:
 
 ```vue-html
-<p ref="pElementRef">hello</p>
+<p ref="pElementRef">નમસ્તે</p>
 ```
 
 <div class="composition-api">
 
-To access the ref, we need to declare<span class="html"> and expose</span> a ref with matching name:
+રેફને એક્સેસ કરવા માટે, આપણે સમાન નામ સાથે રેફ જાહેર<span class="html"> અને એક્સપોઝ (expose)</span> કરવો પડશે:
 
 <div class="sfc">
 
@@ -33,9 +33,9 @@ setup() {
 
 </div>
 
-Notice the ref is initialized with `null` value. This is because the element doesn't exist yet when <span class="sfc">`<script setup>`</span><span class="html">`setup()`</span> is executed. The template ref is only accessible after the component is **mounted**.
+નોંધ લો કે રેફ `null` વેલ્યુ સાથે ઇનિશિયલાઇઝ (initialize) થયેલ છે. આ એટલા માટે છે કારણ કે જ્યારે <span class="sfc">`<script setup>`</span><span class="html">`setup()`</span> એક્ઝિક્યુટ થાય છે ત્યારે એલિમેન્ટ હજુ અસ્તિત્વમાં હોતો નથી. ટેમ્પલેટ રેફ ઘટક **માઉન્ટ (mounted)** થયા પછી જ એક્સેસિબલ બને છે.
 
-To run code after mount, we can use the `onMounted()` function:
+માઉન્ટ થયા પછી કોડ ચલાવવા માટે, આપણે `onMounted()` ફંક્શનનો ઉપયોગ કરી શકીએ છીએ:
 
 <div class="sfc">
 
@@ -43,7 +43,7 @@ To run code after mount, we can use the `onMounted()` function:
 import { onMounted } from 'vue'
 
 onMounted(() => {
-  // component is now mounted.
+  // ઘટક હવે માઉન્ટ થયેલ છે.
 })
 ```
 
@@ -56,7 +56,7 @@ import { onMounted } from 'vue'
 createApp({
   setup() {
     onMounted(() => {
-      // component is now mounted.
+      // ઘટક હવે માઉન્ટ થયેલ છે.
     })
   }
 })
@@ -67,16 +67,16 @@ createApp({
 
 <div class="options-api">
 
-The element will be exposed on `this.$refs` as `this.$refs.pElementRef`. However, you can only access it after the component is **mounted**.
+એલિમેન્ટ `this.$refs` પર `this.$refs.pElementRef` તરીકે એક્સપોઝ થશે. જો કે, તમે ઘટક **માઉન્ટ (mounted)** થયા પછી જ તેને એક્સેસ કરી શકો છો.
 
-To run code after mount, we can use the `mounted` option:
+માઉન્ટ થયા પછી કોડ ચલાવવા માટે, આપણે `mounted` ઓપ્શનનો ઉપયોગ કરી શકીએ છીએ:
 
 <div class="sfc">
 
 ```js
 export default {
   mounted() {
-    // component is now mounted.
+    // ઘટક હવે માઉન્ટ થયેલ છે.
   }
 }
 ```
@@ -87,7 +87,7 @@ export default {
 ```js
 createApp({
   mounted() {
-    // component is now mounted.
+    // ઘટક હવે માઉન્ટ થયેલ છે.
   }
 })
 ```
@@ -95,6 +95,6 @@ createApp({
 </div>
 </div>
 
-This is called a **lifecycle hook** - it allows us to register a callback to be called at certain times of the component's lifecycle. There are other hooks such as <span class="options-api">`created` and `updated`</span><span class="composition-api">`onUpdated` and `onUnmounted`</span>. Check out the <a target="_blank" href="/guide/essentials/lifecycle.html#lifecycle-diagram">Lifecycle Diagram</a> for more details.
+આને **લાઇફસાયકલ હૂક (lifecycle hook)** કહેવામાં આવે છે - તે અમને ઘટકના લાઇફસાયકલના અમુક સમયે કોલ કરવા માટે કોલબેક (callback) રજીસ્ટર કરવાની મંજૂરી આપે છે. <span class="options-api">`created` અને `updated`</span><span class="composition-api">`onUpdated` અને `onUnmounted`</span> જેવા અન્ય હૂક્સ પણ છે. વધુ વિગતો માટે <a target="_blank" href="/guide/essentials/lifecycle.html#lifecycle-diagram">લાઇફસાયકલ ડાયાગ્રામ</a> તપાસો.
 
-Now, try to add <span class="options-api">a `mounted`</span><span class="composition-api">an `onMounted`</span> hook, access the `<p>` via <span class="options-api">`this.$refs.pElementRef`</span><span class="composition-api">`pElementRef.value`</span>, and perform some direct DOM operations on it (e.g. changing its `textContent`).
+હવે, <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> હૂક ઉમેરવાનો પ્રયાસ કરો, <span class="options-api">`this.$refs.pElementRef`</span><span class="composition-api">`pElementRef.value`</span> દ્વારા `<p>` ને એક્સેસ કરો, અને તેના પર કેટલીક સીધી DOM કામગીરી કરો (દા.ત. તેનું `textContent` બદલવું).

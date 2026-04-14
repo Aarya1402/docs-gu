@@ -1,6 +1,6 @@
-# Props {#props}
+# પ્રોપ્સ (Props) {#props}
 
-A child component can accept input from the parent via **props**. First, it needs to declare the props it accepts:
+ચાઇલ્ડ ઘટક પેરન્ટ પાસેથી **પ્રોપ્સ (props)** દ્વારા ઇનપુટ સ્વીકારી શકે છે. પ્રથમ, તેણે તે જે પ્રોપ્સ સ્વીકારે છે તે જાહેર કરવી પડશે:
 
 <div class="composition-api">
 <div class="sfc">
@@ -13,25 +13,25 @@ const props = defineProps({
 </script>
 ```
 
-Note `defineProps()` is a compile-time macro and doesn't need to be imported. Once declared, the `msg` prop can be used in the child component's template. It can also be accessed in JavaScript via the returned object of `defineProps()`.
+નોંધ લો કે `defineProps()` એ કમ્પાઇલ-ટાઇમ મેક્રો છે અને તેને ઇમ્પોર્ટ કરવાની જરૂર નથી. એકવાર જાહેર કર્યા પછી, `msg` પ્રોપનો ઉપયોગ ચાઇલ્ડ ઘટકના ટેમ્પલેટમાં થઈ શકે છે. તેને `defineProps()` ના પરત કરેલા ઓબ્જેક્ટ દ્વારા JavaScript માં પણ એક્સેસ કરી શકાય છે.
 
 </div>
 
 <div class="html">
 
 ```js
-// in child component
+// ચાઇલ્ડ ઘટકમાં
 export default {
   props: {
     msg: String
   },
   setup(props) {
-    // access props.msg
+    // props.msg ને એક્સેસ કરો
   }
 }
 ```
 
-Once declared, the `msg` prop is exposed on `this` and can be used in the child component's template. The received props are passed to `setup()` as the first argument.
+એકવાર જાહેર કર્યા પછી, `msg` પ્રોપ `this` પર એક્સપોઝ થાય છે અને ચાઇલ્ડ ઘટકના ટેમ્પલેટમાં ઉપયોગમાં લઈ શકાય છે. પ્રાપ્ત થયેલ પ્રોપ્સ `setup()` ને પ્રથમ આર્ગ્યુમેન્ટ તરીકે પસાર કરવામાં આવે છે.
 
 </div>
 
@@ -40,7 +40,7 @@ Once declared, the `msg` prop is exposed on `this` and can be used in the child 
 <div class="options-api">
 
 ```js
-// in child component
+// ચાઇલ્ડ ઘટકમાં
 export default {
   props: {
     msg: String
@@ -48,11 +48,11 @@ export default {
 }
 ```
 
-Once declared, the `msg` prop is exposed on `this` and can be used in the child component's template.
+એકવાર જાહેર કર્યા પછી, `msg` પ્રોપ `this` પર એક્સપોઝ થાય છે અને ચાઇલ્ડ ઘટકના ટેમ્પલેટમાં ઉપયોગમાં લઈ શકાય છે.
 
 </div>
 
-The parent can pass the prop to the child just like attributes. To pass a dynamic value, we can also use the `v-bind` syntax:
+પેરન્ટ ઘટક ચાઇલ્ડને એટ્રિબ્યુટ્સની જેમ જ પ્રોપ પાસ કરી શકે છે. ડાયનેમિક વેલ્યુ પાસ કરવા માટે, અમે `v-bind` સિન્ટેક્સનો પણ ઉપયોગ કરી શકીએ છીએ:
 
 <div class="sfc">
 
@@ -69,4 +69,4 @@ The parent can pass the prop to the child just like attributes. To pass a dynami
 
 </div>
 
-Now try it yourself in the editor.
+હવે એડિટરમાં તમારી જાતે પ્રયાસ કરો.

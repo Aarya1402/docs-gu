@@ -1,19 +1,19 @@
-# Attribute Bindings {#attribute-bindings}
+# એટ્રિબ્યુટ બાઇન્ડિંગ્સ (Attribute Bindings) {#attribute-bindings}
 
-In Vue, mustaches are only used for text interpolation. To bind an attribute to a dynamic value, we use the `v-bind` directive:
+Vue માં, મસ્ટાશ (mustaches) નો ઉપયોગ ફક્ત ટેક્સ્ટ ઇન્ટરપોલેશન (interpolation) માટે જ થાય છે. એટ્રિબ્યુટને ડાયનેમિક વેલ્યુ સાથે બાઇન્ડ કરવા માટે, આપણે `v-bind` ડાયરેક્ટિવ (directive) નો ઉપયોગ કરીએ છીએ:
 
 ```vue-html
 <div v-bind:id="dynamicId"></div>
 ```
 
-A **directive** is a special attribute that starts with the `v-` prefix. They are part of Vue's template syntax. Similar to text interpolations, directive values are JavaScript expressions that have access to the component's state. The full details of `v-bind` and directive syntax are discussed in <a target="_blank" href="/guide/essentials/template-syntax.html">Guide - Template Syntax</a>.
+**ડાયરેક્ટિવ (directive)** એ એક વિશિષ્ટ એટ્રિબ્યુટ છે જે `v-` પ્રીફિક્સથી શરૂ થાય છે. તેઓ Vue ના ટેમ્પલેટ સિન્ટેક્સનો ભાગ છે. ટેક્સ્ટ ઇન્ટરપોલેશન્સની જેમ જ, ડાયરેક્ટિવ વેલ્યુઝ JavaScript એક્સપ્રેશન્સ છે જે ઘટકની સ્ટેટને એક્સેસ કરી શકે છે. `v-bind` અને ડાયરેક્ટિવ સિન્ટેક્સની સંપૂર્ણ વિગતો <a target="_blank" href="/guide/essentials/template-syntax.html">માર્ગદર્શિકા - ટેમ્પલેટ સિન્ટેક્સ</a> માં ચર્ચવામાં આવી છે.
 
-The part after the colon (`:id`) is the "argument" of the directive. Here, the element's `id` attribute will be synced with the `dynamicId` property from the component's state.
+કોલન (`:id`) પછીનો ભાગ ડાયરેક્ટિવનો "આર્ગ્યુમેન્ટ (argument)" છે. અહીં, એલિમેન્ટનું `id` એટ્રિબ્યુટ ઘટકની સ્ટેટમાંથી `dynamicId` પ્રોપર્ટી સાથે સિંક કરવામાં આવશે.
 
-Because `v-bind` is used so frequently, it has a dedicated shorthand syntax:
+કારણ કે `v-bind` નો વારંવાર ઉપયોગ થાય છે, તેની પાસે એક સમર્પિત શોર્ટકટ (shorthand) સિન્ટેક્સ છે:
 
 ```vue-html
 <div :id="dynamicId"></div>
 ```
 
-Now, try to add a dynamic `class` binding to the `<h1>`, using the `titleClass` <span class="options-api">data property</span><span class="composition-api">ref</span> as its value. If it's bound correctly, the text should turn red.
+હવે, `titleClass` <span class="options-api">ડેટા પ્રોપર્ટી</span><span class="composition-api">રેફ</span> નો ઉપયોગ કરીને `<h1>` માં ડાયનેમિક `class` બાઇન્ડિંગ ઉમેરવાનો પ્રયાસ કરો. જો તે યોગ્ય રીતે બાઇન્ડ થયેલ હોય, તો ટેક્સ્ટ લાલ રંગનો થઈ જવો જોઈએ.

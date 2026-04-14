@@ -1,6 +1,6 @@
-# List Rendering {#list-rendering}
+# લિસ્ટ રેન્ડરિંગ (List Rendering) {#list-rendering}
 
-We can use the `v-for` directive to render a list of elements based on a source array:
+આપણે સોર્સ એરેના આધારે એલિમેન્ટ્સની સૂચિ રેન્ડર કરવા માટે `v-for` ડાયરેક્ટિવનો ઉપયોગ કરી શકીએ છીએ:
 
 ```vue-html
 <ul>
@@ -10,13 +10,13 @@ We can use the `v-for` directive to render a list of elements based on a source 
 </ul>
 ```
 
-Here `todo` is a local variable representing the array element currently being iterated on. It's only accessible on or inside the `v-for` element, similar to a function scope.
+અહીં `todo` એ લોકલ વેરિએબલ છે જે હાલમાં ઇટરેટ (iterate) થઈ રહેલા એરે એલિમેન્ટનું પ્રતિનિધિત્વ કરે છે. તે ફક્ત `v-for` એલિમેન્ટ પર અથવા તેની અંદર જ એક્સેસ કરી શકાય છે, જે ફંક્શન સ્કોપ જેવું જ છે.
 
-Notice how we are also giving each todo object a unique `id`, and binding it as the <a target="_blank" href="/api/built-in-special-attributes.html#key">special `key` attribute</a> for each `<li>`. The `key` allows Vue to accurately move each `<li>` to match the position of its corresponding object in the array.
+નોંધ લો કે આપણે દરેક ટૂ-ડૂ (todo) ઓબ્જેક્ટને અનન્ય `id` પણ આપી રહ્યા છીએ, અને તેને દરેક `<li>` માટે <a target="_blank" href="/api/built-in-special-attributes.html#key">ખાસ `key` એટ્રિબ્યુટ</a> તરીકે બાઇન્ડ કરી રહ્યાં છીએ. `key` Vue ને દરેક `<li>` ને એરેમાં તેના સંબંધિત ઓબ્જેક્ટની પોઝિશન સાથે મેચ કરવા માટે સચોટ રીતે ખસેડવાની મંજૂરી આપે છે.
 
-There are two ways to update the list:
+લિસ્ટને અપડેટ કરવાની બે રીતો છે:
 
-1. Call [mutating methods](https://stackoverflow.com/questions/9009879/which-javascript-array-functions-are-mutating) on the source array:
+૧. સોર્સ એરે પર [મ્યુટેટીંગ મેથડ્સ (mutating methods)](https://stackoverflow.com/questions/9009879/which-javascript-array-functions-are-mutating) ને કોલ કરો:
 
    <div class="composition-api">
 
@@ -33,7 +33,7 @@ There are two ways to update the list:
 
    </div>
 
-2. Replace the array with a new one:
+૨. એરેને નવા એરે સાથે બદલો:
 
    <div class="composition-api">
 
@@ -50,6 +50,6 @@ There are two ways to update the list:
 
    </div>
 
-Here we have a simple todo list - try to implement the logic for `addTodo()` and `removeTodo()` methods to make it work!
+અહીં આપણી પાસે એક સરળ ટૂ-ડૂ લિસ્ટ છે - તેને કાર્યરત કરવા માટે `addTodo()` અને `removeTodo()` મેથડ્સ માટે લોજિક અમલમાં મૂકવાનો પ્રયાસ કરો!
 
-More details on `v-for`: <a target="_blank" href="/guide/essentials/list.html">Guide - List Rendering</a>
+`v-for` પર વધુ વિગતો: <a target="_blank" href="/guide/essentials/list.html">માર્ગદર્શિકા - લિસ્ટ રેન્ડરિંગ</a>

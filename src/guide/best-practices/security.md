@@ -1,88 +1,88 @@
-# Security {#security}
+# સિક્યુરિટી (Security) {#security}
 
-## Reporting Vulnerabilities {#reporting-vulnerabilities}
+## નબળાઈઓ (Vulnerabilities) ની જાણ કરવી {#reporting-vulnerabilities}
 
-When a vulnerability is reported, it immediately becomes our top concern, with a full-time contributor dropping everything to work on it. To report a vulnerability, please email [security@vuejs.org](mailto:security@vuejs.org).
+જ્યારે કોઈ સુરક્ષાની નબળાઈની જાણ કરવામાં આવે છે, ત્યારે તે તરત જ અમારી સર્વોચ્ચ ચિંતાનો વિષય બની જાય છે, જેમાં પૂર્ણ-સમયના ફાળો આપનાર તેના પર કામ કરવા માટે બધું જ છોડી દે છે. નબળાઈની જાણ કરવા માટે, કૃપા કરીને [security@vuejs.org](mailto:security@vuejs.org) પર ઈમેલ કરો.
 
-While the discovery of new vulnerabilities is rare, we also recommend always using the latest versions of Vue and its official companion libraries to ensure your application remains as secure as possible.
+નવી નબળાઈઓની શોધ દુર્લભ હોવા છતાં, અમે હંમેશા Vue અને તેની અધિકૃત સાથી લાઇબ્રેરીઓના લેટેસ્ટ વર્ઝનનો ઉપયોગ કરવાની ભલામણ કરીએ છીએ જેથી તમારી એપ્લિકેશન શક્ય તેટલી સુરક્ષિત રહે.
 
-## Rule No.1: Never Use Non-trusted Templates {#rule-no-1-never-use-non-trusted-templates}
+## નિયમ નં. ૧: ક્યારેય પણ બિન-વિશ્વસનીય ટેમ્પલેટ્સનો ઉપયોગ કરશો નહીં {#rule-no-1-never-use-non-trusted-templates}
 
-The most fundamental security rule when using Vue is **never use non-trusted content as your component template**. Doing so is equivalent to allowing arbitrary JavaScript execution in your application - and worse, could lead to server breaches if the code is executed during server-side rendering. An example of such usage:
+Vue નો ઉપયોગ કરતી વખતે સૌથી મૂળભૂત સુરક્ષા નિયમ એ છે કે **તમારા ઘટક ટેમ્પલેટ તરીકે ક્યારેય બિન-વિશ્વસનીય સામગ્રીનો ઉપયોગ કરશો નહીં**. આમ કરવું એ તમારી એપ્લિકેશનમાં મનસ્સી રીતે JavaScript એક્ઝિક્યુશનની મંજૂરી આપવા સમાન છે - અને વધુ ગંભીર બાબત એ છે કે, જો સર્વર-સાઇડ રેન્ડરિંગ દરમિયાન કોડ એક્ઝિક્યુટ કરવામાં આવે તો તે સર્વર ડેટા લીક તરફ દોરી શકે છે. આવા વપરાશનું ઉદાહરણ:
 
 ```js
 Vue.createApp({
-  template: `<div>` + userProvidedString + `</div>` // NEVER DO THIS
+  template: `<div>` + userProvidedString + `</div>` // આ ક્યારેય કરશો નહીં (NEVER DO THIS)
 }).mount('#app')
 ```
 
-Vue templates are compiled into JavaScript, and expressions inside templates will be executed as part of the rendering process. Although the expressions are evaluated against a specific rendering context, due to the complexity of potential global execution environments, it is impractical for a framework like Vue to completely shield you from potential malicious code execution without incurring unrealistic performance overhead. The most straightforward way to avoid this category of problems altogether is to make sure the contents of your Vue templates are always trusted and entirely controlled by you.
+Vue ટેમ્પલેટ્સ JavaScript માં કમ્પાઇલ કરવામાં આવે છે, અને ટેમ્પલેટ્સની અંદરના એક્સપ્રેશન્સ રેન્ડરિંગ પ્રક્રિયાના ભાગ રૂપે એક્ઝિક્યુટ કરવામાં આવશે. જો કે એક્સપ્રેશન્સનું મૂલ્યાંકન વિશિષ્ટ રેન્ડરિંગ સંદર્ભમાં કરવામાં આવે છે, સંભવિત વૈશ્વિક એક્ઝિક્યુશન વાતાવરણની જટિલતાને કારણે, Vue જેવા ફ્રેમવર્ક માટે અવાસ્તવિક પર્ફોર્મન્સ ઓવરહેડ વિના સંભવિત દૂષિત કોડ એક્ઝિક્યુશનથી તમને સંપૂર્ણપણે બચાવવા અવ્યવહારુ છે. આ શ્રેણીની સમસ્યાઓથી બચવા માટેનો સૌથી સીધો રસ્તો એ ખાતરી કરવાનો છે કે તમારા Vue ટેમ્પલેટ્સની સામગ્રી હંમેશા વિશ્વસનીય હોય અને સંપૂર્ણપણે તમારા દ્વારા નિયંત્રિત હોય.
 
-## What Vue Does to Protect You {#what-vue-does-to-protect-you}
+## Vue તમારું રક્ષણ કરવા માટે શું કરે છે (What Vue Does to Protect You) {#what-vue-does-to-protect-you}
 
-### HTML content {#html-content}
+### HTML કન્ટેન્ટ {#html-content}
 
-Whether using templates or render functions, content is automatically escaped. That means in this template:
+ટેમ્પલેટ્સ અથવા રેન્ડર ફંક્શન્સનો ઉપયોગ કરતા હોવ, કન્ટેન્ટ આપમેળે એસ્કેપ (escaped) થઈ જાય છે. તેનો અર્થ એ કે આ ટેમ્પલેટમાં:
 
 ```vue-html
 <h1>{{ userProvidedString }}</h1>
 ```
 
-if `userProvidedString` contained:
+જો `userProvidedString` માં આ શામેલ હોય:
 
 ```js
 '<script>alert("hi")</script>'
 ```
 
-then it would be escaped to the following HTML:
+તો તે નીચેના HTML માં એસ્કેપ થઈ જશે:
 
 ```vue-html
 &lt;script&gt;alert(&quot;hi&quot;)&lt;/script&gt;
 ```
 
-thus preventing the script injection. This escaping is done using native browser APIs, like `textContent`, so a vulnerability can only exist if the browser itself is vulnerable.
+આ રીતે સ્ક્રિપ્ટ ઇન્જેક્શન અટકાવવામાં આવે છે. આ એસ્કેપિંગ `textContent` જેવા નેટિવ બ્રાઉઝર APIs નો ઉપયોગ કરીને કરવામાં આવે છે, તેથી જો બ્રાઉઝર પોતે જ અસુરક્ષિત હોય તો જ નબળાઈ અસ્તિત્વમાં હોઈ શકે છે.
 
-### Attribute bindings {#attribute-bindings}
+### એટ્રિબ્યુટ બાઇન્ડિંગ્સ (Attribute bindings) {#attribute-bindings}
 
-Similarly, dynamic attribute bindings are also automatically escaped. That means in this template:
+તેવી જ રીતે, ડાયનેમિક એટ્રિબ્યુટ બાઇન્ડિંગ્સ પણ આપમેળે એસ્કેપ થઈ જાય છે. તેનો અર્થ એ કે આ ટેમ્પલેટમાં:
 
 ```vue-html
 <h1 :title="userProvidedString">
-  hello
+  નમસ્તે
 </h1>
 ```
 
-if `userProvidedString` contained:
+જો `userProvidedString` માં આ શામેલ હોય:
 
 ```js
 '" onclick="alert(\'hi\')'
 ```
 
-then it would be escaped to the following HTML:
+તો તે નીચેના HTML માં એસ્કેપ થઈ જશે:
 
 ```vue-html
 &quot; onclick=&quot;alert('hi')
 ```
 
-thus preventing the close of the `title` attribute to inject new, arbitrary HTML. This escaping is done using native browser APIs, like `setAttribute`, so a vulnerability can only exist if the browser itself is vulnerable.
+આમ નવા, મનસ્વી HTML ઇન્જેક્ટ કરવા માટે `title` એટ્રિબ્યુટના સમાપ્તિને અટકાવે છે. આ એસ્કેપિંગ `setAttribute` જેવા નેટિવ બ્રાઉઝર APIs નો ઉપયોગ કરીને કરવામાં આવે છે, તેથી જો બ્રાઉઝર પોતે જ અસુરક્ષિત હોય તો જ નબળાઈ અસ્તિત્વમાં હોઈ શકે છે.
 
-## Potential Dangers {#potential-dangers}
+## સંભવિત જોખમો (Potential Dangers) {#potential-dangers}
 
-In any web application, allowing unsanitized, user-provided content to be executed as HTML, CSS, or JavaScript is potentially dangerous, so it should be avoided wherever possible. There are times when some risk may be acceptable, though.
+કોઈપણ વેબ એપ્લિકેશનમાં, અનસેનિટાઈઝડ, યુઝર-પ્રોવાઈડેડ કન્ટેન્ટને HTML, CSS અથવા JavaScript તરીકે એક્ઝિક્યુટ કરવાની મંજૂરી આપવી સંભવિત રીતે જોખમી છે, તેથી શક્ય હોય ત્યાં સુધી તેને ટાળવું જોઈએ. જોકે, ક્યારેક અમુક જોખમ સ્વીકાર્ય હોઈ શકે છે.
 
-For example, services like CodePen and JSFiddle allow user-provided content to be executed, but it's in a context where this is expected and sandboxed to some extent inside iframes. In the cases when an important feature inherently requires some level of vulnerability, it's up to your team to weigh the importance of the feature against the worst-case scenarios the vulnerability enables.
+ઉદાહરણ તરીકે, CodePen અને JSFiddle જેવી સેવાઓ યુઝર દ્વારા પૂરી પાડવામાં આવેલ કન્ટેન્ટને એક્ઝિક્યુટ કરવાની મંજૂરી આપે છે, પરંતુ તે એવા સંદર્ભમાં છે જ્યાં આ અપેક્ષિત છે અને અમુક અંશે જો ઈફ્રેમ (iframes) ની અંદર સેન્ડબોક્સીંગ કરવામાં આવ્યું હોય. જે કિસ્સાઓમાં કોઈ મહત્વપૂર્ણ સુવિધા સ્વાભાવિક રીતે અસુરક્ષિત હોય ત્યારે નબળાઈના અમુક સ્તરની આવશ્યકતા હોય છે, ત્યારે તમારી ટીમે સુવિધાના મહત્વ અને નબળાઈને સક્ષમ કરતા સૌથી ખરાબ કિસ્સાઓ સામે તેનું મૂલ્યાંકન કરવાનું રહે છે.
 
-### HTML Injection {#html-injection}
+### HTML ઇન્જેક્શન (HTML Injection) {#html-injection}
 
-As you learned earlier, Vue automatically escapes HTML content, preventing you from accidentally injecting executable HTML into your application. However, **in cases where you know the HTML is safe**, you can explicitly render HTML content:
+જેમ કે તમે અગાઉ શીખ્યા છો, Vue આપમેળે HTML કન્ટેન્ટને એસ્કેપ કરે છે, જે તમને તમારી એપ્લિકેશનમાં આકસ્મિક રીતે એક્ઝિક્યુટેબલ HTML ઇન્જેક્ટ કરતા અટકાવે છે. જો કે, **એવા કિસ્સાઓમાં કે જ્યાં તમે જાણો છો કે HTML સુરક્ષિત છે**, તમે સ્પષ્ટપણે HTML કન્ટેન્ટ રેન્ડર કરી શકો છો:
 
-- Using a template:
+- ટેમ્પલેટનો ઉપયોગ કરીને:
 
   ```vue-html
   <div v-html="userProvidedHtml"></div>
   ```
 
-- Using a render function:
+- રેન્ડર ફંક્શનનો ઉપયોગ કરીને:
 
   ```js
   h('div', {
@@ -90,50 +90,50 @@ As you learned earlier, Vue automatically escapes HTML content, preventing you f
   })
   ```
 
-- Using a render function with JSX:
+- JSX સાથે રેન્ડર ફંક્શનનો ઉપયોગ કરીને:
 
   ```jsx
   <div innerHTML={this.userProvidedHtml}></div>
   ```
 
 :::warning
-User-provided HTML can never be considered 100% safe unless it's in a sandboxed iframe or in a part of the app where only the user who wrote that HTML can ever be exposed to it. Additionally, allowing users to write their own Vue templates brings similar dangers.
+વપરાશકર્તા દ્વારા પૂરા પાડવામાં આવેલ HTML ને ક્યારેય ૧૦૦% સુરક્ષિત ગણી શકાય નહીં સિવાય કે તે સેન્ડબોક્સ્ડ ઇફ્રેમમાં (sandboxed iframe) હોય અથવા એપ્લિકેશનના એવા ભાગમાં હોય કે જ્યાં માત્ર તે લખનાર વપરાશકર્તા જ તેના સંપર્કમાં હોય. વધારામાં, વપરાશકર્તાઓને તેમના પોતાના Vue ટેમ્પલેટ્સ લખવાની મંજૂરી આપવી તે સમાન જોખમો લાવે છે.
 :::
 
-### URL Injection {#url-injection}
+### URL ઇન્જેક્શન (URL Injection) {#url-injection}
 
-In a URL like this:
+આવી URL માં:
 
 ```vue-html
 <a :href="userProvidedUrl">
-  click me
+  મને ક્લિક કરો
 </a>
 ```
 
-There's a potential security issue if the URL has not been "sanitized" to prevent JavaScript execution using `javascript:`. There are libraries such as [sanitize-url](https://www.npmjs.com/package/@braintree/sanitize-url) to help with this, but note: if you're ever doing URL sanitization on the frontend, you already have a security issue. **User-provided URLs should always be sanitized by your backend before even being saved to a database.** Then the problem is avoided for _every_ client connecting to your API, including native mobile apps. Also note that even with sanitized URLs, Vue cannot help you guarantee that they lead to safe destinations.
+જો URL ને `javascript:` નો ઉપયોગ કરીને JavaScript એક્ઝિક્યુશન અટકાવવા માટે "સેનિટાઇઝ (sanitize)" કરવામાં આવી ન હોય તો સંભવિત સુરક્ષા સમસ્યા છે. આમાં મદદ કરવા માટે [sanitize-url](https://www.npmjs.com/package/@braintree/sanitize-url) જેવી લાઇબ્રેરીઓ છે, પરંતુ નોંધ લો: જો તમે ક્યારેય ફ્રન્ટએન્ડ પર URL સેનિટાઇઝેશન કરી રહ્યાં છો, તો તમારી પાસે પહેલેથી જ સુરક્ષા સમસ્યા છે. **વપરાશકર્તા દ્વારા પૂરી પાડવામાં આવેલ URLs ને ડેટાબેઝમાં સાચવતા પહેલા તમારા બેકએન્ડ દ્વારા હંમેશા સેનિટાઇઝ કરવી જોઈએ.** પછી તમારા API સાથે કનેક્ટ થતા નેટિવ મોબાઇલ એપ્લિકેશન્સ સહિત _દરેક_ ક્લાયંટ માટે સમસ્યા ટાળવામાં આવે છે. એ પણ નોંધ લો કે સેનિટાઇઝ્ડ URLs સાથે પણ, Vue તમને ગેરંટી આપવામાં મદદ કરી શકતું નથી કે તેઓ સુરક્ષિત સ્થાનો પર દોરી જશે.
 
-### Style Injection {#style-injection}
+### સ્ટાઇલ ઇન્જેક્શન (Style Injection) {#style-injection}
 
-Looking at this example:
+આ ઉદાહરણ જુઓ:
 
 ```vue-html
 <a
   :href="sanitizedUrl"
   :style="userProvidedStyles"
 >
-  click me
+  મને ક્લિક કરો
 </a>
 ```
 
-Let's assume that `sanitizedUrl` has been sanitized, so that it's definitely a real URL and not JavaScript. With the `userProvidedStyles`, malicious users could still provide CSS to "click jack", e.g. styling the link into a transparent box over the "Log in" button. Then if `https://user-controlled-website.com/` is built to resemble the login page of your application, they might have just captured a user's real login information.
+ચાલો માની લઈએ કે `sanitizedUrl` સેનિટાઇઝ કરવામાં આવી છે, જેથી તે ચોક્કસપણે એક વાસ્તવિક URL છે અને JavaScript નથી. `userProvidedStyles` સાથે, દૂષિત વપરાશકર્તાઓ હજુ પણ "ક્લિક જેક (click jack)" માટે CSS પ્રદાન કરી શકે છે, દા.ત. લિંકને "Log in" બટન પર પારદર્શક બોક્સમાં સ્ટાઇલ કરવી. પછી જો `https://user-controlled-website.com/` તમારી એપ્લિકેશનના લોગિન પેજ જેવું દેખાવા માટે બનાવવામાં આવ્યું હોય, તો તેઓએ વપરાશકર્તાની વાસ્તવિક લોગિન માહિતી કેપ્ચર કરી હોઈ શકે છે.
 
-You may be able to imagine how allowing user-provided content for a `<style>` element would create an even greater vulnerability, giving that user full control over how to style the entire page. That's why Vue prevents rendering of style tags inside templates, such as:
+તમે કલ્પના કરી શકશો કે કેવી રીતે `<style>` એલિમેન્ટ માટે યુઝર-પ્રોવાઈડેડ કન્ટેન્ટની મંજૂરી આપવી તે વધુ મોટી નબળાઈ ઊભી કરશે, જે વપરાશકર્તાને આખા પેજને કેવી રીતે સ્ટાઇલ કરવી તેના પર સંપૂર્ણ નિયંત્રણ આપે છે. તેથી જ Vue ટેમ્પલેટ્સની અંદર સ્ટાઇલ ટૅગ્સના રેન્ડરિંગને અટકાવે છે, જેમ કે:
 
 ```vue-html
 <style>{{ userProvidedStyles }}</style>
 ```
 
-To keep your users fully safe from clickjacking, we recommend only allowing full control over CSS inside a sandboxed iframe. Alternatively, when providing user control through a style binding, we recommend using its [object syntax](/guide/essentials/class-and-style#binding-to-objects-1) and only allowing users to provide values for specific properties it's safe for them to control, like this:
+તમારા વપરાશકર્તાઓને ક્લિકજેકિંગથી સંપૂર્ણપણે સુરક્ષિત રાખવા માટે, અમે માત્ર સેન્ડબોક્સ્ડ ઇફ્રેમની અંદર CSS પર સંપૂર્ણ નિયંત્રણની મંજૂરી આપવાની ભલામણ કરીએ છીએ. વૈકલ્પિક રીતે, જ્યારે સ્ટાઇલ બાઇન્ડિંગ દ્વારા વપરાશકર્તા નિયંત્રણ પ્રદાન કરવામાં આવે, ત્યારે અમે તેના [ઓબ્જેક્ટ સિન્ટેક્સ (object syntax)](/guide/essentials/class-and-style#binding-to-objects-1) નો ઉપયોગ કરવાની ભલામણ કરીએ છીએ અને વપરાશકર્તાઓને માત્ર તે વિશિષ્ટ પ્રોપર્ટીઝ માટે વેલ્યુઝ પ્રદાન કરવાની મંજૂરી આપે છે જે તેમના માટે નિયંત્રિત કરવા માટે સુરક્ષિત છે, આના જેવી:
 
 ```vue-html
 <a
@@ -143,41 +143,41 @@ To keep your users fully safe from clickjacking, we recommend only allowing full
     background: userProvidedBackground
   }"
 >
-  click me
+  મને ક્લિક કરો
 </a>
 ```
 
-### JavaScript Injection {#javascript-injection}
+### JavaScript ઇન્જેક્શન (JavaScript Injection) {#javascript-injection}
 
-We strongly discourage ever rendering a `<script>` element with Vue, since templates and render functions should never have side effects. However, this isn't the only way to include strings that would be evaluated as JavaScript at runtime.
+અમે Vue સાથે `<script>` એલિમેન્ટ રેન્ડર કરવા માટે સખત નિરુત્સાહિત કરીએ છીએ, કારણ કે ટેમ્પલેટ્સ અને રેન્ડર ફંક્શન્સમાં ક્યારેય આડઅસરો (side effects) હોવી જોઈએ નહીં. જો કે, રનટાઇમ પર JavaScript તરીકે મૂલ્યાંકન કરવામાં આવતી સ્ટ્રિંગ્સનો સમાવેશ કરવાનો આ એકમાત્ર રસ્તો નથી.
 
-Every HTML element has attributes with values accepting strings of JavaScript, such as `onclick`, `onfocus`, and `onmouseenter`. Binding user-provided JavaScript to any of these event attributes is a potential security risk, so it should be avoided.
+દરેક HTML એલિમેન્ટમાં JavaScript ની સ્ટ્રિંગ સ્વીકારતા મૂલ્યો સાથેના એટ્રિબ્યુટ્સ હોય છે, જેમ કે `onclick`, `onfocus` અને `onmouseenter`. આમાંના કોઈપણ ઇવેન્ટ એટ્રિબ્યુટ્સમાં વપરાશકર્તા દ્વારા પૂરી પાડવામાં આવેલ JavaScript ને બાઈન્ડ કરવું એ સંભવિત સુરક્ષા જોખમ છે, તેથી તેને ટાળવું જોઈએ.
 
 :::warning
-User-provided JavaScript can never be considered 100% safe unless it's in a sandboxed iframe or in a part of the app where only the user who wrote that JavaScript can ever be exposed to it.
+વપરાશકર્તા દ્વારા પૂરી પાડવામાં આવેલ JavaScript ને ક્યારેય ૧૦૦% સુરક્ષિત ગણી શકાય નહીં સિવાય કે તે સેન્ડબોક્સ્ડ ઇફ્રેમમાં હોય અથવા એપ્લિકેશનના એવા ભાગમાં હોય કે જ્યાં માત્ર તે લખનાર વપરાશકર્તા જ તેના સંપર્કમાં હોય.
 :::
 
-Sometimes we receive vulnerability reports on how it's possible to do cross-site scripting (XSS) in Vue templates. In general, we do not consider such cases to be actual vulnerabilities because there's no practical way to protect developers from the two scenarios that would allow XSS:
+ક્યારેક અમને Vue ટેમ્પલેટ્સમાં ક્રોસ-સાઇટ સ્ક્રિપ્ટીંગ (XSS) કેવી રીતે શક્ય છે તે અંગે નબળાઈના અહેવાલો મળે છે. સામાન્ય રીતે, અમે આવા કેસોને વાસ્તવિક નબળાઈઓ માનતા નથી કારણ કે વિકાસકર્તાઓને XSS ને મંજૂરી આપતી બે પરિસ્થિતિઓથી બચાવવાનો કોઈ વ્યવહારુ રસ્તો નથી:
 
-1. The developer is explicitly asking Vue to render user-provided, unsanitized content as Vue templates. This is inherently unsafe, and there's no way for Vue to know the origin.
+૧. ડેવલપર્સ સ્પષ્ટપણે Vue ને વપરાશકર્તા દ્વારા પ્રદાન કરેલ, અનસેનિટાઈઝડ કન્ટેન્ટને Vue ટેમ્પલેટ્સ તરીકે રેન્ડર કરવા માટે કહી રહ્યા છે. આ સ્વાભાવિક રીતે અસુરક્ષિત છે, અને Vue પાસે તેની ઉત્પત્તિ જાણવાનો કોઈ રસ્તો નથી.
 
-2. The developer is mounting Vue to an entire HTML page which happens to contain server-rendered and user-provided content. This is fundamentally the same problem as \#1, but sometimes devs may do it without realizing it. This can lead to possible vulnerabilities where the attacker provides HTML which is safe as plain HTML but unsafe as a Vue template. The best practice is to **never mount Vue on nodes that may contain server-rendered and user-provided content**.
+૨. ડેવલપર આખું HTML પેજ માઉન્ટ કરી રહ્યા છે જેમાં સર્વર-રેન્ડર્ડ અને યુઝર-પ્રોવાઈડેડ કન્ટેન્ટ હોય છે. આ મૂળભૂત રીતે \#૧ જેવી જ સમસ્યા છે, પરંતુ ક્યારેક ડેવલપર્સ તેને સમજ્યા વિના કરી શકે છે. આ સંભવિત નબળાઈઓ તરફ દોરી શકે છે જ્યાં હુમલાખોર HTML પ્રદાન કરે છે જે સાદા HTML તરીકે સુરક્ષિત છે પરંતુ Vue ટેમ્પલેટ તરીકે અસુરક્ષિત છે. શ્રેષ્ઠ પ્રેક્ટિસ એ છે કે **કોઈપણ સમયે એવા નોડ્સ પર Vue ને માઉન્ટ ન કરો જે સર્વર-રેન્ડર્ડ અને યુઝર-પ્રોવાઈડ કરેલ કન્ટેન્ટ ધરાવે છે**.
 
-## Best Practices {#best-practices}
+## શ્રેષ્ઠ પ્રેક્ટિસિસ (Best Practices) {#best-practices}
 
-The general rule is that if you allow unsanitized, user-provided content to be executed (as either HTML, JavaScript, or even CSS), you might open yourself up to attacks. This advice actually holds true whether using Vue, another framework, or even no framework.
+સામાન્ય નિયમ એ છે કે જો તમે અનસેનિટાઈઝડ, યુઝર-પ્રોવાઈડેડ કન્ટેન્ટને એક્ઝિક્યુટ કરવાની મંજૂરી આપો છો (HTML, JavaScript અથવા તો CSS તરીકે), તો તમે તમારી જાતને હુમલાઓ માટે ખુલ્લા કરી શકો છો. આ સલાહ ખરેખર સાચી છે પછી ભલે તમે Vue નો ઉપયોગ કરો, અન્ય ફ્રેમવર્ક અથવા તો કોઈ ફ્રેમવર્ક નહીં.
 
-Beyond the recommendations made above for [Potential Dangers](#potential-dangers), we also recommend familiarizing yourself with these resources:
+[સંભવિત જોખમો](#potential-dangers) માટે ઉપર આપેલી ભલામણો ઉપરાંત, અમે તમને આ સંસાધનોથી પરિચિત થવાની ભલામણ કરીએ છીએ:
 
-- [HTML5 Security Cheat Sheet](https://html5sec.org/)
-- [OWASP's Cross Site Scripting (XSS) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
+- [HTML5 સિક્યુરિટી ચીટ શીટ (HTML5 Security Cheat Sheet)](https://html5sec.org/)
+- [OWASP ની ક્રોસ સાઇટ સ્ક્રિપ્ટીંગ (XSS) પ્રિવેન્શન ચીટ શીટ](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
 
-Then use what you learn to also review the source code of your dependencies for potentially dangerous patterns, if any of them include 3rd-party components or otherwise influence what's rendered to the DOM.
+પછી તમે જે શીખો તેનો ઉપયોગ તમારી ડિપેન્ડન્સીસના સોર્સ કોડની સંભવિત જોખમી પેટર્ન માટે સમીક્ષા કરવા માટે પણ કરો, જો તેમાંના કોઈ પણ તૃતીય-પક્ષ ઘટકોનો સમાવેશ કરે છે અથવા અન્યથા DOM માં જે રેન્ડર થાય છે તેના પર પ્રભાવ પાડે છે.
 
-## Backend Coordination {#backend-coordination}
+## બેકએન્ડ સંકલન (Backend Coordination) {#backend-coordination}
 
-HTTP security vulnerabilities, such as cross-site request forgery (CSRF/XSRF) and cross-site script inclusion (XSSI), are primarily addressed on the backend, so they aren't a concern of Vue's. However, it's still a good idea to communicate with your backend team to learn how to best interact with their API, e.g., by submitting CSRF tokens with form submissions.
+HTTP સુરક્ષા નબળાઈઓ, જેમ કે ક્રોસ-સાઇટ રિક્વેસ્ટ ફોર્જરી (CSRF/XSRF) અને ક્રોસ-સાઇટ સ્ક્રિપ્ટ ઇનક્લુઝન (XSSI), મુખ્યત્વે બેકએન્ડ પર સંબોધવામાં આવે છે, તેથી તે Vue ની ચિંતા નથી. જો કે, તમારી બેકએન્ડ ટીમ સાથે વાતચીત કરવી તે હજુ પણ સારો વિચાર છે કે તેમના API સાથે શ્રેષ્ઠ રીતે કેવી રીતે ક્રિયાપ્રતિક્રિયા કરવી, દા.ત., ફોર્મ સબમિશન સાથે CSRF ટોકન્સ સબમિટ કરીને.
 
-## Server-Side Rendering (SSR) {#server-side-rendering-ssr}
+## સર્વર-સાઇડ રેન્ડરિંગ (Server-Side Rendering - SSR) {#server-side-rendering-ssr}
 
-There are some additional security concerns when using SSR, so make sure to follow the best practices outlined throughout [our SSR documentation](/guide/scaling-up/ssr) to avoid vulnerabilities.
+SSR નો ઉપયોગ કરતી વખતે કેટલીક વધારાની સુરક્ષા ચિંતાઓ હોય છે, તેથી નબળાઈઓ ટાળવા માટે [અમારા SSR દસ્તાવેજો](/guide/scaling-up/ssr) માં દર્શાવેલ શ્રેષ્ઠ પદ્ધતિઓનું પાલન કરવાની ખાતરી કરો.

@@ -1,44 +1,44 @@
-# Production Deployment {#production-deployment}
+# પ્રોડક્શન ડિપ્લોયમેન્ટ (Production Deployment) {#production-deployment}
 
-## Development vs. Production {#development-vs-production}
+## ડેવલપમેન્ટ વિરુદ્ધ પ્રોડક્શન (Development vs. Production) {#development-vs-production}
 
-During development, Vue provides a number of features to improve the development experience:
+ડેવલપમેન્ટ દરમિયાન, Vue ડેવલપમેન્ટ અનુભવને સુધારવા માટે સંખ્યાબંધ સુવિધાઓ પ્રદાન કરે છે:
 
-- Warning for common errors and pitfalls
-- Props / events validation
-- [Reactivity debugging hooks](/guide/extras/reactivity-in-depth#reactivity-debugging)
-- Devtools integration
+- સામાન્ય ભૂલો અને મુશ્કેલીઓ માટે ચેતવણી (Warning)
+- પ્રોપ્સ / ઇવેન્ટ્સ વેલિડેશન
+- [રિએક્ટિવિટી ડિબગિંગ હૂક્સ (Reactivity debugging hooks)](/guide/extras/reactivity-in-depth#reactivity-debugging)
+- Devtools ઇન્ટિગ્રેશન
 
-However, these features become useless in production. Some of the warning checks can also incur a small amount of performance overhead. When deploying to production, we should drop all the unused, development-only code branches for smaller payload size and better performance.
+જો કે, આ સુવિધાઓ પ્રોડક્શનમાં બિનઉપયોગી બની જાય છે. કેટલીક ચેતવણી તપાસોમાં ઓવરહેડ (overhead) થી પર્ફોર્મન્સમાં થોડો ઘટાડો પણ થઈ શકે છે. પ્રોડક્શનમાં ડિપ્લોય કરતી વખતે, આપણે નાની પેલોડ સાઈઝ અને બહેતર પ્રદર્શન માટે બધી બિનઉપયોગી, માત્ર ડેવલપમેન્ટ કોડ બ્રાન્ચને છોડી દેવી જોઈએ.
 
-## Without Build Tools {#without-build-tools}
+## બિલ્ડ ટૂલ્સ વિના (Without Build Tools) {#without-build-tools}
 
-If you are using Vue without a build tool by loading it from a CDN or self-hosted script, make sure to use the production build (dist files that end in `.prod.js`) when deploying to production. Production builds are pre-minified with all development-only code branches removed.
+જો તમે CDN અથવા સેલ્ફ-હોસ્ટેડ સ્ક્રિપ્ટ પરથી લોડ કરીને બિલ્ડ ટૂલ વિના Vue નો ઉપયોગ કરી રહ્યાં હોવ, તો પ્રોડક્શનમાં ડિપ્લોય કરતી વખતે પ્રોડક્શન બિલ્ડ (`dist` ફાઇલો કે જે `.prod.js` માં સમાપ્ત થાય છે) વાપરવાની ખાતરી કરો. પ્રોડક્શન બિલ્ડ્સ બધી ડેવલપમેન્ટ-ઓન્લી કોડ બ્રાન્ચોને દૂર કરીને પહેલેથી જ મીનીફાઇડ (minified) હોય છે.
 
-- If using global build (accessing via the `Vue` global): use `vue.global.prod.js`.
-- If using ESM build (accessing via native ESM imports): use `vue.esm-browser.prod.js`.
+- જો ગ્લોબલ બિલ્ડનો ઉપયોગ કરી રહ્યાં હોવ (`Vue` ગ્લોબલ દ્વારા એક્સેસ કરવું): `vue.global.prod.js` નો ઉપયોગ કરો.
+- જો ESM બિલ્ડનો ઉપયોગ કરી રહ્યાં હોવ (નેટિવ ESM ઇમ્પોર્ટ્સ દ્વારા એક્સેસ કરવું): `vue.esm-browser.prod.js` નો ઉપયોગ કરો.
 
-Consult the [dist file guide](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) for more details.
+વધુ વિગતો માટે [`dist` ફાઇલ માર્ગદર્શિકા (dist file guide)](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) જુઓ.
 
-## With Build Tools {#with-build-tools}
+## બિલ્ડ ટૂલ્સ સાથે (With Build Tools) {#with-build-tools}
 
-Projects scaffolded via `create-vue` (based on Vite) or Vue CLI (based on webpack) are pre-configured for production builds.
+`create-vue` (Vite પર આધારિત) અથવા Vue CLI (webpack પર આધારિત) દ્વારા બનાવવામાં આવેલા પ્રોજેક્ટસ્ પ્રોડક્શન બિલ્ડ્સ માટે પહેલેથી જ કોન્ફિગર કરેલા હોય છે.
 
-If using a custom setup, make sure that:
+જો કસ્ટમ સેટઅપનો ઉપયોગ કરી રહ્યાં હોવ, તો ખાતરી કરો કે:
 
-1. `vue` resolves to `vue.runtime.esm-bundler.js`.
-2. The [compile time feature flags](/api/compile-time-flags) are properly configured.
-3. <code>process.env<wbr>.NODE_ENV</code> is replaced with `"production"` during build.
+૧. `vue` એ `vue.runtime.esm-bundler.js` રિઝોલ્વ કરે છે.
+૨. [કમ્પાઇલ ટાઇમ ફીચર ફ્લેગ્સ (compile time feature flags)](/api/compile-time-flags) યોગ્ય રીતે કોન્ફિગર કરેલા છે.
+૩. બિલ્ડ દરમિયાન `process.env<wbr>.NODE_ENV` ને `"production"` સાથે બદલવામાં આવે છે.
 
-Additional references:
+વધારાના સંદર્ભો:
 
-- [Vite production build guide](https://vite.dev/guide/build.html)
-- [Vite deployment guide](https://vite.dev/guide/static-deploy.html)
-- [Vue CLI deployment guide](https://cli.vuejs.org/guide/deployment.html)
+- [Vite પ્રોડક્શન બિલ્ડ ગાઇડ](https://vite.dev/guide/build.html)
+- [Vite ડિપ્લોયમેન્ટ ગાઇડ](https://vite.dev/guide/static-deploy.html)
+- [Vue CLI ડિપ્લોયમેન્ટ ગાઇડ](https://cli.vuejs.org/guide/deployment.html)
 
-## Tracking Runtime Errors {#tracking-runtime-errors}
+## રનટાઇમ એરર્સ ટ્રેક કરવી (Tracking Runtime Errors) {#tracking-runtime-errors}
 
-The [app-level error handler](/api/application#app-config-errorhandler) can be used to report errors to tracking services:
+[એપ-લેવલ એરર હેન્ડલર (app-level error handler)](/api/application#app-config-errorhandler) નો ઉપયોગ ટ્રેકિંગ સેવાઓને ભૂલોની જાણ કરવા માટે કરી શકાય છે:
 
 ```js
 import { createApp } from 'vue'
@@ -46,8 +46,8 @@ import { createApp } from 'vue'
 const app = createApp(...)
 
 app.config.errorHandler = (err, instance, info) => {
-  // report error to tracking services
+  // ટ્રેકિંગ સેવાઓને ભૂલની જાણ કરો
 }
 ```
 
-Services such as [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) also provide official integrations for Vue.
+[Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) અને [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) જેવી સેવાઓ પણ Vue માટે સત્તાવાર એકીકરણ પ્રદાન કરે છે.

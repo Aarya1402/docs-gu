@@ -1,6 +1,6 @@
-# Computed Property {#computed-property}
+# કમ્પ્યુટેડ પ્રોપર્ટી (Computed Property) {#computed-property}
 
-Let's keep building on top of the todo list from the last step. Here, we've already added a toggle functionality to each todo. This is done by adding a `done` property to each todo object, and using `v-model` to bind it to a checkbox:
+ચાલો છેલ્લા સ્ટેપથી ટૂ-ડૂ લિસ્ટ પર આગળ વધીએ. અહીં, આપણે પહેલેથી જ દરેક ટૂ-ડૂમાં ટૉગલ ફંક્શનલિટી ઉમેરી છે. આ દરેક ટૂ-ડૂ ઓબ્જેક્ટમાં `done` પ્રોપર્ટી ઉમેરીને અને તેને ચેકબોક્સ સાથે બાઇન્ડ કરવા માટે `v-model` નો ઉપયોગ કરીને કરવામાં આવે છે:
 
 ```vue-html{2}
 <li v-for="todo in todos">
@@ -9,11 +9,11 @@ Let's keep building on top of the todo list from the last step. Here, we've alre
 </li>
 ```
 
-The next improvement we can add is to be able to hide already completed todos. We already have a button that toggles the `hideCompleted` state. But how do we render different list items based on that state?
+આગળનો સુધારો આપણે એ કરી શકીએ છીએ કે જે ટૂ-ડૂ પહેલેથી પૂર્ણ થઈ ગયા છે તેને છુપાવી શકીએ. અમારી પાસે પહેલેથી જ એક બટન છે જે `hideCompleted` સ્ટેટને ટૉગલ કરે છે. પરંતુ આપણે તે સ્ટેટના આધારે વિવિધ લિસ્ટ આઇટમ્સને કેવી રીતે રેન્ડર કરીએ?
 
 <div class="options-api">
 
-Introducing <a target="_blank" href="/guide/essentials/computed.html">computed property</a>. We can declare a property that is reactively computed from other properties using the `computed` option:
+રજૂ કરીએ છીએ <a target="_blank" href="/guide/essentials/computed.html">કમ્પ્યુટેડ પ્રોપર્ટી (computed property)</a>. આપણે એક પ્રોપર્ટી જાહેર કરી શકીએ છીએ જે અન્ય પ્રોપર્ટીઝમાંથી રિએક્ટિવલી ગણતરી (reactively computed) કરવામાં આવે છે, તે માટે `computed` ઓપ્શનનો ઉપયોગ કરીએ:
 
 <div class="sfc">
 
@@ -22,7 +22,7 @@ export default {
   // ...
   computed: {
     filteredTodos() {
-      // return filtered todos based on `this.hideCompleted`
+      // `this.hideCompleted` ના આધારે ફિલ્ટર કરેલ ટૂ-ડૂ પરત કરો
     }
   }
 }
@@ -36,7 +36,7 @@ createApp({
   // ...
   computed: {
     filteredTodos() {
-      // return filtered todos based on `this.hideCompleted`
+      // `this.hideCompleted` ના આધારે ફિલ્ટર કરેલ ટૂ-ડૂ પરત કરો
     }
   }
 })
@@ -47,7 +47,7 @@ createApp({
 </div>
 <div class="composition-api">
 
-Introducing <a target="_blank" href="/guide/essentials/computed.html">`computed()`</a>. We can create a computed ref that computes its `.value` based on other reactive data sources:
+રજૂ કરીએ છીએ <a target="_blank" href="/guide/essentials/computed.html">`computed()`</a>. આપણે કમ્પ્યુટેડ રેફ બનાવી શકીએ છીએ જે તેના અન્ય રિએક્ટિવ ડેટા સોર્સના આધારે તેની `.value` ગણે છે:
 
 <div class="sfc">
 
@@ -60,8 +60,8 @@ const todos = ref([
 ])
 
 const filteredTodos = computed(() => {
-  // return filtered todos based on
-  // `todos.value` & `hideCompleted.value`
+  // `todos.value` અને `hideCompleted.value`
+  // ના આધારે ફિલ્ટર કરેલ ટૂ-ડૂ પરત કરો
 })
 ```
 
@@ -79,8 +79,8 @@ createApp({
     ])
 
     const filteredTodos = computed(() => {
-      // return filtered todos based on
-      // `todos.value` & `hideCompleted.value`
+      // `todos.value` અને `hideCompleted.value`
+      // ના આધારે ફિલ્ટર કરેલ ટૂ-ડૂ પરત કરો
     })
 
     return {
@@ -99,6 +99,6 @@ createApp({
 + <li v-for="todo in filteredTodos">
 ```
 
-A computed property tracks other reactive state used in its computation as dependencies. It caches the result and automatically updates it when its dependencies change.
+કમ્પ્યુટેડ પ્રોપર્ટી તેની ગણતરીમાં ઉપયોગમાં લેવાતા અન્ય રિએક્ટિવ સ્ટેટને ડિપેન્ડન્સીસ (dependencies) તરીકે ટ્રેક (track) કરે છે. તે પરિણામને કૅશ (cache) કરે છે અને જ્યારે તેની ડિપેન્ડન્સીસ બદલાય છે ત્યારે તેને આપમેળે અપડેટ કરે છે.
 
-Now, try to add the `filteredTodos` computed property and implement its computation logic! If implemented correctly, checking off a todo when hiding completed items should instantly hide it as well.
+હવે, `filteredTodos` કમ્પ્યુટેડ પ્રોપર્ટી ઉમેરવાનો પ્રયાસ કરો અને તેના ગણતરી લોજિકને અમલમાં મૂકો! જો યોગ્ય રીતે અમલમાં મૂકવામાં આવે તો, જ્યારે પૂર્ણ થયેલ આઇટમ્સ છુપાવી રહ્યા હોવ ત્યારે ટૂ-ડૂને ચેક કરવાથી તે તરત જ છુપાઈ જવી જોઈએ.

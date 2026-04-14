@@ -1,6 +1,6 @@
-# Watchers {#watchers}
+# વોચર્સ (Watchers) {#watchers}
 
-Sometimes we may need to perform "side effects" reactively - for example, logging a number to the console when it changes. We can achieve this with watchers:
+ક્યારેક અમારે "સાઇડ ઇફેક્ટ્સ (side effects)" રિએક્ટિવલી કરવાની જરૂર પડી શકે છે - ઉદાહરણ તરીકે, જ્યારે કોઈ નંબર બદલાય ત્યારે તેને કન્સોલમાં લોગ કરવો. આપણે વોચર્સ (watchers) દ્વારા આ પ્રાપ્ત કરી શકીએ છીએ:
 
 <div class="composition-api">
 
@@ -10,12 +10,12 @@ import { ref, watch } from 'vue'
 const count = ref(0)
 
 watch(count, (newCount) => {
-  // yes, console.log() is a side effect
-  console.log(`new count is: ${newCount}`)
+  // હા, console.log() એક સાઇડ ઇફેક્ટ છે
+  console.log(`નવો કાઉન્ટ છે: ${newCount}`)
 })
 ```
 
-`watch()` can directly watch a ref, and the callback gets fired whenever `count`'s value changes. `watch()` can also watch other types of data sources - more details are covered in <a target="_blank" href="/guide/essentials/watchers.html">Guide - Watchers</a>.
+`watch()` સીધા જ રેફને વોચ (watch) કરી શકે છે, અને જ્યારે પણ `count` ની વેલ્યુ બદલાય છે ત્યારે કોલબેક ફાયર થાય છે. `watch()` ડેટા સોર્સના અન્ય પ્રકારોને પણ વોચ કરી શકે છે - વધુ વિગતો <a target="_blank" href="/guide/essentials/watchers.html">માર્ગદર્શિકા - વોચર્સ</a> માં આવરી લેવામાં આવી છે.
 
 </div>
 <div class="options-api">
@@ -29,15 +29,15 @@ export default {
   },
   watch: {
     count(newCount) {
-      // yes, console.log() is a side effect
-      console.log(`new count is: ${newCount}`)
+      // હા, console.log() એક સાઇડ ઇફેક્ટ છે
+      console.log(`નવો કાઉન્ટ છે: ${newCount}`)
     }
   }
 }
 ```
 
-Here, we are using the `watch` option to watch changes to the `count` property. The watch callback is called when `count` changes, and receives the new value as the argument. More details are covered in <a target="_blank" href="/guide/essentials/watchers.html">Guide - Watchers</a>.
+અહીં, અમે `count` પ્રોપર્ટીમાં થતા ફેરફારોને જોવા માટે `watch` ઓપ્શનનો ઉપયોગ કરી રહ્યા છીએ. જ્યારે `count` બદલાય છે ત્યારે વૉચ કૉલબેક બોલાવવામાં આવે છે, અને આર્ગ્યુમેન્ટ તરીકે નવી વેલ્યુ સ્વીકારે છે. વધુ વિગતો <a target="_blank" href="/guide/essentials/watchers.html">માર્ગદર્શિકા - વોચર્સ</a> માં આવરી લેવામાં આવી છે.
 
 </div>
 
-A more practical example than logging to the console would be fetching new data when an ID changes. The code we have is fetching todos data from a mock API on component mount. There is also a button that increments the todo ID that should be fetched. Try to implement a watcher that fetches a new todo when the button is clicked.
+કન્સોલમાં લોગ કરવા કરતાં વધુ પ્રેક્ટિકલ ઉદાહરણ એ હશે કે જ્યારે કોઈ ID બદલાય ત્યારે નવો ડેટા ફેચ (fetch) કરવો. અમારી પાસે જે કોડ છે તે ઘટક માઉન્ટ થવા પર મોક (mock) API માંથી ટૂ-ડૂ ડેટા ફેચ કરી રહ્યો છે. એક બટન પણ છે જે ટૂ-ડૂ ID ને વધારે છે જેને ફેચ કરવું જોઈએ. જ્યારે બટન ક્લિક કરવામાં આવે ત્યારે નવું ટૂ-ડૂ ફેચ કરે તેવા વૉચરને અમલમાં મૂકવાનો પ્રયાસ કરો.

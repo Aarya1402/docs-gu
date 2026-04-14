@@ -2,66 +2,66 @@
 outline: deep
 ---
 
-# Render Functions & JSX {#render-functions-jsx}
+# રેન્ડર ફંક્શન અને JSX (Render Functions & JSX) {#render-functions-jsx}
 
-Vue recommends using templates to build applications in the vast majority of cases. However, there are situations where we need the full programmatic power of JavaScript. That's where we can use the **render function**.
+Vue મોટા ભાગના કિસ્સાઓમાં એપ્લિકેશન બનાવવા માટે ટેમ્પલેટનો ઉપયોગ કરવાની ભલામણ કરે છે. જો કે, એવી પરિસ્થિતિઓ હોય છે જ્યાં આપણને JavaScript ની સંપૂર્ણ પ્રોગ્રામેટિક શક્તિની જરૂર હોય છે. ત્યાં જ આપણે **રેન્ડર ફંક્શન (render function)** નો ઉપયોગ કરી શકીએ છીએ.
 
-> If you are new to the concept of virtual DOM and render functions, make sure to read the [Rendering Mechanism](/guide/extras/rendering-mechanism) chapter first.
+> જો તમે વર્ચ્યુઅલ DOM અને રેન્ડર ફંક્શન્સના કન્સેપ્ટ માટે નવા હોવ, તો પહેલા [રેન્ડરિંગ મિકેનિઝમ (Rendering Mechanism)](/guide/extras/rendering-mechanism) પ્રકરણ ચોક્કસ વાંચો.
 
-## Basic Usage {#basic-usage}
+## મૂળભૂત વપરાશ (Basic Usage) {#basic-usage}
 
-### Creating Vnodes {#creating-vnodes}
+### Vnodes બનાવવા (Creating Vnodes) {#creating-vnodes}
 
-Vue provides an `h()` function for creating vnodes:
+Vue vnodes બનાવવા માટે `h()` ફંક્શન પ્રદાન કરે છે:
 
 ```js
 import { h } from 'vue'
 
 const vnode = h(
-  'div', // type
-  { id: 'foo', class: 'bar' }, // props
+  'div', // પ્રકાર (type)
+  { id: 'foo', class: 'bar' }, // પ્રોપ્સ (props)
   [
-    /* children */
+    /* ચિલ્ડ્રન (children) */
   ]
 )
 ```
 
-`h()` is short for **hyperscript** - which means "JavaScript that produces HTML (hypertext markup language)". This name is inherited from conventions shared by many virtual DOM implementations. A more descriptive name could be `createVNode()`, but a shorter name helps when you have to call this function many times in a render function.
+`h()` એ **hyperscript** માટે ટૂંકું નામ છે - જેનો અર્થ છે "JavaScript જે HTML ઉત્પન્ન કરે છે (hypertext markup language)". આ નામ ઘણા વર્ચ્યુઅલ DOM અમલીકરણો દ્વારા શેર કરેલી પરંપરાઓમાંથી વારસામાં મળ્યું છે. વધુ વર્ણનાત્મક નામ `createVNode()` હોઈ શકે છે, પરંતુ જ્યારે તમારે રેન્ડર ફંક્શનમાં આ ફંક્શનને ઘણી વખત કોલ કરવાનું હોય ત્યારે ટૂંકું નામ મદદ કરે છે.
 
-The `h()` function is designed to be very flexible:
+`h()` ફંક્શન ખૂબ જ લવચીક બનાવવા માટે ડિઝાઇન કરવામાં આવ્યું છે:
 
 ```js
-// all arguments except the type are optional
+// પ્રકાર સિવાયના તમામ આર્ગ્યુમેન્ટ્સ વૈકલ્પિક છે
 h('div')
 h('div', { id: 'foo' })
 
-// both attributes and properties can be used in props
-// Vue automatically picks the right way to assign it
-h('div', { class: 'bar', innerHTML: 'hello' })
+// પ્રોપ્સમાં એટ્રિબ્યુટ્સ અને પ્રોપર્ટીઝ બંનેનો ઉપયોગ કરી શકાય છે
+// Vue આપમેળે તેને અસાઇન કરવાની સાચી રીત પસંદ કરે છે
+h('div', { class: 'bar', innerHTML: 'નમસ્તે' })
 
-// props modifiers such as `.prop` and `.attr` can be added
-// with `.` and `^` prefixes respectively
-h('div', { '.name': 'some-name', '^width': '100' })
+// પ્રોપ્સ મોડિફાયર જેમ કે `.prop` અને `.attr` અનુક્રમે
+// `.` અને `^` પ્રીફિક્સ સાથે ઉમેરી શકાય છે
+h('div', { '.name': 'બીજું-નામ', '^width': '100' })
 
-// class and style have the same object / array
-// value support that they have in templates
+// ક્લાસ અને સ્ટાઇલ પાસે સમાન ઓબ્જેક્ટ / એરે વેલ્યુ સપોર્ટ છે
+// જે ટેમ્પલેટ્સમાં છે
 h('div', { class: [foo, { bar }], style: { color: 'red' } })
 
-// event listeners should be passed as onXxx
+// ઇવેન્ટ લિસનર્સ (event listeners) onXxx તરીકે પાસ કરવા જોઈએ
 h('div', { onClick: () => {} })
 
-// children can be a string
-h('div', { id: 'foo' }, 'hello')
+// બાળકો (children) એક સ્ટ્રિંગ હોઈ શકે છે
+h('div', { id: 'foo' }, 'નમસ્તે')
 
-// props can be omitted when there are no props
-h('div', 'hello')
-h('div', [h('span', 'hello')])
+// જ્યારે કોઈ પ્રોપ્સ ન હોય ત્યારે પ્રોપ્સ છોડી શકાય છે
+h('div', 'નમસ્તે')
+h('div', [h('span', 'નમસ્તે')])
 
-// children array can contain mixed vnodes and strings
-h('div', ['hello', h('span', 'hello')])
+// ચિલ્ડ્રન એરેમાં મિશ્ર vnodes અને સ્ટ્રિંગ્સ હોઈ શકે છે
+h('div', ['નમસ્તે', h('span', 'નમસ્તે')])
 ```
 
-The resulting vnode has the following shape:
+પરિણામી vnode નીચેનો આકાર ધરાવે છે:
 
 ```js
 const vnode = h('div', { id: 'foo' }, [])
@@ -72,15 +72,15 @@ vnode.children // []
 vnode.key // null
 ```
 
-:::warning Note
-The full `VNode` interface contains many other internal properties, but it is strongly recommended to avoid relying on any properties other than the ones listed here. This avoids unintended breakage in case the internal properties are changed.
+:::warning નોંધ
+સંપૂર્ણ `VNode` ઇન્ટરફેસમાં ઘણી અન્ય આંતરિક પ્રોપર્ટીઝ શામેલ છે, પરંતુ અહીં સૂચિબદ્ધ છે તે સિવાયની અન્ય પ્રોપર્ટીઝ પર આધાર રાખવાનું ટાળવાની ભારપૂર્વક ભલામણ કરવામાં આવે છે. આ આંતરિક પ્રોપર્ટીઝ બદલાવાના કિસ્સામાં અણધારી સમસ્યાઓ ટાળે છે.
 :::
 
-### Declaring Render Functions {#declaring-render-functions}
+### રેન્ડર ફંક્શન્સ જાહેર કરવા (Declaring Render Functions) {#declaring-render-functions}
 
 <div class="composition-api">
 
-When using templates with Composition API, the return value of the `setup()` hook is used to expose data to the template. When using render functions, however, we can directly return the render function instead:
+કોમ્પોઝિશન (Composition) API સાથે ટેમ્પલેટ્સનો ઉપયોગ કરતી વખતે, `setup()` હૂકની રિટર્ન વેલ્યુ ટેમ્પલેટમાં ડેટા એક્સપોઝ કરવા માટે વપરાય છે. જો કે, રેન્ડર ફંક્શન્સનો ઉપયોગ કરતી વખતે, આપણે સીધા જ રેન્ડર ફંક્શન પરત કરી શકીએ છીએ:
 
 ```js
 import { ref, h } from 'vue'
@@ -92,20 +92,20 @@ export default {
   setup(props) {
     const count = ref(1)
 
-    // return the render function
+    // રેન્ડર ફંક્શન પરત કરો
     return () => h('div', props.msg + count.value)
   }
 }
 ```
 
-The render function is declared inside `setup()` so it naturally has access to the props and any reactive state declared in the same scope.
+રેન્ડર ફંક્શન `setup()` ની અંદર જાહેર કરવામાં આવે છે તેથી તે કુદરતી રીતે પ્રોપ્સ અને તે જ ક્ષેત્રમાં જાહેર કરેલા કોઈપણ રિએક્ટિવ સ્ટેટને એક્સેસ કરી શકે છે.
 
-In addition to returning a single vnode, you can also return strings or arrays:
+એક સિંગલ vnode પરત કરવા ઉપરાંત, તમે સ્ટ્રિંગ્સ અથવા એરે પણ પરત કરી શકો છો:
 
 ```js
 export default {
   setup() {
-    return () => 'hello world!'
+    return () => 'નમસ્તે દુનિયા!'
   }
 }
 ```
@@ -115,7 +115,7 @@ import { h } from 'vue'
 
 export default {
   setup() {
-    // use an array to return multiple root nodes
+    // બહુવિધ રૂટ નોડ્સ પરત કરવા માટે એરેનો ઉપયોગ કરો
     return () => [
       h('div'),
       h('div'),
@@ -126,13 +126,13 @@ export default {
 ```
 
 :::tip
-Make sure to return a function instead of directly returning values! The `setup()` function is called only once per component, while the returned render function will be called multiple times.
+સીધા મૂલ્યો પરત કરવાને બદલે ફંક્શન પરત કરવાની ખાતરી કરો! `setup()` ફંક્શન દરેક ઘટક દીઠ માત્ર એક જ વાર કોલ થાય છે, જ્યારે પરત કરેલ રેન્ડર ફંક્શન ઘણી વખત કોલ થશે.
 :::
 
 </div>
 <div class="options-api">
 
-We can declare render functions using the `render` option:
+અમે `render` ઓપ્શનનો ઉપયોગ કરીને રેન્ડર ફંક્શન્સ જાહેર કરી શકીએ છીએ:
 
 ```js
 import { h } from 'vue'
@@ -140,7 +140,7 @@ import { h } from 'vue'
 export default {
   data() {
     return {
-      msg: 'hello'
+      msg: 'નમસ્તે'
     }
   },
   render() {
@@ -149,14 +149,14 @@ export default {
 }
 ```
 
-The `render()` function has access to the component instance via `this`.
+`render()` ફંક્શન `this` દ્વારા ઘટક ઇન્સ્ટન્સને એક્સેસ કરી શકે છે.
 
-In addition to returning a single vnode, you can also return strings or arrays:
+એક સિંગલ vnode પરત કરવા ઉપરાંત, તમે સ્ટ્રિંગ્સ અથવા એરે પણ પરત કરી શકો છો:
 
 ```js
 export default {
   render() {
-    return 'hello world!'
+    return 'નમસ્તે દુનિયા!'
   }
 }
 ```
@@ -166,7 +166,7 @@ import { h } from 'vue'
 
 export default {
   render() {
-    // use an array to return multiple root nodes
+    // બહુવિધ રૂટ નોડ્સ પરત કરવા માટે એરેનો ઉપયોગ કરો
     return [
       h('div'),
       h('div'),
@@ -178,99 +178,99 @@ export default {
 
 </div>
 
-If a render function component doesn't need any instance state, they can also be declared directly as a function for brevity:
+જો રેન્ડર ફંક્શન ઘટકને કોઈ ઇન્સ્ટન્સ સ્ટેટની જરૂર નથી, તો તેને સંક્ષિપ્તતા માટે સીધું ફંક્શન તરીકે પણ જાહેર કરી શકાય છે:
 
 ```js
 function Hello() {
-  return 'hello world!'
+  return 'નમસ્તે દુનિયા!'
 }
 ```
 
-That's right, this is a valid Vue component! See [Functional Components](#functional-components) for more details on this syntax.
+હા સાચું છે, આ એક માન્ય Vue ઘટક છે! આ સિન્ટેક્સ પર વધુ વિગતો માટે [ફંક્શનલ ઘટકો (Functional Components)](#functional-components) જુઓ.
 
-### Vnodes Must Be Unique {#vnodes-must-be-unique}
+### Vnodes અનન્ય (Unique) હોવા જોઈએ {#vnodes-must-be-unique}
 
-All vnodes in the component tree must be unique. That means the following render function is invalid:
+ઘટક ટ્રીમાંના તમામ vnodes અનન્ય હોવા જોઈએ. તેનો અર્થ એ કે નીચેનું રેન્ડર ફંક્શન અમાન્ય છે:
 
 ```js
 function render() {
-  const p = h('p', 'hi')
+  const p = h('p', 'નમસ્તે')
   return h('div', [
-    // Yikes - duplicate vnodes!
+    // અરે - ડુપ્લિકેટ vnodes!
     p,
     p
   ])
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+જો તમે ખરેખર સમાન એલિમેન્ટ/ઘટકને ઘણી વખત પુનરાવર્તિત કરવા માંગતા હોવ, તો તમે ફેક્ટરી ફંક્શન (factory function) દ્વારા તેમ કરી શકો છો. ઉદાહરણ તરીકે, નીચેનું રેન્ડર ફંક્શન ૨૦ સમાન પેરેગ્રાફ્સ રેન્ડર કરવાની સાચી રીત છે:
 
 ```js
 function render() {
   return h(
     'div',
     Array.from({ length: 20 }).map(() => {
-      return h('p', 'hi')
+      return h('p', 'નમસ્તે')
     })
   )
 }
 ```
 
-### Using Vnodes in `<template>` {#using-vnodes-in-template}
+### `<template>` માં Vnodes નો ઉપયોગ કરવો {#using-vnodes-in-template}
 
 ```vue
 <script setup>
 import { h } from 'vue'
 
-const vnode = h('button', ['Hello'])
+const vnode = h('button', ['નમસ્તે'])
 </script>
 
 <template>
-  <!-- Via <component /> -->
-  <component :is="vnode">Hi</component>
+  <!-- <component /> દ્વારા -->
+  <component :is="vnode">નમસ્તે</component>
 
-  <!-- Or directly as element -->
+  <!-- અથવા સીધા એલિમેન્ટ તરીકે -->
   <vnode />
-  <vnode>Hi</vnode>
+  <vnode>નમસ્તે</vnode>
 </template>
 ```
 
-A vnode object has been declared in `setup()`, you can use it like a normal component for rendering.
+`setup()` માં એક vnode ઓબ્જેક્ટ જાહેર કરવામાં આવ્યો છે, તમે તેને રેન્ડરિંગ માટે સામાન્ય ઘટકની જેમ ઉપયોગ કરી શકો છો.
 
 :::warning
-A vnode represents an already created render output, not a component definition. Using a vnode in `<template>` does not create a new component instance, and the vnode will be rendered as-is.
+vnode એ પહેલેથી બનાવેલ રેન્ડર આઉટપુટનું પ્રતિનિધિત્વ કરે છે, ઘટક વ્યાખ્યાનું નહીં. `<template>` માં vnode નો ઉપયોગ કરવાથી નવો ઘટક ઇન્સ્ટન્સ બનતો નથી, અને vnode જેમ છે તેમ રેન્ડર થશે.
 
-This pattern should be used with care and is not a replacement for normal components.
+આ પેટર્નનો કાળજીપૂર્વક ઉપયોગ કરવો જોઈએ અને તે સામાન્ય ઘટકોનો વિકલ્પ નથી.
 :::
 
 ## JSX / TSX {#jsx-tsx}
 
-[JSX](https://facebook.github.io/jsx/) is an XML-like extension to JavaScript that allows us to write code like this:
+[JSX](https://facebook.github.io/jsx/) એ JavaScript માટેનું XML-જેવું એક્સ્ટેન્શન છે જે આપણને આના જેવો કોડ લખવાની મંજૂરી આપે છે:
 
 ```jsx
-const vnode = <div>hello</div>
+const vnode = <div>નમસ્તે</div>
 ```
 
-Inside JSX expressions, use curly braces to embed dynamic values:
+JSX એક્સપ્રેશન્સની અંદર, ડાયનેમિક મૂલ્યો એમ્બેડ કરવા માટે કર્લી બ્રેસીસ `{}` નો ઉપયોગ કરો:
 
 ```jsx
-const vnode = <div id={dynamicId}>hello, {userName}</div>
+const vnode = <div id={dynamicId}>નમસ્તે, {userName}</div>
 ```
 
-`create-vue` and Vue CLI both have options for scaffolding projects with pre-configured JSX support. If you are configuring JSX manually, please refer to the documentation of [`@vue/babel-plugin-jsx`](https://github.com/vuejs/jsx-next) for details.
+`create-vue` અને Vue CLI બંનેમાં પ્રી-કોન્ફિગર કરેલ JSX સપોર્ટ સાથે પ્રોજેક્ટ સ્કેફોલ્ડ કરવાના વિકલ્પો છે. જો તમે JSX ને મેન્યુઅલી કોન્ફિગર કરી રહ્યા હોવ, તો કૃપા કરીને વિગતો માટે [`@vue/babel-plugin-jsx`](https://github.com/vuejs/jsx-next) ના દસ્તાવેજોનો સંદર્ભ લો.
 
-Although first introduced by React, JSX actually has no defined runtime semantics and can be compiled into various different outputs. If you have worked with JSX before, do note that **Vue JSX transform is different from React's JSX transform**, so you can't use React's JSX transform in Vue applications. Some notable differences from React JSX include:
+જોકે સૌ પ્રથમ React દ્વારા રજૂ કરવામાં આવ્યું હતું, JSX પાસે વાસ્તવમાં કોઈ વ્યાખ્યાયિત રનટાઇમ સિમેન્ટિક્સ નથી અને તે વિવિધ આઉટપુટ્સમાં કમ્પાઇલ કરી શકાય છે. જો તમે પહેલા JSX સાથે કામ કર્યું હોય, તો નોંધ લો કે **Vue JSX ટ્રાન્સફોર્મ React ના JSX ટ્રાન્સફોર્મ કરતા અલગ છે**, તેથી તમે Vue એપ્લિકેશન્સમાં React ના JSX ટ્રાન્સફોર્મનો ઉપયોગ કરી શકતા નથી. React JSX ના કેટલાક નોંધપાત્ર તફાવતોમાં નીચેનાનો સમાવેશ થાય છે:
 
-- You can use HTML attributes such as `class` and `for` as props - no need to use `className` or `htmlFor`.
-- Passing children to components (i.e. slots) [works differently](#passing-slots).
+- તમે `class` અને `for` જેવા HTML એટ્રિબ્યુટ્સનો ઉપયોગ પ્રોપ્સ તરીકે કરી શકો છો - `className` અથવા `htmlFor` વાપરવાની જરૂર નથી.
+- ઘટકોને ચિલ્ડ્રન પાસ કરવું (એટલે કે સ્લોટ્સ) [અલગ રીતે કામ કરે છે](#passing-slots).
 
-Vue's type definition also provides type inference for TSX usage. When using TSX, make sure to specify `"jsx": "preserve"` in `tsconfig.json` so that TypeScript leaves the JSX syntax intact for Vue JSX transform to process.
+Vue ની ટાઇપ ડેફિનેશન (type definition) TSX વપરાશ માટે ટાઇપ ઇન્ફરન્સ પણ પૂરી પાડે છે. TSX નો ઉપયોગ કરતી વખતે, `tsconfig.json` માં `"jsx": "preserve"` નિર્દિષ્ટ કરવાની ખાતરી કરો જેથી TypeScript Vue JSX ટ્રાન્સફોર્મને પ્રોસેસ કરવા માટે JSX સિન્ટેક્સને અકબંધ રાખે.
 
-### JSX Type Inference {#jsx-type-inference}
+### JSX ટાઇપ ઇન્ફરન્સ (JSX Type Inference) {#jsx-type-inference}
 
-Similar to the transform, Vue's JSX also needs different type definitions.
+ટ્રાન્સફોર્મની જેમ જ, Vue ના JSX ને પણ વિવિધ ટાઇપ ડેફિનેશન્સની જરૂર છે.
 
-Starting in Vue 3.4, Vue no longer implicitly registers the global `JSX` namespace. To instruct TypeScript to use Vue's JSX type definitions, make sure to include the following in your `tsconfig.json`:
+Vue ૩.૪ થી શરૂ કરીને, Vue હવે વૈશ્વિક `JSX` નેમસ્પેસને ગર્ભિત રીતે રજીસ્ટર કરતું નથી. TypeScript ને Vue ની JSX ટાઇપ ડેફિનેશનનો ઉપયોગ કરવા માટે સૂચના આપવા માટે, તમારા `tsconfig.json` માં નીચેનાનો સમાવેશ કરવાનું સુનિશ્ચિત કરો:
 
 ```json
 {
@@ -282,53 +282,53 @@ Starting in Vue 3.4, Vue no longer implicitly registers the global `JSX` namespa
 }
 ```
 
-You can also opt-in per file by adding a `/* @jsxImportSource vue */` comment at the top of the file.
+તમે ફાઇલની ટોચ પર `/* @jsxImportSource vue */` કમેન્ટ ઉમેરીને ફાઇલ દીઠ પણ પસંદ કરી શકો છો.
 
-If there is code that depends on the presence of the global `JSX` namespace,  you can retain the exact pre-3.4 global behavior by explicitly importing or referencing `vue/jsx` in your project, which registers the global `JSX` namespace.
+જો એવો કોડ છે જે વૈશ્વિક `JSX` નેમસ્પેસની હાજરી પર આધાર રાખે છે, તો તમે તમારા પ્રોજેક્ટમાં `vue/jsx` ને સ્પષ્ટપણે ઇમ્પોર્ટ કરીને અથવા રિફરન્સ આપીને ૩.૪ પહેલાની વૈશ્વિક વર્તણૂક જાળવી શકો છો, જે વૈશ્વિક `JSX` નેમસ્પેસની નોંધણી કરે છે.
 
-## Render Function Recipes {#render-function-recipes}
+## રેન્ડર ફંક્શન રેસિપિસ (Render Function Recipes) {#render-function-recipes}
 
-Below we will provide some common recipes for implementing template features as their equivalent render functions / JSX.
+નીચે અમે ટેમ્પલેટ ફીચર્સને તેમના સમકક્ષ રેન્ડર ફંક્શન્સ / JSX તરીકે અમલમાં મૂકવા માટેની કેટલીક સામાન્ય રેસિપિ પૂરી પાડીશું.
 
 ### `v-if` {#v-if}
 
-Template:
+ટેમ્પલેટ:
 
 ```vue-html
 <div>
-  <div v-if="ok">yes</div>
-  <span v-else>no</span>
+  <div v-if="ok">હા (yes)</div>
+  <span v-else>ના (no)</span>
 </div>
 ```
 
-Equivalent render function / JSX:
+સમકક્ષ રેન્ડર ફંક્શન / JSX:
 
 <div class="composition-api">
 
 ```js
-h('div', [ok.value ? h('div', 'yes') : h('span', 'no')])
+h('div', [ok.value ? h('div', 'હા') : h('span', 'ના')])
 ```
 
 ```jsx
-<div>{ok.value ? <div>yes</div> : <span>no</span>}</div>
+<div>{ok.value ? <div>હા</div> : <span>ના</span>}</div>
 ```
 
 </div>
 <div class="options-api">
 
 ```js
-h('div', [this.ok ? h('div', 'yes') : h('span', 'no')])
+h('div', [this.ok ? h('div', 'હા') : h('span', 'ના')])
 ```
 
 ```jsx
-<div>{this.ok ? <div>yes</div> : <span>no</span>}</div>
+<div>{this.ok ? <div>હા</div> : <span>ના</span>}</div>
 ```
 
 </div>
 
 ### `v-for` {#v-for}
 
-Template:
+ટેમ્પલેટ:
 
 ```vue-html
 <ul>
@@ -338,14 +338,14 @@ Template:
 </ul>
 ```
 
-Equivalent render function / JSX:
+સમકક્ષ રેન્ડર ફંક્શન / JSX:
 
 <div class="composition-api">
 
 ```js
 h(
   'ul',
-  // assuming `items` is a ref with array value
+  // ધારીએ છીએ કે `items` એરે વેલ્યુ સાથેનો રેફ (ref) છે
   items.value.map(({ id, text }) => {
     return h('li', { key: id }, text)
   })
@@ -384,7 +384,7 @@ h(
 
 ### `v-on` {#v-on}
 
-Props with names that start with `on` followed by an uppercase letter are treated as event listeners. For example, `onClick` is the equivalent of `@click` in templates.
+જે પ્રોપ્સના નામ `on` થી શરૂ થાય છે અને તે પછી અપરકેસ અક્ષર આવે છે તેને ઇવેન્ટ લિસનર્સ (event listeners) તરીકે ગણવામાં આવે છે. ઉદાહરણ તરીકે, `onClick` એ ટેમ્પલેટ્સમાં `@click` ની સમકક્ષ છે.
 
 ```js
 h(
@@ -394,7 +394,7 @@ h(
       /* ... */
     }
   },
-  'Click Me'
+  'મને ક્લિક કરો'
 )
 ```
 
@@ -404,23 +404,23 @@ h(
     /* ... */
   }}
 >
-  Click Me
+  મને ક્લિક કરો
 </button>
 ```
 
-#### Event Modifiers {#event-modifiers}
+#### ઇવેન્ટ મોડિફાયર્સ (Event Modifiers) {#event-modifiers}
 
-For the `.passive`, `.capture`, and `.once` event modifiers, they can be concatenated after the event name using camelCase.
+`.passive`, `.capture`, અને `.once` ઇવેન્ટ મોડિફાયર્સ માટે, તેમને camelCase નો ઉપયોગ કરીને ઇવેન્ટના નામ પછી જોડી શકાય છે.
 
-For example:
+ઉદાહરણ તરીકે:
 
 ```js
 h('input', {
   onClickCapture() {
-    /* listener in capture mode */
+    /* capture મોડમાં લિસનર */
   },
   onKeyupOnce() {
-    /* triggers only once */
+    /* માત્ર એક વાર ટ્રિગર થાય છે */
   },
   onMouseoverOnceCapture() {
     /* once + capture */
@@ -436,7 +436,7 @@ h('input', {
 />
 ```
 
-For other event and key modifiers, the [`withModifiers`](/api/render-function#withmodifiers) helper can be used:
+અન્ય ઇવેન્ટ અને કી મોડિફાયર્સ માટે, [`withModifiers`](/api/render-function#withmodifiers) હેલ્પરનો ઉપયોગ કરી શકાય છે:
 
 ```js
 import { withModifiers } from 'vue'
@@ -450,9 +450,9 @@ h('div', {
 <div onClick={withModifiers(() => {}, ['self'])} />
 ```
 
-### Components {#components}
+### ઘટકો (Components) {#components}
 
-To create a vnode for a component, the first argument passed to `h()` should be the component definition. This means when using render functions, it is unnecessary to register components - you can just use the imported components directly:
+ઘટક માટે vnode બનાવવા માટે, `h()` માં પાસ કરેલ પ્રથમ આર્ગ્યુમેન્ટ ઘટક વ્યાખ્યા (component definition) હોવી જોઈએ. આનો અર્થ એ છે કે જ્યારે રેન્ડર ફંક્શન્સનો ઉપયોગ કરવામાં આવે ત્યારે ઘટકોને રજીસ્ટર કરવાની જરૂર નથી - તમે સીધા જ ઇમ્પોર્ટ કરેલ ઘટકોનો ઉપયોગ કરી શકો છો:
 
 ```js
 import Foo from './Foo.vue'
@@ -474,9 +474,9 @@ function render() {
 }
 ```
 
-As we can see, `h` can work with components imported from any file format as long as it's a valid Vue component.
+જેમ આપણે જોઈ શકીએ છીએ, જ્યાં સુધી તે માન્ય Vue ઘટક છે ત્યાં સુધી `h` કોઈપણ ફાઇલ ફોર્મેટમાંથી ઇમ્પોર્ટ કરાયેલ ઘટકો સાથે કામ કરી શકે છે.
 
-Dynamic components are straightforward with render functions:
+રેન્ડર ફંક્શન્સ સાથે ડાયનેમિક ઘટકો સીધા છે:
 
 ```js
 import Foo from './Foo.vue'
@@ -493,13 +493,13 @@ function render() {
 }
 ```
 
-If a component is registered by name and cannot be imported directly (for example, globally registered by a library), it can be programmatically resolved by using the [`resolveComponent()`](/api/render-function#resolvecomponent) helper.
+જો કોઈ ઘટક નામ દ્વારા રજીસ્ટર થયેલ હોય અને તેને સીધું ઇમ્પોર્ટ કરી શકાતું નથી (ઉદાહરણ તરીકે, લાઇબ્રેરી દ્વારા વૈશ્વિક સ્તરે રજીસ્ટર થયેલ), તો તેને [`resolveComponent()`](/api/render-function#resolvecomponent) હેલ્પરનો ઉપયોગ કરીને પ્રોગ્રામેટિક રીતે ઉકેલી શકાય છે.
 
-### Rendering Slots {#rendering-slots}
+### સ્લોટ્સ (Slots) રેન્ડર કરવા {#rendering-slots}
 
 <div class="composition-api">
 
-In render functions, slots can be accessed from the `setup()` context. Each slot on the `slots` object is a **function that returns an array of vnodes**:
+રેન્ડર ફંક્શન્સમાં, સ્લોટ્સને `setup()` કોન્ટેક્ષમાંથી એક્સેસ કરી શકાય છે. `slots` ઓબ્જેક્ટ પરનો દરેક સ્લોટ એક **ફંક્શન છે જે vnodes નો એરે પરત કરે છે**:
 
 ```js
 export default {
@@ -523,7 +523,7 @@ export default {
 }
 ```
 
-JSX equivalent:
+JSX સમકક્ષ:
 
 ```jsx
 // default
@@ -536,7 +536,7 @@ JSX equivalent:
 </div>
 <div class="options-api">
 
-In render functions, slots can be accessed from [`this.$slots`](/api/component-instance#slots):
+રેન્ડર ફંક્શન્સમાં, સ્લોટ્સ [`this.$slots`](/api/component-instance#slots) પરથી એક્સેસ કરી શકાય છે:
 
 ```js
 export default {
@@ -558,7 +558,7 @@ export default {
 }
 ```
 
-JSX equivalent:
+JSX સમકક્ષ:
 
 ```jsx
 // <div><slot /></div>
@@ -570,46 +570,46 @@ JSX equivalent:
 
 </div>
 
-### Passing Slots {#passing-slots}
+### સ્લોટ્સ પસાર કરવા (Passing Slots) {#passing-slots}
 
-Passing children to components works a bit differently from passing children to elements. Instead of an array, we need to pass either a slot function, or an object of slot functions. Slot functions can return anything a normal render function can return - which will always be normalized to arrays of vnodes when accessed in the child component.
+ઘટકોને બાળકો (children) પસાર કરવા તે એલિમેન્ટ્સને બાળકો પસાર કરવાથી થોડું અલગ રીતે કામ કરે છે. એરેને બદલે, આપણે ક્યાં તો સ્લોટ ફંક્શન અથવા સ્લોટ ફંક્શનનો ઓબ્જેક્ટ પાસ કરવાની જરૂર છે. સ્લોટ ફંક્શન્સ કંઈપણ પરત કરી શકે છે જે સામાન્ય રેન્ડર ફંક્શન પરત કરી શકે છે - જ્યારે ચાઇલ્ડ ઘટકમાં એક્સેસ કરવામાં આવે ત્યારે તે હંમેશા vnodes ના એરેમાં નોર્મલાઇઝ કરવામાં આવશે.
 
 ```js
-// single default slot
-h(MyComponent, () => 'hello')
+// સિંગલ ડિફોલ્ટ સ્લોટ
+h(MyComponent, () => 'નમસ્તે')
 
-// named slots
-// notice the `null` is required to avoid
-// the slots object being treated as props
+// નેમ્ડ સ્લોટ્સ
+// નોંધ લો કે `null` જરૂરી છે જેથી
+// સ્લોટ્સ ઓબ્જેક્ટને પ્રોપ્સ તરીકે ગણવામાં ન આવે
 h(MyComponent, null, {
-  default: () => 'default slot',
+  default: () => 'ડિફોલ્ટ સ્લોટ',
   foo: () => h('div', 'foo'),
-  bar: () => [h('span', 'one'), h('span', 'two')]
+  bar: () => [h('span', 'એક'), h('span', 'બે')]
 })
 ```
 
-JSX equivalent:
+JSX સમકક્ષ:
 
 ```jsx
 // default
-<MyComponent>{() => 'hello'}</MyComponent>
+<MyComponent>{() => 'નમસ્તે'}</MyComponent>
 
 // named
 <MyComponent>{{
-  default: () => 'default slot',
+  default: () => 'ડિફોલ્ટ સ્લોટ',
   foo: () => <div>foo</div>,
-  bar: () => [<span>one</span>, <span>two</span>]
+  bar: () => [<span>એક</span>, <span>બે</span>]
 }}</MyComponent>
 ```
 
-Passing slots as functions allows them to be invoked lazily by the child component. This leads to the slot's dependencies being tracked by the child instead of the parent, which results in more accurate and efficient updates.
+ફંક્શન્સ તરીકે સ્લોટ્સ પસાર કરવાથી તેઓ ચાઇલ્ડ ઘટક દ્વારા આળસથી (lazily) બોલાવી શકાય છે. આનાથી સ્લોટની ડિપેન્ડન્સીસ પેરેન્ટને બદલે ચાઇલ્ડ દ્વારા ટ્રેક કરવામાં આવે છે, જેના પરિણામે વધુ સચોટ અને કાર્યક્ષમ અપડેટ્સ મળે છે.
 
-### Scoped Slots {#scoped-slots}
+### સ્કોપ્ડ સ્લોટ્સ (Scoped Slots) {#scoped-slots}
 
-To render a scoped slot in the parent component, a slot is passed to the child. Notice how the slot now has a parameter `text`. The slot will be called in the child component and the data from the child component will be passed up to the parent component.
+પેરેન્ટ ઘટકમાં સ્કોપ્ડ સ્લોટ (scoped slot) રેન્ડર કરવા માટે, ચાઇલ્ડને સ્લોટ પાસ કરવામાં આવે છે. નોંધ લો કે સ્લોટ પાસે હવે પેરામીટર `text` છે. સ્લોટને ચાઇલ્ડ ઘટકમાં કોલ કરવામાં આવશે અને ચાઇલ્ડ ઘટકનો ડેટા પેરેન્ટ ઘટકને પસાર કરવામાં આવશે.
 
 ```js
-// parent component
+// પેરેન્ટ ઘટક
 export default {
   setup() {
     return () => h(MyComp, null, {
@@ -619,19 +619,19 @@ export default {
 }
 ```
 
-Remember to pass `null` so the slots will not be treated as props.
+`null` પાસ કરવાનું યાદ રાખો જેથી સ્લોટ્સને પ્રોપ્સ તરીકે ગણવામાં ન આવે.
 
 ```js
-// child component
+// ચાઇલ્ડ ઘટક
 export default {
   setup(props, { slots }) {
-    const text = ref('hi')
+    const text = ref('નમસ્તે')
     return () => h('div', null, slots.default({ text: text.value }))
   }
 }
 ```
 
-JSX equivalent:
+JSX સમકક્ષ:
 
 ```jsx
 <MyComponent>{{
@@ -639,9 +639,9 @@ JSX equivalent:
 }}</MyComponent>
 ```
 
-### Built-in Components {#built-in-components}
+### બિલ્ટ-ઇન ઘટકો {#built-in-components}
 
-[Built-in components](/api/built-in-components) such as `<KeepAlive>`, `<Transition>`, `<TransitionGroup>`, `<Teleport>` and `<Suspense>` must be imported for use in render functions:
+[બિલ્ટ-ઇન ઘટકો](/api/built-in-components) જેમ કે `<KeepAlive>`, `<Transition>`, `<TransitionGroup>`, `<Teleport>` અને `<Suspense>` ને રેન્ડર ફંક્શન્સમાં ઉપયોગ કરવા માટે ઇમ્પોર્ટ કરવા આવશ્યક છે:
 
 <div class="composition-api">
 
@@ -672,7 +672,7 @@ export default {
 
 ### `v-model` {#v-model}
 
-The `v-model` directive is expanded to `modelValue` and `onUpdate:modelValue` props during template compilation—we will have to provide these props ourselves:
+`v-model` ડાયરેક્ટિવ ટેમ્પલેટ કમ્પાલેશન દરમિયાન `modelValue` અને `onUpdate:modelValue` પ્રોપ્સમાં વિસ્તૃત થાય છે—આપણે આ પ્રોપ્સ જાતે જ પ્રદાન કરવી પડશે:
 
 <div class="composition-api">
 
@@ -708,14 +708,14 @@ export default {
 
 </div>
 
-### Custom Directives {#custom-directives}
+### કસ્ટમ ડાયરેક્ટિવ્સ (Custom Directives) {#custom-directives}
 
-Custom directives can be applied to a vnode using [`withDirectives`](/api/render-function#withdirectives):
+[`withDirectives`](/api/render-function#withdirectives) નો ઉપયોગ કરીને vnode પર કસ્ટમ ડાયરેક્ટિવ્સ લાગુ કરી શકાય છે:
 
 ```js
 import { h, withDirectives } from 'vue'
 
-// a custom directive
+// એક કસ્ટમ ડાયરેક્ટિવ
 const pin = {
   mounted() { /* ... */ },
   updated() { /* ... */ }
@@ -727,13 +727,13 @@ const vnode = withDirectives(h('div'), [
 ])
 ```
 
-If the directive is registered by name and cannot be imported directly, it can be resolved using the [`resolveDirective`](/api/render-function#resolvedirective) helper.
+જો ડાયરેક્ટિવ નામ દ્વારા રજીસ્ટર થયેલ છે અને તેને સીધું ઇમ્પોર્ટ કરી શકાતું નથી, તો તેને [`resolveDirective`](/api/render-function#resolvedirective) હેલ્પરનો ઉપયોગ કરીને ઉકેલી શકાય છે.
 
-### Template Refs {#template-refs}
+### ટેમ્પલેટ રેફ્સ (Template Refs) {#template-refs}
 
 <div class="composition-api">
 
-With the Composition API, when using [`useTemplateRef()`](/api/composition-api-helpers#usetemplateref) <sup class="vt-badge" data-text="3.5+" />  template refs are created by passing the string value as prop to the vnode:
+કોમ્પોઝિશન API સાથે, જ્યારે [`useTemplateRef()`](/api/composition-api-helpers#usetemplateref) <sup class="vt-badge" data-text="3.5+" /> નો ઉપયોગ કરવામાં આવે છે, ત્યારે vnode માં પ્રોપ તરીકે સ્ટ્રિંગ વેલ્યુ પાસ કરીને ટેમ્પલેટ રેફ્સ બનાવવામાં આવે છે:
 
 ```js
 import { h, useTemplateRef } from 'vue'
@@ -749,9 +749,9 @@ export default {
 ```
 
 <details>
-<summary>Usage before 3.5</summary>
+<summary>૩.૫ પહેલાનો વપરાશ</summary>
 
-In versions before 3.5 where useTemplateRef() was not introduced, template refs are created by passing the ref() itself as a prop to the vnode:
+૩.૫ પહેલાની આવૃત્તિઓમાં જ્યાં useTemplateRef() રજૂ કરવામાં આવ્યું ન હતું, ત્યાં vnode માં પ્રોપ તરીકે `ref()` ને જ પાસ કરીને ટેમ્પલેટ રેફ્સ બનાવવામાં આવે છે:
 
 ```js
 import { h, ref } from 'vue'
@@ -769,7 +769,7 @@ export default {
 </div>
 <div class="options-api">
 
-With the Options API, template refs are created by passing the ref name as a string in the vnode props:
+ઓપ્શન્સ API સાથે, vnode પ્રોપ્સમાં સ્ટ્રિંગ તરીકે રેફ નામ પાસ કરીને ટેમ્પલેટ રેફ્સ બનાવવામાં આવે છે:
 
 ```js
 export default {
@@ -782,15 +782,15 @@ export default {
 
 </div>
 
-## Functional Components {#functional-components}
+## ફંક્શનલ ઘટકો (Functional Components) {#functional-components}
 
-Functional components are an alternative form of component that don't have any state of their own. They act like pure functions: props in, vnodes out. They are rendered without creating a component instance (i.e. no `this`), and without the usual component lifecycle hooks.
+ફંક્શનલ ઘટકો ઘટકનું વૈકલ્પિક સ્વરૂપ છે જેમાં તેમની પોતાની કોઈ સ્ટેટ હોતી નથી. તેઓ શુદ્ધ ફંક્શન્સની જેમ કાર્ય કરે છે: પ્રોપ્સ ઇન (in), vnodes આઉટ (out). તેઓ ઘટક ઇન્સ્ટન્સ (એટલે ​​કે કોઈ `this` નહીં) બનાવ્યા વિના અને સામાન્ય ઘટક લાઇફસાયકલ હૂક્સ વિના રેન્ડર થાય છે.
 
-To create a functional component we use a plain function, rather than an options object. The function is effectively the `render` function for the component.
+ફંક્શનલ ઘટક બનાવવા માટે અમે ઓપ્શન્સ ઓબ્જેક્ટને બદલે સાદા ફંક્શનનો ઉપયોગ કરીએ છીએ. ફંક્શન ખરેખર ઘટક માટેનું `render` ફંક્શન છે.
 
 <div class="composition-api">
 
-The signature of a functional component is the same as the `setup()` hook:
+ફંક્શનલ ઘટકની સિગ્નેચર `setup()` હૂક જેવી જ છે:
 
 ```js
 function MyComponent(props, { slots, emit, attrs }) {
@@ -801,7 +801,7 @@ function MyComponent(props, { slots, emit, attrs }) {
 </div>
 <div class="options-api">
 
-As there is no `this` reference for a functional component, Vue will pass in the `props` as the first argument:
+ફંક્શનલ ઘટક માટે કોઈ `this` રિફરન્સ ન હોવાથી, Vue પ્રથમ આર્ગ્યુમેન્ટ તરીકે `props` પાસ કરશે:
 
 ```js
 function MyComponent(props, context) {
@@ -809,32 +809,32 @@ function MyComponent(props, context) {
 }
 ```
 
-The second argument, `context`, contains three properties: `attrs`, `emit`, and `slots`. These are equivalent to the instance properties [`$attrs`](/api/component-instance#attrs), [`$emit`](/api/component-instance#emit), and [`$slots`](/api/component-instance#slots) respectively.
+બીજો આર્ગ્યુમેન્ટ, `context`, ત્રણ પ્રોપર્ટીઝ ધરાવે છે: `attrs`, `emit` અને `slots`. આ અનુક્રમે ઇન્સ્ટન્સ પ્રોપર્ટીઝ [`$attrs`](/api/component-instance#attrs), [`$emit`](/api/component-instance#emit) અને [`$slots`](/api/component-instance#slots) ની સમકક્ષ છે.
 
 </div>
 
-Most of the usual configuration options for components are not available for functional components. However, it is possible to define [`props`](/api/options-state#props) and [`emits`](/api/options-state#emits) by adding them as properties:
+ઘટકો માટેના મોટાભાગના સામાન્ય કોન્ફિગરેશન ઓપ્શન્સ ફંક્શનલ ઘટકો માટે ઉપલબ્ધ નથી. જો કે, પ્રોપર્ટીઝ તરીકે ઉમેરીને [`props`](/api/options-state#props) અને [`emits`](/api/options-state#emits) ને વ્યાખ્યાયિત કરવું શક્ય છે:
 
 ```js
 MyComponent.props = ['value']
 MyComponent.emits = ['click']
 ```
 
-If the `props` option is not specified, then the `props` object passed to the function will contain all attributes, the same as `attrs`. The prop names will not be normalized to camelCase unless the `props` option is specified.
+જો `props` ઓપ્શન નિર્દિષ્ટ કરેલ નથી, તો ફંક્શનમાં પસાર થયેલ `props` ઓબ્જેક્ટમાં `attrs` ની જેમ જ તમામ એટ્રિબ્યુટ્સ હશે. જ્યાં સુધી `props` વિકલ્પ નિર્દિષ્ટ ન હોય ત્યાં સુધી પ્રોપ નામો camelCase માં નોર્મલાઇઝ થશે નહીં.
 
-For functional components with explicit `props`, [attribute fallthrough](/guide/components/attrs) works much the same as with normal components. However, for functional components that don't explicitly specify their `props`, only the `class`, `style`, and `onXxx` event listeners will be inherited from the `attrs` by default. In either case, `inheritAttrs` can be set to `false` to disable attribute inheritance:
+સ્પષ્ટ `props` વાળા ફંક્શનલ ઘટકો માટે, [એટ્રિબ્યુટ ફોલથ્રુ (attribute fallthrough)](/guide/components/attrs) સામાન્ય ઘટકોની જેમ જ કામ કરે છે. જો કે, ફંક્શનલ ઘટકો કે જે તેમના `props` ને સ્પષ્ટપણે નિર્દિષ્ટ કરતા નથી, ડિફોલ્ટ રૂપે માત્ર `class`, `style`, અને `onXxx` ઇવેન્ટ લિસનર્સ `attrs` માંથી વારસામાં મળશે. બંને કિસ્સામાં, એટ્રિબ્યુટ વારસાને અક્ષમ કરવા માટે `inheritAttrs` ને `false` પર સેટ કરી શકાય છે:
 
 ```js
 MyComponent.inheritAttrs = false
 ```
 
-Functional components can be registered and consumed just like normal components. If you pass a function as the first argument to `h()`, it will be treated as a functional component.
+ફંક્શનલ ઘટકો સામાન્ય ઘટકોની જેમ જ રજીસ્ટર અને ઉપયોગ કરી શકાય છે. જો તમે `h()` ના પ્રથમ આર્ગ્યુમેન્ટ તરીકે ફંક્શન પાસ કરો છો, તો તેને ફંક્શનલ ઘટક તરીકે ગણવામાં આવશે.
 
-### Typing Functional Components<sup class="vt-badge ts" /> {#typing-functional-components}
+### ફંક્શનલ ઘટકોને ટાઇપ કરવા (Typing Functional Components) {#typing-functional-components}
 
-Functional Components can be typed based on whether they are named or anonymous. [Vue - Official extension](https://github.com/vuejs/language-tools) also supports type checking properly typed functional components when consuming them in SFC templates.
+ફંક્શનલ ઘટકો તેઓ નામવાળા છે કે અનામી છે તેના આધારે ટાઇપ કરી શકાય છે. [Vue - Official extension](https://github.com/vuejs/language-tools) જ્યારે SFC ટેમ્પલેટ્સમાં તેનો ઉપયોગ કરવામાં આવે ત્યારે યોગ્ય રીતે ટાઇપ કરેલા ફંક્શનલ ઘટકોના ટાઇપ ચેકિંગને પણ સપોર્ટ કરે છે.
 
-**Named Functional Component**
+**નામવાળું ફંક્શનલ ઘટક (Named Functional Component)**
 
 ```tsx
 import type { SetupContext } from 'vue'
@@ -869,7 +869,7 @@ FComponent.emits = {
 }
 ```
 
-**Anonymous Functional Component**
+**અનામી ફંક્શનલ ઘટક (Anonymous Functional Component)**
 
 ```tsx
 import type { FunctionalComponent } from 'vue'

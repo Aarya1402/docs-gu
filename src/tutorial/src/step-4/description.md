@@ -1,12 +1,12 @@
-# Event Listeners {#event-listeners}
+# ઇવેન્ટ લિસનર્સ (Event Listeners) {#event-listeners}
 
-We can listen to DOM events using the `v-on` directive:
+અમે `v-on` ડાયરેક્ટિવ (directive) નો ઉપયોગ કરીને DOM ઇવેન્ટ્સ સાંભળી શકીએ છીએ:
 
 ```vue-html
 <button v-on:click="increment">{{ count }}</button>
 ```
 
-Due to its frequent use, `v-on` also has a shorthand syntax:
+તેના વારંવાર ઉપયોગને કારણે, `v-on` પાસે શોર્ટકટ સિન્ટેક્સ પણ છે:
 
 ```vue-html
 <button @click="increment">{{ count }}</button>
@@ -14,7 +14,7 @@ Due to its frequent use, `v-on` also has a shorthand syntax:
 
 <div class="options-api">
 
-Here, `increment` references a function declared using the `methods` option:
+અહીં, `increment` એ `methods` ઓપ્શનનો ઉપયોગ કરીને જાહેર કરવામાં આવેલા ફંક્શનનો સંદર્ભ આપે છે:
 
 <div class="sfc">
 
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     increment() {
-      // update component state
+      // ઘટકની સ્ટેટ અપડેટ કરો
       this.count++
     }
   }
@@ -46,7 +46,7 @@ createApp({
   },
   methods: {
     increment() {
-      // update component state
+      // ઘટકની સ્ટેટ અપડેટ કરો
       this.count++
     }
   }
@@ -55,7 +55,7 @@ createApp({
 
 </div>
 
-Inside a method, we can access the component instance using `this`. The component instance exposes the data properties declared by `data`. We can update the component state by mutating these properties.
+મેથડની અંદર, આપણે `this` નો ઉપયોગ કરીને ઘટક ઇન્સ્ટન્સને એક્સેસ કરી શકીએ છીએ. ઘટક ઇન્સ્ટન્સ `data` દ્વારા જાહેર કરાયેલ ડેટા પ્રોપર્ટીઝને એક્સપોઝ કરે છે. અમે આ પ્રોપર્ટીઝને બદલીને (mutating) ઘટકની સ્ટેટ અપડેટ કરી શકીએ છીએ.
 
 </div>
 
@@ -63,7 +63,7 @@ Inside a method, we can access the component instance using `this`. The componen
 
 <div class="sfc">
 
-Here, `increment` is referencing a function declared in `<script setup>`:
+અહીં, `increment` એ `<script setup>` માં જાહેર કરાયેલ ફંક્શનનો સંદર્ભ આપે છે:
 
 ```vue{6-9}
 <script setup>
@@ -72,7 +72,7 @@ import { ref } from 'vue'
 const count = ref(0)
 
 function increment() {
-  // update component state
+  // ઘટકની સ્ટેટ અપડેટ કરો
   count.value++
 }
 </script>
@@ -82,14 +82,14 @@ function increment() {
 
 <div class="html">
 
-Here, `increment` is referencing a method in the object returned from `setup()`:
+અહીં, `increment` એ `setup()` માંથી પાછા ફરેલા ઓબ્જેક્ટમાંની એક મેથડનો સંદર્ભ આપે છે:
 
 ```js{$}
 setup() {
   const count = ref(0)
 
   function increment(e) {
-    // update component state
+    // ઘટકની સ્ટેટ અપડેટ કરો
     count.value++
   }
 
@@ -102,10 +102,10 @@ setup() {
 
 </div>
 
-Inside the function, we can update the component state by mutating refs.
+ફંક્શનની અંદર, આપણે રેફ્સ (refs) ને બદલીને ઘટકની સ્ટેટ અપડેટ કરી શકીએ છીએ.
 
 </div>
 
-Event handlers can also use inline expressions, and can simplify common tasks with modifiers. These details are covered in <a target="_blank" href="/guide/essentials/event-handling.html">Guide - Event Handling</a>.
+ઇવેન્ટ હેન્ડલર્સ ઇનલાઇન એક્સપ્રેશન્સ (inline expressions) નો પણ ઉપયોગ કરી શકે છે, અને મોડિફાયર્સ (modifiers) સાથે સામાન્ય કાર્યોને સરળ બનાવી શકે છે. આ વિગતો <a target="_blank" href="/guide/essentials/event-handling.html">માર્ગદર્શિકા - ઇવેન્ટ હેન્ડલિંગ</a> માં આવરી લેવામાં આવી છે.
 
-Now, try to implement the `increment` <span class="options-api">method</span><span class="composition-api">function</span> yourself and bind it to the button using `v-on`.
+હવે, તમારી જાતે `increment` <span class="options-api">મેથડ</span><span class="composition-api">ફંક્શન</span> અમલમાં મૂકવાનો પ્રયાસ કરો અને `v-on` નો ઉપયોગ કરીને તેને બટન સાથે બાઇન્ડ કરો.

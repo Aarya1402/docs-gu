@@ -1,8 +1,8 @@
-# Components {#components}
+# ઘટકો (Components) {#components}
 
-So far, we've only been working with a single component. Real Vue applications are typically created with nested components.
+અત્યાર સુધી, અમે ફક્ત એક જ ઘટક સાથે કામ કરી રહ્યા છીએ. વાસ્તવિક Vue એપ્લિકેશન્સ સામાન્ય રીતે નેસ્ટેડ (nested) ઘટકો સાથે બનાવવામાં આવે છે.
 
-A parent component can render another component in its template as a child component. To use a child component, we need to first import it:
+પેરન્ટ (parent) ઘટક તેના ટેમ્પલેટમાં બીજા ઘટકને ચાઇલ્ડ (child) ઘટક તરીકે રેન્ડર કરી શકે છે. ચાઇલ્ડ ઘટકનો ઉપયોગ કરવા માટે, આપણે સૌ પ્રથમ તેને ઇમ્પોર્ટ કરવાની જરૂર છે:
 
 <div class="composition-api">
 <div class="sfc">
@@ -27,14 +27,14 @@ export default {
 }
 ```
 
-We also need to register the component using the `components` option. Here we are using the object property shorthand to register the `ChildComp` component under the `ChildComp` key.
+આપણે `components` ઓપ્શનનો ઉપયોગ કરીને ઘટકને રજીસ્ટર કરવાની પણ જરૂર છે. અહીં અમે `ChildComp` કી હેઠળ `ChildComp` ઘટકને રજીસ્ટર કરવા માટે ઓબ્જેક્ટ પ્રોપર્ટી શોર્ટકટનો ઉપયોગ કરી રહ્યા છીએ.
 
 </div>
 </div>
 
 <div class="sfc">
 
-Then, we can use the component in the template as:
+પછી, આપણે ટેમ્પલેટમાં ઘટકનો ઉપયોગ આ રીતે કરી શકીએ છીએ:
 
 ```vue-html
 <ChildComp />
@@ -54,9 +54,9 @@ createApp({
 })
 ```
 
-We also need to register the component using the `components` option. Here we are using the object property shorthand to register the `ChildComp` component under the `ChildComp` key.
+આપણે `components` ઓપ્શનનો ઉપયોગ કરીને ઘટકને રજીસ્ટર કરવાની પણ જરૂર છે. અહીં અમે `ChildComp` કી હેઠળ `ChildComp` ઘટકને રજીસ્ટર કરવા માટે ઓબ્જેક્ટ પ્રોપર્ટી શોર્ટકટનો ઉપયોગ કરી રહ્યા છીએ.
 
-Because we are writing the template in the DOM, it will be subject to browser's parsing rules, which is case-insensitive for tag names. Therefore, we need to use the kebab-cased name to reference the child component:
+કારણ કે આપણે DOM માં ટેમ્પલેટ લખી રહ્યા છીએ, તે બ્રાઉઝરના પાર્સિંગ (parsing) નિયમોને આધીન રહેશે, જે ટેગ નામો માટે કેસ-ઇન્સેન્સિટિવ (અક્ષરોના કદ પ્રત્યે તટસ્થ) છે. તેથી, ચાઇલ્ડ ઘટકને સંદર્ભિત કરવા માટે આપણે કેબાબ-કેસ્ડ (kebab-cased) નામનો ઉપયોગ કરવાની જરૂર છે:
 
 ```vue-html
 <child-comp></child-comp>
@@ -64,5 +64,4 @@ Because we are writing the template in the DOM, it will be subject to browser's 
 
 </div>
 
-
-Now try it yourself - import the child component and render it in the template.
+હવે તે જાતે અજમાવો - ચાઇલ્ડ ઘટકને ઇમ્પોર્ટ કરો અને તેને ટેમ્પલેટમાં રેન્ડર કરો.

@@ -5,13 +5,13 @@ import Colors from './demos/Colors.vue'
 import AnimateWatcher from './demos/AnimateWatcher.vue'
 </script>
 
-# Animation Techniques {#animation-techniques}
+# એનિમેશન ટેકનિક્સ (Animation Techniques) {#animation-techniques}
 
-Vue provides the [`<Transition>`](/guide/built-ins/transition) and [`<TransitionGroup>`](/guide/built-ins/transition-group) components for handling enter / leave and list transitions. However, there are many other ways of using animations on the web, even in a Vue application. Here we will discuss a few additional techniques.
+Vue એન્ટર / લીવ (enter / leave) અને લિસ્ટ ટ્રાન્ઝિશનને હેન્ડલ કરવા માટે [`<Transition>`](/guide/built-ins/transition) અને [`<TransitionGroup>`](/guide/built-ins/transition-group) ઘટકો પ્રદાન કરે છે. જો કે, વેબ પર એનિમેશનનો ઉપયોગ કરવાની ઘણી અન્ય રીતો છે, ભલે તે Vue એપ્લિકેશનમાં હોય. અહીં આપણે કેટલીક વધારાની તકનીકોની ચર્ચા કરીશું.
 
-## Class-based Animations {#class-based-animations}
+## ક્લાસ-આધારિત એનિમેશન (Class-based Animations) {#class-based-animations}
 
-For elements that are not entering / leaving the DOM, we can trigger animations by dynamically adding a CSS class:
+DOM માં એન્ટર / લીવ ન થતા હોય તેવા એલિમેન્ટ્સ માટે, આપણે ગતિશીલ રીતે (dynamically) CSS ક્લાસ ઉમેરીને એનિમેશન ટ્રિગર કરી શકીએ છીએ:
 
 <div class="composition-api">
 
@@ -51,8 +51,8 @@ export default {
 
 ```vue-html
 <div :class="{ shake: disabled }">
-  <button @click="warnDisabled">Click me</button>
-  <span v-if="disabled">This feature is disabled!</span>
+  <button @click="warnDisabled">મને ક્લિક કરો</button>
+  <span v-if="disabled">આ સુવિધા અક્ષમ (disabled) છે!</span>
 </div>
 ```
 
@@ -88,9 +88,9 @@ export default {
 
 <DisabledButton />
 
-## State-driven Animations {#state-driven-animations}
+## સ્ટેટ-ડ્રાઇવન એનિમેશન (State-driven Animations) {#state-driven-animations}
 
-Some transition effects can be applied by interpolating values, for instance by binding a style to an element while an interaction occurs. Take this example for instance:
+કેટલીક ટ્રાન્ઝિશન ઇફેક્ટ્સ વેલ્યુઝના ઇન્ટરપોલેટીંગ (interpolating) દ્વારા લાગુ કરી શકાય છે, ઉદાહરણ તરીકે જ્યારે કોઈ ઇન્ટરેક્શન થાય ત્યારે એલિમેન્ટ સાથે સ્ટાઇલ બાઇન્ડ કરીને. આ ઉદાહરણ લો:
 
 <div class="composition-api">
 
@@ -128,7 +128,7 @@ export default {
   :style="{ backgroundColor: `hsl(${x}, 80%, 50%)` }"
   class="movearea"
 >
-  <p>Move your mouse across this div...</p>
+  <p>તમારા માઉસને આ ડિવ (div) પર ફેરવો...</p>
   <p>x: {{ x }}</p>
 </div>
 ```
@@ -141,13 +141,13 @@ export default {
 
 <Colors />
 
-In addition to color, you can also use style bindings to animate transform, width, or height. You can even animate SVG paths using spring physics - after all, they are all attribute data bindings:
+કલર ઉપરાંત, તમે ટ્રાન્સફોર્મ (transform), વિડ્થ (width) અથવા હાઇટ (height) ને એનિમેટ કરવા માટે સ્ટાઇલ બાઇન્ડિંગ્સનો પણ ઉપયોગ કરી શકો છો. તમે સ્પ્રિંગ ફિઝિક્સ (spring physics) નો ઉપયોગ કરીને SVG પાથને પણ એનિમેટ કરી શકો છો - છેવટે, તે બધા એટ્રિબ્યુટ ડેટા બાઇન્ડિંગ્સ છે:
 
 <ElasticHeader />
 
-## Animating with Watchers {#animating-with-watchers}
+## વોચર્સ (Watchers) સાથે એનિમેટીંગ {#animating-with-watchers}
 
-With some creativity, we can use watchers to animate anything based on some numerical state. For example, we can animate the number itself:
+કેટલીક સર્જનાત્મકતા સાથે, આપણે કોઈપણ સંખ્યાત્મક સ્ટેટના આધારે કંઈપણ એનિમેટ કરવા માટે વોચર્સનો ઉપયોગ કરી શકીએ છીએ. ઉદાહરણ તરીકે, આપણે નંબરને જ એનિમેટ કરી શકીએ છીએ:
 
 <div class="composition-api">
 
@@ -160,15 +160,15 @@ const tweened = reactive({
   number: 0
 })
 
-// Note: For inputs greater than Number.MAX_SAFE_INTEGER (9007199254740991),
-// the result may be inaccurate due to limitations in JavaScript number precision.
+// નોંધ: Number.MAX_SAFE_INTEGER (9007199254740991) કરતા મોટા ઇનપુટ્સ માટે,
+// JavaScript નંબર પ્રિસિઝનમાં મર્યાદાઓને કારણે પરિણામ અચોક્કસ હોઈ શકે છે.
 watch(number, (n) => {
   gsap.to(tweened, { duration: 0.5, number: Number(n) || 0 })
 })
 ```
 
 ```vue-html
-Type a number: <input v-model.number="number" />
+એક નંબર લખો: <input v-model.number="number" />
 <p>{{ tweened.number.toFixed(0) }}</p>
 ```
 
@@ -185,8 +185,8 @@ export default {
       tweened: 0
     }
   },
-  // Note: For inputs greater than Number.MAX_SAFE_INTEGER (9007199254740991),
-  // the result may be inaccurate due to limitations in JavaScript number precision.
+  // નોંધ: Number.MAX_SAFE_INTEGER (9007199254740991) કરતા મોટા ઇનપુટ્સ માટે,
+  // JavaScript નંબર પ્રિસિઝનમાં મર્યાદાઓને કારણે પરિણામ અચોક્કસ હોઈ શકે છે.
   watch: {
     number(n) {
       gsap.to(this, { duration: 0.5, tweened: Number(n) || 0 })
@@ -196,7 +196,7 @@ export default {
 ```
 
 ```vue-html
-Type a number: <input v-model.number="number" />
+એક નંબર લખો: <input v-model.number="number" />
 <p>{{ tweened.toFixed(0) }}</p>
 ```
 
@@ -206,11 +206,11 @@ Type a number: <input v-model.number="number" />
 
 <div class="composition-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNpNUstygzAM/BWNLyEzBDKd6YWSdHrpsacefSGgJG7xY7BImhL+vTKv9ILllXYlr+jEm3PJpUWRidyXjXIEHql1e2mUdrYh6KDBY8yfoiR1wRiuBZVn6OHYWA0r5q6W2pMv3ISHkBPSlNZ4AtPqAzawC2LRdj3DdEU0WA34qB910sBUnsFWmp6LpRmaRo9UHMLIrGG3h4EBQ/OEbDRpxjx51TYFKWtYKHmOF9WP4Qzs+x22EDoA9NLwmaejC/x+vhBqVxeEfAPIK3WBsi6830lRobZSDDjA580hFIt8roxrCS4bbSuskxFmzhhIAenEy92id1CnzZzfd91szETmZ72rH6zYOej7PA3rYXrKE3GUp//m5KunWx3C5CE6enS0hjZXVKczZXCwdfWyoF79YgZPqBliJ9iGSUTEYlzuRrO9X94a/lUGNTklvBTZvAMpwhYCIMWZyPksTVvjvk9JaXUacq9sSlujFJPnvej/AElH3FQ=)
+[પ્લેગ્રાઉન્ડ માં અજમાવો](https://play.vuejs.org/#eNpNUstygzAM/BWNLyEzBDKd6YWSdHrpsacefSGgJG7xY7BImhL+vTKv9ILllXYlr+jEm3PJpUWRidyXjXIEHql1e2mUdrYh6KDBY8yfoiR1wRiuBZVn6OHYWA0r5q6W2pMv3ISHkBPSlNZ4AtPqAzawC2LRdj3DdEU0WA34qB910sBUnsFWmp6LpRmaRo9UHMLIrGG3h4EBQ/OEbDRpxjx51TYFKWtYKHmOF9WP4Qzs+x22EDoA9NLwmaejC/x+vhBqVxeEfAPIK3WBsi6830lRobZSDDjA580hFIt8roxrCS4bbSuskxFmzhhIAenEy92id1CnzZzfd91szETmZ72rH6zYOej7PA3rYXrKE3GUp//m5KunWx3C5CE6enS0hjZXVKczZXCwdfWyoF79YgZPqBliJ9iGSUTEYlzuRrO9X94a/lUGNTklvBTZvAMpwhYCIMWZyPksTVvjvk9JaXUacq9sSlujFJPnvej/AElH3FQ=)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://play.vuejs.org/#eNpNUctugzAQ/JWVLyESj6hSL5Sm6qXHnnr0xYENuAXbwus8Svj3GlxIJEvendHMvgb2bkx6cshyVtiyl4b2XMnO6J6gtsLAsdcdbKZwwxVXeJmpCo/CtQQDVwCVIBFtQwzQI7leLRmAct0B+xx28YLQGVFh5aGAjNM3zvRZUNnkizhII7V6w9xTSjqiRtoYBqhcL0hq5c3S5/hu/blKbzfYwbh9LMWVf0W2zusTws60gnDK6OtqEMTaeSGVcQSnpNMVtmmAXzkLAWeQzarCQNkKaz1zkHWysPthWNryjX/IC1bRbgvjWGTG64rssbQqLF3bKUzvHmH6o1aUnFHWDeVw0G31sqJW/mIOT9h5KEw2m7CYhUsmnV/at9XKX3n24v+E5WxdNmfTbieAs4bI2DzLnDI/dVrqLpu4Nz+/a5GzZYls/AM3dcFx)
+[પ્લેગ્રાઉન્ડ માં અજમાવો](https://play.vuejs.org/#eNpNUctugzAQ/JWVLyESj6hSL5Sm6qXHnnr0xYENuAXbwus8Svj3GlxIJEvendHMvgb2bkx6cshyVtiyl4b2XMnO6J6gtsLAsdcdbKZwwxVXeJmpCo/CtQQDVwCVIBFtQwzQI7leLRmAct0B+xx28YLQGVFh5aGAjNM3zvRZUNnkizhII7V6w9xTSjqiRtoYBqhcL0hq5c3S5/hu/blKbzfYwbh9LMWVf0W2zusTws60gnDK6OtqEMTaeSGVcQSnpNMVtmmAXzkLAWeQzarCQNkKaz1zkHWysPthWNryjX/IC1bRbgvjWGTG64rssbQqLF3bKUzvHmH6o1aUnFHWDeVw0G31sqJW/mIOT9h5KEw2m7CYhUsmnV/at9XKX3n24v+E5WxdNmfTbieAs4bI2DzLnDI/dVrqLpu4Nz+/a5GzZYls/AM3dcFx)
 
 </div>
