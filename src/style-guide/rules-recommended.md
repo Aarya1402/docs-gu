@@ -1,59 +1,59 @@
-# Priority C Rules: Recommended {#priority-c-rules-recommended}
+# પ્રાથમિકતા C નિયમો: ભલામણ કરેલ (Priority C Rules: Recommended) {#priority-c-rules-recommended}
 
-::: warning Note
-This Vue.js Style Guide is outdated and needs to be reviewed. If you have any questions or suggestions, please [open an issue](https://github.com/vuejs/docs/issues/new).
+::: warning નોંધ
+આ Vue.js સ્ટાઇલ ગાઇડ જૂની છે અને તેની સમીક્ષા કરવાની જરૂર છે. જો તમારી પાસે કોઈ પ્રશ્નો અથવા સૂચનો હોય, તો કૃપા કરીને [ઇશ્યુ ઓપન કરો (open an issue)](https://github.com/vuejs/docs/issues/new).
 :::
 
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
+જ્યાં એકથી વધુ, સરખી રીતે સારા વિકલ્પો અસ્તિત્વમાં હોય, ત્યાં સુસંગતતા સુનિશ્ચિત કરવા માટે મનસ્વી પસંદગી કરી શકાય છે. આ નિયમોમાં, અમે દરેક સ્વીકાર્ય વિકલ્પનું વર્ણન કરીએ છીએ અને ડિફોલ્ટ પસંદગી સૂચવીએ છીએ. તેનો અર્થ એ કે તમે તમારા પોતાના કોડબેઝમાં અલગ પસંદગી કરવા માટે મુક્ત લાગે શકો છો, જ્યાં સુધી તમે સુસંગત હોવ અને તમારી પાસે યોગ્ય કારણ હોય. કૃપા કરીને યોગ્ય કારણ રાખો! સમુદાય ધોરણ (community standard) ને અનુરૂપ થઈને, તમે આ કરી શકશો:
 
-1. Train your brain to more easily parse most of the community code you encounter
-2. Be able to copy and paste most community code examples without modification
-3. Often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
+૧. તમે જે સમુદાય કોડનો સામનો કરો છો તેને વધુ સરળતાથી પાર્સ (parse) કરવા માટે તમારા મગજને તાલીમ આપો
+૨. મોટાભાગના સમુદાય કોડ ઉદાહરણોને ફેરફાર કર્યા વિના કોપી અને પેસ્ટ કરી શકશો
+૩. નવા સભ્યો પહેલેથી જ તમારી મનપસંદ કોડિંગ શૈલીથી ટેવાયેલા હશે, ઓછામાં ઓછું Vue ના સંદર્ભમાં તો ચોક્કસપણે
 
-## Component/instance options order {#component-instance-options-order}
+## કમ્પોનન્ટ/ઇન્સ્ટન્સ ઓપ્શન્સ ક્રમ (Component/instance options order) {#component-instance-options-order}
 
-**Component/instance options should be ordered consistently.**
+**ઘટક/ઇન્સ્ટન્સ ઓપ્શન્સ સુસંગત રીતે ક્રમબદ્ધ હોવા જોઈએ.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
+ઘટક ઓપ્શન્સ માટે અમે ભલામણ કરેલો ડિફોલ્ટ ક્રમ આ છે. તેઓ શ્રેણીઓમાં વિભાજિત છે, જેથી તમે જાણી શકો કે પ્લગઇન્સમાંથી નવી પ્રોપર્ટીઝ ક્યાં ઉમેરવી.
 
-1. **Global Awareness** (requires knowledge beyond the component)
+૧. **ગ્લોબલ અવેરનેસ (Global Awareness)** (ઘટકની બહારના જ્ઞાનની જરૂર છે)
 
    - `name`
 
-2. **Template Compiler Options** (changes the way templates are compiled)
+૨. **ટેમ્પ્લેટ કમ્પાઇલર ઓપ્શન્સ (Template Compiler Options)** (ટેમ્પ્લેટ્સ કમ્પાઇલ થવાની રીત બદલે છે)
 
    - `compilerOptions`
 
-3. **Template Dependencies** (assets used in the template)
+૩. **ટેમ્પ્લેટ ડિપેન્ડન્સીઝ (Template Dependencies)** (ટેમ્પ્લેટમાં ઉપયોગમાં આવતી એસેટ્સ)
 
    - `components`
    - `directives`
 
-4. **Composition** (merges properties into the options)
+૪. **કમ્પોઝિશન (Composition)** (ઓપ્શન્સમાં પ્રોપર્ટીઝ ભેળવે છે)
 
    - `extends`
    - `mixins`
    - `provide`/`inject`
 
-5. **Interface** (the interface to the component)
+૫. **ઇન્ટરફેસ (Interface)** (ઘટકનો ઇન્ટરફેસ)
 
    - `inheritAttrs`
    - `props`
    - `emits`
 
-6. **Composition API** (the entry point for using the Composition API)
+૬. **Composition API** (Composition API નો ઉપયોગ કરવાનું પ્રવેશ બિંદુ)
 
    - `setup`
 
-7. **Local State** (local reactive properties)
+૭. **લોકલ સ્ટેટ (Local State)** (લોકલ રિએક્ટિવ પ્રોપર્ટીઝ)
 
    - `data`
    - `computed`
 
-8. **Events** (callbacks triggered by reactive events)
+૮. **ઇવેન્ટ્સ (Events)** (રિએક્ટિવ ઇવેન્ટ્સ દ્વારા ટ્રિગર થતા કોલબેક્સ)
 
    - `watch`
-   - Lifecycle Events (in the order they are called)
+   - લાઇફસાઇકલ ઇવેન્ટ્સ (જે ક્રમમાં તેમને બોલાવવામાં આવે છે)
      - `beforeCreate`
      - `created`
      - `beforeMount`
@@ -68,28 +68,28 @@ This is the default order we recommend for component options. They're split into
      - `renderTracked`
      - `renderTriggered`
 
-9. **Non-Reactive Properties** (instance properties independent of the reactivity system)
+૯. **નોન-રિએક્ટિવ પ્રોપર્ટીઝ (Non-Reactive Properties)** (રિએક્ટિવિટી સિસ્ટમથી સ્વતંત્ર ઇન્સ્ટન્સ પ્રોપર્ટીઝ)
 
    - `methods`
 
-10. **Rendering** (the declarative description of the component output)
+૧૦. **રેન્ડરિંગ (Rendering)** (ઘટક આઉટપુટનું ડિક્લેરેટિવ વર્ણન)
     - `template`/`render`
 
-## Element attribute order {#element-attribute-order}
+## એલિમેન્ટ એટ્રિબ્યુટ ક્રમ (Element attribute order) {#element-attribute-order}
 
-**The attributes of elements (including components) should be ordered consistently.**
+**એલિમેન્ટ્સ (ઘટકો સહિત) ના એટ્રિબ્યુટ્સ સુસંગત રીતે ક્રમબદ્ધ હોવા જોઈએ.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
+ઘટક ઓપ્શન્સ માટે અમે ભલામણ કરેલો ડિફોલ્ટ ક્રમ આ છે. તેઓ શ્રેણીઓમાં વિભાજિત છે, જેથી તમે જાણી શકો કે કસ્ટમ એટ્રિબ્યુટ્સ અને ડિરેક્ટિવ્સ ક્યાં ઉમેરવા.
 
-1. **Definition** (provides the component options)
+૧. **ડેફિનિશન (Definition)** (ઘટક ઓપ્શન્સ પ્રદાન કરે છે)
 
    - `is`
 
-2. **List Rendering** (creates multiple variations of the same element)
+૨. **લિસ્ટ રેન્ડરિંગ (List Rendering)** (એ જ એલિમેન્ટની બહુવિધ વિવિધતાઓ બનાવે છે)
 
    - `v-for`
 
-3. **Conditionals** (whether the element is rendered/shown)
+૩. **કન્ડિશનલ્સ (Conditionals)** (એલિમેન્ટ રેન્ડર/બતાવવામાં આવે છે કે નહીં)
 
    - `v-if`
    - `v-else-if`
@@ -97,44 +97,44 @@ This is the default order we recommend for component options. They're split into
    - `v-show`
    - `v-cloak`
 
-4. **Render Modifiers** (changes the way the element renders)
+૪. **રેન્ડર મોડિફાયર્સ (Render Modifiers)** (એલિમેન્ટ રેન્ડર થવાની રીત બદલે છે)
 
    - `v-pre`
    - `v-once`
 
-5. **Global Awareness** (requires knowledge beyond the component)
+૫. **ગ્લોબલ અવેરનેસ (Global Awareness)** (ઘટકની બહારના જ્ઞાનની જરૂર છે)
 
    - `id`
 
-6. **Unique Attributes** (attributes that require unique values)
+૬. **અનન્ય એટ્રિબ્યુટ્સ (Unique Attributes)** (અનન્ય મૂલ્યો જરૂરી એટ્રિબ્યુટ્સ)
 
    - `ref`
    - `key`
 
-7. **Two-Way Binding** (combining binding and events)
+૭. **ટુ-વે બાઇન્ડિંગ (Two-Way Binding)** (બાઇન્ડિંગ અને ઇવેન્ટ્સનું સંયોજન)
 
    - `v-model`
 
-8. **Other Attributes** (all unspecified bound & unbound attributes)
+૮. **અન્ય એટ્રિબ્યુટ્સ (Other Attributes)** (તમામ અનિર્દિષ્ટ બાઉન્ડ અને અનબાઉન્ડ એટ્રિબ્યુટ્સ)
 
-9. **Events** (component event listeners)
+૯. **ઇવેન્ટ્સ (Events)** (ઘટક ઇવેન્ટ લિસનર્સ)
 
    - `v-on`
 
-10. **Content** (overrides the content of the element)
+૧૦. **કન્ટેન્ટ (Content)** (એલિમેન્ટના કન્ટેન્ટને ઓવરરાઇડ કરે છે)
     - `v-html`
     - `v-text`
 
-## Empty lines in component/instance options {#empty-lines-in-component-instance-options}
+## કમ્પોનન્ટ/ઇન્સ્ટન્સ ઓપ્શન્સમાં ખાલી લાઇન્સ (Empty lines in component/instance options) {#empty-lines-in-component-instance-options}
 
-**You may want to add one empty line between multi-line properties, particularly if the options can no longer fit on your screen without scrolling.**
+**તમે મલ્ટી-લાઇન પ્રોપર્ટીઝ વચ્ચે એક ખાલી લાઇન ઉમેરવા માંગો, ખાસ કરીને જો ઓપ્શન્સ સ્ક્રોલિંગ વિના તમારી સ્ક્રીન પર ફિટ ન થતા હોય.**
 
-When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
+જ્યારે ઘટકો ભીડવાળા (cramped) અથવા વાંચવામાં મુશ્કેલ લાગવા માંડે, ત્યારે મલ્ટી-લાઇન પ્રોપર્ટીઝ વચ્ચે સ્પેસ ઉમેરવાથી તેમને ફરીથી ઝડપથી જોવાનું (skim) સરળ બની શકે. કેટલાક એડિટર્સમાં, જેમ કે Vim, આ પ્રકારના ફોર્મેટિંગ ઓપ્શન્સ તેમને કીબોર્ડ સાથે નેવિગેટ કરવાનું પણ સરળ બનાવી શકે.
 
 <div class="options-api">
 
 <div class="style-example style-example-bad">
-<h3>Bad</h3>
+<h3>ખરાબ (Bad)</h3>
 
 ```js
 props: {
@@ -166,11 +166,11 @@ computed: {
 </div>
 
 <div class="style-example style-example-good">
-<h3>Good</h3>
+<h3>સારું (Good)</h3>
 
 ```js
-// No spaces are also fine, as long as the component
-// is still easy to read and navigate.
+// સ્પેસ ન હોય તે પણ ઠીક છે, જ્યાં સુધી ઘટક
+// વાંચવા અને નેવિગેટ કરવામાં સરળ હોય.
 props: {
   value: {
     type: String,
@@ -200,7 +200,7 @@ computed: {
 <div class="composition-api">
 
 <div class="style-example style-example-bad">
-<h3>Bad</h3>
+<h3>ખરાબ (Bad)</h3>
 
 ```js
 defineProps({
@@ -226,7 +226,7 @@ const inputClasses = computed(() => {
 </div>
 
 <div class="style-example style-example-good">
-<h3>Good</h3>
+<h3>સારું (Good)</h3>
 
 ```js
 defineProps({
@@ -257,12 +257,12 @@ const inputClasses = computed(() => {
 
 </div>
 
-## Single-file component top-level element order {#single-file-component-top-level-element-order}
+## સિંગલ-ફાઇલ કમ્પોનન્ટ ટોપ-લેવલ એલિમેન્ટ ક્રમ {#single-file-component-top-level-element-order}
 
-**[Single-File Components](/guide/scaling-up/sfc) should always order `<script>`, `<template>`, and `<style>` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
+**[સિંગલ-ફાઇલ કમ્પોનન્ટ્સ (Single-File Components)](/guide/scaling-up/sfc) એ હંમેશા `<script>`, `<template>`, અને `<style>` ટેગ્સને સુસંગત ક્રમમાં રાખવા જોઈએ, `<style>` છેલ્લે, કારણ કે અન્ય બેમાંથી ઓછામાં ઓછું એક હંમેશા જરૂરી છે.**
 
 <div class="style-example style-example-bad">
-<h3>Bad</h3>
+<h3>ખરાબ (Bad)</h3>
 
 ```vue-html [ComponentX.vue]
 <style>/* ... */</style>
@@ -285,7 +285,7 @@ const inputClasses = computed(() => {
 </div>
 
 <div class="style-example style-example-good">
-<h3>Good</h3>
+<h3>સારું (Good)</h3>
 
 ```vue-html [ComponentA.vue]
 <script>/* ... */</script>
@@ -299,7 +299,7 @@ const inputClasses = computed(() => {
 <style>/* ... */</style>
 ```
 
-or
+અથવા (or)
 
 ```vue-html  [ComponentA.vue]
 <template>...</template>

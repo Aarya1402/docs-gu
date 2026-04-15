@@ -1,12 +1,12 @@
-# Global API: General {#global-api-general}
+# ગ્લોબલ API: સામાન્ય (Global API: General) {#global-api-general}
 
 ## version {#version}
 
-Exposes the current version of Vue.
+Vue ના વર્તમાન વર્ઝનને એક્સપોઝ કરે છે.
 
-- **Type:** `string`
+- **ટાઇપ (Type):** `string`
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { version } from 'vue'
@@ -16,21 +16,21 @@ Exposes the current version of Vue.
 
 ## nextTick() {#nexttick}
 
-A utility for waiting for the next DOM update flush.
+આગામી DOM અપડેટ ફ્લશ (flush) ની રાહ જોવા માટેની ઉપયોગિતા (utility).
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function nextTick(callback?: () => void): Promise<void>
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  When you mutate reactive state in Vue, the resulting DOM updates are not applied synchronously. Instead, Vue buffers them until the "next tick" to ensure that each component updates only once no matter how many state changes you have made.
+  જ્યારે તમે Vue માં રિએક્ટિવ સ્ટેટ બદલો છો, ત્યારે પરિણામી DOM અપડેટ્સ સમકાલિક (synchronously) રીતે લાગુ થતા નથી. તેના બદલે, Vue તેમને "next tick" સુધી બફર કરે છે જેથી ખાતરી કરી શકાય કે તમે ગમે તેટલા સ્ટેટ ફેરફારો કર્યા હોય, દરેક ઘટક માત્ર એક જ વાર અપડેટ થાય.
 
-  `nextTick()` can be used immediately after a state change to wait for the DOM updates to complete. You can either pass a callback as an argument, or await the returned Promise.
+  `nextTick()` ને DOM અપડેટ્સ પૂર્ણ થવાની રાહ જોવા માટે સ્ટેટ ફેરફાર પછી તરત જ ઉપયોગ કરી શકાય. તમે ક્યાં તો આર્ગ્યુમેન્ટ તરીકે કોલબેક પાસ કરી શકો છો, અથવા રિટર્ન થયેલ Promise ને await કરી શકો છો.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   <div class="composition-api">
 
@@ -43,11 +43,11 @@ A utility for waiting for the next DOM update flush.
   async function increment() {
     count.value++
 
-    // DOM not yet updated
+    // DOM હજુ અપડેટ થયું નથી
     console.log(document.getElementById('counter').textContent) // 0
 
     await nextTick()
-    // DOM is now updated
+    // DOM હવે અપડેટ થયું છે
     console.log(document.getElementById('counter').textContent) // 1
   }
   </script>
@@ -74,11 +74,11 @@ A utility for waiting for the next DOM update flush.
       async increment() {
         this.count++
 
-        // DOM not yet updated
+        // DOM હજુ અપડેટ થયું નથી
         console.log(document.getElementById('counter').textContent) // 0
 
         await nextTick()
-        // DOM is now updated
+        // DOM હવે અપડેટ થયું છે
         console.log(document.getElementById('counter').textContent) // 1
       }
     }
@@ -92,36 +92,36 @@ A utility for waiting for the next DOM update flush.
 
   </div>
 
-- **See also** [`this.$nextTick()`](/api/component-instance#nexttick)
+- **આ પણ જુઓ** [`this.$nextTick()`](/api/component-instance#nexttick)
 
 ## defineComponent() {#definecomponent}
 
-A type helper for defining a Vue component with type inference.
+ટાઇપ ઇન્ફરન્સ (type inference) સાથે Vue ઘટકને ડિફાઇન કરવા માટેનો ટાઇપ હેલ્પર.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
-  // options syntax
+  // ઓપ્શન્સ સિન્ટેક્સ
   function defineComponent(
     component: ComponentOptions
   ): ComponentConstructor
 
-  // function syntax (requires 3.3+)
+  // ફંક્શન સિન્ટેક્સ (3.3+ જરૂરી)
   function defineComponent(
     setup: ComponentOptions['setup'],
     extraOptions?: ComponentOptions
   ): () => any
   ```
 
-  > Type is simplified for readability.
+  > વાંચવાની સરળતા માટે ટાઇપ સરળ કરવામાં આવ્યો છે.
 
-- **Details**
+- **વિગત (Details)**
 
-  The first argument expects a component options object. The return value will be the same options object, since the function is essentially a runtime no-op for type inference purposes only.
+  પ્રથમ આર્ગ્યુમેન્ટ ઘટક ઓપ્શન્સ ઓબ્જેક્ટની અપેક્ષા રાખે છે. રિટર્ન વેલ્યુ એ જ ઓપ્શન્સ ઓબ્જેક્ટ હશે, કારણ કે ફંક્શન ફક્ત ટાઇપ ઇન્ફરન્સ માટે રનટાઇમ no-op છે.
 
-  Note that the return type is a bit special: it will be a constructor type whose instance type is the inferred component instance type based on the options. This is used for type inference when the returned type is used as a tag in TSX.
+  નોંધ કરો કે રિટર્ન ટાઇપ થોડો ખાસ છે: તે એક constructor ટાઇપ હશે જેનો ઇન્સ્ટન્સ ટાઇપ ઓપ્શન્સના આધારે ઇન્ફર થયેલ ઘટક ઇન્સ્ટન્સ ટાઇપ છે. TSX માં રિટર્ન ટાઇપ ટેગ તરીકે ઉપયોગ થાય ત્યારે ટાઇપ ઇન્ફરન્સ માટે આનો ઉપયોગ થાય છે.
 
-  You can extract the instance type of a component (equivalent to the type of `this` in its options) from the return type of `defineComponent()` like this:
+  તમે `defineComponent()` ના રિટર્ન ટાઇપમાંથી ઘટકનો ઇન્સ્ટન્સ ટાઇપ (તેના ઓપ્શન્સમાં `this` ના ટાઇપ સમકક્ષ) આ રીતે એક્સ્ટ્રેક્ટ કરી શકો છો:
 
   ```ts
   const Foo = defineComponent(/* ... */)
@@ -129,28 +129,28 @@ A type helper for defining a Vue component with type inference.
   type FooInstance = InstanceType<typeof Foo>
   ```
 
-  ### Function Signature {#function-signature}
+  ### ફંક્શન સિગ્નેચર (Function Signature) {#function-signature}
 
-  - Only supported in 3.3+
+  - માત્ર 3.3+ માં સપોર્ટેડ
 
-  `defineComponent()` also has an alternative signature that is meant to be used with the Composition API and [render functions or JSX](/guide/extras/render-function.html).
+  `defineComponent()` નું એક વૈકલ્પિક સિગ્નેચર પણ છે જે Composition API અને [રેન્ડર ફંક્શન્સ અથવા JSX](/guide/extras/render-function.html) સાથે ઉપયોગ માટે છે.
 
-  Instead of passing in an options object, a function is expected instead. This function works the same as the Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) function: it receives the props and the setup context. The return value should be a render function - both `h()` and JSX are supported:
+  ઓપ્શન્સ ઓબ્જેક્ટ પાસ કરવાના બદલે, એક ફંક્શનની અપેક્ષા રાખવામાં આવે છે. આ ફંક્શન Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) ફંક્શનની જેમ જ કાર્ય કરે છે: તે props અને setup context પ્રાપ્ત કરે છે. રિટર્ન વેલ્યુ રેન્ડર ફંક્શન હોવું જોઈએ - `h()` અને JSX બંને સપોર્ટેડ છે:
 
   ```js
   import { ref, h } from 'vue'
 
   const Comp = defineComponent(
     (props) => {
-      // use Composition API here like in <script setup>
+      // અહીં <script setup> ની જેમ Composition API ઉપયોગ કરો
       const count = ref(0)
 
       return () => {
-        // render function or JSX
+        // રેન્ડર ફંક્શન અથવા JSX
         return h('div', count.value)
       }
     },
-    // extra options, e.g. declare props and emits
+    // વધારાના ઓપ્શન્સ, દા.ત. props અને emits ડિક્લેર કરો
     {
       props: {
         /* ... */
@@ -159,47 +159,47 @@ A type helper for defining a Vue component with type inference.
   )
   ```
 
-  The main use case for this signature is with TypeScript (and in particular with TSX), as it supports generics:
+  આ સિગ્નેચરનો મુખ્ય ઉપયોગ TypeScript (અને ખાસ કરીને TSX) સાથે છે, કારણ કે તે generics ને સપોર્ટ કરે છે:
 
   ```tsx
   const Comp = defineComponent(
     <T extends string | number>(props: { msg: T; list: T[] }) => {
-      // use Composition API here like in <script setup>
+      // અહીં <script setup> ની જેમ Composition API ઉપયોગ કરો
       const count = ref(0)
 
       return () => {
-        // render function or JSX
+        // રેન્ડર ફંક્શન અથવા JSX
         return <div>{count.value}</div>
       }
     },
-    // manual runtime props declaration is currently still needed.
+    // મેન્યુઅલ રનટાઇમ props ડિક્લેરેશન હાલમાં હજુ પણ જરૂરી છે.
     {
       props: ['msg', 'list']
     }
   )
   ```
 
-  In the future, we plan to provide a Babel plugin that automatically infers and injects the runtime props (like for `defineProps` in SFCs) so that the runtime props declaration can be omitted.
+  ભવિષ્યમાં, અમે Babel પ્લગઇન પ્રદાન કરવાની યોજના ઘડીએ છીએ જે આપમેળે રનટાઇમ props ને ઇન્ફર અને ઇન્જેક્ટ કરે (જેમ SFC માં `defineProps` માટે) જેથી રનટાઇમ props ડિક્લેરેશન ને છોડી શકાય.
 
-  ### Note on webpack Treeshaking {#note-on-webpack-treeshaking}
+  ### webpack ટ્રીશેકિંગ (Treeshaking) વિશે નોંધ {#note-on-webpack-treeshaking}
 
-  Because `defineComponent()` is a function call, it could look like it would produce side-effects to some build tools, e.g. webpack. This will prevent the component from being tree-shaken even when the component is never used.
+  કારણ કે `defineComponent()` એક ફંક્શન કોલ છે, તે કેટલાક બિલ્ડ ટૂલ્સ, દા.ત. webpack ને સાઇડ-ઇફેક્ટ્સ ઉત્પન્ન કરતું દેખાઈ શકે. આ ઘટકને ટ્રી-શેક (tree-shaken) થવાથી અટકાવશે ભલે ઘટક ક્યારેય ઉપયોગમાં ન આવ્યો હોય.
 
-  To tell webpack that this function call is safe to be tree-shaken, you can add a `/*#__PURE__*/` comment notation before the function call:
+  webpack ને જણાવવા કે આ ફંક્શન કોલ ટ્રી-શેક થવા માટે સુરક્ષિત છે, તમે ફંક્શન કોલ પહેલા `/*#__PURE__*/` ટિપ્પણી નોટેશન ઉમેરી શકો:
 
   ```js
   export default /*#__PURE__*/ defineComponent(/* ... */)
   ```
 
-  Note this is not necessary if you are using Vite, because Rollup (the underlying production bundler used by Vite) is smart enough to determine that `defineComponent()` is in fact side-effect-free without the need for manual annotations.
+  નોંધ કરો કે જો તમે Vite ઉપયોગ કરી રહ્યાં છો તો આ જરૂરી નથી, કારણ કે Rollup (Vite દ્વારા ઉપયોગમાં લેવાતું અંતર્ગત પ્રોડક્શન બંડલર) એટલું સ્માર્ટ છે કે તે મેન્યુઅલ એનોટેશન્સ વિના નક્કી કરી લે છે કે `defineComponent()` ખરેખર side-effect-free છે.
 
-- **See also** [Guide - Using Vue with TypeScript](/guide/typescript/overview#general-usage-notes)
+- **આ પણ જુઓ** [ગાઇડ - TypeScript સાથે Vue નો ઉપયોગ](/guide/typescript/overview#general-usage-notes)
 
 ## defineAsyncComponent() {#defineasynccomponent}
 
-Define an async component which is lazy loaded only when it is rendered. The argument can either be a loader function, or an options object for more advanced control of the loading behavior.
+એક એસિંક ઘટક ડિફાઇન કરે છે જે ફક્ત રેન્ડર થાય ત્યારે જ lazy load થાય છે. આર્ગ્યુમેન્ટ ક્યાં તો લોડર ફંક્શન હોઈ શકે, અથવા લોડિંગ વર્તણૂકના વધુ અદ્યતન (advanced) નિયંત્રણ માટે ઓપ્શન્સ ઓબ્જેક્ટ.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function defineAsyncComponent(
@@ -224,4 +224,4 @@ Define an async component which is lazy loaded only when it is rendered. The arg
   }
   ```
 
-- **See also** [Guide - Async Components](/guide/components/async)
+- **આ પણ જુઓ** [ગાઇડ - એસિંક કમ્પોનન્ટ્સ](/guide/components/async)

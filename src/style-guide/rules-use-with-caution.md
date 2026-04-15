@@ -1,25 +1,25 @@
-# Priority D Rules: Use with Caution {#priority-d-rules-use-with-caution}
+# પ્રાથમિકતા D નિયમો: સાવધાની સાથે ઉપયોગ કરો (Priority D Rules: Use with Caution) {#priority-d-rules-use-with-caution}
 
-::: warning Note
-This Vue.js Style Guide is outdated and needs to be reviewed. If you have any questions or suggestions, please [open an issue](https://github.com/vuejs/docs/issues/new).
+::: warning નોંધ
+આ Vue.js સ્ટાઇલ ગાઇડ જૂની છે અને તેની સમીક્ષા કરવાની જરૂર છે. જો તમારી પાસે કોઈ પ્રશ્નો અથવા સૂચનો હોય, તો કૃપા કરીને [ઇશ્યુ ઓપન કરો (open an issue)](https://github.com/vuejs/docs/issues/new).
 :::
 
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+Vue ની કેટલીક સુવિધાઓ દુર્લભ એજ કેસ (edge cases) અથવા જૂના કોડ બેઝમાંથી સ્મૂધ માઇગ્રેશન માટે અસ્તિત્વમાં છે. જો કે જ્યારે વધુ પડતો ઉપયોગ કરવામાં આવે છે, ત્યારે તે તમારા કોડને મેન્ટેન કરવાનું વધુ મુશ્કેલ બનાવી શકે છે અથવા તો બગ્સનું કારણ પણ બની શકે છે. આ નિયમો સંભવિત જોખમી સુવિધાઓ પર પ્રકાશ પાડે છે, તે સમજાવે છે કે ક્યારે અને શા માટે તેમને ટાળવા જોઈએ.
 
-## Element selectors with `scoped` {#element-selectors-with-scoped}
+## `scoped` સાથે એલિમેન્ટ સિલેક્ટર્સ {#element-selectors-with-scoped}
 
-**Element selectors should be avoided with `scoped`.**
+**`scoped` સાથે એલિમેન્ટ સિલેક્ટર્સ ટાળવા જોઈએ.**
 
-Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors are slow.
+`scoped` સ્ટાઇલ્સમાં એલિમેન્ટ સિલેક્ટર્સ કરતા ક્લાસ સિલેક્ટર્સ ને પ્રાધાન્ય આપો, કારણ કે મોટી સંખ્યામાં એલિમેન્ટ સિલેક્ટર્સ ધીમા હોય છે.
 
-::: details Detailed Explanation
-To scope styles, Vue adds a unique attribute to component elements, such as `data-v-f3f3eg9`. Then selectors are modified so that only matching elements with this attribute are selected (e.g. `button[data-v-f3f3eg9]`).
+::: details વિગતવાર સમજૂતી (Detailed Explanation)
+સ્ટાઇલ્સને સ્કોપ (scope) કરવા માટે, Vue ઘટક એલિમેન્ટ્સમાં એક અનન્ય એટ્રિબ્યુટ ઉમેરે છે, જેમ કે `data-v-f3f3eg9`. પછી સિલેક્ટર્સને એ રીતે ફેરફાર કરવામાં આવે છે કે ફક્ત આ એટ્રિબ્યુટ ધરાવતા મેળ ખાતા એલિમેન્ટ્સ જ પસંદ થાય (દા.ત. `button[data-v-f3f3eg9]`).
 
-The problem is that large numbers of element-attribute selectors (e.g. `button[data-v-f3f3eg9]`) will be considerably slower than class-attribute selectors (e.g. `.btn-close[data-v-f3f3eg9]`), so class selectors should be preferred whenever possible.
+સમસ્યા એ છે કે મોટી સંખ્યામાં element-attribute સિલેક્ટર્સ (દા.ત. `button[data-v-f3f3eg9]`) class-attribute સિલેક્ટર્સ (દા.ત. `.btn-close[data-v-f3f3eg9]`) કરતા નોંધપાત્ર રીતે ધીમા હશે, તેથી જ્યાં પણ શક્ય હોય ત્યાં ક્લાસ સિલેક્ટર્સ ને પ્રાધાન્ય આપવું જોઈએ.
 :::
 
 <div class="style-example style-example-bad">
-<h3>Bad</h3>
+<h3>ખરાબ (Bad)</h3>
 
 ```vue-html
 <template>
@@ -36,7 +36,7 @@ button {
 </div>
 
 <div class="style-example style-example-good">
-<h3>Good</h3>
+<h3>સારું (Good)</h3>
 
 ```vue-html
 <template>
@@ -52,18 +52,18 @@ button {
 
 </div>
 
-## Implicit parent-child communication {#implicit-parent-child-communication}
+## ગર્ભિત પેરેન્ટ-ચાઇલ્ડ કોમ્યુનિકેશન (Implicit parent-child communication) {#implicit-parent-child-communication}
 
-**Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
+**પેરેન્ટ-ચાઇલ્ડ ઘટક કોમ્યુનિકેશન માટે `this.$parent` અથવા પ્રોપ્સ મ્યુટેશન ના બદલે પ્રોપ્સ અને ઇવેન્ટ્સ ને પ્રાધાન્ય આપવું જોઈએ.**
 
-An ideal Vue application is props down, events up. Sticking to this convention makes your components much easier to understand. However, there are edge cases where prop mutation or `this.$parent` can simplify two components that are already deeply coupled.
+એક આદર્શ Vue એપ્લિકેશન props down, events up છે. આ કન્વેન્શનનું પાલન કરવાથી તમારા ઘટકો સમજવામાં ઘણા સરળ બને છે. જો કે, એવા એજ કેસ છે જ્યાં પ્રોપ મ્યુટેશન (prop mutation) અથવા `this.$parent` બે ઘટકોને સરળ બનાવી શકે છે જે પહેલેથી ગાઢ રીતે જોડાયેલા (deeply coupled) છે.
 
-The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
+સમસ્યા એ છે કે, ઘણા _સરળ_ કિસ્સાઓ પણ છે જ્યાં આ પેટર્ન્સ સુવિધા આપી શકે. સાવધાન રહો: ટૂંકા ગાળાની સુવિધા (ઓછો કોડ લખવો) માટે સરળતા (તમારી સ્ટેટના પ્રવાહને સમજવામાં સમર્થ હોવું) નો વેપાર કરવાથી લલચાશો નહીં.
 
 <div class="options-api">
 
 <div class="style-example style-example-bad">
-<h3>Bad</h3>
+<h3>ખરાબ (Bad)</h3>
 
 ```js
 app.component('TodoItem', {
@@ -109,7 +109,7 @@ app.component('TodoItem', {
 </div>
 
 <div class="style-example style-example-good">
-<h3>Good</h3>
+<h3>સારું (Good)</h3>
 
 ```js
 app.component('TodoItem', {
@@ -160,7 +160,7 @@ app.component('TodoItem', {
 <div class="composition-api">
 
 <div class="style-example style-example-bad">
-<h3>Bad</h3>
+<h3>ખરાબ (Bad)</h3>
 
 ```vue
 <script setup>
@@ -211,7 +211,7 @@ function removeTodo() {
 </div>
 
 <div class="style-example style-example-good">
-<h3>Good</h3>
+<h3>સારું (Good)</h3>
 
 ```vue
 <script setup>

@@ -1,32 +1,32 @@
-# Application API {#application-api}
+# એપ્લિકેશન API (Application API) {#application-api}
 
 ## createApp() {#createapp}
 
-Creates an application instance.
+એક એપ્લિકેશન ઇન્સ્ટન્સ બનાવે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function createApp(rootComponent: Component, rootProps?: object): App
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The first argument is the root component. The second optional argument is the props to be passed to the root component.
+  પ્રથમ આર્ગ્યુમેન્ટ રૂટ ઘટક છે. બીજા વૈકલ્પિક (optional) આર્ગ્યુમેન્ટ એ રૂટ ઘટકને પાસ કરવાના props છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  With inline root component:
+  ઇનલાઈન રૂટ ઘટક સાથે:
 
   ```js
   import { createApp } from 'vue'
 
   const app = createApp({
-    /* root component options */
+    /* રૂટ ઘટક ઓપ્શન્સ */
   })
   ```
 
-  With imported component:
+  ઇમ્પોર્ટ કરેલા ઘટક સાથે:
 
   ```js
   import { createApp } from 'vue'
@@ -35,17 +35,17 @@ Creates an application instance.
   const app = createApp(App)
   ```
 
-- **See also** [Guide - Creating a Vue Application](/guide/essentials/application)
+- **આ પણ જુઓ** [ગાઇડ - Vue એપ્લિકેશન બનાવવી](/guide/essentials/application)
 
 ## createSSRApp() {#createssrapp}
 
-Creates an application instance in [SSR Hydration](/guide/scaling-up/ssr#client-hydration) mode. Usage is exactly the same as `createApp()`.
+[SSR હાઇડ્રેશન (SSR Hydration)](/guide/scaling-up/ssr#client-hydration) મોડમાં એપ્લિકેશન ઇન્સ્ટન્સ બનાવે છે. ઉપયોગ `createApp()` જેવો જ છે.
 
 ## app.mount() {#app-mount}
 
-Mounts the application instance in a container element.
+એપ્લિકેશન ઇન્સ્ટન્સને કન્ટેનર એલિમેન્ટમાં માઉન્ટ કરે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -53,17 +53,17 @@ Mounts the application instance in a container element.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The argument can either be an actual DOM element or a CSS selector (the first matched element will be used). Returns the root component instance.
+  આર્ગ્યુમેન્ટ ક્યાં તો વાસ્તવિક DOM એલિમેન્ટ અથવા CSS સિલેક્ટર હોઈ શકે (પ્રથમ મેળ ખાતો એલિમેન્ટ ઉપયોગમાં લેવાશે). રૂટ ઘટક ઇન્સ્ટન્સ રિટર્ન કરે છે.
 
-  If the component has a template or a render function defined, it will replace any existing DOM nodes inside the container. Otherwise, if the runtime compiler is available, the `innerHTML` of the container will be used as the template.
+  જો ઘટક પાસે ટેમ્પ્લેટ અથવા રેન્ડર ફંક્શન ડિફાઇન કરેલું હોય, તો તે કન્ટેનર અંદરના કોઈપણ હાલના DOM નોડ્સને બદલશે. નહીંતર, જો રનટાઇમ કમ્પાઇલર ઉપલબ્ધ હોય, તો કન્ટેનરનો `innerHTML` ટેમ્પ્લેટ તરીકે ઉપયોગ થશે.
 
-  In SSR hydration mode, it will hydrate the existing DOM nodes inside the container. If there are [mismatches](/guide/scaling-up/ssr#hydration-mismatch), the existing DOM nodes will be morphed to match the expected output.
+  SSR હાઇડ્રેશન મોડમાં, તે કન્ટેનર અંદરના હાલના DOM નોડ્સને હાઇડ્રેટ કરશે. જો [મિસમેચ](/guide/scaling-up/ssr#hydration-mismatch) હોય, તો હાલના DOM નોડ્સને અપેક્ષિત આઉટપુટ સાથે મેળ ખાતા કરવા માટે બદલવામાં આવશે.
 
-  For each app instance, `mount()` can only be called once.
+  દરેક એપ ઇન્સ્ટન્સ માટે, `mount()` ને ફક્ત એક જ વાર બોલાવી શકાય.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { createApp } from 'vue'
@@ -72,7 +72,7 @@ Mounts the application instance in a container element.
   app.mount('#app')
   ```
 
-  Can also mount to an actual DOM element:
+  વાસ્તવિક DOM એલિમેન્ટ પર પણ માઉન્ટ કરી શકાય:
 
   ```js
   app.mount(document.body.firstChild)
@@ -80,9 +80,9 @@ Mounts the application instance in a container element.
 
 ## app.unmount() {#app-unmount}
 
-Unmounts a mounted application instance, triggering the unmount lifecycle hooks for all components in the application's component tree.
+માઉન્ટ કરેલા એપ્લિકેશન ઇન્સ્ટન્સને અનમાઉન્ટ કરે છે, એપ્લિકેશનના ઘટક ટ્રીના તમામ ઘટકો માટે અનમાઉન્ટ લાઇફસાઇકલ હૂક્સ ટ્રિગર કરે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -92,9 +92,9 @@ Unmounts a mounted application instance, triggering the unmount lifecycle hooks 
 
 ## app.onUnmount() <sup class="vt-badge" data-text="3.5+" /> {#app-onunmount}
 
-Registers a callback to be called when the app is unmounted.
+એપ અનમાઉન્ટ થાય ત્યારે બોલાવવા માટે કોલબેક રજિસ્ટર કરે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -104,9 +104,9 @@ Registers a callback to be called when the app is unmounted.
 
 ## app.component() {#app-component}
 
-Registers a global component if passing both a name string and a component definition, or retrieves an already registered one if only the name is passed.
+જો નામ સ્ટ્રિંગ અને ઘટક ડેફિનિશન બંને પાસ કરવામાં આવે તો ગ્લોબલ ઘટક રજિસ્ટર કરે છે, અથવા જો ફક્ત નામ પાસ કરવામાં આવે તો પહેલેથી રજિસ્ટર થયેલો ઘટક મેળવે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -115,29 +115,29 @@ Registers a global component if passing both a name string and a component defin
   }
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { createApp } from 'vue'
 
   const app = createApp({})
 
-  // register an options object
+  // ઓપ્શન્સ ઓબ્જેક્ટ રજિસ્ટર કરો
   app.component('MyComponent', {
     /* ... */
   })
 
-  // retrieve a registered component
+  // રજિસ્ટર થયેલો ઘટક મેળવો
   const MyComponent = app.component('MyComponent')
   ```
 
-- **See also** [Component Registration](/guide/components/registration)
+- **આ પણ જુઓ** [ઘટક રજિસ્ટ્રેશન (Component Registration)](/guide/components/registration)
 
 ## app.directive() {#app-directive}
 
-Registers a global custom directive if passing both a name string and a directive definition, or retrieves an already registered one if only the name is passed.
+જો નામ સ્ટ્રિંગ અને ડિરેક્ટિવ ડેફિનિશન બંને પાસ કરવામાં આવે તો ગ્લોબલ કસ્ટમ ડિરેક્ટિવ રજિસ્ટર કરે છે, અથવા જો ફક્ત નામ પાસ કરવામાં આવે તો પહેલેથી રજિસ્ટર થયેલી ડિરેક્ટિવ મેળવે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -146,7 +146,7 @@ Registers a global custom directive if passing both a name string and a directiv
   }
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { createApp } from 'vue'
@@ -155,27 +155,27 @@ Registers a global custom directive if passing both a name string and a directiv
     /* ... */
   })
 
-  // register (object directive)
+  // રજિસ્ટર કરો (ઓબ્જેક્ટ ડિરેક્ટિવ)
   app.directive('myDirective', {
-    /* custom directive hooks */
+    /* કસ્ટમ ડિરેક્ટિવ હૂક્સ */
   })
 
-  // register (function directive shorthand)
+  // રજિસ્ટર કરો (ફંક્શન ડિરેક્ટિવ શોર્ટહેન્ડ)
   app.directive('myDirective', () => {
     /* ... */
   })
 
-  // retrieve a registered directive
+  // રજિસ્ટર થયેલી ડિરેક્ટિવ મેળવો
   const myDirective = app.directive('myDirective')
   ```
 
-- **See also** [Custom Directives](/guide/reusability/custom-directives)
+- **આ પણ જુઓ** [કસ્ટમ ડિરેક્ટિવ્સ](/guide/reusability/custom-directives)
 
 ## app.use() {#app-use}
 
-Installs a [plugin](/guide/reusability/plugins).
+[પ્લગઇન](/guide/reusability/plugins) ઇન્સ્ટોલ કરે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -183,15 +183,15 @@ Installs a [plugin](/guide/reusability/plugins).
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Expects the plugin as the first argument, and optional plugin options as the second argument.
+  પ્રથમ આર્ગ્યુમેન્ટ તરીકે પ્લગઇન અને વૈકલ્પિક પ્લગઇન ઓપ્શન્સ બીજા આર્ગ્યુમેન્ટ તરીકે અપેક્ષા રાખે છે.
 
-  The plugin can either be an object with an `install()` method, or just a function that will be used as the `install()` method. The options (second argument of `app.use()`) will be passed along to the plugin's `install()` method.
+  પ્લગઇન ક્યાં તો `install()` મેથડ ધરાવતો ઓબ્જેક્ટ હોઈ શકે, અથવા ફક્ત ફંક્શન જે `install()` મેથડ તરીકે ઉપયોગ થશે. ઓપ્શન્સ (`app.use()` નો બીજો આર્ગ્યુમેન્ટ) પ્લગઇનની `install()` મેથડને પાસ કરવામાં આવશે.
 
-  When `app.use()` is called on the same plugin multiple times, the plugin will be installed only once.
+  જ્યારે `app.use()` એક જ પ્લગઇન પર બહુવિધ વખત બોલાવવામાં આવે, ત્યારે પ્લગઇન ફક્ત એક જ વાર ઇન્સ્ટોલ થશે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { createApp } from 'vue'
@@ -204,19 +204,19 @@ Installs a [plugin](/guide/reusability/plugins).
   app.use(MyPlugin)
   ```
 
-- **See also** [Plugins](/guide/reusability/plugins)
+- **આ પણ જુઓ** [પ્લગઇન્સ](/guide/reusability/plugins)
 
 ## app.mixin() {#app-mixin}
 
-Applies a global mixin (scoped to the application). A global mixin applies its included options to every component instance in the application.
+ગ્લોબલ mixin લાગુ કરે છે (એપ્લિકેશન સુધી સ્કોપ્ડ). ગ્લોબલ mixin તેના સમાવિષ્ટ ઓપ્શન્સ એપ્લિકેશનમાં દરેક ઘટક ઇન્સ્ટન્સ પર લાગુ કરે છે.
 
-:::warning Not Recommended
-Mixins are supported in Vue 3 mainly for backwards compatibility, due to their widespread use in ecosystem libraries. Use of mixins, especially global mixins, should be avoided in application code.
+:::warning ભલામણ નથી (Not Recommended)
+ઇકોસિસ્ટમ લાઇબ્રેરીઓમાં વ્યાપક ઉપયોગને કારણે, Vue 3 માં Mixins મુખ્યત્વે પછાત સુસંગતતા (backwards compatibility) માટે સપોર્ટેડ છે. એપ્લિકેશન કોડમાં mixins, ખાસ કરીને ગ્લોબલ mixins, નો ઉપયોગ ટાળવો જોઈએ.
 
-For logic reuse, prefer [Composables](/guide/reusability/composables) instead.
+લોજિક ફરીથી ઉપયોગ (logic reuse) માટે, [Composables](/guide/reusability/composables) ને પ્રાધાન્ય આપો.
 :::
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -226,9 +226,9 @@ For logic reuse, prefer [Composables](/guide/reusability/composables) instead.
 
 ## app.provide() {#app-provide}
 
-Provide a value that can be injected in all descendant components within the application.
+એક વેલ્યુ પ્રદાન કરે છે જે એપ્લિકેશનમાં તમામ વંશજ (descendant) ઘટકોમાં inject કરી શકાય.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -236,11 +236,11 @@ Provide a value that can be injected in all descendant components within the app
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Expects the injection key as the first argument, and the provided value as the second. Returns the application instance itself.
+  પ્રથમ આર્ગ્યુમેન્ટ તરીકે injection key અને બીજા તરીકે પ્રદાન કરેલી વેલ્યુ અપેક્ષા રાખે છે. એપ્લિકેશન ઇન્સ્ટન્સ પોતે જ રિટર્ન કરે છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { createApp } from 'vue'
@@ -250,7 +250,7 @@ Provide a value that can be injected in all descendant components within the app
   app.provide('message', 'hello')
   ```
 
-  Inside a component in the application:
+  એપ્લિકેશનમાં ઘટક અંદર:
 
   <div class="composition-api">
 
@@ -278,18 +278,18 @@ Provide a value that can be injected in all descendant components within the app
 
   </div>
 
-- **See also**
+- **આ પણ જુઓ**
   - [Provide / Inject](/guide/components/provide-inject)
-  - [App-level Provide](/guide/components/provide-inject#app-level-provide)
+  - [એપ-લેવલ Provide](/guide/components/provide-inject#app-level-provide)
   - [app.runWithContext()](#app-runwithcontext)
 
 ## app.runWithContext() {#app-runwithcontext}
 
-- Only supported in 3.3+
+- માત્ર 3.3+ માં સપોર્ટેડ
 
-Execute a callback with the current app as injection context.
+વર્તમાન એપને injection context તરીકે રાખીને કોલબેક ચલાવે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -297,11 +297,11 @@ Execute a callback with the current app as injection context.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Expects a callback function and runs the callback immediately. During the synchronous call of the callback, `inject()` calls are able to look up injections from the values provided by the current app, even when there is no current active component instance. The return value of the callback will also be returned.
+  કોલબેક ફંક્શનની અપેક્ષા રાખે છે અને કોલબેકને તરત જ ચલાવે છે. કોલબેકના synchronous કોલ દરમિયાન, `inject()` કોલ્સ વર્તમાન એપ દ્વારા પૂરી પાડવામાં આવેલી વેલ્યુમાંથી injections શોધી શકે છે, ભલે હાલમાં કોઈ સક્રિય ઘટક ઇન્સ્ટન્સ ન હોય. કોલબેકની રિટર્ન વેલ્યુ પણ રિટર્ન થશે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { inject } from 'vue'
@@ -317,9 +317,9 @@ Execute a callback with the current app as injection context.
 
 ## app.version {#app-version}
 
-Provides the version of Vue that the application was created with. This is useful inside [plugins](/guide/reusability/plugins), where you might need conditional logic based on different Vue versions.
+એપ્લિકેશન જે Vue વર્ઝન સાથે બનાવવામાં આવી હતી તે પ્રદાન કરે છે. આ [પ્લગઇન્સ](/guide/reusability/plugins) અંદર ઉપયોગી છે, જ્યાં તમને વિવિધ Vue વર્ઝન પર આધારિત conditional logic ની જરૂર પડી શકે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface App {
@@ -327,9 +327,9 @@ Provides the version of Vue that the application was created with. This is usefu
   }
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  Performing a version check inside a plugin:
+  પ્લગઇન અંદર વર્ઝન ચકાસણી (version check) કરવી:
 
   ```js
   export default {
@@ -342,11 +342,11 @@ Provides the version of Vue that the application was created with. This is usefu
   }
   ```
 
-- **See also** [Global API - version](/api/general#version)
+- **આ પણ જુઓ** [ગ્લોબલ API - version](/api/general#version)
 
 ## app.config {#app-config}
 
-Every application instance exposes a `config` object that contains the configuration settings for that application. You can modify its properties (documented below) before mounting your application.
+દરેક એપ્લિકેશન ઇન્સ્ટન્સ `config` ઓબ્જેક્ટ એક્સપોઝ કરે છે જેમાં તે એપ્લિકેશન માટેના કોન્ફિગરેશન સેટિંગ્સ છે. તમે તમારી એપ્લિકેશન માઉન્ટ કરતા પહેલા તેની પ્રોપર્ટીઝ (નીચે દસ્તાવેજીકૃત) ફેરફાર કરી શકો.
 
 ```js
 import { createApp } from 'vue'
@@ -358,58 +358,58 @@ console.log(app.config)
 
 ## app.config.errorHandler {#app-config-errorhandler}
 
-Assign a global handler for uncaught errors propagating from within the application.
+એપ્લિકેશનની અંદરથી પ્રસાર પામતી (propagating) uncaught errors માટે ગ્લોબલ હેન્ડલર સોંપે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface AppConfig {
     errorHandler?: (
       err: unknown,
       instance: ComponentPublicInstance | null,
-      // `info` is a Vue-specific error info,
-      // e.g. which lifecycle hook the error was thrown in
+      // `info` એ Vue-વિશિષ્ટ error info છે,
+      // દા.ત. કયા lifecycle hook માં error ફેંકાયો
       info: string
     ) => void
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The error handler receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
+  error handler ત્રણ આર્ગ્યુમેન્ટ્સ પ્રાપ્ત કરે છે: error, error ટ્રિગર કરનાર ઘટક ઇન્સ્ટન્સ, અને error સોર્સ ટાઇપ સ્પષ્ટ કરતી માહિતી સ્ટ્રિંગ.
 
-  It can capture errors from the following sources:
+  તે નીચેના સ્ત્રોતોમાંથી errors કેપ્ચર કરી શકે છે:
 
-  - Component renders
-  - Event handlers
-  - Lifecycle hooks
-  - `setup()` function
+  - ઘટક રેન્ડર્સ (Component renders)
+  - ઇવેન્ટ હેન્ડલર્સ (Event handlers)
+  - લાઇફસાઇકલ હૂક્સ (Lifecycle hooks)
+  - `setup()` ફંક્શન
   - Watchers
-  - Custom directive hooks
-  - Transition hooks
+  - કસ્ટમ ડિરેક્ટિવ હૂક્સ (Custom directive hooks)
+  - Transition હૂક્સ (Transition hooks)
 
   :::tip
-  In production, the 3rd argument (`info`) will be a shortened code instead of the full information string. You can find the code to string mapping in the [Production Error Code Reference](/error-reference/#runtime-errors).
+  પ્રોડક્શનમાં, ૩જો આર્ગ્યુમેન્ટ (`info`) સંપૂર્ણ માહિતી સ્ટ્રિંગ ને બદલે ટૂંકો કોડ હશે. તમે [પ્રોડક્શન Error Code Reference](/error-reference/#runtime-errors) માં code to string mapping શોધી શકો.
   :::
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   app.config.errorHandler = (err, instance, info) => {
-    // handle error, e.g. report to a service
+    // error હેન્ડલ કરો, દા.ત. સર્વિસ ને રિપોર્ટ કરો
   }
   ```
 
-- **Default**
+- **ડિફોલ્ટ (Default)**
 
-  The default error handler will re-throw errors during development and log errors during production.
-  You can configure this using the [throwUnhandledErrorInProduction](#app-config-throwunhandlederrorinproduction) property.
+  ડિફોલ્ટ error handler ડેવલપમેન્ટ દરમિયાન errors ફરીથી ફેંકશે અને પ્રોડક્શન દરમિયાન errors લોગ કરશે.
+  તમે [throwUnhandledErrorInProduction](#app-config-throwunhandlederrorinproduction) પ્રોપર્ટી ઉપયોગ કરીને આ કોન્ફિગર કરી શકો.
 
 ## app.config.warnHandler {#app-config-warnhandler}
 
-Assign a custom handler for runtime warnings from Vue.
+Vue ની રનટાઇમ ચેતવણીઓ (warnings) માટે કસ્ટમ હેન્ડલર સોંપે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface AppConfig {
@@ -421,86 +421,86 @@ Assign a custom handler for runtime warnings from Vue.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The warning handler receives the warning message as the first argument, the source component instance as the second argument, and a component trace string as the third.
+  warning handler પ્રથમ આર્ગ્યુમેન્ટ તરીકે ચેતવણી સંદેશ, બીજા આર્ગ્યુમેન્ટ તરીકે સ્રોત ઘટક ઇન્સ્ટન્સ, અને ત્રીજા તરીકે ઘટક trace સ્ટ્રિંગ પ્રાપ્ત કરે છે.
 
-  It can be used to filter out specific warnings to reduce console verbosity. All Vue warnings should be addressed during development, so this is only recommended during debug sessions to focus on specific warnings among many, and should be removed once the debugging is done.
+  કન્સોલ વર્બોસિટી (verbosity) ઘટાડવા માટે ચોક્કસ ચેતવણીઓ ફિલ્ટર કરવા માટે તેનો ઉપયોગ કરી શકાય. તમામ Vue ચેતવણીઓ ડેવલપમેન્ટ દરમિયાન ધ્યાન આપવા જોઈએ, તેથી આ ફક્ત debug sessions દરમિયાન ભલામણ કરવામાં આવે છે જ્યારે ઘણી ચેતવણીઓ વચ્ચે ચોક્કસ ચેતવણીઓ પર ધ્યાન કેન્દ્રિત કરવાનું હોય, અને debugging પૂર્ણ થાય પછી દૂર કરવી જોઈએ.
 
   :::tip
-  Warnings only work during development, so this config is ignored in production mode.
+  ચેતવણીઓ ફક્ત ડેવલપમેન્ટ દરમિયાન જ કામ કરે છે, તેથી આ config પ્રોડક્શન મોડમાં અવગણવામાં આવે છે.
   :::
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   app.config.warnHandler = (msg, instance, trace) => {
-    // `trace` is the component hierarchy trace
+    // `trace` એ ઘટક hierarchy trace છે
   }
   ```
 
 ## app.config.performance {#app-config-performance}
 
-Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+બ્રાઉઝર devtool performance/timeline પેનલમાં ઘટક init, compile, render અને patch performance tracing ને સક્ષમ કરવા માટે આને `true` પર સેટ કરો. ફક્ત ડેવલપમેન્ટ મોડમાં અને [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API ને સપોર્ટ કરતા બ્રાઉઝર્સમાં જ કામ કરે છે.
 
-- **Type:** `boolean`
+- **ટાઇપ (Type):** `boolean`
 
-- **See also** [Guide - Performance](/guide/best-practices/performance)
+- **આ પણ જુઓ** [ગાઇડ - પરફોર્મન્સ](/guide/best-practices/performance)
 
 ## app.config.compilerOptions {#app-config-compileroptions}
 
-Configure runtime compiler options. Values set on this object will be passed to the in-browser template compiler and affect every component in the configured app. Note you can also override these options on a per-component basis using the [`compilerOptions` option](/api/options-rendering#compileroptions).
+રનટાઇમ કમ્પાઇલર ઓપ્શન્સ કોન્ફિગર કરો. આ ઓબ્જેક્ટ પર સેટ કરેલી વેલ્યુ ઇન-બ્રાઉઝર ટેમ્પ્લેટ કમ્પાઇલરને પાસ કરવામાં આવશે અને કોન્ફિગર કરેલી એપમાં દરેક ઘટકને અસર કરશે. નોંધ કરો કે તમે [`compilerOptions` ઓપ્શન](/api/options-rendering#compileroptions) ઉપયોગ કરીને દરેક-ઘટક આધારે આ ઓપ્શન્સ ઓવરરાઇડ પણ કરી શકો.
 
-::: warning Important
-This config option is only respected when using the full build (i.e. the standalone `vue.js` that can compile templates in the browser). If you are using the runtime-only build with a build setup, compiler options must be passed to `@vue/compiler-dom` via build tool configurations instead.
+::: warning મહત્વપૂર્ણ (Important)
+આ config ઓપ્શન ફક્ત ત્યારે જ માન્ય છે જ્યારે ફુલ બિલ્ડ (i.e. standalone `vue.js` જે બ્રાઉઝરમાં ટેમ્પ્લેટ્સ કમ્પાઇલ કરી શકે) ઉપયોગ કરો. જો તમે બિલ્ડ સેટઅપ સાથે runtime-only બિલ્ડ ઉપયોગ કરી રહ્યાં છો, તો compiler ઓપ્શન્સ `@vue/compiler-dom` ને બિલ્ડ ટૂલ configurations દ્વારા પાસ કરવા જોઈએ.
 
-- For `vue-loader`: [pass via the `compilerOptions` loader option](https://vue-loader.vuejs.org/options.html#compileroptions). Also see [how to configure it in `vue-cli`](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+- `vue-loader` માટે: [`compilerOptions` loader ઓપ્શન દ્વારા પાસ કરો](https://vue-loader.vuejs.org/options.html#compileroptions). [`vue-cli` માં કેવી રીતે કોન્ફિગર કરવું](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader) પણ જુઓ.
 
-- For `vite`: [pass via `@vitejs/plugin-vue` options](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#options).
+- `vite` માટે: [`@vitejs/plugin-vue` ઓપ્શન્સ દ્વારા પાસ કરો](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#options).
   :::
 
 ### app.config.compilerOptions.isCustomElement {#app-config-compileroptions-iscustomelement}
 
-Specifies a check method to recognize native custom elements.
+નેટિવ કસ્ટમ એલિમેન્ટ્સ ઓળખવા માટે ચેક મેથડ સ્પષ્ટ કરે છે.
 
-- **Type:** `(tag: string) => boolean`
+- **ટાઇપ (Type):** `(tag: string) => boolean`
 
-- **Details**
+- **વિગત (Details)**
 
-  Should return `true` if the tag should be treated as a native custom element. For a matched tag, Vue will render it as a native element instead of attempting to resolve it as a Vue component.
+  જો ટેગને નેટિવ કસ્ટમ એલિમેન્ટ તરીકે ગણવો જોઈએ તો `true` રિટર્ન કરવું જોઈએ. મેળ ખાતા ટેગ માટે, Vue તેને Vue ઘટક તરીકે રિઝોલ્વ કરવાનો પ્રયાસ કરવાના બદલે નેટિવ એલિમેન્ટ તરીકે રેન્ડર કરશે.
 
-  Native HTML and SVG tags don't need to be matched in this function - Vue's parser recognizes them automatically.
+  નેટિવ HTML અને SVG ટેગ્સને આ ફંક્શનમાં મેળ ખાવાની જરૂર નથી - Vue નો parser તેમને આપમેળે ઓળખે છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
-  // treat all tags starting with 'ion-' as custom elements
+  // 'ion-' થી શરૂ થતા તમામ ટેગ્સને કસ્ટમ એલિમેન્ટ તરીકે ગણો
   app.config.compilerOptions.isCustomElement = (tag) => {
     return tag.startsWith('ion-')
   }
   ```
 
-- **See also** [Vue and Web Components](/guide/extras/web-components)
+- **આ પણ જુઓ** [Vue અને Web Components](/guide/extras/web-components)
 
 ### app.config.compilerOptions.whitespace {#app-config-compileroptions-whitespace}
 
-Adjusts template whitespace handling behavior.
+ટેમ્પ્લેટ whitespace હેન્ડલિંગ વર્તણૂક ગોઠવે છે.
 
-- **Type:** `'condense' | 'preserve'`
+- **ટાઇપ (Type):** `'condense' | 'preserve'`
 
-- **Default:** `'condense'`
+- **ડિફોલ્ટ (Default):** `'condense'`
 
-- **Details**
+- **વિગત (Details)**
 
-  Vue removes / condenses whitespace characters in templates to produce more efficient compiled output. The default strategy is "condense", with the following behavior:
+  Vue વધુ કાર્યક્ષમ (efficient) compiled આઉટપુટ ઉત્પન્ન કરવા માટે ટેમ્પ્લેટ્સમાં whitespace chars ને દૂર / condense કરે છે. ડિફોલ્ટ વ્યૂહરચના "condense" છે, જેમાં નીચેની વર્તણૂક છે:
 
-  1. Leading / ending whitespace characters inside an element are condensed into a single space.
-  2. Whitespace characters between elements that contain newlines are removed.
-  3. Consecutive whitespace characters in text nodes are condensed into a single space.
+  ૧. એલિમેન્ટ અંદર શરૂઆતના / અંતના whitespace chars ને એક સ્પેસમાં condense કરવામાં આવે છે.
+  ૨. newlines ધરાવતા એલિમેન્ટ્સ વચ્ચેના whitespace chars દૂર કરવામાં આવે છે.
+  ૩. text nodes માં consecutive whitespace chars ને એક સ્પેસમાં condense કરવામાં આવે છે.
 
-  Setting this option to `'preserve'` will disable (2) and (3).
+  આ ઓપ્શનને `'preserve'` પર સેટ કરવાથી (૨) અને (૩) અક્ષમ (disable) થશે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   app.config.compilerOptions.whitespace = 'preserve'
@@ -508,36 +508,36 @@ Adjusts template whitespace handling behavior.
 
 ### app.config.compilerOptions.delimiters {#app-config-compileroptions-delimiters}
 
-Adjusts the delimiters used for text interpolation within the template.
+ટેમ્પ્લેટમાં text interpolation માટે ઉપયોગમાં લેવાતા delimiters ગોઠવે છે.
 
-- **Type:** `[string, string]`
+- **ટાઇપ (Type):** `[string, string]`
 
-- **Default:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
+- **ડિફોલ્ટ (Default):** `{{ "['\\u007b\\u007b', '\\u007d\\u007d']" }}`
 
-- **Details**
+- **વિગત (Details)**
 
-  This is typically used to avoid conflicting with server-side frameworks that also use mustache syntax.
+  આ સામાન્ય રીતે mustache syntax નો ઉપયોગ કરતા server-side frameworks સાથે ટકરાવ ટાળવા માટે ઉપયોગ થાય છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
-  // Delimiters changed to ES6 template string style
+  // Delimiters ને ES6 template string style માં બદલ્યા
   app.config.compilerOptions.delimiters = ['${', '}']
   ```
 
 ### app.config.compilerOptions.comments {#app-config-compileroptions-comments}
 
-Adjusts treatment of HTML comments in templates.
+ટેમ્પ્લેટ્સમાં HTML comments ની ગણતરી ગોઠવે છે.
 
-- **Type:** `boolean`
+- **ટાઇપ (Type):** `boolean`
 
-- **Default:** `false`
+- **ડિફોલ્ટ (Default):** `false`
 
-- **Details**
+- **વિગત (Details)**
 
-  By default, Vue will remove the comments in production. Setting this option to `true` will force Vue to preserve comments even in production. Comments are always preserved during development. This option is typically used when Vue is used with other libraries that rely on HTML comments.
+  ડિફોલ્ટ રૂપે, Vue પ્રોડક્શનમાં comments દૂર કરશે. આ ઓપ્શનને `true` પર સેટ કરવાથી Vue ને પ્રોડક્શનમાં પણ comments જાળવી રાખવાની ફરજ પાડશે. ડેવલપમેન્ટ દરમિયાન comments હંમેશા જાળવવામાં આવે છે. આ ઓપ્શન સામાન્ય રીતે ત્યારે ઉપયોગ થાય છે જ્યારે Vue ને HTML comments પર આધાર રાખતી અન્ય લાઇબ્રેરીઓ સાથે ઉપયોગ કરવામાં આવે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   app.config.compilerOptions.comments = true
@@ -545,9 +545,9 @@ Adjusts treatment of HTML comments in templates.
 
 ## app.config.globalProperties {#app-config-globalproperties}
 
-An object that can be used to register global properties that can be accessed on any component instance inside the application.
+એક ઓબ્જેક્ટ જેનો ઉપયોગ ગ્લોબલ પ્રોપર્ટીઝ રજિસ્ટર કરવા માટે થઈ શકે છે જે એપ્લિકેશન અંદર કોઈપણ ઘટક ઇન્સ્ટન્સ પર એક્સેસ કરી શકાય.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface AppConfig {
@@ -555,19 +555,19 @@ An object that can be used to register global properties that can be accessed on
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  This is a replacement of Vue 2's `Vue.prototype` which is no longer present in Vue 3. As with anything global, this should be used sparingly.
+  આ Vue 2 ના `Vue.prototype` નું રિપ્લેસમેન્ટ છે જે Vue 3 માં હવે હાજર નથી. કોઈપણ ગ્લોબલ વસ્તુની જેમ, આનો ઉપયોગ ઓછો (sparingly) કરવો જોઈએ.
 
-  If a global property conflicts with a component’s own property, the component's own property will have higher priority.
+  જો ગ્લોબલ પ્રોપર્ટી ઘટકની પોતાની પ્રોપર્ટી સાથે ટકરાય, તો ઘટકની પોતાની પ્રોપર્ટી વધુ ઉચ્ચ પ્રાથમિકતા ધરાવશે.
 
-- **Usage**
+- **ઉપયોગ (Usage)**
 
   ```js
   app.config.globalProperties.msg = 'hello'
   ```
 
-  This makes `msg` available inside any component template in the application, and also on `this` of any component instance:
+  આ `msg` ને એપ્લિકેશનમાં કોઈપણ ઘટક ટેમ્પ્લેટ અંદર, અને કોઈપણ ઘટક ઇન્સ્ટન્સના `this` પર ઉપલબ્ધ બનાવે છે:
 
   ```js
   export default {
@@ -577,13 +577,13 @@ An object that can be used to register global properties that can be accessed on
   }
   ```
 
-- **See also** [Guide - Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
+- **આ પણ જુઓ** [ગાઇડ - ગ્લોબલ પ્રોપર્ટીઝ ઓગમેન્ટ કરવી](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
 
 ## app.config.optionMergeStrategies {#app-config-optionmergestrategies}
 
-An object for defining merging strategies for custom component options.
+કસ્ટમ ઘટક ઓપ્શન્સ માટે merging strategies ડિફાઇન કરવા માટેનો ઓબ્જેક્ટ.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface AppConfig {
@@ -593,77 +593,77 @@ An object for defining merging strategies for custom component options.
   type OptionMergeFunction = (to: unknown, from: unknown) => any
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Some plugins / libraries add support for custom component options (by injecting global mixins). These options may require special merging logic when the same option needs to be "merged" from multiple sources (e.g. mixins or component inheritance).
+  કેટલાક plugins / libraries કસ્ટમ ઘટક ઓપ્શન્સ માટે સપોર્ટ ઉમેરે છે (ગ્લોબલ mixins ઇન્જેક્ટ કરીને). જ્યારે સમાન ઓપ્શનને બહુવિધ સ્ત્રોતોમાંથી "merge" કરવાની જરૂર પડે (દા.ત. mixins અથવા ઘટક inheritance), ત્યારે આ ઓપ્શન્સ માટે ખાસ merging logic ની જરૂર પડી શકે.
 
-  A merge strategy function can be registered for a custom option by assigning it on the `app.config.optionMergeStrategies` object using the option's name as the key.
+  `app.config.optionMergeStrategies` ઓબ્જેક્ટ પર ઓપ્શનના નામના key ઉપયોગ કરીને કસ્ટમ ઓપ્શન માટે merge strategy ફંક્શન રજિસ્ટર કરી શકાય.
 
-  The merge strategy function receives the value of that option defined on the parent and child instances as the first and second arguments, respectively.
+  merge strategy ફંક્શન અનુક્રમે પ્રથમ અને બીજા આર્ગ્યુમેન્ટ્સ તરીકે parent અને child instances પર ડિફાઇન કરેલ તે ઓપ્શનની વેલ્યુ પ્રાપ્ત કરે છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   const app = createApp({
-    // option from self
+    // પોતાનો ઓપ્શન
     msg: 'Vue',
-    // option from a mixin
+    // mixin તરફથી ઓપ્શન
     mixins: [
       {
         msg: 'Hello '
       }
     ],
     mounted() {
-      // merged options exposed on this.$options
+      // this.$options પર merged ઓપ્શન્સ એક્સપોઝ થાય છે
       console.log(this.$options.msg)
     }
   })
 
-  // define a custom merge strategy for `msg`
+  // `msg` માટે કસ્ટમ merge strategy ડિફાઇન કરો
   app.config.optionMergeStrategies.msg = (parent, child) => {
     return (parent || '') + (child || '')
   }
 
   app.mount('#app')
-  // logs 'Hello Vue'
+  // 'Hello Vue' લોગ કરે છે
   ```
 
-- **See also** [Component Instance - `$options`](/api/component-instance#options)
+- **આ પણ જુઓ** [ઘટક ઇન્સ્ટન્સ - `$options`](/api/component-instance#options)
 
 ## app.config.idPrefix <sup class="vt-badge" data-text="3.5+" /> {#app-config-idprefix}
 
-Configure a prefix for all IDs generated via [useId()](/api/composition-api-helpers.html#useid) inside this application.
+આ એપ્લિકેશનમાં [useId()](/api/composition-api-helpers.html#useid) દ્વારા જનરેટ થયેલા તમામ IDs માટે prefix કોન્ફિગર કરો.
 
-- **Type:** `string`
+- **ટાઇપ (Type):** `string`
 
-- **Default:** `undefined`
+- **ડિફોલ્ટ (Default):** `undefined`
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   app.config.idPrefix = 'myApp'
   ```
 
   ```js
-  // in a component:
+  // ઘટકમાં:
   const id1 = useId() // 'myApp:0'
   const id2 = useId() // 'myApp:1'
   ```
 
 ## app.config.throwUnhandledErrorInProduction <sup class="vt-badge" data-text="3.5+" /> {#app-config-throwunhandlederrorinproduction}
 
-Force unhandled errors to be thrown in production mode.
+પ્રોડક્શન મોડમાં unhandled errors ને ફેંકવાની ફરજ પાડે છે.
 
-- **Type:** `boolean`
+- **ટાઇપ (Type):** `boolean`
 
-- **Default:** `false`
+- **ડિફોલ્ટ (Default):** `false`
 
-- **Details**
+- **વિગત (Details)**
 
-  By default, errors thrown inside a Vue application but not explicitly handled have different behavior between development and production modes:
+  ડિફોલ્ટ રૂપે, Vue એપ્લિકેશન અંદર ફેંકાયેલા પરંતુ સ્પષ્ટ રીતે handle ન થયેલા errors ડેવલપમેન્ટ અને પ્રોડક્શન modes વચ્ચે અલગ વર્તણૂક ધરાવે છે:
 
-  - In development, the error is thrown and can possibly crash the application. This is to make the error more prominent so that it can be noticed and fixed during development.
+  - ડેવલપમેન્ટમાં, error ફેંકાય છે અને સંભવિત રૂપે એપ્લિકેશનને ક્રેશ કરી શકે. આ error ને વધુ સ્પષ્ટ બનાવવા માટે છે જેથી ડેવલપમેન્ટ દરમિયાન તે ધ્યાનમાં આવી શકે અને સુધારી શકાય.
 
-  - In production, the error will only be logged to the console to minimize the impact to end users. However, this may prevent errors that only happen in production from being caught by error monitoring services.
+  - પ્રોડક્શનમાં, error ફક્ત console માં લોગ થશે જેથી end users પર અસર ઓછી થાય. જો કે, આ પ્રોડક્શનમાં જ થતી errors ને error monitoring services દ્વારા પકડાતા અટકાવી શકે.
 
-  By setting `app.config.throwUnhandledErrorInProduction` to `true`, unhandled errors will be thrown even in production mode.
+  `app.config.throwUnhandledErrorInProduction` ને `true` પર સેટ કરવાથી, unhandled errors પ્રોડક્શન મોડમાં પણ ફેંકાશે.
