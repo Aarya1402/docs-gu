@@ -105,7 +105,7 @@ const posts = await res.json()
 
 ## અન્ય કમ્પોનન્ટ્સ સાથે સંયોજન {#combining-with-other-components}
 
-ઘણીવાર [``<Transition>`](./transition)` અને [``<KeepAlive>`](./keep-alive)` ઘટકો સાથે સંયોજનમાં `<Suspense>` નો ઉપયોગ કરવામાં આવે છે. આ ઘટકોનો નેસ્ટિંગ ઓર્ડર તે બધાને યોગ્ય રીતે કાર્ય કરવા માટે મહત્વપૂર્ણ છે.
+ઘણીવાર [`<Transition>`](./transition) અને [`<KeepAlive>`](./keep-alive) ઘટકો સાથે સંયોજનમાં `<Suspense>` નો ઉપયોગ કરવામાં આવે છે. આ ઘટકોનો નેસ્ટિંગ ઓર્ડર તે બધાને યોગ્ય રીતે કાર્ય કરવા માટે મહત્વપૂર્ણ છે.
 
 વધારામાં, આ ઘટકોનો ઉપયોગ ઘણીવાર [Vue Router](https://router.vuejs.org/) ના `<RouterView>` ઘટક સાથે કરવામાં આવે છે.
 
