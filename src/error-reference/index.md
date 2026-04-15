@@ -9,22 +9,22 @@ onMounted(() => {
 })
 </script>
 
-# Production Error Code Reference {#error-reference}
+# પ્રોડક્શન એરર કોડ સંદર્ભ (Production Error Code Reference) {#error-reference}
 
-## Runtime Errors {#runtime-errors}
+## રનટાઇમ એરર્સ (Runtime Errors) {#runtime-errors}
 
-In production builds, the 3rd argument passed to the following error handler APIs will be a short code instead of the full information string:
+પ્રોડક્શન બિલ્ડ્સમાં, નીચેની એરર હેન્ડલર APIs ને પાસ કરવામાં આવેલ ત્રીજો આર્ગ્યુમેન્ટ સંપૂર્ણ માહિતી સ્ટ્રિંગને બદલે ટૂંકો કોડ હશે:
 
 - [`app.config.errorHandler`](/api/application#app-config-errorhandler)
 - [`onErrorCaptured`](/api/composition-api-lifecycle#onerrorcaptured) (Composition API)
 - [`errorCaptured`](/api/options-lifecycle#errorcaptured) (Options API)
 
-The following table maps the codes to their original full information strings.
+નીચેનું ટેબલ કોડ્સને તેમની મૂળ પૂર્ણ માહિતી સ્ટ્રિંગ્સ સાથે મેપ કરે છે.
 
 <ErrorsTable kind="runtime" :errors="data.runtime" :highlight="highlight" />
 
-## Compiler Errors {#compiler-errors}
+## કમ્પાઇલર એરર્સ (Compiler Errors) {#compiler-errors}
 
-The following table provides a mapping of the production compiler error codes to their original messages.
+નીચેનું ટેબલ પ્રોડક્શન કમ્પાઇલર એરર કોડ્સનું તેમના મૂળ સંદેશાઓ સાથે મેપિંગ પૂરું પાડે છે.
 
 <ErrorsTable kind="compiler" :errors="data.compiler" :highlight="highlight" />

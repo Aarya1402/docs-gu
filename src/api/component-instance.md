@@ -1,16 +1,16 @@
-# Component Instance {#component-instance}
+# ઘટક ઇન્સ્ટન્સ (Component Instance) {#component-instance}
 
 :::info
-This page documents the built-in properties and methods exposed on the component public instance, i.e. `this`.
+આ page ઘટકના public instance, i.e. `this` પર exposed built-in properties અને methods document કરે છે.
 
-All properties listed on this page are readonly (except nested properties in `$data`).
+આ page પર listed તમામ properties readonly છે (`$data` માં nested properties સિવાય).
 :::
 
 ## $data {#data}
 
-The object returned from the [`data`](./options-state#data) option, made reactive by the component. The component instance proxies access to the properties on its data object.
+[`data`](./options-state#data) ઓપ્શન માંથી return થયેલો object, ઘટક દ્વારા reactive બનાવાયેલ. ઘટક instance તેના data object પરની properties access proxy કરે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -20,9 +20,9 @@ The object returned from the [`data`](./options-state#data) option, made reactiv
 
 ## $props {#props}
 
-An object representing the component's current, resolved props.
+ઘટકના current, resolved props represent કરતો object.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -30,15 +30,15 @@ An object representing the component's current, resolved props.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Only props declared via the [`props`](./options-state#props) option will be included. The component instance proxies access to the properties on its props object.
+  ફક્ત [`props`](./options-state#props) ઓપ્શન દ્વારા declared props સામેલ થશે. ઘટક instance તેના props object પરની properties access proxy કરે.
 
 ## $el {#el}
 
-The root DOM node that the component instance is managing.
+ઘટક instance manage કરી રહ્યો છે તે root DOM node.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -46,23 +46,23 @@ The root DOM node that the component instance is managing.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  `$el` will be `undefined` until the component is [mounted](./options-lifecycle#mounted).
+  ઘટક [mounted](./options-lifecycle#mounted) થાય ત્યાં સુધી `$el` `undefined` હશે.
 
-  - For components with a single root element, `$el` will point to that element.
-  - For components with text root, `$el` will point to the text node.
-  - For components with multiple root nodes, `$el` will be the placeholder DOM node that Vue uses to keep track of the component's position in the DOM (a text node, or a comment node in SSR hydration mode).
+  - Single root element ધરાવતા ઘટકો માટે, `$el` તે element ને point કરશે.
+  - Text root ધરાવતા ઘટકો માટે, `$el` text node ને point કરશે.
+  - Multiple root nodes ધરાવતા ઘટકો માટે, `$el` placeholder DOM node હશે જેનો Vue ઉપયોગ DOM માં ઘટકની position track કરવા કરે (text node, અથવા SSR hydration mode માં comment node).
 
   :::tip
-  For consistency, it is recommended to use [template refs](/guide/essentials/template-refs) for direct access to elements instead of relying on `$el`.
+  Consistency માટે, `$el` પર depend કરવાના બદલે elements ની direct access માટે [template refs](/guide/essentials/template-refs) ઉપયોગ કરવાની ભલામણ છે.
   :::
 
 ## $options {#options}
 
-The resolved component options used for instantiating the current component instance.
+વર્તમાન ઘટક instance instantiate કરવા ઉપયોગ થયેલા resolved component options.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -70,15 +70,15 @@ The resolved component options used for instantiating the current component inst
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The `$options` object exposes the resolved options for the current component and is the merge result of these possible sources:
+  `$options` object વર્તમાન ઘટક માટે resolved options expose કરે અને આ possible sources નું merge result છે:
 
   - Global mixins
   - Component `extends` base
   - Component mixins
 
-  It is typically used to support custom component options:
+  સામાન્ય રીતે custom component options support કરવા ઉપયોગ થાય:
 
   ```js
   const app = createApp({
@@ -89,13 +89,13 @@ The resolved component options used for instantiating the current component inst
   })
   ```
 
-- **See also** [`app.config.optionMergeStrategies`](/api/application#app-config-optionmergestrategies)
+- **આ પણ જુઓ** [`app.config.optionMergeStrategies`](/api/application#app-config-optionmergestrategies)
 
 ## $parent {#parent}
 
-The parent instance, if the current instance has one. It will be `null` for the root instance itself.
+Parent instance, જો current instance ધરાવે. Root instance માટે `null` હશે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -105,9 +105,9 @@ The parent instance, if the current instance has one. It will be `null` for the 
 
 ## $root {#root}
 
-The root component instance of the current component tree. If the current instance has no parents this value will be itself.
+Current component tree નું root component instance. જો current instance ના parents ન હોય તો value itself હશે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -117,9 +117,9 @@ The root component instance of the current component tree. If the current instan
 
 ## $slots {#slots}
 
-An object representing the [slots](/guide/components/slots) passed by the parent component.
+Parent ઘટક દ્વારા pass કરેલ [slots](/guide/components/slots) represent કરતો object.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -129,21 +129,21 @@ An object representing the [slots](/guide/components/slots) passed by the parent
   type Slot = (...args: any[]) => VNode[]
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Typically used when manually authoring [render functions](/guide/extras/render-function), but can also be used to detect whether a slot is present.
+  સામાન્ય રીતે manually [render functions](/guide/extras/render-function) author કરતી વખતે ઉપયોગ થાય, પરંતુ slot present છે કે નહીં detect કરવા પણ ઉપયોગ કરી શકાય.
 
-  Each slot is exposed on `this.$slots` as a function that returns an array of vnodes under the key corresponding to that slot's name. The default slot is exposed as `this.$slots.default`.
+  દરેક slot `this.$slots` પર function તરીકે expose થાય જે slot ના name ને corresponding key હેઠળ vnodes ની array return કરે. Default slot `this.$slots.default` તરીકે expose થાય.
 
-  If a slot is a [scoped slot](/guide/components/slots#scoped-slots), arguments passed to the slot functions are available to the slot as its slot props.
+  જો slot [scoped slot](/guide/components/slots#scoped-slots) હોય, slot functions ને pass થયેલા arguments slot ને slot props તરીકે ઉપલબ્ધ છે.
 
-- **See also** [Render Functions - Rendering Slots](/guide/extras/render-function#rendering-slots)
+- **આ પણ જુઓ** [રેન્ડર ફંક્શન્સ - Slots Render કરવા](/guide/extras/render-function#rendering-slots)
 
 ## $refs {#refs}
 
-An object of DOM elements and component instances, registered via [template refs](/guide/essentials/template-refs).
+[Template refs](/guide/essentials/template-refs) દ્વારા registered DOM elements અને component instances નો object.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -151,16 +151,16 @@ An object of DOM elements and component instances, registered via [template refs
   }
   ```
 
-- **See also**
+- **આ પણ જુઓ**
 
   - [Template refs](/guide/essentials/template-refs)
   - [Special Attributes - ref](./built-in-special-attributes.md#ref)
 
 ## $attrs {#attrs}
 
-An object that contains the component's fallthrough attributes.
+ઘટકના fallthrough attributes ધરાવતો object.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -168,21 +168,21 @@ An object that contains the component's fallthrough attributes.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  [Fallthrough Attributes](/guide/components/attrs) are attributes and event handlers passed by the parent component, but not declared as a prop or an emitted event by the child.
+  [Fallthrough Attributes](/guide/components/attrs) parent ઘટક દ્વારા pass થયેલા attributes અને event handlers છે, પરંતુ child દ્વારા prop અથવા emitted event તરીકે declared નથી.
 
-  By default, everything in `$attrs` will be automatically inherited on the component's root element if there is only a single root element. This behavior is disabled if the component has multiple root nodes, and can be explicitly disabled with the [`inheritAttrs`](./options-misc#inheritattrs) option.
+  ડિફોલ્ટ રૂપે, `$attrs` માં બધું ઘટકના root element પર auto inherited થશે જો single root element હોય. Multiple root nodes ધરાવતા ઘટક માટે behavior disabled છે, અને [`inheritAttrs`](./options-misc#inheritattrs) ઓપ્શન સાથે explicitly disabled કરી શકાય.
 
-- **See also**
+- **આ પણ જુઓ**
 
   - [Fallthrough Attributes](/guide/components/attrs)
 
 ## $watch() {#watch}
 
-Imperative API for creating watchers.
+Watchers create કરવા માટે Imperative API.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -210,45 +210,45 @@ Imperative API for creating watchers.
   type StopHandle = () => void
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The first argument is the watch source. It can be a component property name string, a simple dot-delimited path string, or a [getter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description).
+  પ્રથમ argument watch source છે. તે component property name string, simple dot-delimited path string, અથવા [getter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description) હોઈ શકે.
 
-  The second argument is the callback function. The callback receives the new value and the old value of the watched source.
+  બીજો argument callback function છે. Callback watched source ની new value અને old value receive કરે.
 
-  - **`immediate`**: trigger the callback immediately on watcher creation. Old value will be `undefined` on the first call.
-  - **`deep`**: force deep traversal of the source if it is an object, so that the callback fires on deep mutations. See [Deep Watchers](/guide/essentials/watchers#deep-watchers).
-  - **`flush`**: adjust the callback's flush timing. See [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) and [`watchEffect()`](/api/reactivity-core#watcheffect).
-  - **`onTrack / onTrigger`**: debug the watcher's dependencies. See [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging).
+  - **`immediate`**: watcher creation પર callback immediately trigger કરો. પ્રથમ call પર old value `undefined` હશે.
+  - **`deep`**: source object હોય તો deep traversal force કરો, જેથી deep mutations પર callback fire થાય. [Deep Watchers](/guide/essentials/watchers#deep-watchers) જુઓ.
+  - **`flush`**: callback ની flush timing adjust કરો. [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) અને [`watchEffect()`](/api/reactivity-core#watcheffect) જુઓ.
+  - **`onTrack / onTrigger`**: watcher ની dependencies debug કરો. [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging) જુઓ.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  Watch a property name:
+  Property name watch કરવું:
 
   ```js
   this.$watch('a', (newVal, oldVal) => {})
   ```
 
-  Watch a dot-delimited path:
+  Dot-delimited path watch કરવો:
 
   ```js
   this.$watch('a.b', (newVal, oldVal) => {})
   ```
 
-  Using getter for more complex expressions:
+  વધુ complex expressions માટે getter ઉપયોગ કરવું:
 
   ```js
   this.$watch(
-    // every time the expression `this.a + this.b` yields
-    // a different result, the handler will be called.
-    // It's as if we were watching a computed property
-    // without defining the computed property itself.
+    // દર વખતે expression `this.a + this.b` different
+    // result yield કરે, handler call થશે.
+    // computed property define કર્યા વિના
+    // computed property watch કરવા જેવું.
     () => this.a + this.b,
     (newVal, oldVal) => {}
   )
   ```
 
-  Stopping the watcher:
+  Watcher stop કરવું:
 
   ```js
   const unwatch = this.$watch('a', cb)
@@ -257,15 +257,15 @@ Imperative API for creating watchers.
   unwatch()
   ```
 
-- **See also**
+- **આ પણ જુઓ**
   - [Options - `watch`](/api/options-state#watch)
-  - [Guide - Watchers](/guide/essentials/watchers)
+  - [ગાઇડ - Watchers](/guide/essentials/watchers)
 
 ## $emit() {#emit}
 
-Trigger a custom event on the current instance. Any additional arguments will be passed into the listener's callback function.
+Current instance પર custom event trigger કરો. કોઈપણ additional arguments listener ના callback function ને pass થશે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -273,29 +273,29 @@ Trigger a custom event on the current instance. Any additional arguments will be
   }
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   export default {
     created() {
-      // only event
+      // ફક્ત event
       this.$emit('foo')
-      // with additional arguments
+      // additional arguments સાથે
       this.$emit('bar', 1, 2, 3)
     }
   }
   ```
 
-- **See also**
+- **આ પણ જુઓ**
 
-  - [Component - Events](/guide/components/events)
-  - [`emits` option](./options-state#emits)
+  - [ઘટક - Events](/guide/components/events)
+  - [`emits` ઓપ્શન](./options-state#emits)
 
 ## $forceUpdate() {#forceupdate}
 
-Force the component instance to re-render.
+ઘટક instance ને re-render કરવા force કરો.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -303,15 +303,15 @@ Force the component instance to re-render.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  This should be rarely needed given Vue's fully automatic reactivity system. The only cases where you may need it is when you have explicitly created non-reactive component state using advanced reactivity APIs.
+  Vue ની fully automatic reactivity system જોતાં આ ભાગ્યે જ જરૂરી હોવું જોઈએ. ફક્ત ત્યારે જ જરૂર પડી શકે જ્યારે advanced reactivity APIs ઉપયોગ કરીને explicitly non-reactive component state create કર્યો હોય.
 
 ## $nextTick() {#nexttick}
 
-Instance-bound version of the global [`nextTick()`](./general#nexttick).
+Global [`nextTick()`](./general#nexttick) નું instance-bound version.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentPublicInstance {
@@ -319,8 +319,8 @@ Instance-bound version of the global [`nextTick()`](./general#nexttick).
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The only difference from the global version of `nextTick()` is that the callback passed to `this.$nextTick()` will have its `this` context bound to the current component instance.
+  `nextTick()` ના global version થી ફક્ત એ જ ફરક છે કે `this.$nextTick()` ને pass થયેલા callback નો `this` context current component instance સાથે bound હશે.
 
-- **See also** [`nextTick()`](./general#nexttick)
+- **આ પણ જુઓ** [`nextTick()`](./general#nexttick)

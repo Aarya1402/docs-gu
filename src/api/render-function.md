@@ -1,10 +1,10 @@
-# Render Function APIs {#render-function-apis}
+# રેન્ડર ફંક્શન APIs (Render Function APIs) {#render-function-apis}
 
 ## h() {#h}
 
-Creates virtual DOM nodes (vnodes).
+Virtual DOM nodes (vnodes) create કરે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   // full signature
@@ -14,7 +14,7 @@ Creates virtual DOM nodes (vnodes).
     children?: Children | Slot | Slots
   ): VNode
 
-  // omitting props
+  // props omit કરવા
   function h(type: string | Component, children?: Children | Slot): VNode
 
   type Children = string | number | boolean | VNode | null | Children[]
@@ -24,68 +24,68 @@ Creates virtual DOM nodes (vnodes).
   type Slots = { [name: string]: Slot }
   ```
 
-  > Types are simplified for readability.
+  > વાંચવાની સરળતા માટે Types simplified છે.
 
-- **Details**
+- **વિગત (Details)**
 
-  The first argument can either be a string (for native elements) or a Vue component definition. The second argument is the props to be passed, and the third argument is the children.
+  પ્રથમ argument ક્યાં તો string (native elements માટે) અથવા Vue component definition હોઈ શકે. બીજો argument pass કરવાના props છે, અને ત્રીજો argument children છે.
 
-  When creating a component vnode, the children must be passed as slot functions. A single slot function can be passed if the component expects only the default slot. Otherwise, the slots must be passed as an object of slot functions.
+  Component vnode create કરતી વખતે, children slot functions તરીકે pass થવા જોઈએ. જો ઘટક ફક્ત default slot ની expectation કરે તો single slot function pass કરી શકાય. નહીંતર, slots slot functions ના object તરીકે pass થવા જોઈએ.
 
-  For convenience, the props argument can be omitted when the children is not a slots object.
+  સુવિધા માટે, children slots object ન હોય ત્યારે props argument omit કરી શકાય.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  Creating native elements:
+  Native elements create કરવા:
 
   ```js
   import { h } from 'vue'
 
-  // all arguments except the type are optional
+  // type સિવાય તમામ arguments optional છે
   h('div')
   h('div', { id: 'foo' })
 
-  // both attributes and properties can be used in props
-  // Vue automatically picks the right way to assign it
+  // props માં attributes અને properties બંને ઉપયોગ કરી શકાય
+  // Vue આપમેળે assign કરવાની યોગ્ય રીત pick કરે
   h('div', { class: 'bar', innerHTML: 'hello' })
 
-  // class and style have the same object / array
-  // value support like in templates
+  // class અને style templates ની જેમ
+  // object / array value support ધરાવે
   h('div', { class: [foo, { bar }], style: { color: 'red' } })
 
-  // event listeners should be passed as onXxx
+  // event listeners onXxx તરીકે pass થવા જોઈએ
   h('div', { onClick: () => {} })
 
-  // children can be a string
+  // children string હોઈ શકે
   h('div', { id: 'foo' }, 'hello')
 
-  // props can be omitted when there are no props
+  // props ન હોય ત્યારે omit કરી શકાય
   h('div', 'hello')
   h('div', [h('span', 'hello')])
 
-  // children array can contain mixed vnodes and strings
+  // children array mixed vnodes અને strings ધરાવી શકે
   h('div', ['hello', h('span', 'hello')])
   ```
 
-  Creating components:
+  ઘટકો create કરવા:
 
   ```js
   import Foo from './Foo.vue'
 
-  // passing props
+  // props pass કરવા
   h(Foo, {
-    // equivalent of some-prop="hello"
+    // some-prop="hello" ના સમકક્ષ
     someProp: 'hello',
-    // equivalent of @update="() => {}"
+    // @update="() => {}" ના સમકક્ષ
     onUpdate: () => {}
   })
 
-  // passing single default slot
+  // single default slot pass કરવો
   h(Foo, () => 'default slot')
 
-  // passing named slots
-  // notice the `null` is required to avoid
-  // slots object being treated as props
+  // named slots pass કરવા
+  // slots object ને props તરીકે treat થતા
+  // અટકાવવા `null` આવશ્યક છે
   h(MyComponent, null, {
     default: () => 'default slot',
     foo: () => h('div', 'foo'),
@@ -93,29 +93,29 @@ Creates virtual DOM nodes (vnodes).
   })
   ```
 
-- **See also** [Guide - Render Functions - Creating VNodes](/guide/extras/render-function#creating-vnodes)
+- **આ પણ જુઓ** [ગાઇડ - રેન્ડર ફંક્શન્સ - VNodes Create કરવા](/guide/extras/render-function#creating-vnodes)
 
 ## mergeProps() {#mergeprops}
 
-Merge multiple props objects with special handling for certain props.
+ચોક્કસ props માટે special handling સાથે multiple props objects merge કરે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function mergeProps(...args: object[]): object
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  `mergeProps()` supports merging multiple props objects with special handling for the following props:
+  `mergeProps()` નીચેના props માટે special handling સાથે multiple props objects merge કરવાને support કરે:
 
   - `class`
   - `style`
-  - `onXxx` event listeners - multiple listeners with the same name will be merged into an array.
+  - `onXxx` event listeners - same name ના multiple listeners array માં merge થશે.
 
-  If you do not need the merge behavior and want simple overwrites, native object spread can be used instead.
+  જો merge behavior ની જરૂર ન હોય અને simple overwrites જોઈએ, તો native object spread ઉપયોગ કરી શકાય.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { mergeProps } from 'vue'
@@ -141,23 +141,23 @@ Merge multiple props objects with special handling for certain props.
 
 ## cloneVNode() {#clonevnode}
 
-Clones a vnode.
+Vnode clone કરે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function cloneVNode(vnode: VNode, extraProps?: object): VNode
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Returns a cloned vnode, optionally with extra props to merge with the original.
+  Cloned vnode return કરે, original સાથે merge કરવા extra props સાથે optionally.
 
-  Vnodes should be considered immutable once created, and you should not mutate the props of an existing vnode. Instead, clone it with different / extra props.
+  Vnodes create થયા પછી immutable માનવા જોઈએ, અને existed vnode ના props mutate ન કરવા. તેના બદલે, different / extra props સાથે clone કરો.
 
-  Vnodes have special internal properties, so cloning them is not as simple as an object spread. `cloneVNode()` handles most of the internal logic.
+  Vnodes special internal properties ધરાવે, તેથી clone કરવું object spread જેટલું simple નથી. `cloneVNode()` મોટાભાગના internal logic handle કરે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { h, cloneVNode } from 'vue'
@@ -168,9 +168,9 @@ Clones a vnode.
 
 ## isVNode() {#isvnode}
 
-Checks if a value is a vnode.
+ચકાસે છે કે value vnode છે કે નહીં.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function isVNode(value: unknown): boolean
@@ -178,23 +178,23 @@ Checks if a value is a vnode.
 
 ## resolveComponent() {#resolvecomponent}
 
-For manually resolving a registered component by name.
+Name દ્વારા registered ઘટકને manually resolve કરવા.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function resolveComponent(name: string): Component | string
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  **Note: you do not need this if you can import the component directly.**
+  **નોંધ: જો તમે ઘટકને directly import કરી શકો તો આની જરૂર નથી.**
 
-  `resolveComponent()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  `resolveComponent()` યોગ્ય component context માંથી resolve કરવા <span class="composition-api">`setup()` અથવા</span> render function અંદર call થવો જોઈએ.
 
-  If the component is not found, a runtime warning will be emitted, and the name string is returned.
+  જો ઘટક ન મળે, runtime warning emit થશે, અને name string return થશે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   <div class="composition-api">
 
@@ -228,33 +228,33 @@ For manually resolving a registered component by name.
 
   </div>
 
-- **See also** [Guide - Render Functions - Components](/guide/extras/render-function#components)
+- **આ પણ જુઓ** [ગાઇડ - રેન્ડર ફંક્શન્સ - ઘટકો](/guide/extras/render-function#components)
 
 ## resolveDirective() {#resolvedirective}
 
-For manually resolving a registered directive by name.
+Name દ્વારા registered directive ને manually resolve કરવા.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function resolveDirective(name: string): Directive | undefined
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  **Note: you do not need this if you can import the directive directly.**
+  **નોંધ: જો તમે directive ને directly import કરી શકો તો આની જરૂર નથી.**
 
-  `resolveDirective()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  `resolveDirective()` યોગ્ય component context માંથી resolve કરવા <span class="composition-api">`setup()` અથવા</span> render function અંદર call થવો જોઈએ.
 
-  If the directive is not found, a runtime warning will be emitted, and the function returns `undefined`.
+  જો directive ન મળે, runtime warning emit થશે, અને function `undefined` return કરે.
 
-- **See also** [Guide - Render Functions - Custom Directives](/guide/extras/render-function#custom-directives)
+- **આ પણ જુઓ** [ગાઇડ - રેન્ડર ફંક્શન્સ - Custom Directives](/guide/extras/render-function#custom-directives)
 
 ## withDirectives() {#withdirectives}
 
-For adding custom directives to vnodes.
+Vnodes ને custom directives add કરવા.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function withDirectives(
@@ -271,16 +271,16 @@ For adding custom directives to vnodes.
   >
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Wraps an existing vnode with custom directives. The second argument is an array of custom directives. Each custom directive is also represented as an array in the form of `[Directive, value, argument, modifiers]`. Tailing elements of the array can be omitted if not needed.
+  Existed vnode ને custom directives સાથે wrap કરે. બીજો argument custom directives ની array છે. દરેક custom directive `[Directive, value, argument, modifiers]` form માં array તરીકે represent થાય. જરૂર ન હોય તો array ના tailing elements omit કરી શકાય.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { h, withDirectives } from 'vue'
 
-  // a custom directive
+  // custom directive
   const pin = {
     mounted() {
       /* ... */
@@ -296,29 +296,29 @@ For adding custom directives to vnodes.
   ])
   ```
 
-- **See also** [Guide - Render Functions - Custom Directives](/guide/extras/render-function#custom-directives)
+- **આ પણ જુઓ** [ગાઇડ - રેન્ડર ફંક્શન્સ - Custom Directives](/guide/extras/render-function#custom-directives)
 
 ## withModifiers() {#withmodifiers}
 
-For adding built-in [`v-on` modifiers](/guide/essentials/event-handling#event-modifiers) to an event handler function.
+Event handler function ને built-in [`v-on` modifiers](/guide/essentials/event-handling#event-modifiers) add કરવા.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function withModifiers(fn: Function, modifiers: ModifierGuardsKeys[]): Function
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { h, withModifiers } from 'vue'
 
   const vnode = h('button', {
-    // equivalent of v-on:click.stop.prevent
+    // v-on:click.stop.prevent ના સમકક્ષ
     onClick: withModifiers(() => {
       // ...
     }, ['stop', 'prevent'])
   })
   ```
 
-- **See also** [Guide - Render Functions - Event Modifiers](/guide/extras/render-function#event-modifiers)
+- **આ પણ જુઓ** [ગાઇડ - રેન્ડર ફંક્શન્સ - Event Modifiers](/guide/extras/render-function#event-modifiers)

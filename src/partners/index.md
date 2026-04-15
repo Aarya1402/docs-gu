@@ -1,7 +1,7 @@
 ---
 page: true
 footer: false
-title: Vue Partners
+title: Vue ભાગીદારો (Vue Partners)
 ---
 
 <script setup>

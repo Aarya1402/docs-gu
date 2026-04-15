@@ -1,14 +1,14 @@
-# Options: Lifecycle {#options-lifecycle}
+# ઓપ્શન્સ: લાઇફસાઇકલ (Options: Lifecycle) {#options-lifecycle}
 
-:::info See also
-For shared usage of lifecycle hooks, see [Guide - Lifecycle Hooks](/guide/essentials/lifecycle)
+:::info આ પણ જુઓ
+Lifecycle hooks ના shared ઉપયોગ માટે, [ગાઇડ - લાઇફસાઇકલ હૂક્સ](/guide/essentials/lifecycle) જુઓ
 :::
 
 ## beforeCreate {#beforecreate}
 
-Called when the instance is initialized.
+Instance initialize થાય ત્યારે call થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -16,19 +16,19 @@ Called when the instance is initialized.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Called immediately when the instance is initialized and props are resolved.
+  Instance initialize થાય અને props resolve થાય ત્યારે તરત call થાય છે.
 
-  Then the props will be defined as reactive properties and the state such as `data()` or `computed` will be set up.
+  પછી props reactive properties તરીકે define થશે અને `data()` અથવા `computed` જેવી state set up થશે.
 
-  Note that the `setup()` hook of Composition API is called before any Options API hooks, even `beforeCreate()`.
+  નોંધ કરો કે Composition API નો `setup()` hook કોઈપણ Options API hooks પહેલા call થાય, `beforeCreate()` પણ.
 
 ## created {#created}
 
-Called after the instance has finished processing all state-related options.
+Instance તમામ state-related options process કરી લે પછી call થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -36,15 +36,15 @@ Called after the instance has finished processing all state-related options.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  When this hook is called, the following have been set up: reactive data, computed properties, methods, and watchers. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  આ hook call થાય ત્યારે, નીચેના set up થઈ ગયા હોય: reactive data, computed properties, methods, અને watchers. જો કે, mounting phase શરૂ થયો નથી, અને `$el` property હજુ ઉપલબ્ધ નહીં હોય.
 
 ## beforeMount {#beforemount}
 
-Called right before the component is to be mounted.
+ઘટક mount થવાના હોય તેની ઠીક પહેલા call થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -52,17 +52,17 @@ Called right before the component is to be mounted.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  When this hook is called, the component has finished setting up its reactive state, but no DOM nodes have been created yet. It is about to execute its DOM render effect for the first time.
+  જ્યારે આ hook call થાય, ત્યારે ઘટકે reactive state setup કરવાનું પૂર્ણ કર્યું છે, પરંતુ હજુ કોઈ DOM nodes create થયા નથી. તે પ્રથમ વખત DOM render effect execute કરવાના છે.
 
-  **This hook is not called during server-side rendering.**
+  **આ hook server-side rendering દરમિયાન call થતો નથી.**
 
 ## mounted {#mounted}
 
-Called after the component has been mounted.
+ઘટક mounted થયા પછી call થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -70,23 +70,23 @@ Called after the component has been mounted.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  A component is considered mounted after:
+  ઘટક mounted માનવામાં આવે જ્યારે:
 
-  - All of its synchronous child components have been mounted (does not include async components or components inside `<Suspense>` trees).
+  - તેના તમામ synchronous child ઘટકો mounted થઈ ગયા હોય (async ઘટકો અથવા `<Suspense>` trees અંદરના ઘટકો સામેલ નથી).
 
-  - Its own DOM tree has been created and inserted into the parent container. Note it only guarantees that the component's DOM tree is in-document if the application's root container is also in-document.
+  - તેનું પોતાનું DOM tree create થયું હોય અને parent container માં insert થયું હોય. નોંધ કરો કે તે ફક્ત ગેરંટી આપે કે ઘટકનું DOM tree in-document છે જો application ના root container પણ in-document હોય.
 
-  This hook is typically used for performing side effects that need access to the component's rendered DOM, or for limiting DOM-related code to the client in a [server-rendered application](/guide/scaling-up/ssr).
+  આ hook સામાન્ય રીતે side effects perform કરવા માટે ઉપયોગ થાય જેમને ઘટકના rendered DOM ની access જોઈએ, અથવા [server-rendered application](/guide/scaling-up/ssr) માં DOM-related code ને client સુધી limit કરવા.
 
-  **This hook is not called during server-side rendering.**
+  **આ hook server-side rendering દરમિયાન call થતો નથી.**
 
 ## beforeUpdate {#beforeupdate}
 
-Called right before the component is about to update its DOM tree due to a reactive state change.
+Reactive state change ને કારણે ઘટક તેનું DOM tree update કરવાના હોય તેની ઠીક પહેલા call થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -94,17 +94,17 @@ Called right before the component is about to update its DOM tree due to a react
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  This hook can be used to access the DOM state before Vue updates the DOM. It is also safe to modify component state inside this hook.
+  Vue DOM update કરે તે પહેલા DOM state access કરવા આ hook ઉપયોગ કરી શકાય. આ hook અંદર component state modify કરવું safe છે.
 
-  **This hook is not called during server-side rendering.**
+  **આ hook server-side rendering દરમિયાન call થતો નથી.**
 
 ## updated {#updated}
 
-Called after the component has updated its DOM tree due to a reactive state change.
+Reactive state change ને કારણે ઘટકે DOM tree update કર્યા પછી call થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -112,23 +112,23 @@ Called after the component has updated its DOM tree due to a reactive state chan
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  A parent component's updated hook is called after that of its child components.
+  Parent ઘટકનો updated hook તેના child ઘટકો પછી call થાય છે.
 
-  This hook is called after any DOM update of the component, which can be caused by different state changes. If you need to access the updated DOM after a specific state change, use [nextTick()](/api/general#nexttick) instead.
+  આ hook ઘટકના કોઈપણ DOM update પછી call થાય, જે વિવિધ state changes ને કારણે થઈ શકે. ચોક્કસ state change પછી updated DOM access કરવાની જરૂર હોય, તો [nextTick()](/api/general#nexttick) ઉપયોગ કરો.
 
-  **This hook is not called during server-side rendering.**
+  **આ hook server-side rendering દરમિયાન call થતો નથી.**
 
   :::warning
-  Do not mutate component state in the updated hook - this will likely lead to an infinite update loop!
+  Updated hook માં component state mutate ન કરો - આ infinite update loop તરફ દોરી શકે!
   :::
 
 ## beforeUnmount {#beforeunmount}
 
-Called right before a component instance is to be unmounted.
+ઘટક instance unmount થવાના હોય તેની ઠીક પહેલા call થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -136,17 +136,17 @@ Called right before a component instance is to be unmounted.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  When this hook is called, the component instance is still fully functional.
+  જ્યારે આ hook call થાય, ત્યારે ઘટક instance હજુ સંપૂર્ણ functional છે.
 
-  **This hook is not called during server-side rendering.**
+  **આ hook server-side rendering દરમિયાન call થતો નથી.**
 
 ## unmounted {#unmounted}
 
-Called after the component has been unmounted.
+ઘટક unmounted થયા પછી call થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -154,23 +154,23 @@ Called after the component has been unmounted.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  A component is considered unmounted after:
+  ઘટક unmounted માનવામાં આવે જ્યારે:
 
-  - All of its child components have been unmounted.
+  - તેના તમામ child ઘટકો unmounted થઈ ગયા હોય.
 
-  - All of its associated reactive effects (render effect and computed / watchers created during `setup()`) have been stopped.
+  - તેના તમામ associated reactive effects (render effect અને `setup()` દરમિયાન created computed / watchers) stop થઈ ગયા હોય.
 
-  Use this hook to clean up manually created side effects such as timers, DOM event listeners or server connections.
+  Manually created side effects જેમ timers, DOM event listeners અથવા server connections clean up કરવા આ hook ઉપયોગ કરો.
 
-  **This hook is not called during server-side rendering.**
+  **આ hook server-side rendering દરમિયાન call થતો નથી.**
 
 ## errorCaptured {#errorcaptured}
 
-Called when an error propagating from a descendant component has been captured.
+Descendant ઘટકમાંથી propagate થતા error capture થાય ત્યારે call થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -183,11 +183,11 @@ Called when an error propagating from a descendant component has been captured.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Errors can be captured from the following sources:
+  નીચેના sources માંથી errors capture કરી શકાય:
 
-  - Component renders
+  - ઘટક renders
   - Event handlers
   - Lifecycle hooks
   - `setup()` function
@@ -195,39 +195,39 @@ Called when an error propagating from a descendant component has been captured.
   - Custom directive hooks
   - Transition hooks
 
-  The hook receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
+  Hook ત્રણ arguments receive કરે: error, error trigger કરનાર ઘટક instance, અને error source type specify કરતી information string.
 
   :::tip
-  In production, the 3rd argument (`info`) will be a shortened code instead of the full information string. You can find the code to string mapping in the [Production Error Code Reference](/error-reference/#runtime-errors).
+  Production માં, 3rd argument (`info`) full information string ના બદલે shortened code હશે. [Production Error Code Reference](/error-reference/#runtime-errors) માં code to string mapping શોધી શકો.
   :::
 
-  You can modify component state in `errorCaptured()` to display an error state to the user. However, it is important that the error state should not render the original content that caused the error; otherwise the component will be thrown into an infinite render loop.
+  User ને error state display કરવા `errorCaptured()` માં component state modify કરી શકો. જો કે, error state original content render ન કરે જેણે error cause કર્યો; નહીંતર ઘટક infinite render loop માં throw થશે.
 
-  The hook can return `false` to stop the error from propagating further. See error propagation details below.
+  Hook error ને further propagate થતા રોકવા `false` return કરી શકે. Error propagation details નીચે જુઓ.
 
   **Error Propagation Rules**
 
-  - By default, all errors are still sent to the application-level [`app.config.errorHandler`](/api/application#app-config-errorhandler) if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - ડિફોલ્ટ રૂપે, તમામ errors application-level [`app.config.errorHandler`](/api/application#app-config-errorhandler) ને મોકલવામાં આવે જો define થયેલો હોય, જેથી આ errors single place માં analytics service ને report કરી શકાય.
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error, in the order of bottom to top. This is similar to the bubbling mechanism of native DOM events.
+  - જો ઘટકના inheritance chain અથવા parent chain પર multiple `errorCaptured` hooks exist કરે, તો તે બધા same error પર bottom to top ક્રમમાં invoke થશે. આ native DOM events ની bubbling mechanism ને similar છે.
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to `app.config.errorHandler`.
+  - જો `errorCaptured` hook પોતે error throw કરે, તો આ error અને original captured error બંને `app.config.errorHandler` ને મોકલવામાં આવે.
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or `app.config.errorHandler` from being invoked for this error.
+  - `errorCaptured` hook error ને further propagate થતા રોકવા `false` return કરી શકે. આ essentially "આ error handle થઈ ગયો અને ignore થવો જોઈએ" કહે છે. આ error માટે કોઈ additional `errorCaptured` hooks કે `app.config.errorHandler` invoke થતા અટકાવશે.
 
   **Error Capturing Caveats**
   
-  - In components with async `setup()` function (with top-level `await`) Vue **will always** try to render component template, even if `setup()` threw error. This will likely cause more errors because during render component's template might try to access non-existing properties of failed `setup()` context. When capturing errors in such components, be ready to handle errors from both failed async `setup()` (they will always come first) and failed render process.
+  - Async `setup()` function (top-level `await` સાથે) ધરાવતા ઘટકોમાં Vue **હંમેશા** ઘટક template render કરવાનો પ્રયાસ કરશે, ભલે `setup()` error throw કરે. આ likely વધુ errors cause કરશે કારણ render દરમિયાન ઘટકનું template failed `setup()` context ની non-existing properties access કરવાનો પ્રયાસ કરી શકે. આવા ઘટકોમાં errors capture કરતી વખતે, failed async `setup()` (તેઓ હંમેશા પ્રથમ આવશે) અને failed render process બંનેમાંથી errors handle કરવા તૈયાર રહો.
 
-  - <sup class="vt-badge" data-text="SSR only"></sup> Replacing errored child component in parent component deep inside `<Suspense>` will cause hydration mismatches in SSR. Instead, try to separate logic that can possibly throw from child `setup()` into separate function and execute it in the parent component's `setup()`, where you can safely `try/catch` the execution process and make replacement if needed before rendering the actual child component.
+  - <sup class="vt-badge" data-text="SSR only"></sup> `<Suspense>` ની deep અંદર parent ઘટકમાં errored child ઘટક replace કરવાથી SSR માં hydration mismatches થશે. તેના બદલે, child `setup()` માંથી possibly throw થઈ શકે તેવા logic ને separate function માં separate કરવાનો અને parent ઘટકના `setup()` માં execute કરવાનો પ્રયાસ કરો, જ્યાં તમે safely execution process ને `try/catch` કરી શકો અને actual child ઘટક render કરતા પહેલા જરૂર હોય તો replacement કરી શકો.
 
 ## renderTracked <sup class="vt-badge dev-only" /> {#rendertracked}
 
-Called when a reactive dependency has been tracked by the component's render effect.
+ઘટકના render effect દ્વારા reactive dependency track થાય ત્યારે call થાય છે.
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**આ hook ફક્ત development-mode માં છે અને server-side rendering દરમિયાન call થતો નથી.**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -242,15 +242,15 @@ Called when a reactive dependency has been tracked by the component's render eff
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **આ પણ જુઓ** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## renderTriggered <sup class="vt-badge dev-only" /> {#rendertriggered}
 
-Called when a reactive dependency triggers the component's render effect to be re-run.
+Reactive dependency ઘટકના render effect ને re-run trigger કરે ત્યારે call થાય છે.
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**આ hook ફક્ત development-mode માં છે અને server-side rendering દરમિયાન call થતો નથી.**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -268,15 +268,15 @@ Called when a reactive dependency triggers the component's render effect to be r
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **આ પણ જુઓ** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## activated {#activated}
 
-Called after the component instance is inserted into the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+[`<KeepAlive>`](/api/built-in-components#keepalive) દ્વારા cached tree ના ભાગ તરીકે DOM માં ઘટક instance insert થયા પછી call થાય છે.
 
-**This hook is not called during server-side rendering.**
+**આ hook server-side rendering દરમિયાન call થતો નથી.**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -284,15 +284,15 @@ Called after the component instance is inserted into the DOM as part of a tree c
   }
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **આ પણ જુઓ** [ગાઇડ - Cached Instance નો Lifecycle](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## deactivated {#deactivated}
 
-Called after the component instance is removed from the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+[`<KeepAlive>`](/api/built-in-components#keepalive) દ્વારા cached tree ના ભાગ તરીકે DOM માંથી ઘટક instance removed થયા પછી call થાય છે.
 
-**This hook is not called during server-side rendering.**
+**આ hook server-side rendering દરમિયાન call થતો નથી.**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -300,13 +300,13 @@ Called after the component instance is removed from the DOM as part of a tree ca
   }
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **આ પણ જુઓ** [ગાઇડ - Cached Instance નો Lifecycle](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## serverPrefetch <sup class="vt-badge" data-text="SSR only" /> {#serverprefetch}
 
-Async function to be resolved before the component instance is to be rendered on the server.
+Server પર ઘટક instance render થવાના હોય તે પહેલા resolve થવા માટે async function.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -314,13 +314,13 @@ Async function to be resolved before the component instance is to be rendered on
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  If the hook returns a Promise, the server renderer will wait until the Promise is resolved before rendering the component.
+  જો hook Promise return કરે, તો server renderer ઘટક render કરતા પહેલા Promise resolve થાય ત્યાં સુધી wait કરશે.
 
-  This hook is only called during server-side rendering can be used to perform server-only data fetching.
+  આ hook ફક્ત server-side rendering દરમિયાન call થાય અને server-only data fetching perform કરવા ઉપયોગ કરી શકાય.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   export default {
@@ -330,19 +330,19 @@ Async function to be resolved before the component instance is to be rendered on
       }
     },
     async serverPrefetch() {
-      // component is rendered as part of the initial request
-      // pre-fetch data on server as it is faster than on the client
+      // ઘટક initial request ના ભાગ તરીકે render થાય
+      // server પર data pre-fetch કરો કારણ client કરતા ઝડપી છે
       this.data = await fetchOnServer(/* ... */)
     },
     async mounted() {
       if (!this.data) {
-        // if data is null on mount, it means the component
-        // is dynamically rendered on the client. Perform a
-        // client-side fetch instead.
+        // જો mount પર data null છે, તેનો અર્થ ઘટક
+        // client પર dynamically render થયો. Client-side
+        // fetch perform કરો.
         this.data = await fetchOnClient(/* ... */)
       }
     }
   }
   ```
 
-- **See also** [Server-Side Rendering](/guide/scaling-up/ssr)
+- **આ પણ જુઓ** [Server-Side Rendering](/guide/scaling-up/ssr)

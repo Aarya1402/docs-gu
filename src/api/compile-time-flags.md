@@ -2,50 +2,50 @@
 outline: deep
 ---
 
-# Compile-Time Flags {#compile-time-flags}
+# કમ્પાઇલ-ટાઇમ ફ્લેગ્સ (Compile-Time Flags) {#compile-time-flags}
 
 :::tip
-Compile-time flags only apply when using the `esm-bundler` build of Vue (i.e. `vue/dist/vue.esm-bundler.js`).
+કમ્પાઇલ-ટાઇમ ફ્લેગ્સ ફક્ત Vue ના `esm-bundler` બિલ્ડ (i.e. `vue/dist/vue.esm-bundler.js`) ઉપયોગ કરતી વખતે જ લાગુ થાય છે.
 :::
 
-When using Vue with a build step, it is possible to configure a number of compile-time flags to enable / disable certain features. The benefit of using compile-time flags is that features disabled this way can be removed from the final bundle via tree-shaking.
+બિલ્ડ સ્ટેપ સાથે Vue ઉપયોગ કરતી વખતે, ચોક્કસ સુવિધાઓ સક્ષમ / અક્ષમ (enable / disable) કરવા માટે ઘણા કમ્પાઇલ-ટાઇમ ફ્લેગ્સ કોન્ફિગર કરવું શક્ય છે. કમ્પાઇલ-ટાઇમ ફ્લેગ્સ ઉપયોગ કરવાનો ફાયદો એ છે કે આ રીતે અક્ષમ કરેલી સુવિધાઓને tree-shaking દ્વારા અંતિમ bundle માંથી દૂર કરી શકાય.
 
-Vue will work even if these flags are not explicitly configured. However, it is recommended to always configure them so that the relevant features can be properly removed when possible.
+જો આ ફ્લેગ્સ સ્પષ્ટ રીતે કોન્ફિગર ન કરવામાં આવ્યા હોય તો પણ Vue કામ કરશે. જો કે, તેમને હંમેશા કોન્ફિગર કરવાની ભલામણ કરવામાં આવે છે જેથી જ્યારે શક્ય હોય ત્યારે સંબંધિત સુવિધાઓ યોગ્ય રીતે દૂર થઈ શકે.
 
-See [Configuration Guides](#configuration-guides) on how to configure them depending on your build tool.
+તમારા બિલ્ડ ટૂલના આધારે તેમને કેવી રીતે કોન્ફિગર કરવા તે માટે [કોન્ફિગરેશન ગાઇડ્સ](#configuration-guides) જુઓ.
 
 ## `__VUE_OPTIONS_API__` {#VUE_OPTIONS_API}
 
-- **Default:** `true`
+- **ડિફોલ્ટ (Default):** `true`
 
-  Enable / disable Options API support. Disabling this will result in smaller bundles, but may affect compatibility with 3rd party libraries if they rely on Options API.
+  Options API સપોર્ટ સક્ષમ / અક્ષમ કરો. આને અક્ષમ કરવાથી નાના bundles મળશે, પરંતુ જો તૃતીય-પક્ષ (3rd party) libraries Options API પર આધાર રાખે છે તો સુસંગતતા (compatibility) ને અસર કરી શકે.
 
 ## `__VUE_PROD_DEVTOOLS__` {#VUE_PROD_DEVTOOLS}
 
-- **Default:** `false`
+- **ડિફોલ્ટ (Default):** `false`
 
-  Enable / disable devtools support in production builds. This will result in more code included in the bundle, so it is recommended to only enable this for debugging purposes.
+  પ્રોડક્શન builds માં devtools સપોર્ટ સક્ષમ / અક્ષમ કરો. આનાથી bundle માં વધુ કોડ સામેલ થશે, તેથી ફક્ત debugging હેતુઓ માટે જ આને સક્ષમ કરવાની ભલામણ કરવામાં આવે છે.
 
 ## `__VUE_PROD_HYDRATION_MISMATCH_DETAILS__` {#VUE_PROD_HYDRATION_MISMATCH_DETAILS}
 
-- **Default:** `false`
+- **ડિફોલ્ટ (Default):** `false`
 
-  Enable/disable detailed warnings for hydration mismatches in production builds. This will result in more code included in the bundle, so it is recommended to only enable this for debugging purposes.
+  પ્રોડક્શન builds માં hydration mismatches માટે વિગતવાર ચેતવણીઓ સક્ષમ/અક્ષમ કરો. આનાથી bundle માં વધુ કોડ સામેલ થશે, તેથી ફક્ત debugging હેતુઓ માટે જ આને સક્ષમ કરવાની ભલામણ કરવામાં આવે છે.
 
-- Only available in 3.4+
+- માત્ર 3.4+ માં ઉપલબ્ધ
 
-## Configuration Guides {#configuration-guides}
+## કોન્ફિગરેશન ગાઇડ્સ (Configuration Guides) {#configuration-guides}
 
 ### Vite {#vite}
 
-`@vitejs/plugin-vue` automatically provides default values for these flags. To change the default values, use Vite's [`define` config option](https://vite.dev/config/shared-options.html#define):
+`@vitejs/plugin-vue` આ ફ્લેગ્સ માટે આપમેળે ડિફોલ્ટ વેલ્યુ પ્રદાન કરે છે. ડિફોલ્ટ વેલ્યુ બદલવા માટે, Vite ના [`define` config ઓપ્શન](https://vite.dev/config/shared-options.html#define) નો ઉપયોગ કરો:
 
 ```js [vite.config.js]
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   define: {
-    // enable hydration mismatch details in production build
+    // પ્રોડક્શન build માં hydration mismatch details સક્ષમ કરો
     __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true'
   }
 })
@@ -53,7 +53,7 @@ export default defineConfig({
 
 ### vue-cli {#vue-cli}
 
-`@vue/cli-service` automatically provides default values for some of these flags. To configure /change the values:
+`@vue/cli-service` આમાંના કેટલાક ફ્લેગ્સ માટે આપમેળે ડિફોલ્ટ વેલ્યુ પ્રદાન કરે છે. વેલ્યુ કોન્ફિગર / બદલવા માટે:
 
 ```js [vue.config.js]
 module.exports = {
@@ -72,7 +72,7 @@ module.exports = {
 
 ### webpack {#webpack}
 
-Flags should be defined using webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+ફ્લેગ્સ webpack ના [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) ઉપયોગ કરીને ડિફાઇન કરવા જોઈએ:
 
 ```js [webpack.config.js]
 module.exports = {
@@ -89,7 +89,7 @@ module.exports = {
 
 ### Rollup {#rollup}
 
-Flags should be defined using [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace):
+ફ્લેગ્સ [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace) ઉપયોગ કરીને ડિફાઇન કરવા જોઈએ:
 
 ```js [rollup.config.js]
 import replace from '@rollup/plugin-replace'

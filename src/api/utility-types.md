@@ -1,14 +1,14 @@
-# Utility Types {#utility-types}
+# યુટિલિટી ટાઇપ્સ (Utility Types) {#utility-types}
 
 :::info
-This page only lists a few commonly used utility types that may need explanation for their usage. For a full list of exported types, consult the [source code](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131).
+આ પેજ ફક્ત થોડા સામાન્ય રીતે ઉપયોગમાં લેવાતા utility types ને list કરે છે જેમના ઉપયોગ માટે સમજૂતીની જરૂર પડી શકે. Exported types ની સંપૂર્ણ list માટે, [source code](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131) જુઓ.
 :::
 
 ## PropType\<T> {#proptype-t}
 
-Used to annotate a prop with more advanced types when using runtime props declarations.
+Runtime props declarations ઉપયોગ કરતી વખતે prop ને વધુ advanced types સાથે annotate કરવા માટે ઉપયોગ થાય છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```ts
   import type { PropType } from 'vue'
@@ -22,7 +22,7 @@ Used to annotate a prop with more advanced types when using runtime props declar
   export default {
     props: {
       book: {
-        // provide more specific type to `Object`
+        // `Object` ને વધુ ચોક્કસ type provide કરો
         type: Object as PropType<Book>,
         required: true
       }
@@ -30,27 +30,27 @@ Used to annotate a prop with more advanced types when using runtime props declar
   }
   ```
 
-- **See also** [Guide - Typing Component Props](/guide/typescript/options-api#typing-component-props)
+- **આ પણ જુઓ** [ગાઇડ - ઘટક Props ટાઇપ કરવા](/guide/typescript/options-api#typing-component-props)
 
 ## MaybeRef\<T> {#mayberef}
 
-- Only supported in 3.3+
+- માત્ર 3.3+ માં સપોર્ટેડ
 
-Alias for `T | Ref<T>`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+`T | Ref<T>` માટે Alias. [Composables](/guide/reusability/composables.html) ના arguments annotate કરવા માટે ઉપયોગી.
 
 ## MaybeRefOrGetter\<T> {#maybereforgetter}
 
-- Only supported in 3.3+
+- માત્ર 3.3+ માં સપોર્ટેડ
 
-Alias for `T | Ref<T> | (() => T)`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+`T | Ref<T> | (() => T)` માટે Alias. [Composables](/guide/reusability/composables.html) ના arguments annotate કરવા માટે ઉપયોગી.
 
 ## ExtractPropTypes\<T> {#extractproptypes}
 
-Extract prop types from a runtime props options object. The extracted types are internal facing - i.e. the resolved props received by the component. This means boolean props and props with default values are always defined, even if they are not required.
+Runtime props options object માંથી prop types extract કરો. Extracted types internal facing છે - i.e. ઘટક દ્વારા received resolved props. આનો અર્થ એ છે કે boolean props અને default values ધરાવતા props હંમેશા defined છે, ભલે તેઓ required ન હોય.
 
-To extract public facing props, i.e. props that the parent is allowed to pass, use [`ExtractPublicPropTypes`](#extractpublicproptypes).
+Public facing props extract કરવા, i.e. parent ને pass કરવાની મંજૂરી હોય તેવા props, [`ExtractPublicPropTypes`](#extractpublicproptypes) ઉપયોગ કરો.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```ts
   const propsOptions = {
@@ -77,11 +77,11 @@ To extract public facing props, i.e. props that the parent is allowed to pass, u
 
 ## ExtractPublicPropTypes\<T> {#extractpublicproptypes}
 
-- Only supported in 3.3+
+- માત્ર 3.3+ માં સપોર્ટેડ
 
-Extract prop types from a runtime props options object. The extracted types are public facing - i.e. the props that the parent is allowed to pass.
+Runtime props options object માંથી prop types extract કરો. Extracted types public facing છે - i.e. parent ને pass કરવાની મંજૂરી હોય તેવા props.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```ts
   const propsOptions = {
@@ -108,9 +108,9 @@ Extract prop types from a runtime props options object. The extracted types are 
 
 ## ComponentCustomProperties {#componentcustomproperties}
 
-Used to augment the component instance type to support custom global properties.
+Custom global properties ને support કરવા માટે ઘટક ઇન્સ્ટન્સ type ને augment કરવા ઉપયોગ થાય છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```ts
   import axios from 'axios'
@@ -124,16 +124,16 @@ Used to augment the component instance type to support custom global properties.
   ```
 
   :::tip
-  Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+  Augmentations module `.ts` અથવા `.d.ts` file માં placed હોવા જોઈએ. વધુ વિગત માટે [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) જુઓ.
   :::
 
-- **See also** [Guide - Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties)
+- **આ પણ જુઓ** [ગાઇડ - ગ્લોબલ Properties Augment કરવી](/guide/typescript/options-api#augmenting-global-properties)
 
 ## ComponentCustomOptions {#componentcustomoptions}
 
-Used to augment the component options type to support custom options.
+Custom options ને support કરવા માટે ઘટક options type ને augment કરવા ઉપયોગ થાય છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```ts
   import { Route } from 'vue-router'
@@ -146,16 +146,16 @@ Used to augment the component options type to support custom options.
   ```
 
   :::tip
-  Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+  Augmentations module `.ts` અથવા `.d.ts` file માં placed હોવા જોઈએ. વધુ વિગત માટે [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) જુઓ.
   :::
 
-- **See also** [Guide - Augmenting Custom Options](/guide/typescript/options-api#augmenting-custom-options)
+- **આ પણ જુઓ** [ગાઇડ - Custom Options Augment કરવી](/guide/typescript/options-api#augmenting-custom-options)
 
 ## ComponentCustomProps {#componentcustomprops}
 
-Used to augment allowed TSX props in order to use non-declared props on TSX elements.
+TSX elements પર non-declared props ઉપયોગ કરવા માટે allowed TSX props ને augment કરવા ઉપયોગ થાય છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```ts
   declare module 'vue' {
@@ -168,21 +168,21 @@ Used to augment allowed TSX props in order to use non-declared props on TSX elem
   ```
 
   ```tsx
-  // now works even if hello is not a declared prop
+  // હવે કામ કરે છે ભલે hello declared prop ન હોય
   <MyComponent hello="world" />
   ```
 
   :::tip
-  Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+  Augmentations module `.ts` અથવા `.d.ts` file માં placed હોવા જોઈએ. વધુ વિગત માટે [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) જુઓ.
   :::
 
 ## CSSProperties {#cssproperties}
 
-Used to augment allowed values in style property bindings.
+Style property bindings માં allowed values ને augment કરવા ઉપયોગ થાય છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  Allow any custom CSS property
+  કોઈપણ custom CSS property ની મંજૂરી આપો
 
   ```ts
   declare module 'vue' {
@@ -201,11 +201,11 @@ Used to augment allowed values in style property bindings.
   ```
 
 :::tip
-Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+Augmentations module `.ts` અથવા `.d.ts` file માં placed હોવા જોઈએ. વધુ વિગત માટે [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) જુઓ.
 :::
 
-:::info See also
-SFC `<style>` tags support linking CSS values to dynamic component state using the `v-bind` CSS function. This allows for custom properties without type augmentation.
+:::info આ પણ જુઓ
+SFC `<style>` tags `v-bind` CSS function ઉપયોગ કરીને CSS values ને dynamic component state સાથે link કરવાને support કરે છે. આ type augmentation વિના custom properties ની મંજૂરી આપે છે.
 
-- [v-bind() in CSS](/api/sfc-css-features#v-bind-in-css)
+- [CSS માં v-bind()](/api/sfc-css-features#v-bind-in-css)
   :::

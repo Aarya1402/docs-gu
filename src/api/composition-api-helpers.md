@@ -1,10 +1,10 @@
-# Composition API: Helpers {#composition-api-helpers}
+# Composition API: હેલ્પર્સ (Helpers) {#composition-api-helpers}
 
 ## useAttrs() {#useattrs}
 
-Returns the `attrs` object from the [Setup Context](/api/composition-api-setup#setup-context), which includes the [fallthrough attributes](/guide/components/attrs#fallthrough-attributes) of the current component. This is intended to be used in `<script setup>` where the setup context object is not available.
+[Setup Context](/api/composition-api-setup#setup-context) માંથી `attrs` ઓબ્જેક્ટ રિટર્ન કરે છે, જેમાં વર્તમાન ઘટકના [fallthrough attributes](/guide/components/attrs#fallthrough-attributes) સામેલ છે. `<script setup>` માં ઉપયોગ કરવા માટે ડિઝાઇન કરવામાં આવ્યું છે જ્યાં setup context ઓબ્જેક્ટ ઉપલબ્ધ નથી.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function useAttrs(): Record<string, unknown>
@@ -12,11 +12,11 @@ Returns the `attrs` object from the [Setup Context](/api/composition-api-setup#s
 
 ## useSlots() {#useslots}
 
-Returns the `slots` object from the [Setup Context](/api/composition-api-setup#setup-context), which includes parent passed slots as callable functions that return Virtual DOM nodes. This is intended to be used in `<script setup>` where the setup context object is not available.
+[Setup Context](/api/composition-api-setup#setup-context) માંથી `slots` ઓબ્જેક્ટ રિટર્ન કરે છે, જેમાં parent દ્વારા પાસ કરેલા slots callable functions તરીકે સામેલ છે જે Virtual DOM nodes રિટર્ન કરે છે. `<script setup>` માં ઉપયોગ કરવા માટે ડિઝાઇન કરવામાં આવ્યું છે જ્યાં setup context ઓબ્જેક્ટ ઉપલબ્ધ નથી.
 
-If using TypeScript, [`defineSlots()`](/api/sfc-script-setup#defineslots) should be preferred instead.
+TypeScript ઉપયોગ કરતા હોવ તો, [`defineSlots()`](/api/sfc-script-setup#defineslots) ને પ્રાધાન્ય આપવું જોઈએ.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function useSlots(): Record<string, (...args: any[]) => VNode[]>
@@ -24,11 +24,11 @@ If using TypeScript, [`defineSlots()`](/api/sfc-script-setup#defineslots) should
 
 ## useModel() {#usemodel}
 
-This is the underlying helper that powers [`defineModel()`](/api/sfc-script-setup#definemodel). If using `<script setup>`, `defineModel()` should be preferred instead.
+આ અંતર્ગત (underlying) helper છે જે [`defineModel()`](/api/sfc-script-setup#definemodel) ને power કરે છે. `<script setup>` ઉપયોગ કરતા હોવ તો, `defineModel()` ને પ્રાધાન્ય આપવું જોઈએ.
 
-- Only available in 3.4+
+- માત્ર 3.4+ માં ઉપલબ્ધ
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function useModel(
@@ -48,7 +48,7 @@ This is the underlying helper that powers [`defineModel()`](/api/sfc-script-setu
   ]
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   export default {
@@ -61,21 +61,21 @@ This is the underlying helper that powers [`defineModel()`](/api/sfc-script-setu
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  `useModel()` can be used in non-SFC components, e.g. when using raw `setup()` function. It expects the `props` object as the first argument, and the model name as the second argument. The optional third argument can be used to declare custom getter and setter for the resulting model ref. Note that unlike `defineModel()`, you are responsible for declaring the props and emits yourself.
+  `useModel()` non-SFC ઘટકોમાં ઉપયોગ કરી શકાય, દા.ત. raw `setup()` function ઉપયોગ કરતી વખતે. તે પ્રથમ આર્ગ્યુમેન્ટ તરીકે `props` ઓબ્જેક્ટ અને બીજા આર્ગ્યુમેન્ટ તરીકે model name ની અપેક્ષા રાખે છે. ત્રીજા વૈકલ્પિક આર્ગ્યુમેન્ટનો ઉપયોગ પરિણામી model ref માટે custom getter અને setter declare કરવા માટે થઈ શકે. નોંધ કરો કે `defineModel()` થી વિપરીત, props અને emits જાતે declare કરવાની જવાબદારી તમારી છે.
 
 ## useTemplateRef() <sup class="vt-badge" data-text="3.5+" /> {#usetemplateref}
 
-Returns a shallow ref whose value will be synced with the template element or component with a matching ref attribute.
+shallow ref રિટર્ન કરે છે જેની value matching ref attribute ધરાવતા template element અથવા component સાથે sync થશે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function useTemplateRef<T>(key: string): Readonly<ShallowRef<T | null>>
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```vue
   <script setup>
@@ -93,22 +93,22 @@ Returns a shallow ref whose value will be synced with the template element or co
   </template>
   ```
 
-- **See also**
-  - [Guide - Template Refs](/guide/essentials/template-refs)
-  - [Guide - Typing Template Refs](/guide/typescript/composition-api#typing-template-refs) <sup class="vt-badge ts" />
-  - [Guide - Typing Component Template Refs](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
+- **આ પણ જુઓ**
+  - [ગાઇડ - ટેમ્પ્લેટ Refs](/guide/essentials/template-refs)
+  - [ગાઇડ - ટેમ્પ્લેટ Refs ટાઇપ કરવા](/guide/typescript/composition-api#typing-template-refs) <sup class="vt-badge ts" />
+  - [ગાઇડ - ઘટક ટેમ્પ્લેટ Refs ટાઇપ કરવા](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
 
 ## useId() <sup class="vt-badge" data-text="3.5+" /> {#useid}
 
-Used to generate unique-per-application IDs for accessibility attributes or form elements.
+accessibility attributes અથવા form elements માટે unique-per-application IDs જનરેટ કરવા માટે ઉપયોગ થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function useId(): string
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```vue
   <script setup>
@@ -125,14 +125,14 @@ Used to generate unique-per-application IDs for accessibility attributes or form
   </template>
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  IDs generated by `useId()` are unique-per-application. It can be used to generate IDs for form elements and accessibility attributes. Multiple calls in the same component will generate different IDs; multiple instances of the same component calling `useId()` will also have different IDs.
+  `useId()` દ્વારા જનરેટ થયેલા IDs unique-per-application છે. form elements અને accessibility attributes માટે IDs જનરેટ કરવા માટે ઉપયોગ કરી શકાય. સમાન ઘટકમાં બહુવિધ calls અલગ IDs જનરેટ કરશે; `useId()` બોલાવતા સમાન ઘટકના બહુવિધ instances ના પણ અલગ IDs હશે.
 
-  IDs generated by `useId()` are also guaranteed to be stable across the server and client renders, so they can be used in SSR applications without leading to hydration mismatches.
+  `useId()` દ્વારા જનરેટ થયેલા IDs server અને client renders વચ્ચે stable (સ્થિર) હોવાની ખાતરી છે, તેથી તેઓ hydration mismatches તરફ દોર્યા વિના SSR applications માં ઉપયોગ કરી શકાય.
 
-  If you have more than one Vue application instance of the same page, you can avoid ID conflicts by giving each app an ID prefix via [`app.config.idPrefix`](/api/application#app-config-idprefix).
+  જો તમારી પાસે એક જ page પર એકથી વધુ Vue application instance હોય, તો તમે [`app.config.idPrefix`](/api/application#app-config-idprefix) દ્વારા દરેક app ને ID prefix આપીને ID conflicts ટાળી શકો.
 
-  :::warning Caution
-  `useId()` should not be called inside a `computed()` property as it may cause instance conflicts. Instead, declare the ID outside of `computed()` and reference it within the computed function.
+  :::warning સાવધાની (Caution)
+  `useId()` ને `computed()` property અંદર બોલાવવો જોઈએ નહીં કારણ કે તે instance conflicts નું કારણ બની શકે. તેના બદલે, `computed()` ની બહાર ID declare કરો અને computed function માં તેનો reference કરો.
   :::

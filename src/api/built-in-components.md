@@ -2,12 +2,12 @@
 pageClass: api
 ---
 
-# Built-in Components {#built-in-components}
+# બિલ્ટ-ઇન ઘટકો (Built-in Components) {#built-in-components}
 
-:::info Registration and Usage
-Built-in components can be used directly in templates without needing to be registered. They are also tree-shakeable: they are only included in the build when they are used.
+:::info રજીસ્ટ્રેશન અને ઉપયોગ (Registration and Usage)
+બિલ્ટ-ઇન ઘટકો રજીસ્ટર કરવાની જરૂર વગર સીધા ટેમ્પ્લેટ્સમાં વાપરી શકાય છે. તેઓ ટ્રી-શેકેબલ (tree-shakeable) પણ છે: જ્યારે તેમનો ઉપયોગ કરવામાં આવે ત્યારે જ તેમને બિલ્ડમાં સામેલ કરવામાં આવે છે.
 
-When using them in [render functions](/guide/extras/render-function), they need to be imported explicitly. For example:
+જ્યારે તેમનો [રેન્ડર ફંક્શન્સ](/guide/extras/render-function) માં ઉપયોગ કરવામાં આવે ત્યારે તેમને સ્પષ્ટ રીતે ઇમ્પોર્ટ (import) કરવાની જરૂર હોય છે. ઉદાહરણ તરીકે:
 
 ```js
 import { h, Transition } from 'vue'
@@ -21,50 +21,48 @@ h(Transition, {
 
 ## `<Transition>` {#transition}
 
-Provides animated transition effects to a **single** element or component.
+એક **સિંગલ** એલિમેન્ટ અથવા ઘટકને એનિમેટેડ ટ્રાન્ઝિશન ઇફેક્ટ્સ પ્રદાન કરે છે.
 
 - **Props**
 
   ```ts
   interface TransitionProps {
     /**
-     * Used to automatically generate transition CSS class names.
-     * e.g. `name: 'fade'` will auto expand to `.fade-enter`,
-     * `.fade-enter-active`, etc.
+     * ટ્રાન્ઝિશન CSS ક્લાસ નેમ્સ આપમેળે જનરેટ કરવા માટે વપરાય છે.
+     * દા.ત. `name: 'fade'` આપમેળે `.fade-enter`,
+     * `.fade-enter-active`, વગેરે પર વિસ્તારિત થશે.
      */
     name?: string
     /**
-     * Whether to apply CSS transition classes.
-     * Default: true
+     * CSS ટ્રાન્ઝિશન ક્લાસ એપ્લાય કરવા કે નહીં.
+     * ડિફોલ્ટ: true
      */
     css?: boolean
     /**
-     * Specifies the type of transition events to wait for to
-     * determine transition end timing.
-     * Default behavior is auto detecting the type that has
-     * longer duration.
+     * ટ્રાન્ઝિશન એન્ડ ટાઇમિંગ નક્કી કરવા માટે કયા પ્રકારની ટ્રાન્ઝિશન ઇવેન્ટ્સની રાહ જોવી તે સ્પષ્ટ કરે છે.
+     * ડિફોલ્ટ બિહેવિયર લાંબો સમયગાળો ધરાવતા પ્રકારને આપમેળે શોધી કાઢે છે.
      */
     type?: 'transition' | 'animation'
     /**
-     * Specifies explicit durations of the transition.
-     * Default behavior is wait for the first `transitionend`
-     * or `animationend` event on the root transition element.
+     * ટ્રાન્ઝિશનનો સ્પષ્ટ સમયગાળો (durations) સ્પષ્ટ કરે છે.
+     * ડિફોલ્ટ બિહેવિયર રુટ ટ્રાન્ઝિશન એલિમેન્ટ પર પ્રથમ `transitionend`
+     * અથવા `animationend` ઇવેન્ટની રાહ જોવી છે.
      */
     duration?: number | { enter: number; leave: number }
     /**
-     * Controls the timing sequence of leaving/entering transitions.
-     * Default behavior is simultaneous.
+     * લીવિંગ/એન્ટરિંગ ટ્રાન્ઝિશનના ટાઇમિંગ સિક્વન્સને કંટ્રોલ કરે છે.
+     * ડિફોલ્ટ બિહેવિયર એકસાથે (simultaneous) છે.
      */
     mode?: 'in-out' | 'out-in' | 'default'
     /**
-     * Whether to apply transition on initial render.
-     * Default: false
+     * પ્રારંભિક રેન્ડર પર ટ્રાન્ઝિશન એપ્લાય કરવું કે નહીં.
+     * ડિફોલ્ટ: false
      */
     appear?: boolean
 
     /**
-     * Props for customizing transition classes.
-     * Use kebab-case in templates, e.g. enter-from-class="xxx"
+     * ટ્રાન્ઝિશન ક્લાસ કસ્ટમાઇઝ કરવા માટેના Props.
+     * ટેમ્પ્લેટ્સમાં કેબાબ-કેસ (kebab-case) નો ઉપયોગ કરો, દા.ત. enter-from-class="xxx"
      */
     enterFromClass?: string
     enterActiveClass?: string
@@ -78,7 +76,7 @@ Provides animated transition effects to a **single** element or component.
   }
   ```
 
-- **Events**
+- **ઇવેન્ટ્સ (Events)**
 
   - `@before-enter`
   - `@before-leave`
@@ -89,12 +87,12 @@ Provides animated transition effects to a **single** element or component.
   - `@after-leave`
   - `@after-appear`
   - `@enter-cancelled`
-  - `@leave-cancelled` (`v-show` only)
+  - `@leave-cancelled` (ફક્ત `v-show` માં)
   - `@appear-cancelled`
 
 - **Example**
 
-  Simple element:
+  સરળ એલિમેન્ટ:
 
   ```vue-html
   <Transition>
@@ -102,7 +100,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-  Forcing a transition by changing the `key` attribute:
+  `key` એટ્રિબ્યુટ બદલીને ટ્રાન્ઝિશન ફોર્સ કરવું:
 
   ```vue-html
   <Transition>
@@ -110,7 +108,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-  Dynamic component, with transition mode + animate on appear:
+  ડાયનેમિક ઘટક, ટ્રાન્ઝિશન મોડ + અપિયર (appear) પર એનિમેશન સાથે:
 
   ```vue-html
   <Transition name="fade" mode="out-in" appear>
@@ -118,7 +116,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-  Listening to transition events:
+  ટ્રાન્ઝિશન ઇવેન્ટ્સ સાંભળવી (Listening):
 
   ```vue-html
   <Transition @after-enter="onTransitionComplete">
@@ -126,41 +124,41 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-- **See also** [Guide - Transition](/guide/built-ins/transition)
+- **આ પણ જુઓ** [ગાઇડ - ટ્રાન્ઝિશન (Transition)](/guide/built-ins/transition)
 
 ## `<TransitionGroup>` {#transitiongroup}
 
-Provides transition effects for **multiple** elements or components in a list.
+લિસ્ટમાંના **બહુવિધ** એલિમેન્ટ્સ અથવા ઘટકો માટે ટ્રાન્ઝિશન ઇફેક્ટ્સ પ્રદાન કરે છે.
 
 - **Props**
 
-  `<TransitionGroup>` accepts the same props as `<Transition>` except `mode`, plus two additional props:
+  `<TransitionGroup>` `mode` સિવાય `<Transition>` જેવા જ પ્રોપ્સ સ્વીકારે છે, વત્તા બે વધારાના પ્રોપ્સ:
 
   ```ts
   interface TransitionGroupProps extends Omit<TransitionProps, 'mode'> {
     /**
-     * If not defined, renders as a fragment.
+     * જો વ્યાખ્યાયિત ન હોય તો, ફ્રેગમેન્ટ (fragment) તરીકે રેન્ડર થાય છે.
      */
     tag?: string
     /**
-     * For customizing the CSS class applied during move transitions.
-     * Use kebab-case in templates, e.g. move-class="xxx"
+     * મુવ ટ્રાન્ઝિશન (move transitions) દરમિયાન એપ્લાય કરાયેલા CSS ક્લાસને કસ્ટમાઇઝ કરવા માટે.
+     * ટેમ્પ્લેટ્સમાં કેબાબ-કેસનો ઉપયોગ કરો, દા.ત. move-class="xxx"
      */
     moveClass?: string
   }
   ```
 
-- **Events**
+- **ઇવેન્ટ્સ (Events)**
 
-  `<TransitionGroup>` emits the same events as `<Transition>`.
+  `<TransitionGroup>` `<Transition>` જેવી જ ઇવેન્ટ્સ એમિટ (emit) કરે છે.
 
-- **Details**
+- **વિગત (Details)**
 
-  By default, `<TransitionGroup>` doesn't render a wrapper DOM element, but one can be defined via the `tag` prop.
+  ડિફોલ્ટ રૂપે, `<TransitionGroup>` રેપર (wrapper) DOM એલિમેન્ટ રેન્ડર કરતું નથી, પરંતુ `tag` પ્રોપ દ્વારા તેને વ્યાખ્યાયિત કરી શકાય છે.
 
-  Note that every child in a `<transition-group>` must be [**uniquely keyed**](/guide/essentials/list#maintaining-state-with-key) for the animations to work properly.
+  નોંધ લો કે એનિમેશન યોગ્ય રીતે કામ કરવા માટે `<transition-group>` માં દરેક બાળક (child) પાસે [**અનન્ય કી (uniquely keyed)**](/guide/essentials/list#maintaining-state-with-key) હોવી આવશ્યક છે.
 
-  `<TransitionGroup>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` prop). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<TransitionGroup>` CSS ટ્રાન્સફોર્મ (transform) દ્વારા મૂવિંગ ટ્રાન્ઝિશનને સપોર્ટ કરે છે. જ્યારે અપડેટ પછી સ્ક્રીન પર બાળકની સ્થિતિ બદલાય છે, ત્યારે તેને મૂવિંગ CSS ક્લાસ એપ્લાય કરવામાં આવશે (`name` એટ્રિબ્યુટમાંથી ઓટો જનરેટ થાય છે અથવા `move-class` પ્રોપ સાથે કોન્ફિગર કરવામાં આવે છે). જો મૂવિંગ ક્લાસ એપ્લાય કરવામાં આવે ત્યારે CSS `transform` પ્રોપર્ટી "ટ્રાન્ઝિશન-એબલ" (transition-able) હોય, તો એલિમેન્ટ [FLIP ટેકનિક](https://aerotwist.com/blog/flip-your-animations/) નો ઉપયોગ કરીને તેના ડેસ્ટિનેશન પર સરળતાથી એનિમેટ થશે.
 
 - **Example**
 
@@ -172,28 +170,27 @@ Provides transition effects for **multiple** elements or components in a list.
   </TransitionGroup>
   ```
 
-- **See also** [Guide - TransitionGroup](/guide/built-ins/transition-group)
+- **આ પણ જુઓ** [ગાઇડ - ટ્રાન્ઝિશનગ્રુપ (TransitionGroup)](/guide/built-ins/transition-group)
 
 ## `<KeepAlive>` {#keepalive}
 
-Caches dynamically toggled components wrapped inside.
+અંદર લપેટેલા (wrapped) ડાયનેમિકલી ટોગલ કરેલા ઘટકોને કેશ (cache) કરે છે.
 
 - **Props**
 
   ```ts
   interface KeepAliveProps {
     /**
-     * If specified, only components with names matched by
-     * `include` will be cached.
+     * જો નિર્દિષ્ટ કરવામાં આવે, તો માત્ર `include` દ્વારા મેળ ખાતા નામો ધરાવતા ઘટકોને
+     * જ કેશ કરવામાં આવશે.
      */
     include?: MatchPattern
     /**
-     * Any component with a name matched by `exclude` will
-     * not be cached.
+     * `exclude` દ્વારા મેળ ખાતા નામો ધરાવતો કોઈપણ ઘટક કેશ કરવામાં આવશે નહીં.
      */
     exclude?: MatchPattern
     /**
-     * The maximum number of component instances to cache.
+     * કેશ કરવા માટેના ઘટક ઇન્સ્ટન્સની મહત્તમ સંખ્યા.
      */
     max?: number | string
   }
@@ -201,17 +198,17 @@ Caches dynamically toggled components wrapped inside.
   type MatchPattern = string | RegExp | (string | RegExp)[]
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  When wrapped around a dynamic component, `<KeepAlive>` caches the inactive component instances without destroying them.
+  જ્યારે ડાયનેમિક ઘટકની આસપાસ લપેટી દેવામાં આવે છે, ત્યારે `<KeepAlive>` નિષ્ક્રિય ઘટક ઇન્સ્ટન્સને નાશ કર્યા વિના કેશ કરે છે.
 
-  There can only be one active component instance as the direct child of `<KeepAlive>` at any time.
+  કોઈપણ સમયે `<KeepAlive>` ના ડાયરેક્ટ ચાઈલ્ડ તરીકે માત્ર એક જ સક્રિય ઘટક ઇન્સ્ટન્સ હોઈ શકે છે.
 
-  When a component is toggled inside `<KeepAlive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly, providing an alternative to `mounted` and `unmounted`, which are not called. This applies to the direct child of `<KeepAlive>` as well as to all of its descendants.
+  જ્યારે `<KeepAlive>` ની અંદર ઘટક ટોગલ થાય છે, ત્યારે તેના `activated` અને `deactivated` લાઇફસાઇકલ હૂક્સ તે મુજબ ઇન્વોક કરવામાં આવશે, જે `mounted` અને `unmounted` ના વિકલ્પ તરીકે કામ કરશે, જે કોલ કરવામાં આવતા નથી. આ `<KeepAlive>` ના ડાયરેક્ટ ચાઈલ્ડ તેમજ તેના તમામ વંશજો (descendants) ને લાગુ પડે છે.
 
 - **Example**
 
-  Basic usage:
+  મૂળભૂત ઉપયોગ:
 
   ```vue-html
   <KeepAlive>
@@ -219,7 +216,7 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-  When used with `v-if` / `v-else` branches, there must be only one component rendered at a time:
+  જ્યારે `v-if` / `v-else` બ્રાન્ચ સાથે ઉપયોગ થાય છે, ત્યારે એક સમયે માત્ર એક જ ઘટક રેન્ડર થયેલો હોવો જોઈએ:
 
   ```vue-html
   <KeepAlive>
@@ -228,7 +225,7 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-  Used together with `<Transition>`:
+  `<Transition>` સાથે મળીને વપરાય છે:
 
   ```vue-html
   <Transition>
@@ -238,26 +235,26 @@ Caches dynamically toggled components wrapped inside.
   </Transition>
   ```
 
-  Using `include` / `exclude`:
+  `include` / `exclude` નો ઉપયોગ કરીને:
 
   ```vue-html
-  <!-- comma-delimited string -->
+  <!-- અલ્પવિરામથી અલગ થયેલી સ્ટ્રિંગ -->
   <KeepAlive include="a,b">
     <component :is="view"></component>
   </KeepAlive>
 
-  <!-- regex (use `v-bind`) -->
+  <!-- regex (`v-bind` નો ઉપયોગ કરો) -->
   <KeepAlive :include="/a|b/">
     <component :is="view"></component>
   </KeepAlive>
 
-  <!-- Array (use `v-bind`) -->
+  <!-- Array (`v-bind` નો ઉપયોગ કરો) -->
   <KeepAlive :include="['a', 'b']">
     <component :is="view"></component>
   </KeepAlive>
   ```
 
-  Usage with `max`:
+  `max` સાથે ઉપયોગ:
 
   ```vue-html
   <KeepAlive :max="10">
@@ -265,31 +262,29 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-- **See also** [Guide - KeepAlive](/guide/built-ins/keep-alive)
+- **આ પણ જુઓ** [ગાઇડ - KeepAlive](/guide/built-ins/keep-alive)
 
 ## `<Teleport>` {#teleport}
 
-Renders its slot content to another part of the DOM.
+તેના સ્લોટ કન્ટેન્ટને DOM ના બીજા ભાગમાં રેન્ડર કરે છે.
 
 - **Props**
 
   ```ts
   interface TeleportProps {
     /**
-     * Required. Specify target container.
-     * Can either be a selector or an actual element.
+     * ફરજિયાત. ટાર્ગેટ કન્ટેનર સ્પષ્ટ કરો.
+     * તે ક્યાં તો સિલેક્ટર અથવા વાસ્તવિક એલિમેન્ટ હોઈ શકે છે.
      */
     to: string | HTMLElement
     /**
-     * When `true`, the content will remain in its original
-     * location instead of moved into the target container.
-     * Can be changed dynamically.
+     * જ્યારે `true` હોય, ત્યારે કન્ટેન્ટ ટાર્ગેટ કન્ટેનરમાં ખસેડવાને બદલે તેના
+     * મૂળ સ્થાને જ રહેશે. ગતિશીલ રીતે બદલી શકાય છે.
      */
     disabled?: boolean
     /**
-     * When `true`, the Teleport will defer until other
-     * parts of the application have been mounted before
-     * resolving its target. (3.5+)
+     * જ્યારે `true` હોય, ત્યારે ટેલિપોર્ટ તેના ટાર્ગેટને રિઝોલ્વ કરતા પહેલા
+     * એપ્લિકેશનના અન્ય ભાગો માઉન્ટ ન થાય ત્યાં સુધી વિલંબ (defer) કરશે. (3.5+)
      */
     defer?: boolean
   }
@@ -297,7 +292,7 @@ Renders its slot content to another part of the DOM.
 
 - **Example**
 
-  Specifying target container:
+  ટાર્ગેટ કન્ટેનર સ્પષ્ટ કરવું:
 
   ```vue-html
   <Teleport to="#some-id" />
@@ -305,7 +300,7 @@ Renders its slot content to another part of the DOM.
   <Teleport to="[data-teleport]" />
   ```
 
-  Conditionally disabling:
+  શરતી રીતે નિષ્ક્રિય કરવું (Conditionally disabling):
 
   ```vue-html
   <Teleport to="#popup" :disabled="displayVideoInline">
@@ -313,20 +308,20 @@ Renders its slot content to another part of the DOM.
   </Teleport>
   ```
 
-  Defer target resolution <sup class="vt-badge" data-text="3.5+" />:
+  વિલંબિત ટાર્ગેટ રિઝોલ્યુશન (Defer target resolution) <sup class="vt-badge" data-text="3.5+" />:
 
   ```vue-html
   <Teleport defer to="#late-div">...</Teleport>
 
-  <!-- somewhere later in the template -->
+  <!-- ટેમ્પ્લેટમાં ક્યાંક પછી થી -->
   <div id="late-div"></div>
   ```
 
-- **See also** [Guide - Teleport](/guide/built-ins/teleport)
+- **આ પણ જુઓ** [ગાઇડ - ટેલિપોર્ટ (Teleport)](/guide/built-ins/teleport)
 
 ## `<Suspense>` <sup class="vt-badge experimental" /> {#suspense}
 
-Used for orchestrating nested async dependencies in a component tree.
+ઘટક વૃક્ષમાં નેસ્ટેડ અસિંક્રોનસ ડિપેન્ડન્સી (async dependencies) ને ઓર્કેસ્ટ્રેટ કરવા માટે વપરાય છે.
 
 - **Props**
 
@@ -337,18 +332,18 @@ Used for orchestrating nested async dependencies in a component tree.
   }
   ```
 
-- **Events**
+- **ઇવેન્ટ્સ (Events)**
 
   - `@resolve`
   - `@pending`
   - `@fallback`
 
-- **Details**
+- **વિગત (Details)**
 
-  `<Suspense>` accepts two slots: the `#default` slot and the `#fallback` slot. It will display the content of the fallback slot while rendering the default slot in memory.
+  `<Suspense>` બે સ્લોટ સ્વીકારે છે: `#default` સ્લોટ અને `#fallback` સ્લોટ. તે મેમરીમાં ડિફોલ્ટ સ્લોટ રેન્ડર કરતી વખતે ફોલબેક સ્લોટનું કન્ટેન્ટ પ્રદર્શિત કરશે.
 
-  If it encounters async dependencies ([Async Components](/guide/components/async) and components with [`async setup()`](/guide/built-ins/suspense#async-setup)) while rendering the default slot, it will wait until all of them are resolved before displaying the default slot.
+  જો ડિફોલ્ટ સ્લોટ રેન્ડર કરતી વખતે તેને અસિંક્રોનસ ડિપેન્ડન્સી ([અસિંક્રોનસ ઘટકો](/guide/components/async) અને [`async setup()`](/guide/built-ins/suspense#async-setup) ધરાવતા ઘટકો) મળે છે, તો તે ડિફોલ્ટ સ્લોટ પ્રદર્શિત કરતા પહેલા તે તમામ રિઝોલ્વ ન થાય ત્યાં સુધી રાહ જોશે.
 
-  By setting the Suspense as `suspensible`, all the async dependency handling will be handled by the parent Suspense. See [implementation details](https://github.com/vuejs/core/pull/6736)
+  સસ્પેન્સને `suspensible` તરીકે સેટ કરીને, તમામ અસિંક્રોનસ ડિપેન્ડન્સી હેન્ડલિંગ પેરેન્ટ સસ્પેન્સ દ્વારા હેન્ડલ કરવામાં આવશે. જુઓ [અમલીકરણ વિગતો (implementation details)](https://github.com/vuejs/core/pull/6736)
 
-- **See also** [Guide - Suspense](/guide/built-ins/suspense)
+- **આ પણ જુઓ** [ગાઇડ - સસ્પેન્સ (Suspense)](/guide/built-ins/suspense)

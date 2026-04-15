@@ -1,42 +1,42 @@
-# Vue.js Privacy Policy {#vue.js-privacy-policy}
+# Vue.js પ્રાઇવસી પોલિસી (Privacy Policy) {#vue.js-privacy-policy}
 
-> Effective Date: May 3, 2024
+> અમલીકરણ તારીખ: ૩ મે, ૨૦૨૪
 
-This Privacy Policy describes the Vue.js organization ("Vue", "we", "us" or "our") practices for handling your information in connection with this website (https://vuejs.org) and our open source-related websites ("Websites") and any content, related documentation, information and services (e.g. tutorials, tools to support the developer workflow, access to resources, etc.) made available to you on this website (collectively, the "Services"). This Privacy Policy describes the personal information we process to support our Services.
+આ પ્રાઇવસી પોલિસી Vue.js સંસ્થા ("Vue", "અમે", "અમને" અથવા "અમારી") આ વેબસાઇટ (https://vuejs.org) અને અમારી ઓપન સોર્સ સંબંધિત વેબસાઇટ્સ ("વેબસાઇટ્સ") અને આ વેબસાઇટ પર તમને ઉપલબ્ધ કરાવવામાં આવેલ કોઈપણ કન્ટેન્ટ, સંબંધિત દસ્તાવેજીકરણ, માહિતી અને સેવાઓ (દા.ત. ટ્યુટોરિયલ્સ, ડેવલપર વર્કફ્લોને સપોર્ટ કરવા માટેના ટૂલ્સ, સંસાધનોની ઍક્સેસ, વગેરે) (સામૂહિક રીતે, "સેવાઓ") ના સંબંધમાં તમારી માહિતીના સંચાલન માટેની પદ્ધતિઓનું વર્ણન કરે છે. આ પ્રાઇવસી પોલિસી અમારી સેવાઓને સપોર્ટ કરવા માટે અમે જે વ્યક્તિગત માહિતી પર પ્રક્રિયા કરીએ છીએ તેનું વર્ણન કરે છે.
 
-For clarity, this Privacy Policy does not apply to any:
+સ્પષ્ટતા માટે, આ પ્રાઇવસી પોલિસી નીચેના પૈકી કોઈપણને લાગુ પડતી નથી:
 
-1. Use of open source code, documentation or specifications made available on GitHub (https://github.com/), which are governed by the terms of the applicable open source license;
+૧. GitHub (https://github.com/) પર ઉપલબ્ધ કરાવવામાં આવેલ ઓપન સોર્સ કોડ, દસ્તાવેજીકરણ અથવા વિશિષ્ટતાઓનો ઉપયોગ, જે લાગુ ઓપન સોર્સ લાયસન્સની શરતો દ્વારા સંચાલિત થાય છે;
 
-2. Pull requests, issues and any other interactions or features related to participation in open source projects on GitHub, which are governed by GitHub's terms and conditions; or
+૨. બગ રિપોર્ટ (Pull requests, issues) અને GitHub પર ઓપન સોર્સ પ્રોજેક્ટ્સમાં ભાગીદારી સંબંધિત અન્ય કોઈપણ ક્રિયાપ્રતિક્રિયાઓ અથવા સુવિધાઓ, જે GitHub ની શરતો અને નિયમો દ્વારા સંચાલિત થાય છે; અથવા
 
-3. Usage statistics of our published packages on NPM (https://npmjs.com/), which are governed by NPM's terms and conditions; or
+૩. NPM (https://npmjs.com/) પર અમારા પ્રકાશિત પેકેજોના વપરાશના આંકડા, જે NPM ની શરતો અને નિયમો દ્વારા સંચાલિત થાય છે; અથવા
 
-4. Usage statistics of our published browser / IDE extensions collected by the browser / IDE vendors. Such statistics are governed by the vendors' respective terms and conditions.
+૪. બ્રાઉઝર / IDE વિક્રેતાઓ દ્વારા એકત્રિત કરવામાં આવેલા અમારા પ્રકાશિત બ્રાઉઝર / IDE એક્સ્ટેન્શન્સના વપરાશના આંકડા. આવા આંકડા વિક્રેતાઓની સંબંધિત શરતો અને નિયમો દ્વારા સંચાલિત થાય છે.
 
-## What Kinds of Information Do We Collect? {#what-kinds-of-information-do-we-collect}
+## અમે કયા પ્રકારની માહિતી એકત્રિત કરીએ છીએ? {#what-kinds-of-information-do-we-collect}
 
-We do **not** collect or store any type of personal data, whether through our websites or through our published npm packages or browser / IDE extensions.
+અમે અમારી વેબસાઇટ્સ દ્વારા અથવા અમારા પ્રકાશિત npm પેકેજો અથવા બ્રાઉઝર / IDE એક્સ્ટેન્શન્સ દ્વારા કોઈપણ પ્રકારનો વ્યક્તિગત ડેટા એકત્રિત અથવા સંગ્રહિત કરતા **નથી**.
 
-We may collect anonymized data via 3rd party services integrated in our websites:
+અમે અમારી વેબસાઇટ્સમાં સંકલિત (integrated) તૃતીય પક્ષ સેવાઓ દ્વારા અનામી (anonymized) ડેટા એકત્રિત કરી શકીએ છીએ:
 
-- **Visitor data to our websites.** Our website analytics is powered by [Fathom Analytics](https://usefathom.com/), which doesn't use cookies and complies with the GDPR, ePrivacy (including PECR), COPPA and CCPA. Using this privacy-friendly website analytics software, your IP address is only briefly processed, and we (running this website) have no way of identifying you. As per the CCPA, your personal information is de-identified. You can read more about this on Fathom Analytics' website.
+- **અમારી વેબસાઇટ્સ પર મુલાકાતીઓનો ડેટા.** અમારી વેબસાઇટ એનાલિટિક્સ [Fathom Analytics](https://usefathom.com/) દ્વારા સંચાલિત છે, જે કૂકીઝનો ઉપયોગ કરતી નથી અને GDPR, ePrivacy (PECR સહિત), COPPA અને CCPA નું પાલન કરે છે. આ પ્રાઇવસી-ફ્રેન્ડલી વેબસાઇટ એનાલિટિક્સ સોફ્ટવેરનો ઉપયોગ કરીને, તમારા IP એડ્રેસ પર માત્ર થોડા સમય માટે જ પ્રક્રિયા કરવામાં આવે છે, અને અમને (આ વેબસાઇટ ચલાવતા) તમારી ઓળખ કરવાની કોઈ રીત નથી. CCPA મુજબ, તમારી વ્યક્તિગત માહિતી બિન-ઓળખી શકાય તેવી (de-identified) છે. તમે આ વિશે Fathom Analytics ની વેબસાઇટ પર વધુ વાંચી શકો છો.
 
-  - Fathom Analytics' Privacy Policy: https://usefathom.com/legal/privacy
+  - Fathom Analytics ની પ્રાઇવસી પોલિસી: https://usefathom.com/legal/privacy
 
-- **Usage data of the search functionality.** Our search functionality is powered by [Algolia DocSearch](https://docsearch.algolia.com/), which does not perform any type of user tracking or fingerprinting, and does not use cookies. Algolia services are GDPR compliant, CCPA compliant, and TRUSTe Certified.
+- **સર્ચ ફંક્શનાલિટીનો વપરાશ ડેટા.** અમારી સર્ચ ફંક્શનાલિટી [Algolia DocSearch](https://docsearch.algolia.com/) દ્વારા સંચાલિત છે, જે કોઈપણ પ્રકારનું યુઝર ટ્રેકિંગ અથવા ફિંગરપ્રિન્ટિંગ કરતું નથી અને કૂકીઝનો ઉપયોગ કરતું નથી. Algolia સેવાઓ GDPR સુસંગત, CCPA સુસંગત અને TRUSTe પ્રમાણિત છે.
 
-  - Algolia's privacy policy: https://www.algolia.com/policies/privacy/
-  - Algolia's security and privacy compliance: https://www.algolia.com/distributed-secure/security-compliance/
+  - Algolia ની પ્રાઇવસી પોલિસી: https://www.algolia.com/policies/privacy/
+  - Algolia નું સુરક્ષા અને પ્રાઇવસી પાલન (security and privacy compliance): https://www.algolia.com/distributed-secure/security-compliance/
 
-## How Do We Use Information? {#how-do-we-use-information}
+## અમે માહિતીનો ઉપયોગ કેવી રીતે કરીએ છીએ? {#how-do-we-use-information}
 
-The sole purpose of collecting the aforementioned data is to understand our website traffic and usage in the most privacy-friendly way possible so that we can continually improve our website and documentation quality. The lawful basis as per the GDPR is "Article 6(1)(f); where our legitimate interests are to improve our website and business continually." As per the explanation, no personal data is stored over time.
+ઉપરોક્ત ડેટા એકત્રિત કરવાનો એકમાત્ર હેતુ અમારી વેબસાઇટ ટ્રાફિક અને વપરાશને શક્ય તેટલી પ્રાઇવસી-ફ્રેન્ડલી રીતે સમજવાનો છે જેથી અમે અમારી વેબસાઇટ અને દસ્તાવેજીકરણની ગુણવત્તામાં સતત સુધારો કરી શકીએ. GDPR મુજબ કાયદેસરનો આધાર "કલમ 6(1)(f); જ્યાં અમારો કાયદેસર સ્વાર્થ અમારી વેબસાઇટ અને વ્યવસાયમાં સતત સુધારો કરવાનો છે." સમજૂતી મુજબ, સમય જતાં કોઈ વ્યક્તિગત ડેટા સંગ્રહિત કરવામાં આવતો નથી.
 
-## Data Retention {#data-retention}
+## ડેટા રીટેન્શન (Data Retention) {#data-retention}
 
-All data collected are stored on aforementioned 3rd party services and are subject to the services' respective data retention policies.
+એકત્રિત કરાયેલા તમામ ડેટા ઉપરોક્ત તૃતીય પક્ષ સેવાઓ પર સંગ્રહિત કરવામાં આવે છે અને તે સેવાઓની સંબંધિત ડેટા રીટેન્શન પોલિસીને આધીન છે.
 
-## Questions {#questions}
+## પ્રશ્નો {#questions}
 
-If you have any questions about this Privacy Policy or our practices, please contact us via email at hello@vuejs.org.
+જો તમને આ પ્રાઇવસી પોલિસી અથવા અમારી પદ્ધતિઓ વિશે કોઈ પ્રશ્નો હોય, તો કૃપા કરીને hello@vuejs.org પર ઇમેઇલ દ્વારા અમારો સંપર્ક કરો.

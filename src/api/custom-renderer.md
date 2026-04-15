@@ -1,10 +1,10 @@
-# Custom Renderer API {#custom-renderer-api}
+# કસ્ટમ રેન્ડરર API (Custom Renderer API) {#custom-renderer-api}
 
 ## createRenderer() {#createrenderer}
 
-Creates a custom renderer. By providing platform-specific node creation and manipulation APIs, you can leverage Vue's core runtime to target non-DOM environments.
+કસ્ટમ રેન્ડરર બનાવે છે. પ્લેટફોર્મ-વિશિષ્ટ node creation અને manipulation APIs પ્રદાન કરીને, તમે non-DOM environments ને ટાર્ગેટ કરવા માટે Vue ના core runtime નો લાભ લઈ શકો.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function createRenderer<HostNode, HostElement>(
@@ -53,7 +53,7 @@ Creates a custom renderer. By providing platform-specific node creation and mani
   }
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { createRenderer } from '@vue/runtime-core'
@@ -66,12 +66,12 @@ Creates a custom renderer. By providing platform-specific node creation and mani
     // ...
   })
 
-  // `render` is the low-level API
-  // `createApp` returns an app instance
+  // `render` એ low-level API છે
+  // `createApp` એપ ઇન્સ્ટન્સ રિટર્ન કરે છે
   export { render, createApp }
 
-  // re-export Vue core APIs
+  // Vue core APIs ફરીથી export કરો
   export * from '@vue/runtime-core'
   ```
 
-  Vue's own `@vue/runtime-dom` is [implemented using the same API](https://github.com/vuejs/core/blob/main/packages/runtime-dom/src/index.ts). For a simpler implementation, check out [`@vue/runtime-test`](https://github.com/vuejs/core/blob/main/packages/runtime-test/src/index.ts) which is a private package for Vue's own unit testing.
+  Vue નો પોતાનો `@vue/runtime-dom` એ [આ જ API ઉપયોગ કરીને implement કરવામાં આવ્યો છે](https://github.com/vuejs/core/blob/main/packages/runtime-dom/src/index.ts). સરળ implementation માટે, [`@vue/runtime-test`](https://github.com/vuejs/core/blob/main/packages/runtime-test/src/index.ts) તપાસો જે Vue ના પોતાના unit testing માટેનું private package છે.

@@ -2,9 +2,9 @@
 
 ## renderToString() {#rendertostring}
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` માંથી Exported**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function renderToString(
@@ -13,7 +13,7 @@
   ): Promise<string>
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { createSSRApp } from 'vue'
@@ -32,7 +32,7 @@
 
   ### SSR Context {#ssr-context}
 
-  You can pass an optional context object, which can be used to record additional data during the render, for example [accessing content of Teleports](/guide/scaling-up/ssr#teleports):
+  તમે optional context object પાસ કરી શકો, જેનો ઉપયોગ render દરમિયાન વધારાનો data record કરવા માટે થઈ શકે, ઉદાહરણ તરીકે [Teleports ના content ને access કરવું](/guide/scaling-up/ssr#teleports):
 
   ```js
   const ctx = {}
@@ -41,17 +41,17 @@
   console.log(ctx.teleports) // { '#teleported': 'teleported content' }
   ```
 
-  Most other SSR APIs on this page also optionally accept a context object. The context object can be accessed in component code via the [useSSRContext](#usessrcontext) helper.
+  આ page પરના મોટાભાગના અન્ય SSR APIs પણ વૈકલ્પિક રીતે context object accept કરે. Context object ને component code માં [useSSRContext](#usessrcontext) helper દ્વારા access કરી શકાય.
 
-- **See also** [Guide - Server-Side Rendering](/guide/scaling-up/ssr)
+- **આ પણ જુઓ** [ગાઇડ - Server-Side Rendering](/guide/scaling-up/ssr)
 
 ## renderToNodeStream() {#rendertonodestream}
 
-Renders input as a [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable).
+Input ને [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable) તરીકે render કરે છે.
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` માંથી Exported**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function renderToNodeStream(
@@ -60,24 +60,24 @@ Renders input as a [Node.js Readable stream](https://nodejs.org/api/stream.html#
   ): Readable
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
-  // inside a Node.js http handler
+  // Node.js http handler અંદર
   renderToNodeStream(app).pipe(res)
   ```
 
-  :::tip Note
-  This method is not supported in the ESM build of `vue/server-renderer`, which is decoupled from Node.js environments. Use [`pipeToNodeWritable`](#pipetonodewritable) instead.
+  :::tip નોંધ
+  આ method `vue/server-renderer` ના ESM build માં supported નથી, જે Node.js environments થી decoupled છે. તેના બદલે [`pipeToNodeWritable`](#pipetonodewritable) ઉપયોગ કરો.
   :::
 
 ## pipeToNodeWritable() {#pipetonodewritable}
 
-Render and pipe to an existing [Node.js Writable stream](https://nodejs.org/api/stream.html#stream_writable_streams) instance.
+Render કરો અને existed [Node.js Writable stream](https://nodejs.org/api/stream.html#stream_writable_streams) instance ને pipe કરો.
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` માંથી Exported**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function pipeToNodeWritable(
@@ -87,20 +87,20 @@ Render and pipe to an existing [Node.js Writable stream](https://nodejs.org/api/
   ): void
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
-  // inside a Node.js http handler
+  // Node.js http handler અંદર
   pipeToNodeWritable(app, {}, res)
   ```
 
 ## renderToWebStream() {#rendertowebstream}
 
-Renders input as a [Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API).
+Input ને [Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) તરીકે render કરે છે.
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` માંથી Exported**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function renderToWebStream(
@@ -109,24 +109,24 @@ Renders input as a [Web ReadableStream](https://developer.mozilla.org/en-US/docs
   ): ReadableStream
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
-  // inside an environment with ReadableStream support
+  // ReadableStream support ધરાવતા environment અંદર
   return new Response(renderToWebStream(app))
   ```
 
-  :::tip Note
-  In environments that do not expose `ReadableStream` constructor in the global scope, [`pipeToWebWritable()`](#pipetowebwritable) should be used instead.
+  :::tip નોંધ
+  Global scope માં `ReadableStream` constructor expose ન કરતા environments માં, [`pipeToWebWritable()`](#pipetowebwritable) ઉપયોગ કરવો જોઈએ.
   :::
 
 ## pipeToWebWritable() {#pipetowebwritable}
 
-Render and pipe to an existing [Web WritableStream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) instance.
+Render કરો અને existed [Web WritableStream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) instance ને pipe કરો.
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` માંથી Exported**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function pipeToWebWritable(
@@ -136,13 +136,13 @@ Render and pipe to an existing [Web WritableStream](https://developer.mozilla.or
   ): void
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  This is typically used in combination with [`TransformStream`](https://developer.mozilla.org/en-US/docs/Web/API/TransformStream):
+  આ સામાન્ય રીતે [`TransformStream`](https://developer.mozilla.org/en-US/docs/Web/API/TransformStream) સાથે combination માં ઉપયોગ થાય છે:
 
   ```js
-  // TransformStream is available in environments such as CloudFlare workers.
-  // in Node.js, TransformStream needs to be explicitly imported from 'stream/web'
+  // TransformStream CloudFlare workers જેવા environments માં ઉપલબ્ધ છે.
+  // Node.js માં, TransformStream ને 'stream/web' માંથી explicitly import કરવું જરૂરી
   const { readable, writable } = new TransformStream()
   pipeToWebWritable(app, {}, writable)
 
@@ -151,11 +151,11 @@ Render and pipe to an existing [Web WritableStream](https://developer.mozilla.or
 
 ## renderToSimpleStream() {#rendertosimplestream}
 
-Renders input in streaming mode using a simple readable interface.
+Simple readable interface ઉપયોગ કરીને streaming mode માં input render કરે છે.
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` માંથી Exported**
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function renderToSimpleStream(
@@ -170,7 +170,7 @@ Renders input in streaming mode using a simple readable interface.
   }
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   let res = ''
@@ -196,47 +196,47 @@ Renders input in streaming mode using a simple readable interface.
 
 ## useSSRContext() {#usessrcontext}
 
-A runtime API used to retrieve the context object passed to `renderToString()` or other server render APIs.
+Runtime API જેનો ઉપયોગ `renderToString()` અથવા અન્ય server render APIs ને pass કરેલો context object retrieve કરવા માટે થાય છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function useSSRContext<T = Record<string, any>>(): T | undefined
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  The retrieved context can be used to attach information that is needed for rendering the final HTML (e.g. head metadata).
+  Retrieved context ને અંતિમ HTML render કરવા માટે જરૂરી information (દા.ત. head metadata) attach કરવા ઉપયોગ કરી શકાય.
 
   ```vue
   <script setup>
   import { useSSRContext } from 'vue'
 
-  // make sure to only call it during SSR
+  // ખાતરી કરો કે ફક્ત SSR દરમિયાન જ call કરો
   // https://vite.dev/guide/ssr.html#conditional-logic
   if (import.meta.env.SSR) {
     const ctx = useSSRContext()
-    // ...attach properties to the context
+    // ...context ને properties attach કરો
   }
   </script>
   ```
 
 ## data-allow-mismatch <sup class="vt-badge" data-text="3.5+" /> {#data-allow-mismatch}
 
-A special attribute that can be used to suppress [hydration mismatch](/guide/scaling-up/ssr#hydration-mismatch) warnings.
+ખાસ attribute જેનો ઉપયોગ [hydration mismatch](/guide/scaling-up/ssr#hydration-mismatch) warnings ને suppress કરવા માટે થઈ શકે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```html
   <div data-allow-mismatch="text">{{ data.toLocaleString() }}</div>
   ```
 
-  The value can limit the allowed mismatch to a specific type. Allowed values are:
+  Value allowed mismatch ને specific type સુધી limit કરી શકે. Allowed values:
 
   - `text`
-  - `children` (only allows mismatch for direct children)
+  - `children` (ફક્ત direct children માટે mismatch allow કરે)
   - `class`
   - `style`
   - `attribute`
 
-  If no value is provided, all types of mismatches will be allowed.
+  જો value provide ન કરવામાં આવે, તો તમામ types ના mismatches allow થશે.

@@ -1,17 +1,17 @@
 # Composition API: setup() {#composition-api-setup}
 
-## Basic Usage {#basic-usage}
+## મૂળભૂત ઉપયોગ (Basic Usage) {#basic-usage}
 
-The `setup()` hook serves as the entry point for Composition API usage in components in the following cases:
+`setup()` હૂક નીચેના કિસ્સાઓમાં ઘટકોમાં Composition API ઉપયોગ માટેના entry point તરીકે કામ કરે છે:
 
-1. Using Composition API without a build step;
-2. Integrating with Composition-API-based code in an Options API component.
+૧. બિલ્ડ સ્ટેપ વિના Composition API ઉપયોગ કરવો;
+૨. Options API ઘટકમાં Composition-API-based code ને integrate કરવો.
 
-:::info Note
-If you are using Composition API with Single-File Components, [`<script setup>`](/api/sfc-script-setup) is strongly recommended for a more succinct and ergonomic syntax.
+:::info નોંધ
+જો તમે Single-File Components સાથે Composition API ઉપયોગ કરી રહ્યાં છો, તો વધુ સંક્ષિપ્ત અને ergonomic syntax માટે [`<script setup>`](/api/sfc-script-setup) ની ભારપૂર્વક ભલામણ કરવામાં આવે છે.
 :::
 
-We can declare reactive state using [Reactivity APIs](./reactivity-core) and expose them to the template by returning an object from `setup()`. The properties on the returned object will also be made available on the component instance (if other options are used):
+અમે [Reactivity APIs](./reactivity-core) ઉપયોગ કરીને reactive state declare કરી શકીએ અને `setup()` માંથી object return કરીને તેમને template ને expose કરી શકીએ. Returned object ની properties ઘટક ઇન્સ્ટન્સ પર પણ ઉપલબ્ધ કરવામાં આવશે (જો અન્ય options ઉપયોગ થતા હોય):
 
 ```vue
 <script>
@@ -21,7 +21,7 @@ export default {
   setup() {
     const count = ref(0)
 
-    // expose to template and other options API hooks
+    // template અને અન્ય options API hooks ને expose કરો
     return {
       count
     }
@@ -38,15 +38,15 @@ export default {
 </template>
 ```
 
-[refs](/api/reactivity-core#ref) returned from `setup` are [automatically shallow unwrapped](/guide/essentials/reactivity-fundamentals#deep-reactivity) when accessed in the template so you do not need to use `.value` when accessing them. They are also unwrapped in the same way when accessed on `this`.
+`setup` માંથી return થયેલા [refs](/api/reactivity-core#ref) template માં access કરતી વખતે [automatically shallow unwrapped](/guide/essentials/reactivity-fundamentals#deep-reactivity) થાય છે તેથી તમારે `.value` ઉપયોગ કરવાની જરૂર નથી. `this` પર access કરતી વખતે પણ તેઓ એ જ રીતે unwrap થાય છે.
 
-`setup()` itself does not have access to the component instance - `this` will have a value of `undefined` inside `setup()`. You can access Composition-API-exposed values from Options API, but not the other way around.
+`setup()` પોતે ઘટક ઇન્સ્ટન્સ access કરતું નથી - `setup()` અંદર `this` ની value `undefined` હશે. તમે Options API માંથી Composition-API-exposed values access કરી શકો, પરંતુ ઊલટું (other way around) નહીં.
 
-`setup()` should return an object _synchronously_. The only case when `async setup()` can be used is when the component is a descendant of a [Suspense](../guide/built-ins/suspense) component.
+`setup()` _synchronously_ object return કરવો જોઈએ. ફક્ત એક જ case જ્યારે `async setup()` ઉપયોગ કરી શકાય તે છે જ્યારે ઘટક [Suspense](../guide/built-ins/suspense) ઘટકનો descendant હોય.
 
-## Accessing Props {#accessing-props}
+## Props Access કરવા {#accessing-props}
 
-The first argument in the `setup` function is the `props` argument. Just as you would expect in a standard component, `props` inside of a `setup` function are reactive and will be updated when new props are passed in.
+`setup` function માં પ્રથમ આર્ગ્યુમેન્ટ `props` આર્ગ્યુમેન્ટ છે. Standard ઘટકમાં તમે અપેક્ષા રાખતા હોવ તે પ્રમાણે, `setup` function અંદર `props` reactive છે અને નવા props પાસ થાય ત્યારે updated થશે.
 
 ```js
 export default {
@@ -59,21 +59,21 @@ export default {
 }
 ```
 
-Note that if you destructure the `props` object, the destructured variables will lose reactivity. It is therefore recommended to always access props in the form of `props.xxx`.
+નોંધ કરો કે જો તમે `props` object ને destructure કરો, તો destructured variables reactivity ગુમાવશે. તેથી હંમેશા `props.xxx` ના format માં props access કરવાની ભલામણ કરવામાં આવે છે.
 
-If you really need to destructure the props, or need to pass a prop into an external function while retaining reactivity, you can do so with the [toRefs()](./reactivity-utilities#torefs) and [toRef()](/api/reactivity-utilities#toref) utility APIs:
+જો તમારે ખરેખર props destructure કરવાની જરૂર હોય, અથવા reactivity જાળવીને prop ને external function માં પાસ કરવાની જરૂર હોય, તો [toRefs()](./reactivity-utilities#torefs) અને [toRef()](/api/reactivity-utilities#toref) utility APIs સાથે કરી શકો:
 
 ```js
 import { toRefs, toRef } from 'vue'
 
 export default {
   setup(props) {
-    // turn `props` into an object of refs, then destructure
+    // `props` ને refs ના object માં ફેરવો, પછી destructure કરો
     const { title } = toRefs(props)
-    // `title` is a ref that tracks `props.title`
+    // `title` ref છે જે `props.title` ને track કરે છે
     console.log(title.value)
 
-    // OR, turn a single property on `props` into a ref
+    // અથવા, `props` ની single property ને ref માં ફેરવો
     const title = toRef(props, 'title')
   }
 }
@@ -81,27 +81,27 @@ export default {
 
 ## Setup Context {#setup-context}
 
-The second argument passed to the `setup` function is a **Setup Context** object. The context object exposes other values that may be useful inside `setup`:
+`setup` function ને પાસ કરવામાં આવેલ બીજો આર્ગ્યુમેન્ટ **Setup Context** ઓબ્જેક્ટ છે. Context ઓબ્જેક્ટ અન્ય values expose કરે છે જે `setup` અંદર ઉપયોગી હોઈ શકે:
 
 ```js
 export default {
   setup(props, context) {
-    // Attributes (Non-reactive object, equivalent to $attrs)
+    // Attributes (Non-reactive ઓબ્જેક્ટ, $attrs ના સમકક્ષ)
     console.log(context.attrs)
 
-    // Slots (Non-reactive object, equivalent to $slots)
+    // Slots (Non-reactive ઓબ્જેક્ટ, $slots ના સમકક્ષ)
     console.log(context.slots)
 
-    // Emit events (Function, equivalent to $emit)
+    // Events Emit કરો (Function, $emit ના સમકક્ષ)
     console.log(context.emit)
 
-    // Expose public properties (Function)
+    // Public properties expose કરો (Function)
     console.log(context.expose)
   }
 }
 ```
 
-The context object is not reactive and can be safely destructured:
+Context ઓબ્જેક્ટ reactive નથી અને સુરક્ષિત રીતે destructure કરી શકાય:
 
 ```js
 export default {
@@ -111,30 +111,30 @@ export default {
 }
 ```
 
-`attrs` and `slots` are stateful objects that are always updated when the component itself is updated. This means you should avoid destructuring them and always reference properties as `attrs.x` or `slots.x`. Also note that, unlike `props`, the properties of `attrs` and `slots` are **not** reactive. If you intend to apply side effects based on changes to `attrs` or `slots`, you should do so inside an `onBeforeUpdate` lifecycle hook.
+`attrs` અને `slots` stateful ઓબ્જેક્ટ્સ છે જે હંમેશા update થાય છે જ્યારે ઘટક પોતે update થાય. આનો અર્થ એ છે કે તમારે તેમને destructure કરવાનું ટાળવું જોઈએ અને હંમેશા properties ને `attrs.x` અથવા `slots.x` તરીકે reference કરવી. એ પણ નોંધ કરો કે, `props` થી વિપરીત, `attrs` અને `slots` ની properties reactive **નથી**. જો તમે `attrs` અથવા `slots` ના changes પર side effects apply કરવા માંગો, તો `onBeforeUpdate` lifecycle hook અંદર કરવું જોઈએ.
 
-### Exposing Public Properties {#exposing-public-properties}
+### Public Properties Expose કરવી {#exposing-public-properties}
 
-`expose` is a function that can be used to explicitly limit the properties exposed when the component instance is accessed by a parent component via [template refs](/guide/essentials/template-refs#ref-on-component):
+`expose` એક function છે જેનો ઉપયોગ parent ઘટક દ્વારા [template refs](/guide/essentials/template-refs#ref-on-component) દ્વારા ઘટક ઇન્સ્ટન્સ access કરતી વખતે expose થતી properties ને explicitly limit કરવા માટે થઈ શકે:
 
 ```js{5,10}
 export default {
   setup(props, { expose }) {
-    // make the instance "closed" -
-    // i.e. do not expose anything to the parent
+    // instance ને "closed" બનાવો -
+    // i.e. parent ને કંઈ expose ન કરો
     expose()
 
     const publicCount = ref(0)
     const privateCount = ref(0)
-    // selectively expose local state
+    // local state ને selectively expose કરો
     expose({ count: publicCount })
   }
 }
 ```
 
-## Usage with Render Functions {#usage-with-render-functions}
+## Render Functions સાથે ઉપયોગ {#usage-with-render-functions}
 
-`setup` can also return a [render function](/guide/extras/render-function) which can directly make use of the reactive state declared in the same scope:
+`setup` [render function](/guide/extras/render-function) પણ return કરી શકે છે જે same scope માં declared reactive state ને directly ઉપયોગ કરી શકે:
 
 ```js{6}
 import { h, ref } from 'vue'
@@ -147,9 +147,9 @@ export default {
 }
 ```
 
-Returning a render function prevents us from returning anything else. Internally that shouldn't be a problem, but it can be problematic if we want to expose methods of this component to the parent component via template refs.
+Render function return કરવાથી અન્ય કંઈ return કરવાનું અટકે છે. આંતરિક રીતે તે સમસ્યા ન હોવી જોઈએ, પરંતુ જો આપણે template refs દ્વારા parent component ને આ ઘટકના methods expose કરવા માંગીએ તો સમસ્યારૂપ હોઈ શકે.
 
-We can solve this problem by calling [`expose()`](#exposing-public-properties):
+આ સમસ્યાને [`expose()`](#exposing-public-properties) બોલાવીને ઉકેલી શકીએ:
 
 ```js{8-10}
 import { h, ref } from 'vue'
@@ -168,4 +168,4 @@ export default {
 }
 ```
 
-The `increment` method would then be available in the parent component via a template ref.
+`increment` method પછી template ref દ્વારા parent component માં ઉપલબ્ધ હશે.

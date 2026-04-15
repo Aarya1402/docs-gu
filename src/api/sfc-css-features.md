@@ -2,7 +2,7 @@
 
 ## Scoped CSS {#scoped-css}
 
-When a `<style>` tag has the `scoped` attribute, its CSS will apply to elements of the current component only. This is similar to the style encapsulation found in Shadow DOM. It comes with some caveats, but doesn't require any polyfills. It is achieved by using PostCSS to transform the following:
+જ્યારે `<style>` tag ને `scoped` attribute હોય, ત્યારે તેનું CSS ફક્ત વર્તમાન ઘટકના elements ને જ apply થશે. આ Shadow DOM માં મળતા style encapsulation જેવું છે. તેમાં કેટલાક caveats છે, પરંતુ કોઈ polyfills ની જરૂર નથી. PostCSS ઉપયોગ કરીને નીચેનાને transform કરીને પ્રાપ્ત થાય છે:
 
 ```vue
 <style scoped>
@@ -16,7 +16,7 @@ When a `<style>` tag has the `scoped` attribute, its CSS will apply to elements 
 </template>
 ```
 
-Into the following:
+નીચેનામાં ફેરવે છે:
 
 ```vue
 <style>
@@ -32,11 +32,11 @@ Into the following:
 
 ### Child Component Root Elements {#child-component-root-elements}
 
-With `scoped`, the parent component's styles will not leak into child components. However, a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. This is by design so that the parent can style the child root element for layout purposes.
+`scoped` સાથે, parent ઘટકના styles child ઘટકોમાં leak થશે નહીં. જો કે, child ઘટકનો root node parent ના scoped CSS અને child ના scoped CSS બંનેથી affected થશે. આ design દ્વારા છે જેથી parent layout હેતુઓ માટે child root element ને style કરી શકે.
 
 ### Deep Selectors {#deep-selectors}
 
-If you want a selector in `scoped` styles to be "deep", i.e. affecting child components, you can use the `:deep()` pseudo-class:
+જો તમે `scoped` styles માં selector ને "deep" બનાવવા માંગો, i.e. child ઘટકોને affect કરે, `:deep()` pseudo-class ઉપયોગ કરી શકો:
 
 ```vue
 <style scoped>
@@ -46,7 +46,7 @@ If you want a selector in `scoped` styles to be "deep", i.e. affecting child com
 </style>
 ```
 
-The above will be compiled into:
+ઉપરોક્ત compile થશે:
 
 ```css
 .a[data-v-f3f3eg9] .b {
@@ -55,12 +55,12 @@ The above will be compiled into:
 ```
 
 :::tip
-DOM content created with `v-html` are not affected by scoped styles, but you can still style them using deep selectors.
+`v-html` સાથે created DOM content scoped styles થી affected થતું નથી, પરંતુ તમે deep selectors ઉપયોગ કરીને તેમને style કરી શકો.
 :::
 
 ### Slotted Selectors {#slotted-selectors}
 
-By default, scoped styles do not affect contents rendered by `<slot/>`, as they are considered to be owned by the parent component passing them in. To explicitly target slot content, use the `:slotted` pseudo-class:
+ડિફોલ્ટ રૂપે, scoped styles `<slot/>` દ્વારા rendered contents ને affect કરતા નથી, કારણ કે તેમને pass કરતા parent ઘટક દ્વારા owned માનવામાં આવે છે. Slot content ને explicitly target કરવા માટે, `:slotted` pseudo-class ઉપયોગ કરો:
 
 ```vue
 <style scoped>
@@ -72,7 +72,7 @@ By default, scoped styles do not affect contents rendered by `<slot/>`, as they 
 
 ### Global Selectors {#global-selectors}
 
-If you want just one rule to apply globally, you can use the `:global` pseudo-class rather than creating another `<style>` (see below):
+જો તમે ફક્ત એક rule globally apply કરવા માંગો, તો બીજી `<style>` બનાવવાના બદલે `:global` pseudo-class ઉપયોગ કરી શકો (નીચે જુઓ):
 
 ```vue
 <style scoped>
@@ -82,9 +82,9 @@ If you want just one rule to apply globally, you can use the `:global` pseudo-cl
 </style>
 ```
 
-### Mixing Local and Global Styles {#mixing-local-and-global-styles}
+### Local અને Global Styles ભેળવવી (Mixing) {#mixing-local-and-global-styles}
 
-You can also include both scoped and non-scoped styles in the same component:
+સમાન ઘટકમાં scoped અને non-scoped styles બંને include કરી શકો:
 
 ```vue
 <style>
@@ -96,15 +96,15 @@ You can also include both scoped and non-scoped styles in the same component:
 </style>
 ```
 
-### Scoped Style Tips {#scoped-style-tips}
+### Scoped Style ટિપ્સ (Tips) {#scoped-style-tips}
 
-- **Scoped styles do not eliminate the need for classes**. Due to the way browsers render various CSS selectors, `p { color: red }` will be many times slower when scoped (i.e. when combined with an attribute selector). If you use classes or ids instead, such as in `.example { color: red }`, then you virtually eliminate that performance hit.
+- **Scoped styles classes ની જરૂરિયાત દૂર કરતા નથી**. Browsers વિવિધ CSS selectors render કરે તે રીતને કારણે, `p { color: red }` scoped હોય ત્યારે (i.e. attribute selector સાથે combine થાય ત્યારે) ઘણી ગણી ધીમી હશે. જો તમે classes અથવા ids ઉપયોગ કરો, જેમ `.example { color: red }` માં, તો તમે તે performance hit ને વર્ચ્યુઅલી દૂર કરો છો.
 
-- **Be careful with descendant selectors in recursive components!** For a CSS rule with the selector `.a .b`, if the element that matches `.a` contains a recursive child component, then all `.b` in that child component will be matched by the rule.
+- **Recursive ઘટકોમાં descendant selectors સાથે સાવધાન!** `.a .b` selector ધરાવતા CSS rule માટે, જો `.a` ને match કરતો element recursive child ઘટક ધરાવે, તો તે child ઘટકમાં તમામ `.b` rule દ્વારા match થશે.
 
 ## CSS Modules {#css-modules}
 
-A `<style module>` tag is compiled as [CSS Modules](https://github.com/css-modules/css-modules) and exposes the resulting CSS classes to the component as an object under the key of `$style`:
+`<style module>` tag [CSS Modules](https://github.com/css-modules/css-modules) તરીકે compile થાય છે અને resulting CSS classes ને `$style` key હેઠળ ઘટકને object તરીકે expose કરે છે:
 
 ```vue
 <template>
@@ -118,13 +118,13 @@ A `<style module>` tag is compiled as [CSS Modules](https://github.com/css-modul
 </style>
 ```
 
-The resulting classes are hashed to avoid collision, achieving the same effect of scoping the CSS to the current component only.
+Resulting classes collision ટાળવા માટે hashed છે, CSS ને ફક્ત વર્તમાન ઘટક સુધી scoping ના સમાન effect ને પ્રાપ્ત કરે છે.
 
-Refer to the [CSS Modules spec](https://github.com/css-modules/css-modules) for more details such as [global exceptions](https://github.com/css-modules/css-modules/blob/master/docs/composition.md#exceptions) and [composition](https://github.com/css-modules/css-modules/blob/master/docs/composition.md#composition).
+[global exceptions](https://github.com/css-modules/css-modules/blob/master/docs/composition.md#exceptions) અને [composition](https://github.com/css-modules/css-modules/blob/master/docs/composition.md#composition) જેવી વધુ વિગત માટે [CSS Modules spec](https://github.com/css-modules/css-modules) જુઓ.
 
 ### Custom Inject Name {#custom-inject-name}
 
-You can customize the property key of the injected classes object by giving the `module` attribute a value:
+`module` attribute ને value આપીને injected classes object ની property key ને customize કરી શકો:
 
 ```vue
 <template>
@@ -138,22 +138,22 @@ You can customize the property key of the injected classes object by giving the 
 </style>
 ```
 
-### Usage with Composition API {#usage-with-composition-api}
+### Composition API સાથે ઉપયોગ (Usage with Composition API) {#usage-with-composition-api}
 
-The injected classes can be accessed in `setup()` and `<script setup>` via the `useCssModule` API. For `<style module>` blocks with custom injection names, `useCssModule` accepts the matching `module` attribute value as the first argument:
+Injected classes ને `setup()` અને `<script setup>` માં `useCssModule` API દ્વારા access કરી શકાય. Custom injection names ધરાવતા `<style module>` blocks માટે, `useCssModule` matching `module` attribute value ને પ્રથમ આર્ગ્યુમેન્ટ તરીકે accepts કરે છે:
 
 ```js
 import { useCssModule } from 'vue'
 
-// inside setup() scope...
-// default, returns classes for <style module>
+// setup() scope અંદર...
+// default, <style module> માટે classes return કરે છે
 useCssModule()
 
-// named, returns classes for <style module="classes">
+// named, <style module="classes"> માટે classes return કરે છે
 useCssModule('classes')
 ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
 ```vue
 <script setup lang="ts">
@@ -173,9 +173,9 @@ const classes = useCssModule()
 </style>
 ```
 
-## `v-bind()` in CSS {#v-bind-in-css}
+## CSS માં `v-bind()` {#v-bind-in-css}
 
-SFC `<style>` tags support linking CSS values to dynamic component state using the `v-bind` CSS function:
+SFC `<style>` tags `v-bind` CSS function ઉપયોગ કરીને CSS values ને dynamic component state સાથે link કરવાને support કરે છે:
 
 ```vue
 <template>
@@ -199,7 +199,7 @@ export default {
 </style>
 ```
 
-The syntax works with [`<script setup>`](./sfc-script-setup), and supports JavaScript expressions (must be wrapped in quotes):
+Syntax [`<script setup>`](./sfc-script-setup) સાથે કામ કરે છે, અને JavaScript expressions ને support કરે છે (quotes માં wrap હોવા જોઈએ):
 
 ```vue
 <script setup>
@@ -220,4 +220,4 @@ p {
 </style>
 ```
 
-The actual value will be compiled into a hashed CSS custom property, so the CSS is still static. The custom property will be applied to the component's root element via inline styles and reactively updated if the source value changes.
+વાસ્તવિક value hashed CSS custom property માં compile થાય છે, તેથી CSS હજુ static છે. Custom property inline styles દ્વારા ઘટકના root element ને apply થશે અને source value બદલાય ત્યારે reactively update થશે.

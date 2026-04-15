@@ -1,10 +1,10 @@
-# Options: Rendering {#options-rendering}
+# ઓપ્શન્સ: રેન્ડરિંગ (Options: Rendering) {#options-rendering}
 
 ## template {#template}
 
-A string template for the component.
+ઘટક માટે સ્ટ્રિંગ ટેમ્પ્લેટ.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -12,25 +12,25 @@ A string template for the component.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  A template provided via the `template` option will be compiled on-the-fly at runtime. It is only supported when using a build of Vue that includes the template compiler. The template compiler is **NOT** included in Vue builds that have the word `runtime` in their names, e.g. `vue.runtime.esm-bundler.js`. Consult the [dist file guide](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) for more details about the different builds.
+  `template` ઓપ્શન દ્વારા પ્રદાન કરેલું ટેમ્પ્લેટ runtime માં on-the-fly કમ્પાઇલ થશે. તે ફક્ત Vue ના એવા build ઉપયોગ કરતી વખતે જ સપોર્ટેડ છે જેમાં template compiler સામેલ હોય. Template compiler Vue ના એવા builds માં સામેલ **નથી** જેમના નામમાં `runtime` શબ્દ હોય, દા.ત. `vue.runtime.esm-bundler.js`. વિવિધ builds વિશે વધુ વિગત માટે [dist file guide](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) જુઓ.
 
-  If the string starts with `#` it will be used as a `querySelector` and use the selected element's `innerHTML` as the template string. This allows the source template to be authored using native `<template>` elements.
+  જો સ્ટ્રિંગ `#` થી શરૂ થાય તો તેને `querySelector` તરીકે ઉપયોગ કરવામાં આવશે અને પસંદ કરેલા element ના `innerHTML` ને template string તરીકે ઉપયોગ કરશે. આ source template ને native `<template>` elements ઉપયોગ કરીને લખવાની મંજૂરી આપે છે.
 
-  If the `render` option is also present in the same component, `template` will be ignored.
+  જો સમાન ઘટકમાં `render` ઓપ્શન પણ હાજર હોય, તો `template` અવગણવામાં આવશે.
 
-  If the root component of your application doesn't have a `template` or `render` option specified, Vue will try to use the `innerHTML` of the mounted element as the template instead.
+  જો તમારી એપ્લિકેશનના root component માં `template` કે `render` ઓપ્શન સ્પષ્ટ ન હોય, તો Vue mounted element ના `innerHTML` ને template તરીકે ઉપયોગ કરવાનો પ્રયાસ કરશે.
 
-  :::warning Security Note
-  Only use template sources that you can trust. Do not use user-provided content as your template. See [Security Guide](/guide/best-practices/security#rule-no-1-never-use-non-trusted-templates) for more details.
+  :::warning સુરક્ષા નોંધ (Security Note)
+  ફક્ત તે template sources ઉપયોગ કરો જેના પર તમે વિશ્વાસ કરી શકો. user દ્વારા પ્રદાન કરેલ content ને તમારા template તરીકે ઉપયોગ ન કરો. વધુ વિગત માટે [સુરક્ષા ગાઇડ](/guide/best-practices/security#rule-no-1-never-use-non-trusted-templates) જુઓ.
   :::
 
 ## render {#render}
 
-A function that programmatically returns the virtual DOM tree of the component.
+એક ફંક્શન જે ઘટકના virtual DOM tree ને programmatically રિટર્ન કરે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -51,21 +51,21 @@ A function that programmatically returns the virtual DOM tree of the component.
   type VNodeArrayChildren = (VNodeArrayChildren | VNodeChildAtom)[]
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  `render` is an alternative to string templates that allows you to leverage the full programmatic power of JavaScript to declare the render output of the component.
+  `render` string templates નો વિકલ્પ છે જે તમને ઘટકના render output ને declare કરવા માટે JavaScript ની સંપૂર્ણ programmatic શક્તિનો લાભ લેવાની મંજૂરી આપે છે.
 
-  Pre-compiled templates, for example those in Single-File Components, are compiled into the `render` option at build time. If both `render` and `template` are present in a component, `render` will take higher priority.
+  પ્રી-કમ્પાઇલ્ડ templates, ઉદાહરણ તરીકે Single-File Components માં, build time માં `render` ઓપ્શનમાં compile થાય છે. જો ઘટકમાં `render` અને `template` બંને હાજર હોય, તો `render` ને ઉચ્ચ પ્રાથમિકતા મળશે.
 
-- **See also**
-  - [Rendering Mechanism](/guide/extras/rendering-mechanism)
-  - [Render Functions](/guide/extras/render-function)
+- **આ પણ જુઓ**
+  - [રેન્ડરિંગ મિકેનિઝમ](/guide/extras/rendering-mechanism)
+  - [રેન્ડર ફંક્શન્સ](/guide/extras/render-function)
 
 ## compilerOptions {#compileroptions}
 
-Configure runtime compiler options for the component's template.
+ઘટકના template માટે runtime compiler ઓપ્શન્સ configure કરો.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -78,21 +78,21 @@ Configure runtime compiler options for the component's template.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  This config option is only respected when using the full build (i.e. the standalone `vue.js` that can compile templates in the browser). It supports the same options as the app-level [app.config.compilerOptions](/api/application#app-config-compileroptions), and has higher priority for the current component.
+  આ config ઓપ્શન ફક્ત ત્યારે જ માન્ય છે જ્યારે full build (i.e. standalone `vue.js` જે browser માં templates compile કરી શકે) ઉપયોગ કરો. તે app-level [app.config.compilerOptions](/api/application#app-config-compileroptions) જેવા જ ઓપ્શન્સ ને support કરે છે, અને વર્તમાન ઘટક માટે ઉચ્ચ પ્રાથમિકતા ધરાવે છે.
 
-- **See also** [app.config.compilerOptions](/api/application#app-config-compileroptions)
+- **આ પણ જુઓ** [app.config.compilerOptions](/api/application#app-config-compileroptions)
 
 ## slots<sup class="vt-badge ts"/> {#slots}
 
-- Only supported in 3.3+
+- માત્ર 3.3+ માં સપોર્ટેડ
 
-An option to assist with type inference when using slots programmatically in render functions.
+render functions માં programmatically slots ઉપયોગ કરતી વખતે type inference માં સહાય કરવા માટેનો ઓપ્શન.
 
-- **Details**
+- **વિગત (Details)**
 
-  This option's runtime value is not used. The actual types should be declared via type casting using the `SlotsType` type helper:
+  આ ઓપ્શનની runtime value ઉપયોગ થતી નથી. વાસ્તવિક types `SlotsType` type helper ઉપયોગ કરીને type casting દ્વારા declare થવા જોઈએ:
 
   ```ts
   import { SlotsType } from 'vue'

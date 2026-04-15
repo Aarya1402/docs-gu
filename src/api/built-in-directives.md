@@ -1,40 +1,40 @@
-# Built-in Directives {#built-in-directives}
+# બિલ્ટ-ઇન ડાયરેક્ટિવ્સ (Built-in Directives) {#built-in-directives}
 
 ## v-text {#v-text}
 
-Update the element's text content.
+એલિમેન્ટનું ટેક્સ્ટ કન્ટેન્ટ અપડેટ કરે છે.
 
-- **Expects:** `string`
+- **અપેક્ષા રાખે છે (Expects):** `string`
 
-- **Details**
+- **વિગત (Details)**
 
-  `v-text` works by setting the element's [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property, so it will overwrite any existing content inside the element. If you need to update only part of the `textContent`, you should use [mustache interpolations](/guide/essentials/template-syntax#text-interpolation) instead (ie. <span v-pre>`<span>Keep this but update a {{dynamicPortion}}</span>`</span>).
+  `v-text` એલિમેન્ટની [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) પ્રોપર્ટી સેટ કરીને કામ કરે છે, તેથી તે એલિમેન્ટની અંદરના કોઈપણ અસ્તિત્વમાં રહેલા કન્ટેન્ટને ઓવરરાઈટ (overwrite) કરશે. જો તમારે `textContent` ના માત્ર એક ભાગને અપડેટ કરવાની જરૂર હોય, તો તમારે તેના બદલે [મસ્ટાચ ઇન્ટરપોલેશન્સ (mustache interpolations)](/guide/essentials/template-syntax#text-interpolation) નો ઉપયોગ કરવો જોઈએ (દા.ત. <span v-pre>`<span>આને રાખો પરંતુ {{dynamicPortion}} ને અપડેટ કરો</span>`</span>).
 
 - **Example**
 
   ```vue-html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- સમાન છે -->
   <span>{{msg}}</span>
   ```
 
-- **See also** [Template Syntax - Text Interpolation](/guide/essentials/template-syntax#text-interpolation)
+- **આ પણ જુઓ** [ટેમ્પ્લેટ સિન્ટેક્સ - ટેક્સ્ટ ઇન્ટરપોલેશન (Text Interpolation)](/guide/essentials/template-syntax#text-interpolation)
 
 ## v-html {#v-html}
 
-Update the element's [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML).
+એલિમેન્ટના [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) ને અપડેટ કરે છે.
 
-- **Expects:** `string`
+- **અપેક્ષા રાખે છે (Expects):** `string`
 
-- **Details**
+- **વિગત (Details)**
 
-  Contents of `v-html` are inserted as plain HTML - Vue template syntax will not be processed. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
+  `v-html` નું કન્ટેન્ટ સાદા HTML તરીકે દાખલ કરવામાં આવે છે - Vue ટેમ્પ્લેટ સિન્ટેક્સ પ્રોસેસ કરવામાં આવશે નહીં. જો તમે તમારી જાતને `v-html` નો ઉપયોગ કરીને ટેમ્પ્લેટ્સ કમ્પોઝ કરવાનો પ્રયાસ કરતા જુઓ છો, તો તેના બદલે ઘટકો (components) નો ઉપયોગ કરીને ઉકેલ વિશે ફરીથી વિચારવાનો પ્રયાસ કરો.
 
-  ::: warning Security Note
-  Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.
+  ::: warning સુરક્ષા નોંધ (Security Note)
+  તમારી વેબસાઇટ પર મનસ્વી રીતે ડાયનેમિકલી HTML રેન્ડર કરવું ખૂબ જોખમી હોઈ શકે છે કારણ કે તે સરળતાથી [XSS એટેક](https://en.wikipedia.org/wiki/Cross-site_scripting) તરફ દોરી શકે છે. માત્ર વિશ્વસનીય કન્ટેન્ટ પર જ `v-html` નો ઉપયોગ કરો અને વપરાશકર્તા દ્વારા પ્રદાન કરાયેલ કન્ટેન્ટ પર **ક્યારેય નહીં**.
   :::
 
-  In [Single-File Components](/guide/scaling-up/sfc), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](./sfc-css-features#css-modules) or an additional, global `<style>` element with a manual scoping strategy such as BEM.
+  [સિંગલ-ફાઈલ કમ્પોનન્ટ્સ (Single-File Components)](/guide/scaling-up/sfc) માં, `scoped` સ્ટાઈલ્સ `v-html` ની અંદરના કન્ટેન્ટને લાગુ થશે નહીં, કારણ કે તે HTML Vue ના ટેમ્પ્લેટ કમ્પાઈલર દ્વારા પ્રોસેસ કરવામાં આવતું નથી. જો તમે સ્કોપ્ડ CSS સાથે `v-html` કન્ટેન્ટને ટાર્ગેટ કરવા માંગતા હો, તો તેના બદલે તમે [CSS મોડ્યુલ્સ (CSS modules)](./sfc-css-features#css-modules) અથવા BEM જેવી મેન્યુઅલ સ્કોપિંગ વ્યૂહરચના સાથે વધારાના, ગ્લોબલ `<style>` એલિમેન્ટનો ઉપયોગ કરી શકો છો.
 
 - **Example**
 
@@ -42,49 +42,49 @@ Update the element's [innerHTML](https://developer.mozilla.org/en-US/docs/Web/AP
   <div v-html="html"></div>
   ```
 
-- **See also** [Template Syntax - Raw HTML](/guide/essentials/template-syntax#raw-html)
+- **આ પણ જુઓ** [ટેમ્પ્લેટ સિન્ટેક્સ - રો HTML (Raw HTML)](/guide/essentials/template-syntax#raw-html)
 
 ## v-show {#v-show}
 
-Toggle the element's visibility based on the truthy-ness of the expression value.
+એક્સપ્રેશન વેલ્યુની ટ્રુથિ-નેસ (truthy-ness) ના આધારે એલિમેન્ટની વિઝિબિલિટી (visibility) ટોગલ કરે છે.
 
-- **Expects:** `any`
+- **અપેક્ષા રાખે છે (Expects):** `any`
 
-- **Details**
+- **વિગત (Details)**
 
-  `v-show` works by setting the `display` CSS property via inline styles, and will try to respect the initial `display` value when the element is visible. It also triggers transitions when its condition changes.
+  `v-show` ઇનલાઇન સ્ટાઇલ દ્વારા `display` CSS પ્રોપર્ટી સેટ કરીને કામ કરે છે, અને જ્યારે એલિમેન્ટ દૃશ્યમાન હોય ત્યારે પ્રારંભિક `display` કિંમતને માન આપવાનો પ્રયાસ કરશે. જ્યારે તેની સ્થિતિ બદલાય છે ત્યારે તે ટ્રાન્ઝિશનને પણ ટ્રિગર કરે છે.
 
-- **See also** [Conditional Rendering - v-show](/guide/essentials/conditional#v-show)
+- **આ પણ જુઓ** [કન્ડિશનલ રેન્ડરિંગ - v-show](/guide/essentials/conditional#v-show)
 
 ## v-if {#v-if}
 
-Conditionally render an element or a template fragment based on the truthy-ness of the expression value.
+એક્સપ્રેશન વેલ્યુની ટ્રુથિ-નેસના આધારે શરતી રીતે એલિમેન્ટ અથવા ટેમ્પ્લેટ ફ્રેગમેન્ટ રેન્ડર કરે છે.
 
-- **Expects:** `any`
+- **અપેક્ષા રાખે છે (Expects):** `any`
 
-- **Details**
+- **વિગત (Details)**
 
-  When a `v-if` element is toggled, the element and its contained directives / components are destroyed and re-constructed. If the initial condition is falsy, then the inner content won't be rendered at all.
+  જ્યારે `v-if` એલિમેન્ટ ટોગલ કરવામાં આવે છે, ત્યારે એલિમેન્ટ અને તેના સમાવિષ્ટ ડાયરેક્ટિવ્સ / ઘટકો નાશ પામે છે અને ફરીથી બનાવવામાં આવે છે. જો પ્રારંભિક સ્થિતિ ફોલ્સ (falsy) હોય, તો આંતરિક કન્ટેન્ટ બિલકુલ રેન્ડર થશે નહીં.
 
-  Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+  માત્ર ટેક્સ્ટ અથવા બહુવિધ એલિમેન્ટ્સ ધરાવતા કન્ડિશનલ બ્લોકને દર્શાવવા માટે `<template>` પર વાપરી શકાય છે.
 
-  This directive triggers transitions when its condition changes.
+  જ્યારે તેની સ્થિતિ બદલાય છે ત્યારે આ ડાયરેક્ટિવ ટ્રાન્ઝિશનને ટ્રિગર કરે છે.
 
-  When used together, `v-if` has a higher priority than `v-for`. We don't recommend using these two directives together on one element — see the [list rendering guide](/guide/essentials/list#v-for-with-v-if) for details.
+  જ્યારે સાથે ઉપયોગમાં લેવામાં આવે છે, ત્યારે `v-if` ની અગ્રતા (priority) `v-for` કરતા વધારે હોય છે. અમે એક એલિમેન્ટ પર આ બે ડાયરેક્ટિવ્સનો સાથે ઉપયોગ કરવાની ભલામણ કરતા નથી — વિગતો માટે [લિસ્ટ રેન્ડરિંગ ગાઇડ](/guide/essentials/list#v-for-with-v-if) જુઓ.
 
-- **See also** [Conditional Rendering - v-if](/guide/essentials/conditional#v-if)
+- **આ પણ જુઓ** [કન્ડિશનલ રેન્ડરિંગ - v-if](/guide/essentials/conditional#v-if)
 
 ## v-else {#v-else}
 
-Denote the "else block" for `v-if` or a `v-if` / `v-else-if` chain.
+`v-if` અથવા `v-if` / `v-else-if` ચેઇન માટે "else બ્લોક" સૂચવે છે.
 
-- **Does not expect expression**
+- **એક્સપ્રેશનની અપેક્ષા રાખતું નથી**
 
-- **Details**
+- **વિગત (Details)**
 
-  - Restriction: previous sibling element must have `v-if` or `v-else-if`.
+  - પ્રતિબંધ: અગાઉના સિબલિંગ (sibling) એલિમેન્ટમાં `v-if` અથવા `v-else-if` હોવું આવશ્યક છે.
 
-  - Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+  - માત્ર ટેક્સ્ટ અથવા બહુવિધ એલિમેન્ટ્સ ધરાવતા કન્ડિશનલ બ્લોકને દર્શાવવા માટે `<template>` પર વાપરી શકાય છે.
 
 - **Example**
 
@@ -97,19 +97,19 @@ Denote the "else block" for `v-if` or a `v-if` / `v-else-if` chain.
   </div>
   ```
 
-- **See also** [Conditional Rendering - v-else](/guide/essentials/conditional#v-else)
+- **આ પણ જુઓ** [કન્ડિશનલ રેન્ડરિંગ - v-else](/guide/essentials/conditional#v-else)
 
 ## v-else-if {#v-else-if}
 
-Denote the "else if block" for `v-if`. Can be chained.
+`v-if` માટે "else if બ્લોક" સૂચવે છે. તેને ચેઇન કરી શકાય છે.
 
-- **Expects:** `any`
+- **અપેક્ષા રાખે છે (Expects):** `any`
 
-- **Details**
+- **વિગત (Details)**
 
-  - Restriction: previous sibling element must have `v-if` or `v-else-if`.
+  - પ્રતિબંધ: અગાઉના સિબલિંગ એલિમેન્ટમાં `v-if` અથવા `v-else-if` હોવું આવશ્યક છે.
 
-  - Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+  - માત્ર ટેક્સ્ટ અથવા બહુવિધ એલિમેન્ટ્સ ધરાવતા કન્ડિશનલ બ્લોકને દર્શાવવા માટે `<template>` પર વાપરી શકાય છે.
 
 - **Example**
 
@@ -128,17 +128,17 @@ Denote the "else if block" for `v-if`. Can be chained.
   </div>
   ```
 
-- **See also** [Conditional Rendering - v-else-if](/guide/essentials/conditional#v-else-if)
+- **આ પણ જુઓ** [કન્ડિશનલ રેન્ડરિંગ - v-else-if](/guide/essentials/conditional#v-else-if)
 
 ## v-for {#v-for}
 
-Render the element or template block multiple times based on the source data.
+સ્રોત ડેટાના આધારે એલિમેન્ટ અથવા ટેમ્પ્લેટ બ્લોકને બહુવિધ વખત રેન્ડર કરે છે.
 
-- **Expects:** `Array | Object | number | string | Iterable`
+- **અપેક્ષા રાખે છે (Expects):** `Array | Object | number | string | Iterable`
 
-- **Details**
+- **વિગત (Details)**
 
-  The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  ડાયરેક્ટિવની કિંમતે વર્તમાન એલિમેન્ટ માટે ઉપનામ (alias) પ્રદાન કરવા માટે વિશેષ સિન્ટેક્સ `alias in expression` નો ઉપયોગ કરવો આવશ્યક છે:
 
   ```vue-html
   <div v-for="item in items">
@@ -146,7 +146,7 @@ Render the element or template block multiple times based on the source data.
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  વૈકલ્પિક રીતે, તમે ઇન્ડેક્સ (અથવા જો ઓબ્જેક્ટ પર વપરાયેલ હોય તો કી) માટે પણ ઉપનામ સ્પષ્ટ કરી શકો છો:
 
   ```vue-html
   <div v-for="(item, index) in items"></div>
@@ -154,7 +154,7 @@ Render the element or template block multiple times based on the source data.
   <div v-for="(value, name, index) in object"></div>
   ```
 
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you should provide an ordering hint with the `key` special attribute:
+  `v-for` નું ડિફોલ્ટ બિહેવિયર એલિમેન્ટ્સને ખસેડ્યા વિના ઇન-પ્લેસ (in-place) પેચ કરવાનો પ્રયાસ કરશે. તેને એલિમેન્ટ્સને ફરીથી ગોઠવવા માટે દબાણ કરવા માટે, તમારે `key` વિશેષ એટ્રિબ્યુટ સાથે ઓર્ડરિંગ સંકેત પ્રદાન કરવો જોઈએ:
 
   ```vue-html
   <div v-for="item in items" :key="item.id">
@@ -162,232 +162,232 @@ Render the element or template block multiple times based on the source data.
   </div>
   ```
 
-  `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`.
+  `v-for` તે કિંમતો પર પણ કામ કરી શકે છે જે [ઇટરેબલ પ્રોટોકોલ (Iterable Protocol)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) ને અમલી બનાવે છે, જેમાં નેટિવ `Map` અને `Set` પણ શામેલ છે.
 
-- **See also**
-  - [List Rendering](/guide/essentials/list)
+- **આ પણ જુઓ**
+  - [લિસ્ટ રેન્ડરિંગ (List Rendering)](/guide/essentials/list)
 
 ## v-on {#v-on}
 
-Attach an event listener to the element.
+એલિમેન્ટમાં ઇવેન્ટ લિસનર જોડે છે.
 
-- **Shorthand:** `@`
+- **ટૂંકું રૂપ (Shorthand):** `@`
 
-- **Expects:** `Function | Inline Statement | Object (without argument)`
+- **અપેક્ષા રાખે છે (Expects):** `Function | Inline Statement | Object (without argument)`
 
-- **Argument:** `event` (optional if using Object syntax)
+- **આર્ગ્યુમેન્ટ (Argument):** `event` (જો ઓબ્જેક્ટ સિન્ટેક્સનો ઉપયોગ કરતા હો તો વૈકલ્પિક)
 
-- **Modifiers**
+- **મોડિફાયર્સ (Modifiers)**
 
-  - `.stop` - call `event.stopPropagation()`.
-  - `.prevent` - call `event.preventDefault()`.
-  - `.capture` - add event listener in capture mode.
-  - `.self` - only trigger handler if event was dispatched from this element.
-  - `.{keyAlias}` - only trigger handler on certain keys.
-  - `.once` - trigger handler at most once.
-  - `.left` - only trigger handler for left button mouse events.
-  - `.right` - only trigger handler for right button mouse events.
-  - `.middle` - only trigger handler for middle button mouse events.
-  - `.passive` - attaches a DOM event with `{ passive: true }`.
+  - `.stop` - `event.stopPropagation()` કોલ કરે છે.
+  - `.prevent` - `event.preventDefault()` કોલ કરે છે.
+  - `.capture` - કેપ્ચર મોડમાં ઇવેન્ટ લિસનર ઉમેરે છે.
+  - `.self` - જો ઇવેન્ટ આ એલિમેન્ટમાંથી ડિસ્પેચ કરવામાં આવી હોય તો જ હેન્ડલર ટ્રિગર થાય છે.
+  - `.{keyAlias}` - માત્ર ચોક્કસ કી પર હેન્ડલર ટ્રિગર કરે છે.
+  - `.once` - હેન્ડલરને વધુમાં વધુ એકવાર ટ્રિગર કરે છે.
+  - `.left` - માઉસની ડાબી બાજુની ક્લિક ઇવેન્ટ્સ માટે જ હેન્ડલર ટ્રિગર કરે છે.
+  - `.right` - માઉસની જમણી બાજુની ક્લિક ઇવેન્ટ્સ માટે જ હેન્ડલર ટ્રિગર કરે છે.
+  - `.middle` - માઉસના મધ્ય બટનની ઇવેન્ટ્સ માટે જ હેન્ડલર ટ્રિગર કરે છે.
+  - `.passive` - `{ passive: true }` સાથે DOM ઇવેન્ટ જોડે છે.
 
-- **Details**
+- **વિગત (Details)**
 
-  The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
+  ઇવેન્ટનો પ્રકાર આર્ગ્યુમેન્ટ દ્વારા સૂચવવામાં આવે છે. એક્સપ્રેશન મેથડનું નામ, ઇનલાઇન સ્ટેટમેન્ટ હોઈ શકે છે, અથવા જો મોડિફાયર્સ હાજર હોય તો તેને છોડી શકાય છે.
 
-  When used on a normal element, it listens to [**native DOM events**](https://developer.mozilla.org/en-US/docs/Web/Events) only. When used on a custom element component, it listens to **custom events** emitted on that child component.
+  જ્યારે સામાન્ય એલિમેન્ટ પર ઉપયોગ કરવામાં આવે છે, ત્યારે તે માત્ર [**નેટિવ DOM ઇવેન્ટ્સ**](https://developer.mozilla.org/en-US/docs/Web/Events) ને સાંભળે છે. જ્યારે કસ્ટમ એલિમેન્ટ ઘટક પર ઉપયોગ કરવામાં આવે છે, ત્યારે તે તે ચાઈલ્ડ ઘટક પર એમિટ થયેલી **કસ્ટમ ઇવેન્ટ્સ** ને સાંભળે છે.
 
-  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+  જ્યારે નેટિવ DOM ઇવેન્ટ્સ સાંભળવામાં આવે છે, ત્યારે મેથડ નેટિવ ઇવેન્ટ એકમાત્ર આર્ગ્યુમેન્ટ તરીકે મળે છે. જો ઇનલાઇન સ્ટેટમેન્ટનો ઉપયોગ કરતા હો, તો સ્ટેટમેન્ટને વિશેષ `$event` પ્રોપર્ટીની ઍક્સેસ હોય છે: `v-on:click="handle('ok', $event)"`.
 
-  `v-on` also supports binding to an object of event / listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  `v-on` આર્ગ્યુમેન્ટ વિના ઇવેન્ટ / લિસનર જોડીના ઓબ્જેક્ટ સાથે બાઈન્ડિંગને પણ સપોર્ટ કરે છે. નોંધ લો કે જ્યારે ઓબ્જેક્ટ સિન્ટેક્સનો ઉપયોગ કરવામાં આવે છે, ત્યારે તે કોઈપણ મોડિફાયરને સપોર્ટ કરતું નથી.
 
 - **Example**
 
   ```vue-html
-  <!-- method handler -->
+  <!-- મેથડ હેન્ડલર -->
   <button v-on:click="doThis"></button>
 
-  <!-- dynamic event -->
+  <!-- ડાયનેમિક ઇવેન્ટ -->
   <button v-on:[event]="doThis"></button>
 
-  <!-- inline statement -->
+  <!-- ઇનલાઇન સ્ટેટમેન્ટ -->
   <button v-on:click="doThat('hello', $event)"></button>
 
-  <!-- shorthand -->
+  <!-- ટૂંકું રૂપ -->
   <button @click="doThis"></button>
 
-  <!-- shorthand dynamic event -->
+  <!-- ટૂંકું રૂપ ડાયનેમિક ઇવેન્ટ -->
   <button @[event]="doThis"></button>
 
-  <!-- stop propagation -->
+  <!-- પ્રચાર રોકો (stop propagation) -->
   <button @click.stop="doThis"></button>
 
-  <!-- prevent default -->
+  <!-- ડિફોલ્ટ અટકાવો (prevent default) -->
   <button @click.prevent="doThis"></button>
 
-  <!-- prevent default without expression -->
+  <!-- એક્સપ્રેશન વગર ડિફોલ્ટ અટકાવો -->
   <form @submit.prevent></form>
 
-  <!-- chain modifiers -->
+  <!-- મોડિફાયર ચેઇન કરો -->
   <button @click.stop.prevent="doThis"></button>
 
-  <!-- key modifier using keyAlias -->
+  <!-- keyAlias નો ઉપયોગ કરીને કી મોડિફાયર -->
   <input @keyup.enter="onEnter" />
 
-  <!-- the click event will be triggered at most once -->
+  <!-- ક્લિક ઇવેન્ટ વધુમાં વધુ એકવાર ટ્રિગર થશે -->
   <button v-on:click.once="doThis"></button>
 
-  <!-- object syntax -->
+  <!-- ઓબ્જેક્ટ સિન્ટેક્સ -->
   <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
-  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+  ચાઈલ્ડ ઘટક પર કસ્ટમ ઇવેન્ટ્સ સાંભળવી (જ્યારે ચાઈલ્ડ પર "my-event" એમિટ થાય ત્યારે હેન્ડલર કોલ થાય છે):
 
   ```vue-html
   <MyComponent @my-event="handleThis" />
 
-  <!-- inline statement -->
+  <!-- ઇનલાઇન સ્ટેટમેન્ટ -->
   <MyComponent @my-event="handleThis(123, $event)" />
   ```
 
-- **See also**
-  - [Event Handling](/guide/essentials/event-handling)
-  - [Components - Custom Events](/guide/essentials/component-basics#listening-to-events)
+- **આ પણ જુઓ**
+  - [ઇવેન્ટ હેન્ડલિંગ (Event Handling)](/guide/essentials/event-handling)
+  - [ઘટકો - કસ્ટમ ઇવેન્ટ્સ (Components - Custom Events)](/guide/essentials/component-basics#listening-to-events)
 
 ## v-bind {#v-bind}
 
-Dynamically bind one or more attributes, or a component prop to an expression.
+એક કે તેથી વધુ એટ્રિબ્યુટ્સ અથવા ઘટક પ્રોપને ગતિશીલ રીતે એક્સપ્રેશન સાથે બાંધો (bind).
 
-- **Shorthand:**
-  - `:` or `.` (when using `.prop` modifier)
-  - Omitting value (when attribute and bound value has the same name, requires 3.4+)
+- **ટૂંકું રૂપ (Shorthand):**
+  - `:` અથવા `.` (જ્યારે `.prop` મોડિફાયરનો ઉપયોગ કરતા હો ત્યારે)
+  - વેલ્યૂ છોડી દેવી (જ્યારે એટ્રિબ્યુટ અને બાઉન્ડ વેલ્યૂનું નામ સમાન હોય, 3.4+ જરૂરી છે)
 
-- **Expects:** `any (with argument) | Object (without argument)`
+- **અપેક્ષા રાખે છે (Expects):** `any (આર્ગ્યુમેન્ટ સાથે) | Object (આર્ગ્યુમેન્ટ વગર)`
 
-- **Argument:** `attrOrProp (optional)`
+- **આર્ગ્યુમેન્ટ (Argument):** `attrOrProp (વૈકલ્પિક)`
 
-- **Modifiers**
+- **મોડિફાયર્સ (Modifiers)**
 
-  - `.camel` - transform the kebab-case attribute name into camelCase.
-  - `.prop` - force a binding to be set as a DOM property (3.2+).
-  - `.attr` - force a binding to be set as a DOM attribute (3.2+).
+  - `.camel` - kebab-case એટ્રિબ્યુટ પ્રેમને camelCase માં રૂપાંતરિત કરો.
+  - `.prop` - બાઈન્ડિંગને DOM પ્રોપર્ટી તરીકે સેટ કરવા માટે દબાણ કરો (3.2+).
+  - `.attr` - બાઈન્ડિંગને DOM એટ્રિબ્યુટ તરીકે સેટ કરવા માટે દબાણ કરો (3.2+).
 
-- **Usage**
+- **ઉપયોગ (Usage)**
 
-  When used to bind the `class` or `style` attribute, `v-bind` supports additional value types such as Array or Objects. See linked guide section below for more details.
+  જ્યારે `class` અથવા `style` એટ્રિબ્યુટને બાંધવા માટે ઉપયોગમાં લેવાય છે, ત્યારે `v-bind` એરે અથવા ઓબ્જેક્ટ્સ જેવા વધારાના વેલ્યૂ પ્રકારોને સપોર્ટ કરે છે. વધુ વિગતો માટે નીચે લિંક કરેલ ગાઇડ વિભાગ જુઓ.
 
-  When setting a binding on an element, Vue by default checks whether the element has the key defined as a property using an `in` operator check. If the property is defined, Vue will set the value as a DOM property instead of an attribute. This should work in most cases, but you can override this behavior by explicitly using `.prop` or `.attr` modifiers. This is sometimes necessary, especially when [working with custom elements](/guide/extras/web-components#passing-dom-properties).
+  જ્યારે એલિમેન્ટ પર બાઈન્ડિંગ સેટ કરવામાં આવે છે, ત્યારે Vue ડિફોલ્ટ રૂપે તપાસ કરે છે કે એલિમેન્ટ પાસે `in` ઓપરેટર ચેકનો ઉપયોગ કરીને પ્રોપર્ટી તરીકે લેબલ વ્યાખ્યાયિત છે કે નહીં. જો પ્રોપર્ટી વ્યાખ્યાયિત હોય, તો Vue કિંમતને એટ્રિબ્યુટને બદલે DOM પ્રોપર્ટી તરીકે સેટ કરશે. આ મોટાભાગના કિસ્સાઓમાં કામ કરવું જોઈએ, પરંતુ તમે સ્પષ્ટપણે `.prop` અથવા `.attr` મોડિફાયર્સનો ઉપયોગ કરીને આ બિહેવિયરને ઓવરરાઈડ કરી શકો છો. આ ક્યારેક જરૂરી હોય છે, ખાસ કરીને જ્યારે [કસ્ટમ એલિમેન્ટ્સ સાથે કામ કરતા હો](/guide/extras/web-components#passing-dom-properties).
 
-  When used for component prop binding, the prop must be properly declared in the child component.
+  જ્યારે ઘટક પ્રોપ બાઈન્ડિંગ માટે ઉપયોગમાં લેવાય છે, ત્યારે પ્રોપ ચાઈલ્ડ ઘટકમાં યોગ્ય રીતે જાહેર થયેલી હોવી જોઈએ.
 
-  When used without an argument, can be used to bind an object containing attribute name-value pairs.
+  જ્યારે આર્ગ્યુમેન્ટ વિના ઉપયોગમાં લેવાય છે, ત્યારે એટ્રિબ્યુટ નામ-મૂલ્ય જોડી ધરાવતા ઓબ્જેક્ટને બાંધવા માટે ઉપયોગમાં લઈ શકાય છે.
 
 - **Example**
 
   ```vue-html
-  <!-- bind an attribute -->
+  <!-- એટ્રિબ્યુટ બાંધો -->
   <img v-bind:src="imageSrc" />
 
-  <!-- dynamic attribute name -->
+  <!-- ડાયનેમિક એટ્રિબ્યુટ નામ -->
   <button v-bind:[key]="value"></button>
 
-  <!-- shorthand -->
+  <!-- ટૂંકું રૂપ -->
   <img :src="imageSrc" />
 
-  <!-- same-name shorthand (3.4+), expands to :src="src" -->
+  <!-- સમાન નામવાળું ટૂંકું રૂપ (3.4+), :src="src" માં વિસ્તરે છે -->
   <img :src />
 
-  <!-- shorthand dynamic attribute name -->
+  <!-- ટૂંકું રૂપ ડાયનેમિક એટ્રિબ્યુટ નામ -->
   <button :[key]="value"></button>
 
-  <!-- with inline string concatenation -->
+  <!-- ઇનલાઇન સ્ટ્રિંગ કન્કેટિનેશન સાથે -->
   <img :src="'/path/to/images/' + fileName" />
 
-  <!-- class binding -->
+  <!-- ક્લાસ બાઈન્ડિંગ -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]"></div>
 
-  <!-- style binding -->
+  <!-- સ્ટાઇલ બાઈન્ડિંગ -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- binding an object of attributes -->
+  <!-- એટ્રિબ્યુટ્સના ઓબ્જેક્ટને બાંધવું -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!-- prop binding. "prop" must be declared in the child component. -->
+  <!-- પ્રોપ બાઈન્ડિંગ. "prop" ચાઈલ્ડ ઘટકમાં જાહેર કરેલ હોવું આવશ્યક છે. -->
   <MyComponent :prop="someThing" />
 
-  <!-- pass down parent props in common with a child component -->
+  <!-- ચાઈલ્ડ ઘટક સાથે સામાન્ય પેરેન્ટ પ્રોપ્સ નીચે પાસ કરો -->
   <MyComponent v-bind="$props" />
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  The `.prop` modifier also has a dedicated shorthand, `.`:
+  `.prop` મોડિફાયર પાસે સમર્પિત ટૂંકું રૂપ પણ છે, `.` :
 
   ```vue-html
   <div :someProperty.prop="someObject"></div>
 
-  <!-- equivalent to -->
+  <!-- સમાન છે -->
   <div .someProperty="someObject"></div>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  `.camel` મોડિફાયર ઇન-DOM ટેમ્પ્લેટ્સનો ઉપયોગ કરતી વખતે `v-bind` એટ્રિબ્યુટ નામને કેમેલાઇઝ કરવાની મંજૂરી આપે છે, દા.ત. SVG `viewBox` એટ્રિબ્યુટ:
 
   ```vue-html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or pre-compiling the template with a build step.
+  જો તમે સ્ટ્રિંગ ટેમ્પ્લેટ્સનો ઉપયોગ કરી રહ્યાં હોવ અથવા બિલ્ડ સ્ટેપ સાથે ટેમ્પ્લેટને પ્રી-કમ્પાઈલ કરી રહ્યાં હોવ તો `.camel` ની જરૂર નથી.
 
-- **See also**
-  - [Class and Style Bindings](/guide/essentials/class-and-style)
-  - [Components - Prop Passing Details](/guide/components/props#prop-passing-details)
+- **આ પણ જુઓ**
+  - [ક્લાસ અને સ્ટાઇલ બાઈન્ડિંગ્સ (Class and Style Bindings)](/guide/essentials/class-and-style)
+  - [ઘટકો - પ્રોપ પાસિંગ વિગતો (Components - Prop Passing Details)](/guide/components/props#prop-passing-details)
 
 ## v-model {#v-model}
 
-Create a two-way binding on a form input element or a component.
+ફોર્મ ઇનપુટ એલિમેન્ટ અથવા ઘટક પર ટુ-વે બાઈન્ડિંગ (two-way binding) બનાવે છે.
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **અપેક્ષા રાખે છે (Expects):** ફોર્મ ઇનપુટ એલિમેન્ટની કિંમત અથવા ઘટકોના આઉટપુટના આધારે બદલાય છે.
 
-- **Limited to:**
+- **ત્યાં જ મર્યાદિત (Limited to):**
 
   - `<input>`
   - `<select>`
   - `<textarea>`
-  - components
+  - ઘટકો (components)
 
-- **Modifiers**
+- **મોડિફાયર્સ (Modifiers)**
 
-  - [`.lazy`](/guide/essentials/forms#lazy) - listen to `change` events instead of `input`
-  - [`.number`](/guide/essentials/forms#number) - cast valid input string to numbers
-  - [`.trim`](/guide/essentials/forms#trim) - trim input
+  - [`.lazy`](/guide/essentials/forms#lazy) - `input` ને બદલે `change` ઇવેન્ટ્સ સાંભળે છે.
+  - [`.number`](/guide/essentials/forms#number) - વેલિડ ઇનપુટ સ્ટ્રિંગને નંબરમાં કાસ્ટ કરો.
+  - [`.trim`](/guide/essentials/forms#trim) - ઇનપુટ ટ્રીમ કરો.
 
-- **See also**
+- **આ પણ જુઓ**
 
-  - [Form Input Bindings](/guide/essentials/forms)
-  - [Component Events - Usage with `v-model`](/guide/components/v-model)
+  - [ફોર્મ ઇનપુટ બાઈન્ડિંગ્સ (Form Input Bindings)](/guide/essentials/forms)
+  - [ઘટક ઇવેન્ટ્સ - `v-model` સાથે ઉપયોગ (Component Events - Usage with `v-model`)](/guide/components/v-model)
 
 ## v-slot {#v-slot}
 
-Denote named slots or scoped slots that expect to receive props.
+પ્રોપ્સ મેળવવાની અપેક્ષા રાખતા નેમ્ડ સ્લોટ્સ (named slots) અથવા સ્કોપ્ડ સ્લોટ્સ (scoped slots) સૂચવો.
 
-- **Shorthand:** `#`
+- **ટૂંકું રૂપ (Shorthand):** `#`
 
-- **Expects:** JavaScript expression that is valid in a function argument position, including support for destructuring. Optional - only needed if expecting props to be passed to the slot.
+- **અપેક્ષા રાખે છે (Expects):** JavaScript એક્સપ્રેશન જે ફંક્શન આર્ગ્યુમેન્ટની સ્થિતિમાં વેલિડ હોય, જેમાં ડિસ્ટ્રક્ચરિંગ (destructuring) માટેના સપોર્ટનો સમાવેશ થાય છે. વૈકલ્પિક - જો સ્લોટમાં પ્રોપ્સ પાસ કરવાની અપેક્ષા હોય તો જ જરૂર પડે છે.
 
-- **Argument:** slot name (optional, defaults to `default`)
+- **આર્ગ્યુમેન્ટ (Argument):** સ્લોટનું નામ (વૈકલ્પિક, ડિફોલ્ટ `default`)
 
-- **Limited to:**
+- **ત્યાં જ મર્યાદિત (Limited to):**
 
   - `<template>`
-  - [components](/guide/components/slots#scoped-slots) (for a lone default slot with props)
+  - [ઘટકો (components)](/guide/components/slots#scoped-slots) (પ્રોપ્સ સાથેના એકલા ડિફોલ્ટ સ્લોટ માટે)
 
 - **Example**
 
   ```vue-html
-  <!-- Named slots -->
+  <!-- નેમ્ડ સ્લોટ્સ (Named slots) -->
   <BaseLayout>
     <template v-slot:header>
       Header content
@@ -402,7 +402,7 @@ Denote named slots or scoped slots that expect to receive props.
     </template>
   </BaseLayout>
 
-  <!-- Named slot that receives props -->
+  <!-- નેમ્ડ સ્લોટ જે પ્રોપ્સ મેળવે છે -->
   <InfiniteScroll>
     <template v-slot:item="slotProps">
       <div class="item">
@@ -411,24 +411,24 @@ Denote named slots or scoped slots that expect to receive props.
     </template>
   </InfiniteScroll>
 
-  <!-- Default slot that receive props, with destructuring -->
+  <!-- ડિફોલ્ટ સ્લોટ જે પ્રોપ્સ મેળવે છે, ડિસ્ટ્રક્ચરિંગ સાથે -->
   <Mouse v-slot="{ x, y }">
     Mouse position: {{ x }}, {{ y }}
   </Mouse>
   ```
 
-- **See also**
-  - [Components - Slots](/guide/components/slots)
+- **આ પણ જુઓ**
+  - [ઘટકો - સ્લોટ્સ (Components - Slots)](/guide/components/slots)
 
 ## v-pre {#v-pre}
 
-Skip compilation for this element and all its children.
+આ એલિમેન્ટ અને તેના તમામ બાળકો માટે કમ્પાઈલેશન સ્કીપ કરો.
 
-- **Does not expect expression**
+- **એક્સપ્રેશનની અપેક્ષા રાખતું નથી**
 
-- **Details**
+- **વિગત (Details)**
 
-  Inside the element with `v-pre`, all Vue template syntax will be preserved and rendered as-is. The most common use case of this is displaying raw mustache tags.
+  `v-pre` વાળા એલિમેન્ટની અંદર, તમામ Vue ટેમ્પ્લેટ સિન્ટેક્સ સાચવવામાં આવશે અને એઝ-ઇઝ (as-is) રેન્ડર કરવામાં આવશે. આનો સૌથી સામાન્ય ઉપયોગ કાચો (raw) મસ્ટાચ ટેગ્સ પ્રદર્શિત કરવાનો છે.
 
 - **Example**
 
@@ -438,45 +438,45 @@ Skip compilation for this element and all its children.
 
 ## v-once {#v-once}
 
-Render the element and component once only, and skip future updates.
+એલિમેન્ટ અને ઘટકને માત્ર એક જ વાર રેન્ડર કરો, અને ભવિષ્યના અપડેટ્સ સ્કીપ કરો.
 
-- **Does not expect expression**
+- **એક્સપ્રેશનની અપેક્ષા રાખતું નથી**
 
-- **Details**
+- **વિગત (Details)**
 
-  On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  ત્યારપછીના રી-રેન્ડર્સ પર, એલિમેન્ટ/ઘટક અને તેના તમામ બાળકોને સ્ટેટિક કન્ટેન્ટ તરીકે ગણવામાં આવશે અને સ્કીપ કરવામાં આવશે. અપડેટ પરફોર્મન્સને ઑપ્ટિમાઇઝ કરવા માટે આનો ઉપયોગ કરી શકાય છે.
 
   ```vue-html
-  <!-- single element -->
+  <!-- સિંગલ એલિમેન્ટ -->
   <span v-once>This will never change: {{msg}}</span>
-  <!-- the element have children -->
+  <!-- એલિમેન્ટમાં બાળકો છે -->
   <div v-once>
     <h1>Comment</h1>
     <p>{{msg}}</p>
   </div>
-  <!-- component -->
+  <!-- ઘટક -->
   <MyComponent v-once :comment="msg"></MyComponent>
-  <!-- `v-for` directive -->
+  <!-- `v-for` ડાયરેક્ટિવ -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
   ```
 
-  Since 3.2, you can also memoize part of the template with invalidation conditions using [`v-memo`](#v-memo).
+  3.2 થી, તમે [`v-memo`](#v-memo) નો ઉપયોગ કરીને અમાન્ય સ્થિતિઓ (invalidation conditions) સાથે ટેમ્પ્લેટના ભાગને મેમોઇઝ (memoize) પણ કરી શકો છો.
 
-- **See also**
-  - [Data Binding Syntax - interpolations](/guide/essentials/template-syntax#text-interpolation)
+- **આ પણ જુઓ**
+  - [ડેટા બાઈન્ડિંગ સિન્ટેક્સ - ઇન્ટરપોલેશન્સ (Data Binding Syntax - interpolations)](/guide/essentials/template-syntax#text-interpolation)
   - [v-memo](#v-memo)
 
 ## v-memo {#v-memo}
 
-- Only supported in 3.2+
+- માત્ર 3.2+ માં સપોર્ટેડ
 
-- **Expects:** `any[]`
+- **અપેક્ષા રાખે છે (Expects):** `any[]`
 
-- **Details**
+- **વિગત (Details)**
 
-  Memoize a sub-tree of the template. Can be used on both elements and components. The directive expects a fixed-length array of dependency values to compare for the memoization. If every value in the array was the same as last render, then updates for the entire sub-tree will be skipped. For example:
+  ટેમ્પ્લેટના સબ-ટ્રી (sub-tree) ને મેમોઇઝ કરો. એલિમેન્ટ્સ અને ઘટકો બંને પર વાપરી શકાય છે. ડાયરેક્ટિવ મેમોઇઝેશન માટે સરખામણી કરવા માટે ડિપેન્ડન્સી વેલ્યુઝની ફિક્સ્ડ-લેન્થ એરેની અપેક્ષા રાખે છે. જો એરેમાંની દરેક કિંમત છેલ્લી રેન્ડર જેવી જ હતી, તો સમગ્ર સબ-ટ્રી માટેના અપડેટ્સ સ્કીપ કરવામાં આવશે. ઉદાહરણ તરીકે:
 
   ```vue-html
   <div v-memo="[valueA, valueB]">
@@ -484,45 +484,45 @@ Render the element and component once only, and skip future updates.
   </div>
   ```
 
-  When the component re-renders, if both `valueA` and `valueB` remain the same, all updates for this `<div>` and its children will be skipped. In fact, even the Virtual DOM VNode creation will also be skipped since the memoized copy of the sub-tree can be reused.
+  જ્યારે ઘટક ફરીથી રેન્ડર થાય છે, જો `valueA` અને `valueB` બંને સમાન રહે છે, તો આ `<div>` અને તેના બાળકો માટેના તમામ અપડેટ્સ સ્કીપ કરવામાં આવશે. હકીકતમાં, વર્ચ્યુઅલ DOM VNode બનાવવાનું પણ સ્કીપ કરવામાં આવશે કારણ કે સબ-ટ્રીની મેમોઇઝ્ડ કોપીનો ફરીથી ઉપયોગ કરી શકાય છે.
 
-  It is important to specify the memoization array correctly, otherwise we may skip updates that should indeed be applied. `v-memo` with an empty dependency array (`v-memo="[]"`) would be functionally equivalent to `v-once`.
+  મેમોઇઝેશન એરેને યોગ્ય રીતે સ્પષ્ટ કરવું મહત્વપૂર્ણ છે, અન્યથા અમે તે અપડેટ્સ સ્કીપ કરી શકીએ છીએ જે ખરેખર લાગુ કરવા જોઈએ. ખાલી ડિપેન્ડન્સી એરે (`v-memo="[]"`) સાથે `v-memo` કાર્યાત્મક રીતે `v-once` ની સમકક્ષ હશે.
 
-  **Usage with `v-for`**
+  **`v-for` સાથે ઉપયોગ**
 
-  `v-memo` is provided solely for micro optimizations in performance-critical scenarios and should be rarely needed. The most common case where this may prove helpful is when rendering large `v-for` lists (where `length > 1000`):
+  `v-memo` માત્ર પરફોર્મન્સ-ક્રિટિકલ દૃશ્યોમાં માઇક્રો ઓપ્ટિમાઇઝેશન માટે પ્રદાન કરવામાં આવ્યું છે અને તેની ભાગ્યે જ જરૂર પડશે. સૌથી સામાન્ય કેસ જ્યાં આ મદદરૂપ સાબિત થઈ શકે છે તે છે જ્યારે મોટી `v-for` લિસ્ટ (જ્યાં `length > 1000`) રેન્ડર કરવામાં આવે છે:
 
   ```vue-html
   <div v-for="item in list" :key="item.id" v-memo="[item.id === selected]">
     <p>ID: {{ item.id }} - selected: {{ item.id === selected }}</p>
-    <p>...more child nodes</p>
+    <p>...વધુ ચાઈલ્ડ નોડ્સ</p>
   </div>
   ```
 
-  When the component's `selected` state changes, a large amount of VNodes will be created even though most of the items remained exactly the same. The `v-memo` usage here is essentially saying "only update this item if it went from non-selected to selected, or the other way around". This allows every unaffected item to reuse its previous VNode and skip diffing entirely. Note we don't need to include `item.id` in the memo dependency array here since Vue automatically infers it from the item's `:key`.
+  જ્યારે ઘટકની `selected` સ્થિતિ બદલાય છે, ત્યારે મોટી માત્રામાં VNodes બનાવવામાં આવશે ભલે મોટાભાગની આઇટમ્સ બરાબર સમાન રહી હોય. અહીં `v-memo` નો ઉપયોગ અનિવાર્યપણે એમ કહી રહ્યો છે કે "આ આઇટમને ફક્ત ત્યારે જ અપડેટ કરો જો તે નોન-સિલેક્ટેડથી સિલેક્ટેડ થઈ હોય, અથવા બીજી રીતે". આ દરેક અપ્રભાવિત આઇટમને તેના પાછલા VNode નો ફરીથી ઉપયોગ કરવાની અને ડિફિંગ (diffing) ને સંપૂર્ણપણે સ્કીપ કરવાની મંજૂરી આપે છે. નોંધ લો કે આપણે અહીં મેમો ડિપેન્ડન્સી એરેમાં `item.id` શામેલ કરવાની જરૂર નથી કારણ કે Vue આઇટમની `:key` પરથી આપમેળે તેનું અનુમાન લગાવે છે.
 
   :::warning
-  When using `v-memo` with `v-for`, make sure they are used on the same element. **`v-memo` does not work inside `v-for`.**
+  જ્યારે `v-for` સાથે `v-memo` નો ઉપયોગ કરતા હોવ, ત્યારે ખાતરી કરો કે તે સમાન એલિમેન્ટ પર વપરાયેલ છે. **`v-memo` `v-for` ની અંદર કામ કરતું નથી.**
   :::
 
-  `v-memo` can also be used on components to manually prevent unwanted updates in certain edge cases where the child component update check has been de-optimized. But again, it is the developer's responsibility to specify correct dependency arrays to avoid skipping necessary updates.
+  ચોક્કસ એજ કેસોમાં અનિચ્છનીય અપડેટ્સને મેન્યુઅલી રોકવા માટે ઘટકો પર પણ `v-memo` વાપરી શકાય છે જ્યાં ચાઈલ્ડ ઘટક અપડેટ ચેક ડી-ઑપ્ટિમાઇઝ કરવામાં આવ્યો હોય. પરંતુ ફરીથી, જરૂરી અપડેટ્સ સ્કીપ કરવાનું ટાળવા માટે યોગ્ય ડિપેન્ડન્સી એરે સ્પષ્ટ કરવાની જવાબદારી ડેવલપરની છે.
 
-- **See also**
+- **આ પણ જુઓ**
   - [v-once](#v-once)
 
 ## v-cloak {#v-cloak}
 
-Used to hide un-compiled template until it is ready.
+કમ્પાઈલ ન થયેલ ટેમ્પ્લેટ તૈયાર ન થાય ત્યાં સુધી તેને છુપાવવા માટે વપરાય છે.
 
-- **Does not expect expression**
+- **એક્સપ્રેશનની અપેક્ષા રાખતું નથી**
 
-- **Details**
+- **વિગત (Details)**
 
-  **This directive is only needed in no-build-step setups.**
+  **આ ડાયરેક્ટિવની માત્ર નો-બિલ્ડ-સ્ટેપ (no-build-step) સેટઅપમાં જ જરૂર છે.**
 
-  When using in-DOM templates, there can be a "flash of un-compiled templates": the user may see raw mustache tags until the mounted component replaces them with rendered content.
+  જ્યારે ઇન-DOM ટેમ્પ્લેટ્સનો ઉપયોગ કરવામાં આવે છે, ત્યારે "કમ્પાઈલ ન થયેલ ટેમ્પ્લેટ્સનો ફ્લેશ" હોઈ શકે છે: વપરાશકર્તા કાચા મસ્ટાચ ટેગ્સ જોઈ શકે છે જ્યાં સુધી માઉન્ટ થયેલ ઘટક તેમને રેન્ડર કરેલા કન્ટેન્ટ સાથે બદલી ન દે.
 
-  `v-cloak` will remain on the element until the associated component instance is mounted. Combined with CSS rules such as `[v-cloak] { display: none }`, it can be used to hide the raw templates until the component is ready.
+  જ્યાં સુધી સંબંધિત ઘટક ઇન્સ્ટન્સ માઉન્ટ ન થાય ત્યાં સુધી `v-cloak` એલિમેન્ટ પર રહેશે. `[v-cloak] { display: none }` જેવા CSS નિયમો સાથે મળીને, તેનો ઉપયોગ ઘટક તૈયાર ન થાય ત્યાં સુધી કાચા ટેમ્પ્લેટ્સને છુપાવવા માટે કરી શકાય છે.
 
 - **Example**
 
@@ -538,4 +538,4 @@ Used to hide un-compiled template until it is ready.
   </div>
   ```
 
-  The `<div>` will not be visible until the compilation is done.
+  જ્યાં સુધી કમ્પાઈલેશન પૂર્ણ ન થાય ત્યાં સુધી `<div>` દેખાશે નહીં.

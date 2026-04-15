@@ -1,60 +1,60 @@
-# Composition API: <br>Dependency Injection {#composition-api-dependency-injection}
+# Composition API: <br>ડિપેન્ડન્સી ઇન્જેક્શન (Dependency Injection) {#composition-api-dependency-injection}
 
 ## provide() {#provide}
 
-Provides a value that can be injected by descendant components.
+એક વેલ્યુ પ્રદાન કરે છે જે વંશજ (descendant) ઘટકો દ્વારા inject કરી શકાય.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function provide<T>(key: InjectionKey<T> | string, value: T): void
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  `provide()` takes two arguments: the key, which can be a string or a symbol, and the value to be injected.
+  `provide()` બે આર્ગ્યુમેન્ટ્સ લે છે: key, જે string અથવા symbol હોઈ શકે, અને inject કરવાની વેલ્યુ.
 
-  When using TypeScript, the key can be a symbol casted as `InjectionKey` - a Vue provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  TypeScript ઉપયોગ કરતી વખતે, key `InjectionKey` તરીકે cast થયેલું symbol હોઈ શકે - Vue દ્વારા પ્રદાન કરાયેલ utility type જે `Symbol` ને extend કરે છે, જેનો ઉપયોગ `provide()` અને `inject()` વચ્ચે value type sync કરવા માટે થઈ શકે.
 
-  Similar to lifecycle hook registration APIs, `provide()` must be called synchronously during a component's `setup()` phase.
+  lifecycle hook registration APIs ની જેમ, `provide()` ને ઘટકના `setup()` phase દરમિયાન synchronously બોલાવવું આવશ્યક છે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```vue
   <script setup>
   import { ref, provide } from 'vue'
   import { countSymbol } from './injectionSymbols'
 
-  // provide static value
+  // static value provide કરો
   provide('path', '/project/')
 
-  // provide reactive value
+  // reactive value provide કરો
   const count = ref(0)
   provide('count', count)
 
-  // provide with Symbol keys
+  // Symbol keys સાથે provide કરો
   provide(countSymbol, count)
   </script>
   ```
 
-- **See also**
-  - [Guide - Provide / Inject](/guide/components/provide-inject)
-  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
+- **આ પણ જુઓ**
+  - [ગાઇડ - Provide / Inject](/guide/components/provide-inject)
+  - [ગાઇડ - Provide / Inject ટાઇપ કરવું](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 ## inject() {#inject}
 
-Injects a value provided by an ancestor component or the application (via `app.provide()`).
+પૂર્વજ (ancestor) ઘટક અથવા એપ્લિકેશન (`app.provide()` દ્વારા) દ્વારા provide કરેલી વેલ્યુ inject કરે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
-  // without default value
+  // default value વિના
   function inject<T>(key: InjectionKey<T> | string): T | undefined
 
-  // with default value
+  // default value સાથે
   function inject<T>(key: InjectionKey<T> | string, defaultValue: T): T
 
-  // with factory
+  // factory સાથે
   function inject<T>(
     key: InjectionKey<T> | string,
     defaultValue: () => T,
@@ -62,58 +62,58 @@ Injects a value provided by an ancestor component or the application (via `app.p
   ): T
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The first argument is the injection key. Vue will walk up the parent chain to locate a provided value with a matching key. If multiple components in the parent chain provide the same key, the one closest to the injecting component will "shadow" those higher up the chain and its value will be used. If no value with matching key was found, `inject()` returns `undefined` unless a default value is provided.
+  પ્રથમ આર્ગ્યુમેન્ટ injection key છે. Vue parent chain ઉપર ચાલશે અને matching key સાથે provide કરેલી value શોધશે. જો parent chain માં બહુવિધ ઘટકો સમાન key provide કરે, તો injecting ઘટકની સૌથી નજીકનો "shadow" (છાયો) ઊંચે ચેઇનમાં રહેલાઓને કરશે અને તેની value ઉપયોગ થશે. જો matching key સાથે કોઈ value ન મળે, તો `inject()` `undefined` રિટર્ન કરે છે સિવાય કે default value provide કરવામાં આવી હોય.
 
-  The second argument is optional and is the default value to be used when no matching value was found.
+  બીજો આર્ગ્યુમેન્ટ વૈકલ્પિક છે અને default value છે જે matching value ન મળે ત્યારે ઉપયોગ થશે.
 
-  The second argument can also be a factory function that returns values that are expensive to create. In this case, `true` must be passed as the third argument to indicate that the function should be used as a factory instead of the value itself.
+  બીજો આર્ગ્યુમેન્ટ factory function પણ હોઈ શકે જે બનાવવામાં ખર્ચાળ values રિટર્ન કરે. આ કિસ્સામાં, ત્રીજા આર્ગ્યુમેન્ટ તરીકે `true` પાસ કરવું આવશ્યક છે જે દર્શાવે કે function ને value ના બદલે factory તરીકે ઉપયોગ કરવો.
 
-  Similar to lifecycle hook registration APIs, `inject()` must be called synchronously during a component's `setup()` phase.
+  lifecycle hook registration APIs ની જેમ, `inject()` ને ઘટકના `setup()` phase દરમિયાન synchronously બોલાવવું આવશ્યક છે.
 
-  When using TypeScript, the key can be of type of `InjectionKey` - a Vue-provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  TypeScript ઉપયોગ કરતી વખતે, key `InjectionKey` type ની હોઈ શકે - Vue દ્વારા provide કરાયેલ utility type જે `Symbol` ને extend કરે છે, જેનો ઉપયોગ `provide()` અને `inject()` વચ્ચે value type sync કરવા માટે થઈ શકે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  Assuming a parent component has provided values as shown in the previous `provide()` example:
+  ધારો કે parent ઘટકે અગાઉના `provide()` ઉદાહરણમાં બતાવ્યા મુજબ values provide કરી છે:
 
   ```vue
   <script setup>
   import { inject } from 'vue'
   import { countSymbol } from './injectionSymbols'
 
-  // inject static value without default
+  // default વિના static value inject કરો
   const path = inject('path')
 
-  // inject reactive value
+  // reactive value inject કરો
   const count = inject('count')
 
-  // inject with Symbol keys
+  // Symbol keys સાથે inject કરો
   const count2 = inject(countSymbol)
 
-  // inject with default value
+  // default value સાથે inject કરો
   const bar = inject('path', '/default-path')
 
-  // inject with function default value
+  // function default value સાથે inject કરો
   const fn = inject('function', () => {})
 
-  // inject with default value factory
+  // default value factory સાથે inject કરો
   const baz = inject('factory', () => new ExpensiveObject(), true)
   </script>
   ```
   
-- **See also**
-  - [Guide - Provide / Inject](/guide/components/provide-inject)
-  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
+- **આ પણ જુઓ**
+  - [ગાઇડ - Provide / Inject](/guide/components/provide-inject)
+  - [ગાઇડ - Provide / Inject ટાઇપ કરવું](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 ## hasInjectionContext() {#has-injection-context}
 
-- Only supported in 3.3+
+- માત્ર 3.3+ માં સપોર્ટેડ
 
-Returns true if [inject()](#inject) can be used without warning about being called in the wrong place (e.g. outside of `setup()`). This method is designed to be used by libraries that want to use `inject()` internally without triggering a warning to the end user.
+જો [inject()](#inject) ને ખોટી જગ્યાએ (દા.ત. `setup()` ની બહાર) બોલાવવા વિશે warning વિના ઉપયોગ કરી શકાય તો true રિટર્ન કરે છે. આ method એવી libraries માટે ડિઝાઇન કરવામાં આવી છે જે end user ને warning ટ્રિગર કર્યા વિના આંતરિક રીતે `inject()` ઉપયોગ કરવા માંગે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function hasInjectionContext(): boolean

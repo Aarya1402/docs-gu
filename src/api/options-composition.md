@@ -1,10 +1,10 @@
-# Options: Composition {#options-composition}
+# ઓપ્શન્સ: કમ્પોઝિશન (Options: Composition) {#options-composition}
 
 ## provide {#provide}
 
-Provide values that can be injected by descendant components.
+વંશજ (descendant) ઘટકો દ્વારા inject કરી શકાય તેવી values provide કરો.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -12,15 +12,15 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  `provide` and [`inject`](#inject) are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain.
+  `provide` અને [`inject`](#inject) એકસાથે ઉપયોગ થાય છે જેથી પૂર્વજ (ancestor) ઘટક તેના તમામ descendants માટે dependency injector તરીકે કાર્ય કરી શકે, ભલે component hierarchy કેટલી ઊંડી (deep) હોય, જ્યાં સુધી તેઓ સમાન parent chain માં હોય.
 
-  The `provide` option should be either an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use Symbols as keys in this object.
+  `provide` ઓપ્શન ક્યાં તો object અથવા object return કરતું function હોવું જોઈએ. આ object તેના descendants માં injection માટે ઉપલબ્ધ properties ધરાવે છે. આ object માં keys તરીકે Symbols ઉપયોગ કરી શકો.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  Basic usage:
+  મૂળભૂત ઉપયોગ:
 
   ```js
   const s = Symbol()
@@ -33,7 +33,7 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-  Using a function to provide per-component state:
+  Per-component state provide કરવા function ઉપયોગ કરવું:
 
   ```js
   export default {
@@ -50,15 +50,15 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-  Note in the above example, the provided `msg` will NOT be reactive. See [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) for more details.
+  નોંધ કરો કે ઉપરના ઉદાહરણમાં, provide કરેલું `msg` reactive નહીં હોય. વધુ વિગત માટે [Reactivity સાથે કામ કરવું](/guide/components/provide-inject#working-with-reactivity) જુઓ.
 
-- **See also** [Provide / Inject](/guide/components/provide-inject)
+- **આ પણ જુઓ** [Provide / Inject](/guide/components/provide-inject)
 
 ## inject {#inject}
 
-Declare properties to inject into the current component by locating them from ancestor providers.
+પૂર્વજ (ancestor) providers માંથી શોધીને વર્તમાન ઘટકમાં inject કરવાની properties declare કરો.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -75,24 +75,24 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The `inject` option should be either:
+  `inject` ઓપ્શન ક્યાં તો હોવું જોઈએ:
 
-  - An array of strings, or
-  - An object where the keys are the local binding name and the value is either:
-    - The key (string or Symbol) to search for in available injections, or
-    - An object where:
-      - The `from` property is the key (string or Symbol) to search for in available injections, and
-      - The `default` property is used as fallback value. Similar to props default values, a factory function is needed for object types to avoid value sharing between multiple component instances.
+  - Strings ની array, અથવા
+  - Object જ્યાં keys local binding name છે અને value ક્યાં તો:
+    - ઉપલબ્ધ injections માં શોધવા માટેની key (string અથવા Symbol), અથવા
+    - Object જ્યાં:
+      - `from` property ઉપલબ્ધ injections માં શોધવા માટેની key (string અથવા Symbol) છે, અને
+      - `default` property fallback value તરીકે ઉપયોગ થાય. Props default values ની જેમ, multiple component instances વચ્ચે value sharing ટાળવા object types માટે factory function જરૂરી છે.
 
-  An injected property will be `undefined` if neither a matching property nor a default value was provided.
+  Injected property `undefined` હશે જો matching property કે default value provide ન કરવામાં આવ્યા હોય.
 
-  Note that injected bindings are NOT reactive. This is intentional. However, if the injected value is a reactive object, properties on that object do remain reactive. See [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) for more details.
+  નોંધ કરો કે injected bindings reactive **નથી**. આ ઇરાદાપૂર્વક છે. જો કે, injected value reactive object હોય, તો તે object ની properties reactive રહે છે. વધુ વિગત માટે [Reactivity સાથે કામ કરવું](/guide/components/provide-inject#working-with-reactivity) જુઓ.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  Basic usage:
+  મૂળભૂત ઉપયોગ:
 
   ```js
   export default {
@@ -103,7 +103,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Using an injected value as the default for a prop:
+  Injected value ને prop માટે default તરીકે ઉપયોગ કરવી:
 
   ```js
   const Child = {
@@ -118,7 +118,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Using an injected value as data entry:
+  Injected value ને data entry તરીકે ઉપયોગ કરવી:
 
   ```js
   const Child = {
@@ -131,7 +131,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Injections can be optional with default value:
+  Injections default value સાથે optional હોઈ શકે:
 
   ```js
   const Child = {
@@ -141,7 +141,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  જો અલગ name ની property માંથી inject કરવાની જરૂર હોય, તો source property દર્શાવવા `from` ઉપયોગ કરો:
 
   ```js
   const Child = {
@@ -154,7 +154,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non-primitive values:
+  Prop defaults ની જેમ, non-primitive values માટે factory function ઉપયોગ કરવું જરૂરી:
 
   ```js
   const Child = {
@@ -167,13 +167,13 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-- **See also** [Provide / Inject](/guide/components/provide-inject)
+- **આ પણ જુઓ** [Provide / Inject](/guide/components/provide-inject)
 
 ## mixins {#mixins}
 
-An array of option objects to be mixed into the current component.
+વર્તમાન ઘટકમાં mix કરવા માટે option objects ની array.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -181,17 +181,17 @@ An array of option objects to be mixed into the current component.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the certain option merging logic. For example, if your mixin contains a `created` hook and the component itself also has one, both functions will be called.
+  `mixins` ઓપ્શન mixin objects ની array accept કરે છે. આ mixin objects normal instance objects ની જેમ instance options ધરાવી શકે, અને ચોક્કસ option merging logic ઉપયોગ કરીને eventual options સાથે merge થશે. ઉદાહરણ તરીકે, જો તમારા mixin માં `created` hook હોય અને ઘટક પોતે પણ ધરાવે, તો બંને functions call થશે.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Mixin hooks જે ક્રમમાં provide કરવામાં આવે છે તે ક્રમમાં call થાય છે, અને ઘટકના પોતાના hooks પહેલા call થાય છે.
 
-  :::warning No Longer Recommended
-  In Vue 2, mixins were the primary mechanism for creating reusable chunks of component logic. While mixins continue to be supported in Vue 3, [Composable functions using Composition API](/guide/reusability/composables) is now the preferred approach for code reuse between components.
+  :::warning હવે ભલામણ નથી (No Longer Recommended)
+  Vue 2 માં, mixins ઘટક logic ના reusable chunks બનાવવાની primary mechanism હતી. Vue 3 માં mixins supported રહે છે, પરંતુ [Composition API ઉપયોગ કરતા Composable functions](/guide/reusability/composables) હવે ઘટકો વચ્ચે code reuse માટે preferred approach છે.
   :::
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   const mixin = {
@@ -213,9 +213,9 @@ An array of option objects to be mixed into the current component.
 
 ## extends {#extends}
 
-A "base class" component to extend from.
+Extend કરવા માટે "base class" ઘટક.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -223,17 +223,17 @@ A "base class" component to extend from.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  Allows one component to extend another, inheriting its component options.
+  એક ઘટકને અન્ય extend કરવાની, તેના component options inherit કરવાની મંજૂરી આપે છે.
 
-  From an implementation perspective, `extends` is almost identical to `mixins`. The component specified by `extends` will be treated as though it were the first mixin.
+  Implementation perspective થી, `extends` `mixins` ની લગભગ identical છે. `extends` દ્વારા specified ઘટકને એવી રીતે treat કરવામાં આવશે જાણે તે પ્રથમ mixin હોય.
 
-  However, `extends` and `mixins` express different intents. The `mixins` option is primarily used to compose chunks of functionality, whereas `extends` is primarily concerned with inheritance.
+  જો કે, `extends` અને `mixins` અલગ intents express કરે છે. `mixins` ઓપ્શનનો ઉપયોગ મુખ્યત્વે functionality ના chunks compose કરવા માટે થાય, જ્યારે `extends` મુખ્યત્વે inheritance સાથે concerned છે.
 
-  As with `mixins`, any options (except for `setup()`) will be merged using the relevant merge strategy.
+  `mixins` ની જેમ, કોઈપણ options (`setup()` સિવાય) relevant merge strategy ઉપયોગ કરીને merge થશે.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   const CompA = { ... }
@@ -244,12 +244,12 @@ A "base class" component to extend from.
   }
   ```
 
-  :::warning Not Recommended for Composition API
-  `extends` is designed for Options API and does not handle the merging of the `setup()` hook.
+  :::warning Composition API માટે ભલામણ નથી
+  `extends` Options API માટે ડિઝાઇન થયેલું છે અને `setup()` hook ના merging ને handle કરતું નથી.
 
-  In Composition API, the preferred mental model for logic reuse is "compose" over "inheritance". If you have logic from a component that needs to be reused in another one, consider extracting the relevant logic into a [Composable](/guide/reusability/composables#composables).
+  Composition API માં, logic reuse માટે preferred mental model "inheritance" કરતા "compose" છે. જો તમારી પાસે ઘટકમાંથી logic છે જે બીજામાં reuse કરવાની જરૂર છે, તો relevant logic ને [Composable](/guide/reusability/composables#composables) માં extract કરવાનું વિચારો.
 
-  If you still intend to "extend" a component using Composition API, you can call the base component's `setup()` in the extending component's `setup()`:
+  જો તમે હજુ Composition API ઉપયોગ કરીને ઘટકને "extend" કરવા ઇચ્છો, તો extending ઘટકના `setup()` માં base ઘટકના `setup()` ને call કરી શકો:
 
   ```js
   import Base from './Base.js'

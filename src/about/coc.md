@@ -1,47 +1,47 @@
-# Code Of Conduct {#code-of-conduct}
+# આચાર સંહિતા (Code Of Conduct) {#code-of-conduct}
 
-## Our Pledge {#our-pledge}
+## અમારી પ્રતિજ્ઞા (Our Pledge) {#our-pledge}
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, political party, or sexual identity and orientation. Note, however, that religion, political party, or other ideological affiliation provide no exemptions for the behavior we outline as unacceptable in this Code of Conduct.
+એક ખુલ્લા અને આવકારદાયક વાતાવરણને પ્રોત્સાહન આપવાના હિતમાં, અમે યોગદાન આપનારાઓ અને જાળવણીકારો તરીકે ઉંમર, શરીરનું કદ, અપંગતા, વંશીયતા, લિંગ લાક્ષણિકતાઓ, લિંગ ઓળખ અને અભિવ્યક્તિ, અનુભવનું સ્તર, શિક્ષણ, સામાજિક-આર્થિક સ્થિતિ, રાષ્ટ્રીયતા, વ્યક્તિગત દેખાવ, જાતિ, ધર્મ, રાજકીય પક્ષ અથવા જાતીય ઓળખ અને અભિમુખતાને ધ્યાનમાં લીધા વિના દરેક માટે અમારા પ્રોજેક્ટ અને અમારા સમુદાયમાં ભાગીદારીને પજવણી-મુક્ત (harassment-free) અનુભવ બનાવવાની પ્રતિજ્ઞા લઈએ છીએ. જો કે, નોંધો કે ધર્મ, રાજકીય પક્ષ અથવા અન્ય વૈચારિક જોડાણ આ આચાર સંહિતામાં અસ્વીકાર્ય તરીકે અમે દર્શાવેલ વર્તન માટે કોઈ મુક્તિ પ્રદાન કરતા નથી.
 
-## Our Standards {#our-standards}
+## અમારા ધોરણો (Our Standards) {#our-standards}
 
-Examples of behavior that contributes to creating a positive environment include:
+સકારાત્મક વાતાવરણ બનાવવામાં ફાળો આપતા વર્તનના ઉદાહરણોમાં શામેલ છે:
 
-- Using welcoming and inclusive language
-- Being respectful of differing viewpoints and experiences
-- Gracefully accepting constructive criticism
-- Focusing on what is best for the community
-- Showing empathy towards other community members
+- આવકારદાયક અને સમાવેશી ભાષાનો ઉપયોગ કરવો
+- ભિન્ન દ્રષ્ટિકોણ અને અનુભવોનું સન્માન કરવું
+- રચનાત્મક ટીકાનો નમ્રતાપૂર્વક સ્વીકાર કરવો
+- સમુદાય માટે જે શ્રેષ્ઠ છે તેના પર ધ્યાન કેન્દ્રિત કરવું
+- સમુદાયના અન્ય સભ્યો પ્રત્યે સહાનુભૂતિ દર્શાવવી
 
-Examples of unacceptable behavior by participants include:
+સહભાગીઓ દ્વારા અસ્વીકાર્ય વર્તનના ઉદાહરણોમાં શામેલ છે:
 
-- The use of sexualized language or imagery and unwelcome sexual attention or advances
-- Trolling, insulting/derogatory comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information, such as a physical or electronic address, without explicit permission
-- Other conduct which could reasonably be considered inappropriate in a professional setting
+- લૈંગિક ભાષા અથવા છબીનો ઉપયોગ અને અનિચ્છનીય જાતીય ધ્યાન અથવા પ્રગતિ
+- ટ્રોલિંગ (Trolling), અપમાનજનક/અપમાનજનક ટિપ્પણીઓ, અને વ્યક્તિગત અથવા રાજકીય હુમલાઓ
+- જાહેર અથવા ખાનગી પજવણી
+- સ્પષ્ટ પરવાનગી વિના અન્યની ખાનગી માહિતી પ્રકાશિત કરવી, જેમ કે ભૌતિક અથવા ઇલેક્ટ્રોનિક સરનામું
+- અન્ય આચરણ જે વ્યાવસાયિક સેટિંગમાં વ્યાજબી રીતે અયોગ્ય ગણી શકાય
 
-## Our Responsibilities {#our-responsibilities}
+## અમારી જવાબદારીઓ (Our Responsibilities) {#our-responsibilities}
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+સ્વીકાર્ય વર્તનના ધોરણોને સ્પષ્ટ કરવા માટે પ્રોજેક્ટ જાળવણીકારો જવાબદાર છે અને અસ્વીકાર્ય વર્તનના કોઈપણ કિસ્સાના પ્રતિભાવમાં યોગ્ય અને ન્યાયી સુધારાત્મક પગલાં લેવાની અપેક્ષા રાખવામાં આવે છે.
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+પ્રોજેક્ટ મેન્ટેનર્સને આ આચાર સંહિતા સાથે સંમત ન હોય તેવી ટિપ્પણીઓ, કમિટ્સ, કોડ, વિકી એડિટ્સ, ઇશ્યુઝ અને અન્ય યોગદાનને દૂર કરવા, સંપાદિત કરવા અથવા નકારવાનો અધિકાર અને જવાબદારી છે, અથવા અન્ય વર્તન કે જે તેઓ અયોગ્ય, ધમકીભર્યા, અપમાનજનક અથવા હાનિકારક માને છે તે માટે કોઈપણ યોગદાન આપનાર પર અસ્થાયી અથવા કાયમી ધોરણે પ્રતિબંધ લાદવાની જવાબદારી છે.
 
-## Scope {#scope}
+## વ્યાપ્તિ (Scope) {#scope}
 
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+આ આચાર સંહિતા પ્રોજેક્ટની અંદર અને જાહેર સ્થળોએ જ્યારે કોઈ વ્યક્તિ પ્રોજેક્ટ અથવા તેના સમુદાયનું પ્રતિનિધિત્વ કરતી હોય ત્યારે બંને જગ્યાએ લાગુ પડે છે. પ્રોજેક્ટ અથવા સમુદાયનું પ્રતિનિધિત્વ કરવાના ઉદાહરણોમાં સત્તાવાર પ્રોજેક્ટ ઈ-મેલ સરનામાંનો ઉપયોગ કરવો, સત્તાવાર સોશિયલ મીડિયા એકાઉન્ટ દ્વારા પોસ્ટ કરવું અથવા ઓનલાઇન અથવા ઓફલાઇન ઇવેન્ટમાં નિયુક્ત પ્રતિનિધિ તરીકે કાર્ય કરવાનો સમાવેશ થાય છે. પ્રોજેક્ટનું પ્રતિનિધિત્વ પ્રોજેક્ટ જાળવણીકારો દ્વારા વધુ વ્યાખ્યાયિત અને સ્પષ્ટ કરી શકાય છે.
 
-## Enforcement {#enforcement}
+## અમલીકરણ (Enforcement) {#enforcement}
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at community@vuejs.org. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+અપમાનજનક, પજવણી કરનાર અથવા અન્યથા અસ્વીકાર્ય વર્તનના કિસ્સાઓ પ્રોજેક્ટ ટીમને community@vuejs.org પર સંપર્ક કરીને જાણ કરી શકાય છે. તમામ ફરિયાદોની સમીક્ષા કરવામાં આવશે અને તેની તપાસ કરવામાં આવશે અને તેના પરિણામે સંજોગોમાં જરૂરી અને યોગ્ય ગણાતો પ્રતિસાદ આપવામાં આવશે. પ્રોજેક્ટ ટીમ કોઈ ઘટનાના રિપોર્ટરના સંબંધમાં ગુપ્તતા જાળવવા માટે બંધાયેલી છે. ચોક્કસ અમલીકરણ નીતિઓની વધુ વિગતો અલગથી પોસ્ટ કરવામાં આવી શકે છે.
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+પ્રોજેક્ટ મેન્ટેનર્સ જેઓ આચાર સંહિતાનું પાલન કરતા નથી અથવા સદ્ભાવનાથી તેને લાગુ કરતા નથી તેઓ પ્રોજેક્ટના નેતૃત્વના અન્ય સભ્યો દ્વારા નિર્ધારિત કર્યા મુજબ અસ્થાયી અથવા કાયમી અસરોનો સામનો કરી શકે છે.
 
-## Attribution {#attribution}
+## એટ્રિબ્યુશન (Attribution) {#attribution}
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+આ આચાર સંહિતા [Contributor Covenant][homepage], સંસ્કરણ ૧.૪ માંથી સ્વીકારવામાં આવી છે, જે https://www.contributor-covenant.org/version/1/4/code-of-conduct.html પર ઉપલબ્ધ છે.
 
-For answers to common questions about this code of conduct, see https://www.contributor-covenant.org/faq
+આ આચાર સંહિતા વિશેના સામાન્ય પ્રશ્નોના જવાબો માટે, https://www.contributor-covenant.org/faq જુઓ.
 
 [homepage]: https://www.contributor-covenant.org

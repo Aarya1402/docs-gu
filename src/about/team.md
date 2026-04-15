@@ -1,6 +1,6 @@
 ---
 page: true
-title: Meet the Team
+title: ટીમને મળો (Meet the Team)
 ---
 
 <script setup>

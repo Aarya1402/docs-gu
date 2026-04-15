@@ -1,6 +1,6 @@
-# Community Newsletters {#community-newsletters}
+# સમુદાય ન્યૂઝલેટર્સ (Community Newsletters) {#community-newsletters}
 
-There are many great newsletters / Vue-dedicated blogs from the community bringing you latest news and happenings in the Vue ecosystem. Here is a non-exhaustive list of active ones that we have come across:
+સમુદાય તરફથી ઘણા સારા ન્યૂઝલેટર્સ / Vue-સમર્પિત બ્લોગ્સ છે જે તમને Vue ઇકોસિસ્ટમના નવીનતમ સમાચાર અને ઘટનાઓ લાવે છે. અમે અત્યાર સુધી જે જોયા છે તેમાંથી સક્રિય ન્યૂઝલેટર્સની સૂચિ નીચે મુજબ છે:
 
 - [Vue.js Feed](https://vuejsfeed.com/)
 - [Michael Thiessen](https://michaelnthiessen.com/newsletter)
@@ -8,4 +8,4 @@ There are many great newsletters / Vue-dedicated blogs from the community bringi
 - [Weekly Vue News](https://weekly-vue.news/)
 - [Vue.js Developers Newsletter](https://vuejsdevelopers.com/newsletter/)
 
-If you know a great one that isn't already included, please submit a pull request using the link below!
+જો તમે કોઈ બીજા સારા ન્યૂઝલેટર વિશે જાણતા હોવ જે અહીં શામેલ નથી, તો કૃપા કરીને નીચેની લિંકનો ઉપયોગ કરીને પુલ રિક્વેસ્ટ (pull request) સબમિટ કરો!

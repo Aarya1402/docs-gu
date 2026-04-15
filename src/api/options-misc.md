@@ -1,10 +1,10 @@
-# Options: Misc {#options-misc}
+# ઓપ્શન્સ: વિવિધ (Options: Misc) {#options-misc}
 
 ## name {#name}
 
-Explicitly declare a display name for the component.
+ઘટક માટે display name સ્પષ્ટ રીતે declare કરો.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -12,31 +12,31 @@ Explicitly declare a display name for the component.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The name of a component is used for the following:
+  ઘટકનું name નીચેના માટે ઉપયોગ થાય છે:
 
-  - Recursive self-reference in the component's own template
-  - Display in Vue DevTools' component inspection tree
-  - Display in warning component traces
+  - ઘટકના પોતાના template માં recursive self-reference
+  - Vue DevTools ના component inspection tree માં display
+  - Warning component traces માં display
 
-  When you use Single-File Components, the component already infers its own name from the filename. For example, a file named `MyComponent.vue` will have the inferred display name "MyComponent".
+  જ્યારે તમે Single-File Components ઉપયોગ કરો છો, ત્યારે ઘટક પહેલેથી જ filename માંથી પોતાનું name infer કરે છે. ઉદાહરણ તરીકે, `MyComponent.vue` નામની file ના inferred display name "MyComponent" હશે.
 
-  Another case is that when a component is registered globally with [`app.component`](/api/application#app-component), the global ID is automatically set as its name.
+  બીજો case એ છે કે જ્યારે ઘટક [`app.component`](/api/application#app-component) સાથે globally register થાય, ત્યારે global ID આપમેળે તેના name તરીકે set થાય છે.
 
-  The `name` option allows you to override the inferred name, or to explicitly provide a name when no name can be inferred (e.g. when not using build tools, or an inlined non-SFC component).
+  `name` ઓપ્શન inferred name ને override કરવાની, અથવા જ્યારે કોઈ name infer ન થઈ શકે (દા.ત. build tools ઉપયોગ ન કરતી વખતે, અથવા inlined non-SFC ઘટક) ત્યારે explicitly name provide કરવાની મંજૂરી આપે છે.
 
-  There is one case where `name` is explicitly necessary: when matching against cacheable components in [`<KeepAlive>`](/guide/built-ins/keep-alive) via its `include / exclude` props.
+  એક case છે જ્યાં `name` explicitly જરૂરી છે: [`<KeepAlive>`](/guide/built-ins/keep-alive) ના `include / exclude` props દ્વારા cacheable components સાથે match કરતી વખતે.
 
   :::tip
-  Since version 3.2.34, a single-file component using `<script setup>` will automatically infer its `name` option based on the filename, removing the need to manually declare the name even when used with `<KeepAlive>`.
+  Version 3.2.34 થી, `<script setup>` ઉપયોગ કરતું single-file component filename ના આધારે આપમેળે તેનો `name` ઓપ્શન infer કરશે, `<KeepAlive>` સાથે ઉપયોગ કરતી વખતે પણ manually name declare કરવાની જરૂર દૂર કરે છે.
   :::
 
 ## inheritAttrs {#inheritattrs}
 
-Controls whether the default component attribute fallthrough behavior should be enabled.
+Default component attribute fallthrough behavior સક્ષમ કરવી કે નહીં તે નિયંત્રિત કરે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -44,11 +44,11 @@ Controls whether the default component attribute fallthrough behavior should be 
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough". This means that when we have a single-root component, these bindings will be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property and can be explicitly bound to a non-root element using `v-bind`.
+  ડિફોલ્ટ રૂપે, parent scope attribute bindings જે props તરીકે ઓળખાતા નથી તે "fallthrough" થશે. આનો અર્થ એ છે કે single-root ઘટક હોય ત્યારે, આ bindings child ઘટકના root element પર સામાન્ય HTML attributes તરીકે apply થશે. જ્યારે target element અથવા અન્ય ઘટકને wrap કરતો ઘટક author કરો, ત્યારે આ હંમેશા ઇચ્છિત વર્તણૂક ન હોઈ શકે. `inheritAttrs` ને `false` પર set કરીને, આ default behavior અક્ષમ (disabled) કરી શકાય. Attributes `$attrs` instance property દ્વારા ઉપલબ્ધ છે અને `v-bind` ઉપયોગ કરીને non-root element ને explicitly bind કરી શકાય.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   <div class="options-api">
 
@@ -76,7 +76,7 @@ Controls whether the default component attribute fallthrough behavior should be 
   </div>
   <div class="composition-api">
 
-  When declaring this option in a component that uses `<script setup>`, you can use the [`defineOptions`](/api/sfc-script-setup#defineoptions) macro:
+  `<script setup>` ઉપયોગ કરતા ઘટકમાં આ ઓપ્શન declare કરતી વખતે, [`defineOptions`](/api/sfc-script-setup#defineoptions) macro ઉપયોગ કરી શકો:
 
   ```vue
   <script setup>
@@ -101,19 +101,19 @@ Controls whether the default component attribute fallthrough behavior should be 
 
   </div>
 
-- **See also**
+- **આ પણ જુઓ**
 
   - [Fallthrough Attributes](/guide/components/attrs)
   <div class="composition-api">
 
-  - [Using `inheritAttrs` in normal `<script>`](/api/sfc-script-setup.html#usage-alongside-normal-script)
+  - [સામાન્ય `<script>` માં `inheritAttrs` ઉપયોગ કરવું](/api/sfc-script-setup.html#usage-alongside-normal-script)
   </div>
 
 ## components {#components}
 
-An object that registers components to be made available to the component instance.
+ઘટક ઇન્સ્ટન્સ માટે ઉપલબ્ધ કરવા registers ઘટકોનો ઓબ્જેક્ટ.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -121,7 +121,7 @@ An object that registers components to be made available to the component instan
   }
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import Foo from './Foo.vue'
@@ -131,19 +131,19 @@ An object that registers components to be made available to the component instan
     components: {
       // shorthand
       Foo,
-      // register under a different name
+      // અલગ name હેઠળ register કરો
       RenamedBar: Bar
     }
   }
   ```
 
-- **See also** [Component Registration](/guide/components/registration)
+- **આ પણ જુઓ** [ઘટક રજિસ્ટ્રેશન (Component Registration)](/guide/components/registration)
 
 ## directives {#directives}
 
-An object that registers directives to be made available to the component instance.
+ઘટક ઇન્સ્ટન્સ માટે ઉપલબ્ધ કરવા directives registers કરતો ઓબ્જેક્ટ.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   interface ComponentOptions {
@@ -151,12 +151,12 @@ An object that registers directives to be made available to the component instan
   }
   ```
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   export default {
     directives: {
-      // enables v-focus in template
+      // template માં v-focus સક્ષમ કરે છે
       focus: {
         mounted(el) {
           el.focus()
@@ -170,4 +170,4 @@ An object that registers directives to be made available to the component instan
   <input v-focus>
   ```
 
-- **See also** [Custom Directives](/guide/reusability/custom-directives)
+- **આ પણ જુઓ** [કસ્ટમ ડિરેક્ટિવ્સ](/guide/reusability/custom-directives)

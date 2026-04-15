@@ -1,12 +1,12 @@
-# Built-in Special Elements {#built-in-special-elements}
+# બિલ્ટ-ઇન ખાસ એલિમેન્ટ્સ (Built-in Special Elements) {#built-in-special-elements}
 
-:::info Not Components
-`<component>`, `<slot>` and `<template>` are component-like features and part of the template syntax. They are not true components and are compiled away during template compilation. As such, they are conventionally written with lowercase in templates.
+:::info ઘટકો નથી (Not Components)
+`<component>`, `<slot>` અને `<template>` ઘટક-જેવી સુવિધાઓ છે અને template syntax નો ભાગ છે. તેઓ સાચા ઘટકો નથી અને template compilation દરમિયાન compiled away થાય છે. તેથી, templates માં તેઓ પરંપરાગત રીતે lowercase માં લખવામાં આવે છે.
 :::
 
 ## `<component>` {#component}
 
-A "meta component" for rendering dynamic components or elements.
+ડાયનેમિક ઘટકો અથવા elements રેન્ડર કરવા માટેનો "meta component".
 
 - **Props**
 
@@ -16,17 +16,17 @@ A "meta component" for rendering dynamic components or elements.
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The actual component to render is determined by the `is` prop.
+  રેન્ડર કરવાનો વાસ્તવિક ઘટક `is` prop દ્વારા નિર્ધારિત થાય છે.
 
-  - When `is` is a string, it could be either an HTML tag name or a component's registered name.
+  - જ્યારે `is` string હોય, ત્યારે તે HTML tag name અથવા ઘટકનું registered name હોઈ શકે.
 
-  - Alternatively, `is` can also be directly bound to the definition of a component.
+  - વૈકલ્પિક રીતે, `is` ને ઘટકની definition સાથે સીધું bind પણ કરી શકાય.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
-  Rendering components by registered name (Options API):
+  Registered name દ્વારા ઘટકો રેન્ડર કરવા (Options API):
 
   ```vue
   <script>
@@ -48,7 +48,7 @@ A "meta component" for rendering dynamic components or elements.
   </template>
   ```
 
-  Rendering components by definition (Composition API with `<script setup>`):
+  Definition દ્વારા ઘટકો રેન્ડર કરવા (Composition API with `<script setup>`):
 
   ```vue
   <script setup>
@@ -61,13 +61,13 @@ A "meta component" for rendering dynamic components or elements.
   </template>
   ```
 
-  Rendering HTML elements:
+  HTML elements રેન્ડર કરવા:
 
   ```vue-html
   <component :is="href ? 'a' : 'span'"></component>
   ```
 
-  The [built-in components](./built-in-components) can all be passed to `is`, but you must register them if you want to pass them by name. For example:
+  [બિલ્ટ-ઇન ઘટકો](./built-in-components) ને બધા `is` ને પાસ કરી શકાય, પરંતુ જો તમે તેમને name દ્વારા પાસ કરવા માંગો તો તમારે તેમને register કરવા પડશે. ઉદાહરણ તરીકે:
 
   ```vue
   <script>
@@ -88,9 +88,9 @@ A "meta component" for rendering dynamic components or elements.
   </template>
   ```
 
-  Registration is not required if you pass the component itself to `is` rather than its name, e.g. in `<script setup>`.
+  જો તમે ઘટકને તેના name ના બદલે ઘટક પોતે `is` ને પાસ કરો, તો registration જરૂરી નથી, દા.ત. `<script setup>` માં.
 
-  If `v-model` is used on a `<component>` tag, the template compiler will expand it to a `modelValue` prop and `update:modelValue` event listener, much like it would for any other component. However, this won't be compatible with native HTML elements, such as `<input>` or `<select>`. As a result, using `v-model` with a dynamically created native element won't work:
+  જો `<component>` ટેગ પર `v-model` ઉપયોગ કરવામાં આવે, તો template compiler તેને `modelValue` prop અને `update:modelValue` event listener માં expand કરશે, જેમ કે અન્ય કોઈપણ ઘટક માટે કરે. જો કે, આ native HTML elements, જેમ કે `<input>` અથવા `<select>` સાથે compatible નહીં હોય. પરિણામે, dynamically બનાવેલા native element સાથે `v-model` ઉપયોગ કરવું કામ નહીં કરે:
 
   ```vue
   <script setup>
@@ -101,64 +101,64 @@ A "meta component" for rendering dynamic components or elements.
   </script>
 
   <template>
-    <!-- This won't work as 'input' is a native HTML element -->
+    <!-- આ કામ નહીં કરે કારણ કે 'input' native HTML element છે -->
     <component :is="tag" v-model="username" />
   </template>
   ```
 
-  In practice, this edge case isn't common as native form fields are typically wrapped in components in real applications. If you do need to use a native element directly then you can split the `v-model` into an attribute and event manually.
+  વ્યવહારમાં, આ edge case સામાન્ય નથી કારણ કે native form fields સામાન્ય રીતે વાસ્તવિક applications માં ઘટકોમાં wrapped હોય છે. જો તમારે native element ને direct ઉપયોગ કરવાની જરૂર હોય, તમે `v-model` ને attribute અને event માં manually split કરી શકો.
 
-- **See also** [Dynamic Components](/guide/essentials/component-basics#dynamic-components)
+- **આ પણ જુઓ** [ડાયનેમિક કમ્પોનન્ટ્સ](/guide/essentials/component-basics#dynamic-components)
 
 ## `<slot>` {#slot}
 
-Denotes slot content outlets in templates.
+Templates માં slot content outlets દર્શાવે છે.
 
 - **Props**
 
   ```ts
   interface SlotProps {
     /**
-     * Any props passed to <slot> to passed as arguments
-     * for scoped slots
+     * <slot> ને પાસ કરેલા કોઈપણ props scoped slots માટે
+     * arguments તરીકે પાસ થાય
      */
     [key: string]: any
     /**
-     * Reserved for specifying slot name.
+     * Slot name સ્પષ્ટ કરવા માટે reserved.
      */
     name?: string
   }
   ```
 
-- **Details**
+- **વિગત (Details)**
 
-  The `<slot>` element can use the `name` attribute to specify a slot name. When no `name` is specified, it will render the default slot. Additional attributes passed to the slot element will be passed as slot props to the scoped slot defined in the parent.
+  `<slot>` element slot name સ્પષ્ટ કરવા માટે `name` attribute ઉપયોગ કરી શકે. કોઈ `name` સ્પષ્ટ ન હોય ત્યારે, default slot રેન્ડર થશે. Slot element ને પાસ કરેલા વધારાના attributes parent માં defined scoped slot ને slot props તરીકે પાસ થશે.
 
-  The element itself will be replaced by its matched slot content.
+  Element પોતે તેના matched slot content દ્વારા replaced થશે.
 
-  `<slot>` elements in Vue templates are compiled into JavaScript, so they are not to be confused with [native `<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot).
+  Vue templates માં `<slot>` elements JavaScript માં compile થાય છે, તેથી તેમને [native `<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) સાથે ભેળસેળ ન કરવી.
 
-- **See also** [Component - Slots](/guide/components/slots)
+- **આ પણ જુઓ** [ઘટક - Slots](/guide/components/slots)
 
 ## `<template>` {#template}
 
-The `<template>` tag is used as a placeholder when we want to use a built-in directive without rendering an element in the DOM.
+`<template>` ટેગનો ઉપયોગ placeholder તરીકે થાય છે જ્યારે આપણે DOM માં element રેન્ડર કર્યા વિના built-in directive ઉપયોગ કરવા માંગીએ.
 
-- **Details**
+- **વિગત (Details)**
 
-  The special handling for `<template>` is only triggered if it is used with one of these directives:
+  `<template>` માટે ખાસ handling ફક્ત ત્યારે જ trigger થાય છે જ્યારે તે આ directives માંથી કોઈ એક સાથે ઉપયોગ થાય:
 
-  - `v-if`, `v-else-if`, or `v-else`
+  - `v-if`, `v-else-if`, અથવા `v-else`
   - `v-for`
   - `v-slot`
 
-  If none of those directives are present then it will be rendered as a [native `<template>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) instead.
+  જો આ directives માંથી કોઈ હાજર ન હોય તો તે [native `<template>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) તરીકે રેન્ડર થશે.
 
-  A `<template>` with a `v-for` can also have a [`key` attribute](/api/built-in-special-attributes#key). All other attributes and directives will be discarded, as they aren't meaningful without a corresponding element.
+  `v-for` ધરાવતા `<template>` ને [`key` attribute](/api/built-in-special-attributes#key) પણ હોઈ શકે. અન્ય તમામ attributes અને directives ને discard કરવામાં આવશે, કારણ કે corresponding element વિના તેઓ અર્થપૂર્ણ નથી.
 
-  Single-file components use a [top-level `<template>` tag](/api/sfc-spec#language-blocks) to wrap the entire template. That usage is separate from the use of `<template>` described above. That top-level tag is not part of the template itself and doesn't support template syntax, such as directives.
+  Single-file components સમગ્ર template ને wrap કરવા માટે [top-level `<template>` tag](/api/sfc-spec#language-blocks) ઉપયોગ કરે છે. તે ઉપયોગ ઉપર વર્ણવેલા `<template>` ના ઉપયોગથી અલગ છે. તે top-level tag template નો ભાગ નથી અને directives જેવા template syntax ને support કરતો નથી.
 
-- **See also**
-  - [Guide - `v-if` on `<template>`](/guide/essentials/conditional#v-if-on-template)
-  - [Guide - `v-for` on `<template>`](/guide/essentials/list#v-for-on-template)
-  - [Guide - Named slots](/guide/components/slots#named-slots)
+- **આ પણ જુઓ**
+  - [ગાઇડ - `<template>` પર `v-if`](/guide/essentials/conditional#v-if-on-template)
+  - [ગાઇડ - `<template>` પર `v-for`](/guide/essentials/list#v-for-on-template)
+  - [ગાઇડ - Named slots](/guide/components/slots#named-slots)

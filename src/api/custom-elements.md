@@ -1,10 +1,10 @@
-# Custom Elements API {#custom-elements-api}
+# કસ્ટમ એલિમેન્ટ્સ API (Custom Elements API) {#custom-elements-api}
 
 ## defineCustomElement() {#definecustomelement}
 
-This method accepts the same argument as [`defineComponent`](#definecomponent), but instead returns a native [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) class constructor.
+આ મેથડ [`defineComponent`](#definecomponent) જેવો જ આર્ગ્યુમેન્ટ સ્વીકારે છે, પરંતુ તેના બદલે નેટિવ [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) ક્લાસ constructor રિટર્ન કરે છે.
 
-- **Type**
+- **ટાઇપ (Type)**
 
   ```ts
   function defineCustomElement(
@@ -19,28 +19,28 @@ This method accepts the same argument as [`defineComponent`](#definecomponent), 
   interface CustomElementsOptions {
     styles?: string[]
 
-    // the following options are 3.5+
+    // નીચેના ઓપ્શન્સ 3.5+ છે
     configureApp?: (app: App) => void
     shadowRoot?: boolean
     nonce?: string
   }
   ```
 
-  > Type is simplified for readability.
+  > વાંચવાની સરળતા માટે ટાઇપ સરળ કરવામાં આવ્યો છે.
 
-- **Details**
+- **વિગત (Details)**
 
-  In addition to normal component options, `defineCustomElement()` also supports a number of options that are custom-elements-specific:
+  સામાન્ય ઘટક ઓપ્શન્સ ઉપરાંત, `defineCustomElement()` કેટલાક ઓપ્શન્સ પણ સપોર્ટ કરે છે જે custom-elements-specific છે:
 
-  - **`styles`**: an array of inlined CSS strings for providing CSS that should be injected into the element's shadow root.
+  - **`styles`**: એલિમેન્ટના shadow root માં inject કરવા જોઈએ તેવી CSS પ્રદાન કરવા માટે inlined CSS strings ની array.
 
-  - **`configureApp`** <sup class="vt-badge" data-text="3.5+"/>: a function that can be used to configure the Vue app instance for the custom element.
+  - **`configureApp`** <sup class="vt-badge" data-text="3.5+"/>: એક ફંક્શન જેનો ઉપયોગ custom element માટે Vue app instance કોન્ફિગર કરવા માટે કરી શકાય.
 
-  - **`shadowRoot`** <sup class="vt-badge" data-text="3.5+"/>: `boolean`, defaults to `true`. Set to `false` to render the custom element without a shadow root. This means `<style>` in custom element SFCs will no longer be encapsulated.
+  - **`shadowRoot`** <sup class="vt-badge" data-text="3.5+"/>: `boolean`, ડિફોલ્ટ `true`. shadow root વિના custom element રેન્ડર કરવા `false` પર સેટ કરો. આનો અર્થ એ છે કે custom element SFC માં `<style>` હવે encapsulated નહીં થાય.
 
-  - **`nonce`** <sup class="vt-badge" data-text="3.5+"/>: `string`, if provided, will be set as the `nonce` attribute on style tags injected to the shadow root.
+  - **`nonce`** <sup class="vt-badge" data-text="3.5+"/>: `string`, જો પ્રદાન કરવામાં આવે, તો shadow root માં inject થયેલા style tags પર `nonce` attribute તરીકે સેટ થશે.
 
-  Note that instead of being passed as part of the component itself, these options can also be passed via a second argument:
+  નોંધ કરો કે આ ઓપ્શન્સ ઘટકના ભાગ તરીકે પાસ કરવા ના બદલે, બીજા આર્ગ્યુમેન્ટ દ્વારા પણ પાસ કરી શકાય:
 
   ```js
   import Element from './MyElement.ce.vue'
@@ -52,35 +52,35 @@ This method accepts the same argument as [`defineComponent`](#definecomponent), 
   })
   ```
 
-  The return value is a custom element constructor that can be registered using [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define).
+  રિટર્ન વેલ્યુ એક custom element constructor છે જેને [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define) ઉપયોગ કરીને રજિસ્ટર કરી શકાય.
 
-- **Example**
+- **ઉદાહરણ (Example)**
 
   ```js
   import { defineCustomElement } from 'vue'
 
   const MyVueElement = defineCustomElement({
-    /* component options */
+    /* ઘટક ઓપ્શન્સ */
   })
 
-  // Register the custom element.
+  // Custom element રજિસ્ટર કરો.
   customElements.define('my-vue-element', MyVueElement)
   ```
 
-- **See also**
+- **આ પણ જુઓ**
 
-  - [Guide - Building Custom Elements with Vue](/guide/extras/web-components#building-custom-elements-with-vue)
+  - [ગાઇડ - Vue સાથે Custom Elements બનાવવા](/guide/extras/web-components#building-custom-elements-with-vue)
 
-  - Also note that `defineCustomElement()` requires [special config](/guide/extras/web-components#sfc-as-custom-element) when used with Single-File Components.
+  - એ પણ નોંધ કરો કે Single-File Components સાથે ઉપયોગ કરતી વખતે `defineCustomElement()` ને [ખાસ config](/guide/extras/web-components#sfc-as-custom-element) ની જરૂર છે.
 
 ## useHost() <sup class="vt-badge" data-text="3.5+"/> {#usehost}
 
-A Composition API helper that returns the host element of the current Vue custom element.
+Composition API હેલ્પર જે વર્તમાન Vue custom element ના host element ને રિટર્ન કરે છે.
 
 ## useShadowRoot() <sup class="vt-badge" data-text="3.5+"/> {#useshadowroot}
 
-A Composition API helper that returns the shadow root of the current Vue custom element.
+Composition API હેલ્પર જે વર્તમાન Vue custom element ના shadow root ને રિટર્ન કરે છે.
 
 ## this.$host <sup class="vt-badge" data-text="3.5+"/> {#this-host}
 
-An Options API property that exposes the host element of the current Vue custom element.
+Options API પ્રોપર્ટી જે વર્તમાન Vue custom element ના host element ને expose કરે છે.
